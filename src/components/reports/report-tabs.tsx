@@ -24,7 +24,7 @@ export function ReportTabs({
   return (
     <nav
       aria-label={label}
-      className={`flex gap-1 overflow-x-auto ${
+      className={`flex gap-1 overflow-x-auto overflow-y-hidden ${
         primary ? "border-b border-border-subtle" : "mt-4"
       }`}
     >
