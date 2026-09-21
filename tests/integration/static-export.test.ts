@@ -135,22 +135,40 @@ describe("reports", () => {
       "utf8",
     );
     expect(pageHtml).toContain(
-      '<iframe src="/TheClubHouseGolf/reports/marketing/strategy-report-v2-2026-09-20.html"',
+      '<iframe src="/TheClubHouseGolf/reports/marketing/strategy-report-v3-2026-09-21.html"',
     );
     const embedded = readFileSync(
-      path.join(OUT, "reports/marketing/strategy-report-v2-2026-09-20.html"),
+      path.join(OUT, "reports/marketing/strategy-report-v3-2026-09-21.html"),
       "utf8",
     );
     expect(embedded).toContain("Competitor Profiles");
   });
 
+  it("strategy report V3 covers all 20 competitors and declares UTF-8", () => {
+    const embedded = readFileSync(
+      path.join(OUT, "reports/marketing/strategy-report-v3-2026-09-21.html"),
+      "utf8",
+    );
+    expect(embedded.match(/<details class="profile"/g)).toHaveLength(20);
+    for (const id of [
+      "p-18birdies",
+      "p-skillest",
+      "p-aiassistants",
+      "p-forums",
+      "p-arccos",
+    ]) {
+      expect(embedded).toContain(`id="${id}"`);
+    }
+    expect(embedded.slice(0, 120)).toMatch(/<meta charset="utf-8">/i);
+  });
+
   it("uses the corrected strategy report name", () => {
     const embedded = readFileSync(
-      path.join(OUT, "reports/marketing/strategy-report-v2-2026-09-20.html"),
+      path.join(OUT, "reports/marketing/strategy-report-v3-2026-09-21.html"),
       "utf8",
     );
     expect(embedded).toContain(
-      "<h1>Clubhouse Golf Marketing Strategy Report V2 - Sept 20 2026</h1>",
+      "<h1>Clubhouse Golf Marketing Strategy Report V3 - Sept 21 2026</h1>",
     );
     expect(embedded).not.toMatch(/Startegy|Spet/);
   });
