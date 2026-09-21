@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ReportFrame } from "@/components/reports/report-frame";
+import { ReportDetails } from "@/components/reports/report-details";
 import { REPORT_SECTIONS, findReport, formatReportDate } from "@/lib/reports";
 import { asset } from "@/lib/site";
 
@@ -44,6 +45,9 @@ export default async function ReportPage({
           <p className="mt-2 max-w-2xl text-body text-ink-muted">
             {report.summary}
           </p>
+          {report.details && (
+            <ReportDetails details={report.details} className="mt-4" />
+          )}
         </div>
         <a
           href={src}
