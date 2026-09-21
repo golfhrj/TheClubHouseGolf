@@ -31,11 +31,11 @@ export const REPORT_SECTIONS: ReportSection[] = [
       {
         slug: "strategy",
         label: "Strategy",
-        title: "Clubhouse Golf Marketing Strategy Report V2 - Sept 20 2026",
+        title: "Clubhouse Golf Marketing Strategy Report V3 - Sept 21 2026",
         summary:
-          "Product marketing context and the full competitive landscape - 10 direct and 5 indirect competitors - in one document.",
-        date: "2026-09-20",
-        file: "/reports/marketing/strategy-report-v2-2026-09-20.html",
+          "Product marketing context and the full competitive landscape - 12 direct and 8 indirect competitors - updated for Phase 1's community and game-improvement scope.",
+        date: "2026-09-21",
+        file: "/reports/marketing/strategy-report-v3-2026-09-21.html",
       },
       {
         slug: "demographics-device-mix",

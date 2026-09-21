@@ -18,7 +18,7 @@ describe("formatReportDate()", () => {
 describe("report registry", () => {
   it("finds reports by section and slug", () => {
     expect(findReport("marketing", "strategy")?.report.title).toBe(
-      "Clubhouse Golf Marketing Strategy Report V2 - Sept 20 2026",
+      "Clubhouse Golf Marketing Strategy Report V3 - Sept 21 2026",
     );
     expect(
       findReport("marketing", "demographics-device-mix")?.report.label,

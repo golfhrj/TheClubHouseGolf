@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 const STRATEGY = /\/TheClubHouseGolf\/reports\/marketing\/strategy\/$/;
 const STRATEGY_TITLE =
-  "Clubhouse Golf Marketing Strategy Report V2 - Sept 20 2026";
+  "Clubhouse Golf Marketing Strategy Report V3 - Sept 21 2026";
 const SCORECARD_TITLE = "Demographics · Device Mix";
 
 test("Reports › Marketing › Strategy tabs lead to the report", async ({
@@ -45,6 +45,8 @@ test("Reports › Marketing › Strategy tabs lead to the report", async ({
   const report = page.frameLocator(`iframe[title="${STRATEGY_TITLE}"]`);
   await expect(report.locator("h1")).toHaveText(STRATEGY_TITLE);
   await expect(report.getByText("Competitive Landscape").first()).toBeVisible();
+  await expect(report.locator("details.profile")).toHaveCount(20);
+  await expect(report.getByRole("button", { name: "All 20" })).toBeVisible();
   expect(failed).toEqual([]);
 });
 
@@ -58,7 +60,7 @@ test("strategy report deep link loads and offers a full-screen view", async ({
   const fullScreen = page.getByRole("link", { name: /Open full screen/ });
   const href = await fullScreen.getAttribute("href");
   expect(href).toBe(
-    "/TheClubHouseGolf/reports/marketing/strategy-report-v2-2026-09-20.html",
+    "/TheClubHouseGolf/reports/marketing/strategy-report-v3-2026-09-21.html",
   );
   const res = await request.get(href!);
   expect(res.status()).toBe(200);
@@ -135,7 +137,7 @@ test("Marketing section lists both reports with their details", async ({
 }) => {
   await page.goto("./reports/marketing/");
   await expect(
-    page.getByRole("link", { name: /Strategy Report V2/ }),
+    page.getByRole("link", { name: /Strategy Report V3/ }),
   ).toHaveAttribute("href", "/TheClubHouseGolf/reports/marketing/strategy/");
   // The tab shares the card's name, so pick the card by its details.
   const card = page.getByRole("link", {
