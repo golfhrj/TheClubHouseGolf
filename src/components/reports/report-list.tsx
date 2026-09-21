@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ReportDetails } from "@/components/reports/report-details";
 import { formatReportDate, type ReportSection } from "@/lib/reports";
 
 /** Card grid linking to each report in the given sections. */
@@ -20,6 +21,9 @@ export function ReportList({ sections }: { sections: ReportSection[] }) {
                 </p>
                 <p className="mt-2 font-display text-h3 text-ink">{r.title}</p>
                 <p className="mt-2 text-body text-ink-muted">{r.summary}</p>
+                {r.details && (
+                  <ReportDetails details={r.details} className="mt-4" />
+                )}
                 <p className="mt-auto pt-4 text-caption text-ink-faint">
                   {formatReportDate(r.date)}
                 </p>

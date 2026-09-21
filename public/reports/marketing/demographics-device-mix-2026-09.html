@@ -1,0 +1,570 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Clubhouse Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,480;0,9..144,600;0,9..144,680;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    --paper: #F1F3EA;
+    --paper-2: #FBFBF7;
+    --ink: #1C2620;
+    --ink-muted: #57634F;
+    --ink-faint: #85937C;
+    --line: #CDD4C1;
+    --line-soft: #DEE3D4;
+    --surface: #FFFFFF;
+    --fairway: #0E6B44;
+    --fairway-ink: #F5F8F2;
+    --bar-muted: #AFBBA2;
+    --sand: #B98A3E;
+    --sand-ink: #241A08;
+    --flag: #A23B32;
+    --shadow: 0 18px 40px -22px rgba(20, 30, 20, 0.35);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper: #121C17;
+      --paper-2: #182721;
+      --ink: #E9EFE5;
+      --ink-muted: #9CAC93;
+      --ink-faint: #647261;
+      --line: #2A3A30;
+      --line-soft: #23322A;
+      --surface: #192821;
+      --fairway: #3C9B6D;
+      --fairway-ink: #0C1712;
+      --bar-muted: #3C4A3F;
+      --sand: #B27E36;
+      --sand-ink: #1A1206;
+      --flag: #E2665A;
+      --shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper: #121C17;
+    --paper-2: #182721;
+    --ink: #E9EFE5;
+    --ink-muted: #9CAC93;
+    --ink-faint: #647261;
+    --line: #2A3A30;
+    --line-soft: #23322A;
+    --surface: #192821;
+    --fairway: #3C9B6D;
+    --fairway-ink: #0C1712;
+    --bar-muted: #3C4A3F;
+    --sand: #B27E36;
+    --sand-ink: #1A1206;
+    --flag: #E2665A;
+    --shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.55);
+  }
+
+  *{ box-sizing: border-box; }
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+    padding: 0 20px;
+  }
+  .sheet{
+    max-width: 860px;
+    margin: 0 auto;
+    padding-block: 40px 64px;
+  }
+  h1, h2, h3{
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-weight: 600;
+    text-wrap: balance;
+    margin: 0;
+  }
+  .eyebrow{
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .num{ font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  p{ line-height: 1.6; color: var(--ink); margin: 0; }
+  .muted{ color: var(--ink-muted); }
+  svg text{ font-family: "Public Sans", ui-sans-serif, sans-serif; fill: var(--ink); }
+  svg .num-t{ font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 36px clamp(20px, 5vw, 44px);
+    overflow: hidden;
+  }
+  .masthead::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--line-soft) 1.1px, transparent 1.1px);
+    background-size: 16px 16px;
+    -webkit-mask-image: linear-gradient(to bottom right, black, transparent 68%);
+            mask-image: linear-gradient(to bottom right, black, transparent 68%);
+    opacity: 0.7;
+  }
+  .masthead-inner{ position: relative; }
+  .masthead h1{
+    font-size: clamp(2.1rem, 5.4vw, 3rem);
+    letter-spacing: -0.01em;
+    margin-top: 10px;
+  }
+  .masthead .dek{
+    max-width: 46ch;
+    margin-top: 12px;
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+  }
+  .meta-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--line);
+  }
+  .meta-item{ display: flex; flex-direction: column; gap: 3px; }
+  .meta-item .k{ font-family: "IBM Plex Mono", monospace; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+  .meta-item .v{ font-size: 0.92rem; font-weight: 600; }
+
+  /* ---------- Routing / holes ---------- */
+  .holes{ position: relative; margin-top: 8px; }
+  .holes::before{
+    content: "";
+    position: absolute;
+    left: 27px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: repeating-linear-gradient(to bottom, var(--line) 0 6px, transparent 6px 12px);
+  }
+  .hole{
+    position: relative;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 18px;
+    padding-block: 44px;
+  }
+  .hole:first-of-type{ padding-top: 40px; }
+  .hole-marker{
+    position: relative;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--fairway);
+    color: var(--fairway);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 1.1rem;
+    z-index: 1;
+  }
+  .hole-body{ min-width: 0; }
+  .hole-head{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px 16px;
+    margin-bottom: 6px;
+  }
+  .hole-title{ font-size: clamp(1.35rem, 3.4vw, 1.7rem); }
+  .par-tag{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    border: 1px solid currentColor;
+  }
+  .par-tag.direct{ color: var(--fairway); }
+  .par-tag.blended{ color: var(--sand); }
+  .par-tag.hazard{ color: var(--flag); }
+  .hole-dek{ max-width: 62ch; color: var(--ink-muted); margin-bottom: 22px; }
+
+  /* ---------- stat tiles ---------- */
+  .tiles{ display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-bottom: 22px; }
+  .tile{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .tile .big{ font-family: "Fraunces", serif; font-size: 1.7rem; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .tile .big.flag{ color: var(--flag); }
+  .tile .big.fairway{ color: var(--fairway); }
+  .tile .cap{ margin-top: 6px; font-size: 0.85rem; color: var(--ink-muted); line-height: 1.4; }
+
+  .chart-wrap{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px clamp(12px, 3vw, 22px) 14px;
+    margin-bottom: 14px;
+  }
+  .chart-wrap svg{ width: 100%; height: auto; display: block; overflow: visible; }
+  .chart-title{ font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-faint); font-family: "IBM Plex Mono", monospace; margin-bottom: 6px; }
+  .chart-foot{ font-size: 0.82rem; color: var(--ink-muted); margin-top: 8px; }
+
+  .bar-el, .dot-el{ cursor: default; }
+  .bar-el:hover, .dot-el:hover{ opacity: 0.82; }
+
+  /* legend */
+  .legend{ display:flex; gap:16px; flex-wrap:wrap; font-size:0.82rem; color: var(--ink-muted); margin-bottom: 8px; }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .swatch{ width:10px; height:10px; border-radius:3px; display:inline-block; }
+
+  /* ---------- 19th hole ---------- */
+  .clubhouse{
+    position: relative;
+    background: linear-gradient(180deg, var(--paper-2), var(--paper-2));
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 8px 6px 6px;
+    margin-top: 8px;
+  }
+  .clubhouse-inner{ padding: 28px clamp(16px, 4vw, 34px) 32px; }
+  .clubhouse .hole-marker{ border-color: var(--flag); color: var(--flag); }
+  .verdict-lede{ max-width: 64ch; margin-bottom: 22px; }
+  .verdict-lede strong{ color: var(--ink); }
+
+  .cards{ display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .device-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+  }
+  .device-card .tier{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--flag);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .device-card h3{ font-size: 1.25rem; margin-bottom: 4px; }
+  .device-card .sub{ font-size: 0.86rem; color: var(--ink-muted); margin-bottom: 14px; }
+  .spec-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+  }
+  .spec{ display: flex; flex-direction: column; gap: 2px; }
+  .spec .k{ font-family: "IBM Plex Mono", monospace; font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); }
+  .spec .v{ font-family: "IBM Plex Mono", monospace; font-size: 0.92rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  .why{ margin-top: 20px; font-size: 0.92rem; color: var(--ink-muted); border-left: 2px solid var(--fairway); padding-left: 14px; }
+
+  footer{
+    margin-top: 34px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 480px){
+    .hole{ grid-template-columns: 44px 1fr; gap: 12px; }
+    .hole-marker{ width: 44px; height: 44px; font-size: 0.95rem; }
+    .holes::before{ left: 21px; }
+    .spec-grid{ grid-template-columns: 1fr 1fr; }
+  }
+</style>
+
+<div class="sheet">
+
+  <div class="masthead">
+    <div class="masthead-inner">
+      <span class="eyebrow">Market &amp; Device Research — Scorecard No. 1</span>
+      <h1>Clubhouse Scorecard</h1>
+      <p class="dek">Who's buying golf gear, where they buy it, and which phone is in their hand when they do — carded for the Clubhouse Golf app build.</p>
+      <div class="meta-row">
+        <div class="meta-item"><span class="k">Round</span><span class="v">Demographics · Device Mix</span></div>
+        <div class="meta-item"><span class="k">Prepared for</span><span class="v">Clubhouse Golf (chgolfco)</span></div>
+        <div class="meta-item"><span class="k">Carded</span><span class="v">September 2026</span></div>
+        <div class="meta-item"><span class="k">Holes played</span><span class="v">3 + the 19th</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="holes">
+
+    <!-- HOLE 1 -->
+    <section class="hole">
+      <div class="hole-marker">1</div>
+      <div class="hole-body">
+        <div class="hole-head">
+          <h2 class="hole-title">Who's buying</h2>
+          <span class="par-tag direct">Par 3 · direct data</span>
+        </div>
+        <p class="hole-dek">Golf's growth is happening in the 18&ndash;34 bracket, but its money still sits with an older, affluent core &mdash; and today's golf-retail traffic looks like the latter, not the former.</p>
+
+        <div class="tiles">
+          <div class="tile">
+            <div class="big fairway num">$100K+</div>
+            <div class="cap">Average household income of a regular golfer &mdash; 25% report $300K+</div>
+          </div>
+          <div class="tile">
+            <div class="big num">28%</div>
+            <div class="cap">Women are 28% of on-course golfers, a record high, up 46% since 2019</div>
+          </div>
+          <div class="tile">
+            <div class="big num">69&ndash;74%</div>
+            <div class="cap">Male share of visitors to Golf Galaxy, PGA Tour Superstore &amp; golf.com</div>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <div class="chart-title">On-course golfers by age (millions)</div>
+          <svg viewBox="0 0 600 258" role="img" aria-label="Bar chart of on-course golfers by age bracket in millions">
+            <line x1="130" y1="14" x2="130" y2="244" stroke="var(--line)" stroke-width="1"></line>
+            <g stroke="var(--line-soft)" stroke-width="1">
+              <line x1="242.5" y1="14" x2="242.5" y2="244"></line>
+              <line x1="355" y1="14" x2="355" y2="244"></line>
+              <line x1="467.5" y1="14" x2="467.5" y2="244"></line>
+              <line x1="580" y1="14" x2="580" y2="244"></line>
+            </g>
+            <g class="num-t" font-size="10" fill="var(--ink-faint)">
+              <text x="130" y="256" text-anchor="middle">0</text>
+              <text x="242.5" y="256" text-anchor="middle">2M</text>
+              <text x="355" y="256" text-anchor="middle">4M</text>
+              <text x="467.5" y="256" text-anchor="middle">6M</text>
+              <text x="580" y="256" text-anchor="middle">8M</text>
+            </g>
+
+            <!-- Under 18: 3.5M -->
+            <text x="124" y="41" text-anchor="end" font-size="12.5" fill="var(--ink-muted)">Under 18</text>
+            <rect class="bar-el" x="130" y="30" width="197" height="22" rx="4" fill="var(--bar-muted)"><title>Under 18: 3.5M golfers</title></rect>
+            <text class="num-t" x="335" y="45" font-size="12" font-weight="600">3.5M</text>
+
+            <!-- 18-34: 6.8M (largest) -->
+            <text x="124" y="89" text-anchor="end" font-size="12.5" font-weight="600" fill="var(--ink)">18&ndash;34</text>
+            <rect class="bar-el" x="130" y="78" width="383" height="22" rx="4" fill="var(--fairway)"><title>18–34: 6.8M golfers — largest on-course cohort</title></rect>
+            <text class="num-t" x="521" y="93" font-size="12" font-weight="700" fill="var(--fairway)">6.8M</text>
+
+            <!-- 35-49: 5.3M -->
+            <text x="124" y="137" text-anchor="end" font-size="12.5" fill="var(--ink-muted)">35&ndash;49</text>
+            <rect class="bar-el" x="130" y="126" width="298" height="22" rx="4" fill="var(--bar-muted)"><title>35–49: 5.3M golfers</title></rect>
+            <text class="num-t" x="436" y="141" font-size="12" font-weight="600">5.3M</text>
+
+            <!-- 50-64: 6.2M -->
+            <text x="124" y="185" text-anchor="end" font-size="12.5" fill="var(--ink-muted)">50&ndash;64</text>
+            <rect class="bar-el" x="130" y="174" width="349" height="22" rx="4" fill="var(--bar-muted)"><title>50–64: 6.2M golfers</title></rect>
+            <text class="num-t" x="487" y="189" font-size="12" font-weight="600">6.2M</text>
+
+            <!-- 65+: 5.4M -->
+            <text x="124" y="233" text-anchor="end" font-size="12.5" fill="var(--ink-muted)">65+</text>
+            <rect class="bar-el" x="130" y="222" width="304" height="22" rx="4" fill="var(--bar-muted)"><title>65+: 5.4M golfers</title></rect>
+            <text class="num-t" x="442" y="237" font-size="12" font-weight="600">5.4M</text>
+          </svg>
+          <div class="chart-foot">18&ndash;34 is the single largest on-course age group &mdash; but Golf Galaxy and PGA Tour Superstore both skew 45&ndash;54, and golf.com skews 65+. The growth demo and today's retail traffic aren't the same audience.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOLE 2 -->
+    <section class="hole">
+      <div class="hole-marker">2</div>
+      <div class="hole-body">
+        <div class="hole-head">
+          <h2 class="hole-title">Mobile vs. desktop</h2>
+          <span class="par-tag blended">Par 4 · blended benchmark</span>
+        </div>
+        <p class="hole-dek">Phones win the browse. Desktop still closes an outsized share of the sale &mdash; general retail and sporting-goods benchmarks agree on the direction, even if the exact split isn't golf-specific.</p>
+
+        <div class="tiles">
+          <div class="tile">
+            <div class="big flag num">~2×</div>
+            <div class="cap">Desktop converts at roughly double the mobile rate (3.6&ndash;3.9% vs. 1.8&ndash;1.9%)</div>
+          </div>
+          <div class="tile">
+            <div class="big num">45%</div>
+            <div class="cap">Mobile's share of sporting-goods revenue &mdash; mid-pack vs. apparel (62%) and electronics (35%)</div>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <div class="chart-title">Share of traffic vs. share of revenue, by device</div>
+          <div class="legend">
+            <span><span class="swatch" style="background:var(--sand)"></span>Traffic share</span>
+            <span><span class="swatch" style="background:var(--fairway)"></span>Revenue share</span>
+          </div>
+          <svg viewBox="0 0 600 190" role="img" aria-label="Dumbbell chart comparing traffic share and revenue share for mobile and desktop">
+            <g stroke="var(--line-soft)" stroke-width="1">
+              <line x1="130" y1="30" x2="130" y2="162"></line>
+              <line x1="237.5" y1="30" x2="237.5" y2="162"></line>
+              <line x1="345" y1="30" x2="345" y2="162"></line>
+              <line x1="452.5" y1="30" x2="452.5" y2="162"></line>
+              <line x1="560" y1="30" x2="560" y2="162"></line>
+            </g>
+            <g class="num-t" font-size="10" fill="var(--ink-faint)">
+              <text x="130" y="176" text-anchor="middle">0%</text>
+              <text x="237.5" y="176" text-anchor="middle">25%</text>
+              <text x="345" y="176" text-anchor="middle">50%</text>
+              <text x="452.5" y="176" text-anchor="middle">75%</text>
+              <text x="560" y="176" text-anchor="middle">100%</text>
+            </g>
+
+            <!-- Mobile row -->
+            <text x="60" y="66" font-size="13" font-weight="600" fill="var(--ink)">Mobile</text>
+            <line x1="323.5" y1="62" x2="465.4" y2="62" stroke="var(--ink-faint)" stroke-width="2"></line>
+            <circle class="dot-el" cx="465.4" cy="62" r="7" fill="var(--sand)"><title>Mobile traffic share: ~78%</title></circle>
+            <circle class="dot-el" cx="323.5" cy="62" r="7" fill="var(--fairway)"><title>Mobile revenue share (sporting goods): ~45%</title></circle>
+            <text class="num-t" x="465.4" y="46" text-anchor="middle" font-size="12" font-weight="700" fill="var(--sand)">78%</text>
+            <text class="num-t" x="323.5" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="var(--fairway)">45%</text>
+
+            <!-- Desktop row -->
+            <text x="60" y="146" font-size="13" font-weight="600" fill="var(--ink)">Desktop</text>
+            <line x1="224.6" y1="142" x2="366.5" y2="142" stroke="var(--ink-faint)" stroke-width="2"></line>
+            <circle class="dot-el" cx="224.6" cy="142" r="7" fill="var(--sand)"><title>Desktop traffic share: ~22%</title></circle>
+            <circle class="dot-el" cx="366.5" cy="142" r="7" fill="var(--fairway)"><title>Desktop revenue share (sporting goods): ~55%</title></circle>
+            <text class="num-t" x="224.6" y="126" text-anchor="middle" font-size="12" font-weight="700" fill="var(--sand)">22%</text>
+            <text class="num-t" x="366.5" y="164" text-anchor="middle" font-size="12" font-weight="700" fill="var(--fairway)">55%</text>
+          </svg>
+          <div class="chart-foot">Mobile carries roughly 78% of retail traffic but only 45% of sporting-goods revenue &mdash; the ~33-point gap is where desktop (and tablet) close the sale.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOLE 3 -->
+    <section class="hole">
+      <div class="hole-marker">3</div>
+      <div class="hole-body">
+        <div class="hole-head">
+          <h2 class="hole-title">Apple vs. Android</h2>
+          <span class="par-tag hazard">Par 5 · hazard: inference</span>
+        </div>
+        <p class="hole-dek">No one publishes a golf-specific OS split. What exists is a national baseline plus a sharp income skew toward iPhone &mdash; and golf's income sits well above where that skew is measured.</p>
+
+        <div class="chart-wrap">
+          <div class="chart-title">U.S. smartphone OS share (current quarter)</div>
+          <svg viewBox="0 0 600 68" role="img" aria-label="Stacked bar showing US iOS versus Android market share">
+            <rect x="0" y="18" width="346" height="30" rx="5" fill="var(--fairway)"><title>iOS: ~58% of US smartphones</title></rect>
+            <rect x="350" y="18" width="250" height="30" rx="5" fill="var(--sand)"><title>Android: ~42% of US smartphones</title></rect>
+            <text x="173" y="38" text-anchor="middle" font-size="13" font-weight="700" fill="var(--fairway-ink)">iOS 58%</text>
+            <text x="475" y="38" text-anchor="middle" font-size="13" font-weight="700" fill="var(--sand-ink)">Android 42%</text>
+          </svg>
+          <div class="chart-foot">Fluctuates by quarter and source &mdash; iOS 55&ndash;61%, Android 38&ndash;45% across trackers.</div>
+        </div>
+
+        <div class="chart-wrap">
+          <div class="chart-title">Phone ownership by household income</div>
+          <div class="legend">
+            <span><span class="swatch" style="background:var(--fairway)"></span>iPhone</span>
+            <span><span class="swatch" style="background:var(--sand)"></span>Android</span>
+          </div>
+          <svg viewBox="0 0 620 300" role="img" aria-label="Grouped bar chart of iPhone versus Android ownership across four household income brackets, with an annotation for golf's average income">
+            <line x1="70" y1="240" x2="610" y2="240" stroke="var(--line)" stroke-width="1"></line>
+
+            <!-- <$30K -->
+            <rect class="bar-el" x="99" y="185" width="36" height="55" rx="4" fill="var(--fairway)"><title>iPhone ownership, under $30K: 13%</title></rect>
+            <rect class="bar-el" x="145" y="122" width="36" height="118" rx="4" fill="var(--sand)"><title>Android ownership, under $30K: 28%</title></rect>
+            <text class="num-t" x="117" y="180" text-anchor="middle" font-size="11" font-weight="600">13%</text>
+            <text class="num-t" x="163" y="117" text-anchor="middle" font-size="11" font-weight="600">28%</text>
+            <text x="140" y="258" text-anchor="middle" font-size="11" fill="var(--ink-muted)">Under $30K</text>
+
+            <!-- $30-49K -->
+            <rect class="bar-el" x="239" y="143" width="36" height="97" rx="4" fill="var(--fairway)"><title>iPhone ownership, $30–49K: 23%</title></rect>
+            <rect class="bar-el" x="285" y="127" width="36" height="113" rx="4" fill="var(--sand)"><title>Android ownership, $30–49K: 27%</title></rect>
+            <text class="num-t" x="257" y="138" text-anchor="middle" font-size="11" font-weight="600">23%</text>
+            <text class="num-t" x="303" y="122" text-anchor="middle" font-size="11" font-weight="600">27%</text>
+            <text x="280" y="258" text-anchor="middle" font-size="11" fill="var(--ink-muted)">$30&ndash;49K</text>
+
+            <!-- $50-74K -->
+            <rect class="bar-el" x="379" y="135" width="36" height="105" rx="4" fill="var(--fairway)"><title>iPhone ownership, $50–74K: 25%</title></rect>
+            <rect class="bar-el" x="425" y="110" width="36" height="130" rx="4" fill="var(--sand)"><title>Android ownership, $50–74K: 31%</title></rect>
+            <text class="num-t" x="397" y="130" text-anchor="middle" font-size="11" font-weight="600">25%</text>
+            <text class="num-t" x="443" y="105" text-anchor="middle" font-size="11" font-weight="600">31%</text>
+            <text x="420" y="258" text-anchor="middle" font-size="11" fill="var(--ink-muted)">$50&ndash;74K</text>
+
+            <!-- $75K+ -->
+            <rect class="bar-el" x="519" y="72" width="36" height="168" rx="4" fill="var(--fairway)"><title>iPhone ownership, $75K and up: 40%</title></rect>
+            <rect class="bar-el" x="565" y="110" width="36" height="130" rx="4" fill="var(--sand)"><title>Android ownership, $75K and up: 31%</title></rect>
+            <text class="num-t" x="537" y="67" text-anchor="middle" font-size="11" font-weight="700" fill="var(--fairway)">40%</text>
+            <text class="num-t" x="583" y="105" text-anchor="middle" font-size="11" font-weight="600">31%</text>
+            <text x="560" y="258" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="600">$75K+</text>
+
+            <!-- golf income annotation -->
+            <text x="608" y="12" text-anchor="end" font-size="11" fill="var(--flag)" font-weight="600">Golf's average HHI is $100K+</text>
+            <text x="608" y="26" text-anchor="end" font-size="11" fill="var(--flag)">&mdash; a full bracket above this one</text>
+            <line x1="537" y1="40" x2="537" y2="66" stroke="var(--flag)" stroke-width="1.5" stroke-dasharray="3 3"></line>
+            <path d="M 532 62 L 537 72 L 542 62 Z" fill="var(--flag)"></path>
+          </svg>
+          <div class="chart-foot">iPhone share climbs with income at every step; golf's own income profile sits past the top bracket this data measures.</div>
+        </div>
+
+        <div class="tiles" style="margin-top:2px;">
+          <div class="tile">
+            <div class="big num">~2×</div>
+            <div class="cap">iPhone owners' monthly spend on tech ($101 vs. $50) and fashion ($117 vs. $62) vs. Android owners</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 19TH HOLE -->
+  <div class="clubhouse">
+    <div class="clubhouse-inner">
+      <div class="hole">
+        <div class="hole-marker">19</div>
+        <div class="hole-body">
+          <div class="hole-head">
+            <h2 class="hole-title">The 19th hole &mdash; the verdict</h2>
+          </div>
+          <p class="verdict-lede muted">Golf skews affluent, and affluent skews iOS &mdash; so iPhone gets first claim on build priority. But Android still holds roughly <strong>40%</strong> of the U.S. market, and Samsung alone accounts for <strong>~55&ndash;60% of every U.S. Android phone</strong>. Real Android coverage means testing the two Samsung tiers that actually carry that share, at the breakpoints where they diverge.</p>
+
+          <div class="cards">
+            <div class="device-card">
+              <span class="tier">Tier 1 &middot; standard flagship</span>
+              <h3>Galaxy S25 / S24</h3>
+              <div class="sub">The bulk of realistic Android traffic</div>
+              <div class="spec-grid">
+                <div class="spec"><span class="k">Viewport</span><span class="v">360 × 780</span></div>
+                <div class="spec"><span class="k">DPR</span><span class="v">3.0</span></div>
+                <div class="spec"><span class="k">OS build</span><span class="v">Android 16 &amp; 15</span></div>
+                <div class="spec"><span class="k">Browser</span><span class="v">Chrome</span></div>
+              </div>
+            </div>
+            <div class="device-card">
+              <span class="tier">Tier 1 &middot; large-screen / high-density</span>
+              <h3>Galaxy S25 Ultra / S24 Ultra</h3>
+              <div class="sub">A distinct breakpoint case, not a scaled-up S25</div>
+              <div class="spec-grid">
+                <div class="spec"><span class="k">Viewport</span><span class="v">412 × 891</span></div>
+                <div class="spec"><span class="k">DPR</span><span class="v">3.5</span></div>
+                <div class="spec"><span class="k">OS build</span><span class="v">Android 16</span></div>
+                <div class="spec"><span class="k">Browser</span><span class="v">Chrome</span></div>
+              </div>
+            </div>
+          </div>
+
+          <p class="why">Neither card is golf-specific data &mdash; it's the best inference available from national OS, income, and device-share figures. Swap this matrix for real numbers as soon as Clubhouse Golf has its own analytics to read.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Sources: National Golf Foundation &middot; Golf Datatech &middot; Similarweb (Golf Galaxy, PGA Tour Superstore, golf.com) &middot; Eightx 2026 mobile-revenue-by-vertical &middot; Foundry CRO conversion benchmarks &middot; SavvyRoo / Comscore iPhone&ndash;Android income data &middot; DemandSage &amp; BankMyCell OS share &middot; StatCounter Android version share. Figures are the most recent available as of September 2026; several are blended general-retail or sporting-goods benchmarks, not golf-specific measurements &mdash; treat directional, not exact.
+  </footer>
+
+</div>
+
+</body></html>

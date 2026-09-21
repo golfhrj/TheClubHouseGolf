@@ -105,9 +105,10 @@ describe("reports", () => {
     "reports/index.html",
     "reports/marketing/index.html",
     "reports/marketing/strategy/index.html",
+    "reports/marketing/demographics-device-mix/index.html",
   ];
 
-  it("exports a page for Reports, Marketing and Strategy", () => {
+  it("exports a page for Reports, Marketing and each report", () => {
     for (const page of PAGES)
       expect(existsSync(path.join(OUT, page))).toBe(true);
   });
@@ -128,7 +129,7 @@ describe("reports", () => {
     }
   });
 
-  it("embeds the strategy report unchanged from the marketing source", () => {
+  it("embeds the strategy report", () => {
     const pageHtml = readFileSync(
       path.join(OUT, "reports/marketing/strategy/index.html"),
       "utf8",
@@ -141,5 +142,32 @@ describe("reports", () => {
       "utf8",
     );
     expect(embedded).toContain("Competitor Profiles");
+  });
+
+  it("uses the corrected strategy report name", () => {
+    const embedded = readFileSync(
+      path.join(OUT, "reports/marketing/strategy-report-v2-2026-09-20.html"),
+      "utf8",
+    );
+    expect(embedded).toContain(
+      "<h1>Clubhouse Golf Marketing Strategy Report V2 - Sept 20 2026</h1>",
+    );
+    expect(embedded).not.toMatch(/Startegy|Spet/);
+  });
+
+  it("embeds the Demographics · Device Mix scorecard", () => {
+    const pageHtml = readFileSync(
+      path.join(OUT, "reports/marketing/demographics-device-mix/index.html"),
+      "utf8",
+    );
+    expect(pageHtml).toContain(
+      '<iframe src="/TheClubHouseGolf/reports/marketing/demographics-device-mix-2026-09.html"',
+    );
+    const embedded = readFileSync(
+      path.join(OUT, "reports/marketing/demographics-device-mix-2026-09.html"),
+      "utf8",
+    );
+    expect(embedded).toContain("Clubhouse Scorecard");
+    expect(embedded).toContain("The 19th hole");
   });
 });
