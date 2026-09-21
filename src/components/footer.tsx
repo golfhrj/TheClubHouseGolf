@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BrandMark } from "@/components/brand-mark";
 import { SOCIAL_LINKS } from "@/components/social-links";
 
@@ -6,10 +7,11 @@ const CONTACT_EMAIL = "hello@chgolfco.com";
 const CURRENT_YEAR = new Date().getFullYear();
 
 const EXPLORE_LINKS = [
-  { label: "The Course", href: "#course" },
-  { label: "Shop", href: "#catalogue" },
-  { label: "What's Coming", href: "#whats-coming" },
-  { label: "The Team", href: "#team" },
+  { label: "The Course", href: "/#course" },
+  { label: "Shop", href: "/#catalogue" },
+  { label: "What's Coming", href: "/#whats-coming" },
+  { label: "The Team", href: "/#team" },
+  { label: "Reports", href: "/reports/" },
 ];
 
 export function Footer() {
@@ -36,12 +38,12 @@ export function Footer() {
             <ul className="mt-3 flex flex-col gap-2">
               {EXPLORE_LINKS.map((l) => (
                 <li key={l.label}>
-                  <a
+                  <Link
                     href={l.href}
                     className="text-body text-ink-muted transition-colors hover:text-ink"
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
