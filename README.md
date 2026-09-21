@@ -1,55 +1,43 @@
-# Clubhouse Golf — Phase 1 platform
+# Clubhouse Golf — website
 
-Monorepo for the Clubhouse Golf website and mobile app (Phase 1 scope: unified
-affiliate catalogue, Stripe checkout, wallet/refunds, partnership directory,
-YouTube content layer, and Clubhouse Buddy base infrastructure).
+The Clubhouse Golf brochure site. It's a Next.js app exported as plain static
+files and hosted free on GitHub Pages — no server, database or backend.
 
-## Stack
+**Live:** https://golfhrj.github.io/TheClubHouseGolf/
 
-| Layer | Choice | Why |
-|---|---|---|
-| Web | Next.js (App Router) on Vercel | Server rendering for SEO on a commerce catalogue; headless CMS friendly. |
-| Mobile | React Native / Expo, single codebase | One TypeScript codebase for iOS + Android, sharing types/API client/business logic with the web app — one engineering team instead of two stacks (ruled out Flutter for this reason). |
-| Styling | Tailwind v4 (web), theme tokens + StyleSheet (mobile) | Both consume the same `@chg/design-tokens` source of truth. |
-| Monorepo | pnpm workspaces + Turborepo | Shared packages, cached builds. |
+## Run locally
+
+```bash
+npm install
+npm run dev      # http://localhost:3000
+```
+
+`npm run build` writes the finished static site to `out/`.
+
+## Deploying
+
+Every push to `main` builds and publishes the site automatically
+(`.github/workflows/deploy.yml`). One-time setup: in the repo on GitHub, go to
+**Settings → Pages** and set **Source** to **GitHub Actions**.
+
+The workflow fills in the sub-path (`/TheClubHouseGolf`) and site URL from
+GitHub Pages itself, so nothing needs changing when you move to a custom domain
+— add the domain under **Settings → Pages → Custom domain** and point your DNS
+at GitHub.
 
 ## Structure
 
 ```
-apps/
-  web/              Next.js storefront
-  mobile/           Expo app (iOS + Android)
-packages/
-  design-tokens/    Single source of truth for color, type, spacing, radius —
-                     consumed by web's Tailwind theme and mobile's theme.ts
+src/app/          page, layout, global styles, social-share image
+src/components/   page sections (hero, what's coming, road ahead, team, footer…)
+src/lib/site.ts   site URL + asset() helper for files in public/
+public/           images, logos, cursors
 ```
 
-## Design system — "Modern Tour"
+Anything under `public/` referenced from code must go through `asset()` from
+`src/lib/site.ts`, so it resolves under the GitHub Pages sub-path.
 
-True black base, near-white ink, a single sharp red accent used sparingly
-(CTAs, price emphasis, status). Matches the current chgolfco.com's minimal,
-tech-forward direction. Full token values live in
-`packages/design-tokens/src/index.ts`; the web app mirrors them as CSS custom
-properties in `apps/web/src/app/globals.css` (Tailwind v4 reads CSS, not JS).
+## Contact
 
-| Token | Value |
-|---|---|
-| `color.black` | `#0A0A0A` |
-| `color.ink` | `#FAFAFA` |
-| `color.red` | `#DC2626` |
-| `font.sans` | Geist |
-| `font.mono` | Geist Mono |
-
-## Getting started
-
-```bash
-pnpm install
-pnpm dev:web      # Next.js on localhost:3000
-pnpm dev:mobile   # Expo dev server / QR
-```
-
-## Status
-
-Repo scaffolding + design system in place. Backend (catalogue schema, wallet,
-Stripe, auth) not yet started — see `context/proposal.md` in the client
-folder for full Phase 1 scope and the 15 Oct 2026 timeline.
+The site has no forms. "Contact us" links go to `hello@chgolfco.com`
+(set in `src/components/footer.tsx`).
