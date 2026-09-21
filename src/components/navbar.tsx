@@ -1,18 +1,28 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { BrandMark } from "@/components/brand-mark";
 import { ThemeToggle } from "@/components/theme-toggle";
 
+// Root-relative so they work from any page, not just the home page.
 const NAV_LINKS = [
-  { label: "The Course", href: "#course" },
-  { label: "Shop", href: "#catalogue" },
-  { label: "What's Coming", href: "#whats-coming" },
-  { label: "The Team", href: "#team", italic: true },
+  { label: "The Course", href: "/#course" },
+  { label: "Shop", href: "/#catalogue" },
+  { label: "What's Coming", href: "/#whats-coming" },
+  { label: "The Team", href: "/#team", italic: true },
+  { label: "Reports", href: "/reports/" },
 ];
 
-export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+/**
+ * `solid` renders the scrolled (opaque) style from the start - for pages
+ * without a hero photo behind the bar.
+ */
+export function Navbar({ solid = false }: { solid?: boolean }) {
+  const pathname = usePathname();
+  const [scrolledPastTop, setScrolled] = useState(false);
+  const scrolled = solid || scrolledPastTop;
   const ticking = useRef(false);
 
   useEffect(() => {
@@ -72,19 +82,19 @@ export function Navbar() {
 
         {/* Centered lockup - logo + wordmark, centered on the full bar,
             independent of the CTA's width */}
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="pointer-events-auto absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 sm:gap-2.5"
         >
           <BrandMark className="h-5 w-5 sm:h-7 sm:w-7" />
           <span className="max-w-[10.5rem] truncate font-display text-[0.72rem] font-semibold uppercase tracking-[0.12em] sm:max-w-none sm:text-lg sm:tracking-[0.18em]">
             Clubhouse Golf
           </span>
-        </a>
+        </Link>
 
         {/* CTA — flush to the far edge, full bar height, no radius */}
-        <a
-          href="#contact"
+        <Link
+          href="/#contact"
           className={`flex shrink-0 items-center whitespace-nowrap border-l px-2.5 text-[0.62rem] font-semibold uppercase tracking-[0.06em] transition-colors sm:px-9 sm:text-caption sm:tracking-[0.1em] ${
             scrolled
               ? "border-border-subtle bg-cta text-cta-ink hover:bg-cta-hover"
@@ -92,7 +102,7 @@ export function Navbar() {
           }`}
         >
           Contact Us
-        </a>
+        </Link>
       </div>
 
       {/* Row 2 — nav links */}
@@ -104,19 +114,23 @@ export function Navbar() {
         }`}
       >
         <nav className="mx-auto flex max-w-6xl items-center gap-3 overflow-x-auto px-4 py-2.5 text-[0.7rem] uppercase tracking-[0.05em] sm:gap-4 sm:px-8 sm:py-3 sm:text-caption sm:tracking-[0.06em]">
-          {NAV_LINKS.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              className={`whitespace-nowrap transition-opacity hover:opacity-100 ${
-                l.italic
-                  ? "font-display italic normal-case tracking-normal"
-                  : ""
-              } opacity-80`}
-            >
-              {l.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((l) => {
+            const active = !l.href.includes("#") && pathname.startsWith(l.href);
+            return (
+              <Link
+                key={l.label}
+                href={l.href}
+                aria-current={active ? "page" : undefined}
+                className={`whitespace-nowrap transition-opacity hover:opacity-100 ${
+                  l.italic
+                    ? "font-display italic normal-case tracking-normal"
+                    : ""
+                } ${active ? "opacity-100 underline underline-offset-4" : "opacity-80"}`}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </header>

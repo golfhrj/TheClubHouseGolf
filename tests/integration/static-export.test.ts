@@ -99,3 +99,47 @@ describe("static export", () => {
     expect(js).not.toContain("/api/contact");
   });
 });
+
+describe("reports", () => {
+  const PAGES = [
+    "reports/index.html",
+    "reports/marketing/index.html",
+    "reports/marketing/strategy/index.html",
+  ];
+
+  it("exports a page for Reports, Marketing and Strategy", () => {
+    for (const page of PAGES)
+      expect(existsSync(path.join(OUT, page))).toBe(true);
+  });
+
+  it("points every local link on the report pages at a real file", () => {
+    for (const page of PAGES) {
+      const pageHtml = readFileSync(path.join(OUT, page), "utf8");
+      const urls = [
+        ...pageHtml.matchAll(/(?:href|src)="(\/TheClubHouseGolf\/[^"#]+)"/g),
+      ].map((m) => m[1]);
+      const missing = urls.filter((u) => {
+        const file = fileFor(u);
+        return !existsSync(
+          u.endsWith("/") ? path.join(file, "index.html") : file,
+        );
+      });
+      expect(missing, page).toEqual([]);
+    }
+  });
+
+  it("embeds the strategy report unchanged from the marketing source", () => {
+    const pageHtml = readFileSync(
+      path.join(OUT, "reports/marketing/strategy/index.html"),
+      "utf8",
+    );
+    expect(pageHtml).toContain(
+      '<iframe src="/TheClubHouseGolf/reports/marketing/strategy-report-v2-2026-09-20.html"',
+    );
+    const embedded = readFileSync(
+      path.join(OUT, "reports/marketing/strategy-report-v2-2026-09-20.html"),
+      "utf8",
+    );
+    expect(embedded).toContain("Competitor Profiles");
+  });
+});

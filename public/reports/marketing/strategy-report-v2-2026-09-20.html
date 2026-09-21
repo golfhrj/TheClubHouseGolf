@@ -1,0 +1,1889 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clubhouse Golf Marketing Startegy Report V2 - Spet 20 206</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#F6F8F5; --surface:#FFFFFF; --surface-2:#F0F3EE;
+  --ink:#15201A; --ink-2:#5B675E; --ink-3:#8A958C;
+  --line:#DDE3DB; --line-2:#C9D2C6;
+  --accent:#1F6F4A; --accent-ink:#14563A; --accent-soft:#E6F0EA;
+  --threat:#A83A24; --threat-soft:#F7E6E1;
+  --watch:#96702A; --watch-soft:#F6EDDC;
+  --calm:#3F7B57; --calm-soft:#E7F1EA;
+  --shadow:0 1px 2px rgba(21,32,26,.05),0 8px 24px -16px rgba(21,32,26,.22);
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --body:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+    --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#778377;
+    --line:#2A312A; --line-2:#3A433A;
+    --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+    --threat:#E08063; --threat-soft:#2E1E18;
+    --watch:#D6AB5E; --watch-soft:#2B2417;
+    --calm:#77BE95; --calm-soft:#17261D;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+  --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#778377;
+  --line:#2A312A; --line-2:#3A433A;
+  --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+  --threat:#E08063; --threat-soft:#2E1E18;
+  --watch:#D6AB5E; --watch-soft:#2B2417;
+  --calm:#77BE95; --calm-soft:#17261D;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.shell{padding-inline:clamp(16px,3vw,32px);padding-block:0 64px;max-width:1320px;margin:0 auto}
+h1,h2,h3,h4,summary,.ui{font-family:var(--display)}
+h2,h3,h4{text-wrap:balance;line-height:1.24;margin:0}
+a{color:var(--accent-ink);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink-2);word-break:break-word}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3)}
+</style>
+<style>
+/* ---- masthead ---- */
+.masthead{padding-block:40px 28px;border-bottom:2px solid var(--ink);margin-bottom:0}
+.masthead h1{font-size:clamp(30px,5.2vw,50px);font-weight:700;letter-spacing:-.02em;
+  line-height:1.05;margin:10px 0 14px}
+.standfirst{font-size:clamp(16px,2.2vw,19px);color:var(--ink-2);max-width:62ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.03em}
+.meta b{color:var(--ink-2);font-weight:500}
+/* ---- layout ---- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.rail{display:none}
+@media(min-width:960px){
+  .layout{grid-template-columns:232px minmax(0,1fr);gap:44px;align-items:start}
+  .rail{display:block;grid-column:1;position:sticky;
+    top:calc(env(safe-area-inset-top,0px) + 16px);
+    max-height:calc(100vh - 48px);overflow-y:auto;padding-block:32px 20px}
+  .doc{grid-column:2}
+}
+@media(min-width:1280px){ .layout{grid-template-columns:256px minmax(0,1fr);gap:56px} }
+.rail .eyebrow{display:block;margin:0 0 10px}
+.rail a{display:block;font-family:var(--display);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);text-decoration:none;padding:5px 0 5px 11px;
+  border-left:2px solid var(--line);line-height:1.35}
+.rail a:hover{color:var(--accent-ink);border-left-color:var(--accent)}
+.rail .sub{font-size:12.5px;color:var(--ink-3);padding-left:22px}
+.rail hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.doc{padding-block:32px 0;min-width:0}
+/* ---- sections ---- */
+.part{margin:0 0 56px;scroll-margin-top:24px}
+.part-head{border-top:1px solid var(--line-2);padding-top:14px;margin-bottom:22px}
+.part-head h2{font-size:clamp(21px,3vw,27px);font-weight:700;letter-spacing:-.015em;margin-top:6px}
+.part-head p{color:var(--ink-2);font-size:15px;max-width:66ch;margin:8px 0 0}
+/* ---- collapsibles ---- */
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  margin-bottom:10px;overflow:hidden}
+details[open]{box-shadow:var(--shadow)}
+summary{cursor:pointer;list-style:none;padding:13px 16px;display:flex;align-items:center;
+  gap:11px;font-weight:600;font-size:15.5px;color:var(--ink);background:var(--surface)}
+summary::-webkit-details-marker{display:none}
+summary:hover{background:var(--surface-2)}
+.chev{flex:0 0 auto;width:9px;height:9px;border-right:2px solid var(--ink-3);
+  border-bottom:2px solid var(--ink-3);transform:rotate(-45deg);transition:transform .18s ease;
+  margin-right:2px}
+details[open]>summary .chev{transform:rotate(45deg)}
+.sum-title{flex:1 1 auto;min-width:0}
+details .body{padding:2px 20px 22px;border-top:1px solid var(--line)}
+details .body>*:first-child{margin-top:16px}
+@media(prefers-reduced-motion:reduce){.chev{transition:none}}
+/* ---- prose ---- */
+.body p,.body li{font-size:15.5px;max-width:74ch}
+.body p{margin:0 0 13px}
+.body h4{font-size:12.5px;font-family:var(--mono);font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--accent-ink);margin:26px 0 10px}
+.body h5{font-family:var(--display);font-size:15px;font-weight:600;margin:20px 0 8px}
+.body ul{margin:0 0 14px;padding-left:19px}
+.body li{margin-bottom:6px}
+.body strong{font-weight:600}
+blockquote{margin:16px 0;padding:12px 16px;background:var(--watch-soft);
+  border-left:3px solid var(--watch);border-radius:0 6px 6px 0}
+blockquote p{margin:0;font-size:14.5px}
+</style>
+<style>
+/* ---- chips ---- */
+.chips{display:flex;gap:6px;flex-wrap:wrap;flex:0 0 auto}
+.chip{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;padding:3px 7px;border-radius:4px;white-space:nowrap;
+  background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
+.chip.direct{background:var(--accent-soft);color:var(--accent-ink);border-color:transparent}
+.chip.indirect{background:var(--surface-2);color:var(--ink-2)}
+.chip.t-high{background:var(--threat-soft);color:var(--threat);border-color:transparent}
+.chip.t-med{background:var(--watch-soft);color:var(--watch);border-color:transparent}
+.chip.t-low{background:var(--calm-soft);color:var(--calm);border-color:transparent}
+.chip.partner{background:var(--watch-soft);color:var(--watch);border-color:transparent}
+.chip.sup{background:transparent;color:var(--ink-3);border:1px dashed var(--line-2)}
+/* severity stripe on profile cards */
+details.profile{border-left:3px solid var(--line-2)}
+details.profile[data-threat="high"]{border-left-color:var(--threat)}
+details.profile[data-threat="med"]{border-left-color:var(--watch)}
+details.profile[data-threat="low"]{border-left-color:var(--calm)}
+/* ---- tables ---- */
+.scroller{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-family:var(--display);font-size:13px;
+  font-variant-numeric:tabular-nums;background:var(--surface)}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);
+  vertical-align:top;line-height:1.4}
+thead th{background:var(--surface-2);font-size:10.5px;font-family:var(--mono);font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap;
+  position:sticky;top:0}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--surface-2)}
+td strong{font-weight:600}
+.na{color:var(--ink-3);font-style:italic}
+/* ---- key-value glance grid ---- */
+.glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));
+  gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:16px 0}
+.glance div{padding:10px 13px;border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);background:var(--surface)}
+.glance dt{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 3px}
+.glance dd{margin:0;font-family:var(--display);font-size:13.5px;font-weight:500;line-height:1.4}
+/* ---- callouts ---- */
+.flag{border-radius:8px;padding:14px 16px;margin:18px 0;border:1px solid var(--line)}
+.flag.warn{background:var(--threat-soft);border-color:transparent}
+.flag.note{background:var(--accent-soft);border-color:transparent}
+.flag .eyebrow{color:inherit;opacity:.72;display:block;margin-bottom:6px}
+.flag.warn{color:var(--threat)}
+.flag.note{color:var(--accent-ink)}
+.flag p{margin:0 0 8px;font-size:14.5px;color:var(--ink)}
+.flag p:last-child{margin-bottom:0}
+/* ---- toolbar ---- */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;
+  padding:11px 13px;background:var(--surface);border:1px solid var(--line);border-radius:9px}
+.toolbar .eyebrow{margin-right:2px}
+button{font-family:var(--display);font-size:12.5px;font-weight:500;cursor:pointer;
+  padding:5px 11px;border-radius:6px;border:1px solid var(--line-2);
+  background:var(--surface);color:var(--ink-2)}
+button:hover{border-color:var(--accent);color:var(--accent-ink)}
+button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] button[aria-pressed="true"],
+[data-theme="dark"] button[aria-pressed="true"]{color:#101410}
+.spacer{flex:1 1 auto}
+footer{border-top:1px solid var(--line-2);margin-top:44px;padding-top:20px;
+  font-size:13.5px;color:var(--ink-3);max-width:70ch}
+/* ---- print / PDF export ---- */
+@media print{
+  :root{--ground:#fff;--surface:#fff;--surface-2:#fff;--shadow:none}
+  .rail,.toolbar,.no-print{display:none!important}
+  .shell{max-width:none;padding:0}
+  details{border:0;border-radius:0;box-shadow:none;margin-bottom:6px;break-inside:avoid}
+  details .body{padding:0 0 10px;border-top:0}
+  summary{padding:8px 0;border-bottom:1px solid #ccc}
+  .chev{display:none}
+  .part{margin-bottom:26px}
+  h2,summary{break-after:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+<div class="shell">
+<header class="masthead">
+  <span class="eyebrow">Clubhouse Golf &middot; chgolfco.com &middot; Internal</span>
+  <h1>Clubhouse Golf Marketing Startegy Report V2 - Spet 20 206</h1>
+  <p class="standfirst">The product marketing context and the full competitive landscape &mdash; 10 direct and 5 indirect competitors &mdash; in one document. Sections are collapsed; open what you need.</p>
+  <div class="meta">
+    <span><b>Generated</b> 2026&#8209;09&#8209;20</span>
+    <span><b>Context</b> v2</span>
+    <span><b>Profiles</b> 15</span>
+    <span><b>Scraped live</b> 11 of 15</span>
+    <span><b>SEO metrics</b> unavailable &mdash; see Method</span>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="rail" aria-label="Contents">
+  <span class="eyebrow">Contents</span>
+  <a href="#context">I &middot; Product Marketing Context</a>
+  <a href="#landscape">II &middot; Competitive Landscape</a>
+  <a href="#profiles">III &middot; Competitor Profiles</a>
+  <hr>
+  <span class="eyebrow">Direct</span>
+  <a class="sub" href="#p-mygolfspy">MyGolfSpy / Pin High</a>
+  <a class="sub" href="#p-golfpass">GolfPass</a>
+  <a class="sub" href="#p-golfstix">Golfstix</a>
+  <a class="sub" href="#p-pgatss">PGA TOUR Superstore</a>
+  <a class="sub" href="#p-golfgalaxy">Golf Galaxy</a>
+  <a class="sub" href="#p-2ndswing">2nd Swing</a>
+  <a class="sub" href="#p-globalgolf">GlobalGolf</a>
+  <a class="sub" href="#p-curated">Curated</a>
+  <a class="sub" href="#p-tgw">TGW</a>
+  <a class="sub" href="#p-golfavenue">Golf Avenue</a>
+  <hr>
+  <span class="eyebrow">Indirect</span>
+  <a class="sub" href="#p-amazon">Amazon</a>
+  <a class="sub" href="#p-creators">Creator economy</a>
+  <a class="sub" href="#p-taylormade">TaylorMade DTC</a>
+  <a class="sub" href="#p-clubchampion">Club Champion</a>
+  <a class="sub" href="#p-ebay">eBay / Facebook</a>
+  <hr>
+  <a href="#method">IV &middot; Method &amp; Limits</a>
+</nav>
+
+<main class="doc">
+<div class="toolbar no-print">
+  <span class="eyebrow">View</span>
+  <button type="button" id="expandAll">Expand all</button>
+  <button type="button" id="collapseAll">Collapse all</button>
+  <span class="spacer"></span>
+  <span class="eyebrow">Filter profiles</span>
+  <button type="button" class="filt" data-f="all" aria-pressed="true">All 15</button>
+  <button type="button" class="filt" data-f="direct" aria-pressed="false">Direct</button>
+  <button type="button" class="filt" data-f="indirect" aria-pressed="false">Indirect</button>
+  <button type="button" class="filt" data-f="high" aria-pressed="false">High risk</button>
+</div>
+<section class="part" id="context">
+<div class="part-head">
+  <span class="eyebrow">Part I</span>
+  <h2>Product Marketing Context</h2>
+  <p>Source of truth for every downstream marketing task. Lives at <code>.agents/product-marketing.md</code> &mdash; <strong>v2</strong>, 2026&#8209;09&#8209;20. Generated directly from that file, so this section and the file cannot drift apart.</p>
+</div>
+<div class="flag note"><p><strong>This is a two-sided marketplace.</strong> Every audience-facing section below is split into <strong>Side A — Golfers (demand)</strong> and <strong>Side B — Partners (supply)</strong>. They are different buyers with different language, different proof, and different conversion actions. Do not blend them into one "customer." Partner-side copy never goes on a golfer-facing page, and golfer-side copy never carries a partner pitch.</p></div>
+<div class="flag note"><p><strong>Phase 1 in one line:</strong> Clubhouse Golf owns the checkout. CHG is merchant of record, collects payment via Stripe, the partner picks, packs and ships, and CHG pays the partner on agreed timelines. Affiliate referral is a parallel line, used only for partners who cannot be integrated.</p></div>
+<details class="block" open>
+<summary><span class="chev"></span><span class="sum-title">Product Overview</span></summary>
+<div class="body">
+<p><strong>One-liner:</strong>
+Everything Golf. One Clubhouse. — the all-in-one destination for discovering, comparing and buying everything golf.</p>
+<p><strong>What it does:</strong>
+Clubhouse Golf brings equipment, apparel, technology, instruction, fitting, travel, courses, services and experiences into one connected ecosystem. Golfers discover their options, understand them, compare them, and buy what is right for their game — <strong>on Clubhouse, through Clubhouse's own checkout</strong>, for every item from an integrated partner. On the other side, brands, courses, instructors and creators reach golfers throughout that decision journey and have orders delivered to them to fulfil.</p>
+<p><strong>Product category:</strong>
+Golf discovery and commerce platform. Externally: "the destination for everything golf." The long-term ambition is to own a new category rather than sit on an existing shelf — the mental shortcut Google : search :: Amazon : buy :: <strong>Clubhouse : anything golf</strong>.</p>
+<p><strong>Product type:</strong>
+Two-sided marketplace with owned checkout, content-led. Clubhouse is merchant of record but holds no inventory — partners fulfil. Not a retailer, not a content site, not an affiliate publisher.</p>
+<p><strong>Business model:</strong></p>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Line</th>
+<th>How money is made</th>
+<th>Merchant of record</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phase 1 (launch) — on-platform checkout</strong></td>
+<td>CHG owns the cart and collects payment via <strong>Stripe</strong>. The partner picks, packs and ships. CHG pays the partner on agreed contractual timelines and retains a platform fee</td>
+<td><strong>Clubhouse Golf</strong></td>
+<td>Integration questionnaire drafted. <strong>No fulfilment partner signed yet</strong></td>
+</tr>
+<tr>
+<td><strong>Parallel line — affiliate referral</strong></td>
+<td>Tracked-referral commission, only for partners whose programs cannot support on-platform completion. Amazon Associates is the clearest case; CJ, FlexOffers and Awin programs (Impact planned) sit here until a partner integrates directly</td>
+<td>The retailer. CHG does not take possession, fulfil or refund</td>
+<td>Live programs in place</td>
+</tr>
+<tr>
+<td><strong>Later layers</strong></td>
+<td>Lead-gen fees, booking commission, advertising, sponsorship, subscription, event revenue, revenue share</td>
+<td>—</td>
+<td>Architecture anticipates it (<code>Partner → Agreement → Offering → Revenue Model</code>)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What owning checkout means operationally.</strong> No inventory and no warehouse — but from day one CHG runs payments, refunds, chargebacks, sales tax as merchant of record, order routing to partners, dispatch and tracking visibility, customer service for every completed order, and partner payouts. Phase 1 is not "operationally light." It is inventory-light.</p>
+<p><strong>Why the affiliate networks can't carry Phase 1.</strong> The Marketplace Report verified against CJ's production API that neither CJ nor Awin has a checkout, cart or order mutation — every link redirects to the advertiser's own site. So <strong>every Clubhouse-completed order depends on a direct partner integration signed outside the networks.</strong> The networks remain useful for product data and for the referral line.</p>
+<p><strong>Referral benchmarks in hand</strong> (parallel line only): Golf Galaxy 10% (website purchase), TGW 6% (advanced sale), Pine Meadow Golf 10% (CJ), Puma/Cobra Golf 4% (CJ), Performance Golf 25% (FlexOffers), Steadfast Golf 10–15%, 2nd Swing 5–10%, Live Forever Golf 0–10%, Amazon Associates sports 3%. Payment timing runs ~60–80 days.</p>
+<p><strong>Settlement model — diverges from the Marketplace Report.</strong> That document specifies an automatic point-of-sale split via Stripe Connect, PayPal Commerce or Adyen for Platforms, with the partner's share routing directly to them. The confirmed model is different: <strong>CHG collects in full via Stripe and pays partners on agreed contractual timelines.</strong> CHG holds funds between sale and payout, carries refund, chargeback and merchant-of-record tax exposure on every completed order, and payout timing becomes a negotiated term in every partner agreement. Reconcile the two documents (Open Question 2).</p>
+<p><strong>The split cart — the defining Phase 1 customer-experience constraint.</strong>
+Because referral partners sit alongside integrated ones, a golfer's basket can contain both. Take three items: two from integrated partners, one from Amazon Associates. Clubhouse collects payment for the two and places those orders with the partners. The third cannot be bought on Clubhouse — <strong>the golfer has to leave the Clubhouse ecosystem to finish that purchase.</strong></p>
+<ul>
+<li><strong>It contradicts the brand promise at the moment of conversion.</strong> "Everything Golf. One Clubhouse." is wholly true for discovery and decision. It is not yet true for checkout on every item.</li>
+<li><strong>Conversion leaks on the referral item</strong> — which is also the lowest-earning one (Amazon sports pays 3%).</li>
+<li><strong>Two merchants of record in one session</strong> — two confirmation emails, two sets of shipping notices, two return windows, two refund routes. Customer service absorbs the confusion.</li>
+<li><strong>A referral item must never sit in the Clubhouse cart as though it will be bought there.</strong> It needs a visibly different control — "Buy at [Retailer]" rather than "Add to cart" — shown <em>before</em> the golfer commits, never discovered at checkout.</li>
+<li><strong>Messaging:</strong> lead on discovery and decision, which are true for everything, and present owned checkout as the default that grows as partners integrate. The honest line: <em>one place to find it, and increasingly one place to buy it.</em></li>
+<li><strong>The ratio is the launch metric.</strong> The share of catalog and of orders that are Clubhouse-completed versus referral decides whether the promise reads as true. It is zero until the first fulfilment partner signs.</li>
+</ul>
+<p><strong>Free for golfers.</strong> No consumer subscription. "Founding Member" is the first 500 golfers invited into beta — free, positioned as access and influence, not a paid tier.</p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Target Audience</span></summary>
+<div class="body">
+<h4>Side A — Golfers (demand side)</h4>
+<p><strong>Who:</strong> U.S. golfers across skill and spend levels — B2C. Four named personas below.</p>
+<p><strong>Primary use case:</strong> "I want something for my game — gear, lessons, a course, a trip — and I don't want to spend two hours across eight websites figuring out what's actually right for me."</p>
+<p><strong>Jobs to be done:</strong>
+1. <strong>Decide with confidence</strong> — "Help me understand my options so I don't spend $600 badly."
+2. <strong>Discover what I didn't know existed</strong> — brands, products, courses, instructors, experiences outside the big-box aisle.
+3. <strong>Get more of the game in one place</strong> — find it, compare it and buy it without re-learning a new site each time.</p>
+<p><strong>Entry moments:</strong>
+- Researching a driver, shaft, ball or launch monitor before buying
+- Comparing new vs. used, or two specific models against each other
+- Starting out or coming back and not knowing what to buy first
+- Shopping apparel and lifestyle gear
+- Planning a golf trip or finding somewhere new to play
+- Looking for instruction, fitting or training aids</p>
+<h4>Side B — Partners (supply side)</h4>
+<p>Owning checkout changes who the right partner is. Under an affiliate model any retailer was a cheap ally — they kept the customer. Under owned checkout a partner hands Clubhouse the cart, the payment and the customer relationship, and waits to be paid. <strong>That is an easy yes for a brand and a hard one for a retailer.</strong></p>
+<p><strong>Target partner types, in priority order:</strong>
+1. <strong>Brands — the priority fulfilment target.</strong> Equipment, apparel, technology, training aids, simulators, health and wellness. A brand already sells wholesale into channels it does not control, so letting Clubhouse own a checkout costs it nothing it has today. Beachhead: <strong>Puma Golf and Cobra Golf</strong> (already on CJ). Next tier: <strong>Performance Golf, Steadfast Golf, Pine Meadow Golf</strong>.
+2. <strong>Smaller and specialist retailers</strong> willing to fulfil — <strong>Golf Avenue</strong> is the strongest candidate: small enough to want the volume, already runs inspection, refurbishment and fulfilment, and does not compete for a national brand position.
+3. <strong>Large retailers — referral line, realistically.</strong> Golf Galaxy, PGA TOUR Superstore, TGW, 2nd Swing and GlobalGolf are direct competitors being asked to surrender the customer. Keep them on referral; treat any fulfilment agreement as upside, not plan.
+4. <strong>Courses &amp; resorts</strong> — tee times, leagues, events, destinations.
+5. <strong>Teaching professionals &amp; fitters</strong> — instruction, coaching, club fitting, fitness. Services and lead generation, not product fulfilment.
+6. <strong>Creators, influencers, tournament hosts</strong> — audience, content, experiences. The fastest route to the demand Clubhouse lacks.
+7. <em>Adjacent, distinct audience:</em> investors and strategic partners.</p>
+<p><strong>Decision-makers:</strong> Head of Partnerships / Affiliate Manager, Head of Ecommerce or DTC, Brand or Marketing Director, Founder/GM at smaller brands and courses. <strong>Every fulfilment deal also needs</strong> the technical contact (feed, order channel, webhooks), the operations contact (dispatch, carriers, returns) and the finance contact (Stripe onboarding, payout terms, tax documents) — the Marketplace Report questionnaire is routed to all three.</p>
+<p><strong>Primary use case:</strong> "We need qualified golfers who are actively deciding what to buy, and we'd rather be present through the whole decision than buy one more click."</p>
+<p><strong>Jobs to be done:</strong>
+1. <strong>Acquire customers</strong> — qualified orders from golfers already in decision mode.
+2. <strong>Get discovered and explained</strong> — placement in guides, comparisons, buying content, email and social, not a link in a grid.
+3. <strong>Sell without building the storefront</strong> — Clubhouse runs the cart, payment and customer-facing checkout; the partner fulfils.
+4. <strong>Reach a new audience</strong> — access to Clubhouse's golfer base and future data and personalization.</p>
+<p><strong>Use cases:</strong>
+- Orders placed on Clubhouse and routed to the partner to fulfil
+- Curated marketplace placement and product features
+- Buying guides, comparisons and educational content featuring the brand
+- Partner launch announcements ("[BRAND] IS IN THE CLUBHOUSE"), exclusive offers
+- Local discovery and lead generation for courses, instructors and services
+- Referral placement for partners not yet integrated</p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Personas</span></summary>
+<div class="body">
+<h4>Side A — Golfer personas</h4>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Persona</th>
+<th>Cares about</th>
+<th>Challenge</th>
+<th>Value we promise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>The Everyday Golfer</strong></td>
+<td>Trustworthy recommendations, simpler shopping, good value</td>
+<td>Loves golf but doesn't live and breathe specs; won't research for hours</td>
+<td>"Here are the best options and why they matter" — and buy it right here</td>
+</tr>
+<tr>
+<td><strong>The Gear &amp; Performance Golfer</strong></td>
+<td>Comparisons, data, shafts/spin/forgiveness, multiple buying options</td>
+<td>Real research is scattered across YouTube, forums and manufacturer marketing</td>
+<td>Side-by-side comparisons, new + used, honest guidance, one checkout</td>
+</tr>
+<tr>
+<td><strong>The Golf Lifestyle Golfer</strong></td>
+<td>Apparel, travel, courses, events, brands, content</td>
+<td>Golf-as-lifestyle is spread across a dozen unrelated sites</td>
+<td>Everything surrounding the game, not just clubs</td>
+</tr>
+<tr>
+<td><strong>The New / Returning Golfer</strong></td>
+<td>Where to start, what's enough, what things cost</td>
+<td>Golf feels complicated, expensive and fragmented</td>
+<td>A guide into the game — beginner checklists, sensible first buys, one place to buy them</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Shared problem across all four:</strong> <em>There is a ton of golf out there and no easy way to navigate all of it.</em></p>
+<h4>Side B — Partner personas</h4>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Persona</th>
+<th>Cares about</th>
+<th>Challenge</th>
+<th>Value we promise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Brand — Partnerships / Channel Manager</strong> (champion)</td>
+<td>Incremental customers, sell-through, channel health, program economics</td>
+<td>Proving new customers, not recycled demand</td>
+<td>Orders from golfers reached at the deciding moment, across discovery → education → conversion → loyalty</td>
+</tr>
+<tr>
+<td><strong>Brand — Ecommerce / DTC lead</strong> (decision maker)</td>
+<td>Revenue, CAC, margin, channel conflict</td>
+<td>Wary of a marketplace that owns a customer who might have bought direct</td>
+<td>Incremental golfers who hadn't chosen the brand yet; we don't bid on your branded demand</td>
+</tr>
+<tr>
+<td><strong>Brand — Marketing / Brand Director</strong> (influencer)</td>
+<td>Story, product education, brand fit, creative control</td>
+<td>Product nuance flattened into a price grid</td>
+<td>Editorial placement: guides, comparisons, features, launches, email, social</td>
+</tr>
+<tr>
+<td><strong>Operations lead</strong> (fulfilment deals)</td>
+<td>Order channel, dispatch SLA, carriers, tracking, returns handling</td>
+<td>New channel adds process and error risk</td>
+<td>A defined integration: receive the order, pick, pack, ship, post tracking</td>
+</tr>
+<tr>
+<td><strong>Finance lead</strong> (fulfilment deals)</td>
+<td>Payout timing, reconciliation, platform fee, tax documents, chargeback liability</td>
+<td>Money held by a third party between sale and payout</td>
+<td>Clear payout schedule and fee agreed in writing before the first order</td>
+</tr>
+<tr>
+<td><strong>Retailer — Affiliate Manager</strong> (referral line)</td>
+<td>Qualified traffic, tracking integrity, commission economics</td>
+<td>Wants the click, not a competitor owning the customer</td>
+<td>Referral placement that sends buyers to their own site</td>
+</tr>
+<tr>
+<td><strong>Course / Resort GM or Director of Golf</strong></td>
+<td>Rounds booked, new local and visiting golfers, off-peak demand</td>
+<td>Local discovery is fragmented; tee-time platforms commoditize them</td>
+<td>New customers, bookings, visibility, local discovery</td>
+</tr>
+<tr>
+<td><strong>Teaching Professional / Fitter</strong></td>
+<td>Filling the lesson book, lead flow, repeat clients</td>
+<td>No efficient way to be found by golfers who want to improve</td>
+<td>Connect with golfers in "improve my game" mode</td>
+</tr>
+<tr>
+<td><strong>Investor / Strategic partner</strong> (separate audience)</td>
+<td>Market size, network effects, marketplace economics, data, defensibility</td>
+<td>Needs to see a platform, not an affiliate site</td>
+<td>Owned checkout and customer data across a connected golf ecosystem</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Problems & Pain Points</span></summary>
+<div class="body">
+<h4>Side A — Golfers</h4>
+<p><strong>Core problem:</strong> Golf isn't short on options. It's overwhelmed by them. Equipment on one site, used clubs somewhere else, apparel somewhere else, instruction somewhere else, travel somewhere else, reviews on YouTube, fitting somewhere else, courses somewhere else, deals and advice everywhere.</p>
+<p><strong>Why alternatives fall short:</strong>
+- Every company naturally tells golfers that <em>its</em> product is the answer — nobody is on the golfer's side
+- Retailers optimize for the brands they carry, not for fit
+- Review content is either enthusiast-deep or sponsored-shallow, and lives apart from the buying moment
+- Comparing new, used, premium and value means the golfer does the assembly work — then buys in yet another place</p>
+<p><strong>What it costs them:</strong> Hours of searching per purchase decision, money spent badly (a $600 driver that doesn't fit), missed brands, courses and experiences, and time not spent playing.</p>
+<p><strong>Emotional tension:</strong> The quiet fear of overpaying or buying the wrong thing; feeling behind or unqualified (especially new and returning golfers); decision fatigue that ends in buying nothing, or buying whatever the loudest ad said.</p>
+<p><strong>The enemy we name:</strong> <em>Fragmentation + decision overload.</em> Never a specific retailer or rival site — the problem is that golfers have too many disconnected places to go.</p>
+<h4>Side B — Partners</h4>
+<p><strong>Core problem:</strong> Reaching golfers at the moment they're actually deciding — and turning that into orders, not impressions or one more discount-driven click.</p>
+<p><strong>Why alternatives fall short:</strong>
+- <strong>Affiliate networks</strong> deliver a tracked link and nothing else: no storytelling, no product education, no brand context, and no checkout of their own.
+- <strong>Big-box retail</strong> buries smaller and challenger brands and commoditizes on price.
+- <strong>Paid social and search</strong> is rented attention with rising costs and no compounding asset.
+- <strong>Coupon and deal sites</strong> attract the least loyal buyers and train golfers to wait for discounts.
+- <strong>General marketplaces</strong> (Amazon, eBay) bring volume with price pressure and no brand narrative.
+- <strong>Building their own audience and storefront</strong> is slow and expensive for a course or a two-person brand.</p>
+<p><strong>What it costs them:</strong> High CAC, low-intent traffic, no presence during the research phase where the decision is made, and invisibility for anyone who isn't a household name.</p>
+<p><strong>Emotional tension:</strong> Fear of channel conflict and margin erosion; wariness about a third party holding their money between sale and payout; fatigue from partnership pitches that turn out to be "give us a commission link"; skepticism that a new platform will deliver volume.</p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Competitive Landscape</span></summary>
+<div class="body">
+<p>Full profiles, raw scrapes and the discovery log live in <code>competitor-profiles/</code>. Summary below. <strong>Risk</strong> combines competitive and structural risk to Clubhouse's launch. <strong>Supply posture</strong> records whether that company could become a fulfilment partner under owned checkout.</p>
+<h4>Direct (same solution, same problem)</h4>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Competitor</th>
+<th>Risk</th>
+<th>Supply posture</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MyGolfSpy / Pin High Golf</strong></td>
+<td>High</td>
+<td>Not supply</td>
+<td>Owns the DECIDE query set with 15 years of test data; new institutional capital (May 2026) to scale affiliate commerce and acquire. The rivalry is for audience and decision authority — it still has no checkout</td>
+</tr>
+<tr>
+<td><strong>Golfstix</strong></td>
+<td>High</td>
+<td>Not supply</td>
+<td>Closest structural analogue: two-sided golf marketplace, live sellers, <strong>unified checkout across its whole catalog — no referral seam</strong></td>
+</tr>
+<tr>
+<td><strong>GolfPass (NBC Sports Next)</strong></td>
+<td>High</td>
+<td>Not supply</td>
+<td>"The best of golf in one membership" — tee times at 11,000+ courses, instruction, video, travel. Weakest on equipment commerce, which is where Clubhouse enters</td>
+</tr>
+<tr>
+<td><strong>TGW</strong></td>
+<td>High</td>
+<td>Referral only, realistically</td>
+<td>The one signed partner, and the clearest case of the new problem: cheap to say yes as an affiliate, costly as a fulfilment partner</td>
+</tr>
+<tr>
+<td><strong>PGA TOUR Superstore</strong></td>
+<td>Medium</td>
+<td>Fulfilment unlikely</td>
+<td>Already ships SHOP + IMPROVE with stores and a tour brand license</td>
+</tr>
+<tr>
+<td><strong>Golf Galaxy (DICK'S)</strong></td>
+<td>Medium</td>
+<td>Fulfilment unlikely</td>
+<td>Largest US specialty golf retailer; fitting bays in every store; capital to add a guidance layer</td>
+</tr>
+<tr>
+<td><strong>2nd Swing</strong></td>
+<td>Medium</td>
+<td>Fulfilment unlikely</td>
+<td>Trade-in supply loop and Golf Digest Top 100 fitting credential</td>
+</tr>
+<tr>
+<td><strong>GlobalGolf</strong></td>
+<td>Medium</td>
+<td>Fulfilment unlikely</td>
+<td>300,000+ preowned items, 90-day guarantee; historically ran UTry try-before-you-buy (unverified — check before claiming it as a Clubhouse differentiator)</td>
+</tr>
+<tr>
+<td><strong>Curated</strong></td>
+<td>Medium</td>
+<td>Not supply</td>
+<td>Expert-matched guidance with owned checkout; now a close structural match, so its unit-economics strain is directly relevant</td>
+</tr>
+<tr>
+<td><strong>Golf Avenue</strong></td>
+<td>Low</td>
+<td><strong>Best retailer candidate</strong></td>
+<td>25,157 verified reviews; skill-level tags and retail-price anchoring worth copying</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Indirect (conflicting mechanism, same job)</h4>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Competitor</th>
+<th>Risk</th>
+<th>Supply posture</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TaylorMade / OEM direct</strong></td>
+<td>High</td>
+<td><strong>Priority fulfilment target</strong></td>
+<td>Single-brand truth and full margin. Brands are the most valuable supply and the category most likely to hesitate over a third party owning the customer — the biggest constraint on the launch catalog</td>
+</tr>
+<tr>
+<td><strong>Amazon</strong></td>
+<td>High</td>
+<td>Referral only — forced</td>
+<td>Structural rather than competitive: it cannot support on-platform completion, so it is the primary source of split carts, at the lowest commission (3%) and with the heaviest engineering burden (no permanent image storage, caching and refresh rules, price timestamps)</td>
+</tr>
+<tr>
+<td><strong>Creator review economy</strong> (Rick Shiels et al.)</td>
+<td>Medium</td>
+<td>Marketing partner</td>
+<td>Parasocial trust and free reach at a scale no platform matches; also competing for the same referral commission pool</td>
+</tr>
+<tr>
+<td><strong>Club Champion</strong></td>
+<td>Low</td>
+<td>Services partner</td>
+<td>Brand-agnostic measured fitting at 160+ locations — delivers "on the golfer's team" with a launch monitor. Partner for IMPROVE lead generation</td>
+</tr>
+<tr>
+<td><strong>eBay / Facebook Marketplace</strong></td>
+<td>Low</td>
+<td>Not supply</td>
+<td>Price floor for the used category; no guidance or certification</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Also on the watchlist:</strong> Supreme Golf, GolfNow and Fairway Finder (tee-time aggregators — direct competitors once the PLAY vertical ships); 18Birdies, Hole19, TheGrint and Arccos (own the golfer habit loop); RepSpark (B2B wholesale platform used by most golf retailers).</p>
+<h4>How the field splits</h4>
+<p>Fourteen of fifteen profiled competitors own checkout, and <strong>Clubhouse now does too</strong> — for integrated partners. That puts it at parity on the dimension that matters most: it keeps the customer file, the repeat-purchase data and the returns relationship.</p>
+<p>What no competitor has is a split cart. Amazon, eBay, Golf Galaxy, 2nd Swing, GlobalGolf, TGW and Golfstix all check out once. Clubhouse will not, for every basket, until referral items are either integrated or removed.</p>
+<p><strong>Where Clubhouse is structurally alone:</strong> cross-brand, cross-retailer comparison with a checkout attached. No OEM can honestly rank for "TaylorMade Qi vs. Callaway Elyte"; no retailer compares its price against a rival's; no publisher or creator lets you buy. That combination is the wedge.</p>
+<h4>Side B — how partners see the alternatives</h4>
+<ul>
+<li><strong>Affiliate networks (CJ, FlexOffers, Awin, Impact, Rakuten)</strong> — feeds and tracked links; no checkout, order or fulfilment layer; they move clicks, they don't build brand.</li>
+<li><strong>Golf media (Golf Digest, GOLF.com, MyGolfSpy, Skratch)</strong> — audience and storytelling sold as ad inventory with weak attribution to a sale.</li>
+<li><strong>General marketplaces (Amazon, eBay, Walmart)</strong> — volume with commoditization and no brand narrative.</li>
+<li><strong>Creator sponsorships</strong> — reach and credibility, one-off and hard to measure.</li>
+<li><strong>Doing it themselves</strong> — own DTC site and email; full control, but every visitor is bought.</li>
+<li><strong>Wholesale to green grass and big box</strong> — volume, but no customer relationship and no data.</li>
+</ul>
+<p><strong>Clubhouse's position against all of it:</strong> not another affiliate publisher asking for a commission link, but a customer acquisition, storytelling <em>and selling</em> platform — the golfer discovers, compares and buys on Clubhouse, and the order arrives at the partner to fulfil.</p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Differentiation</span></summary>
+<div class="body">
+<p><strong>Key differentiators:</strong>
+- <strong>Discovery, decision and checkout in one motion.</strong> Most golf sites either tell you something or sell you something. Clubhouse explains, compares and completes the sale on the same platform — for every integrated partner.
+- <strong>Breadth with a point of view</strong> — equipment, apparel, technology, instruction, fitting, courses, travel, experiences and community under one master brand, organized as SHOP / IMPROVE / PLAY / EXPERIENCE / COMMUNITY with DISCOVER running across all of it.
+- <strong>Not on one manufacturer's team — or one retailer's shelf.</strong> New, used, premium and value sit side by side, across brands and across sellers.
+- <strong>Confidence over clutter</strong> — comparisons, buying guides, education and recommendations instead of hundreds of SKUs.
+- <strong>Inventory-light by design</strong> — Clubhouse never warehouses a club. Partners fulfil; Clubhouse owns the experience, the payment and the customer relationship.
+- <strong>Built with the industry, not against it</strong> ("Better Together") — Clubhouse doesn't manufacture, own courses, employ instructors or hold stock. It connects, and it sells on partners' behalf.
+- <strong>Architecture that anticipates every revenue type</strong> — <code>Partner → Agreement → Offering → Revenue Model</code>, so one brand or course can carry checkout, referral, booking, lead-gen, advertising, sponsorship, subscription and event revenue without a rebuild.</p>
+<p><strong>Why that's better:</strong>
+- Golfers: <strong>Discover more. Decide better. Buy it here. Experience more.</strong>
+- Partners: orders, not just clicks — plus presence across <strong>discovery → education → conversion → loyalty</strong>, without building or running a storefront.</p>
+<p><strong>Why customers choose us:</strong>
+- <em>Golfers:</em> one place they trust to start and, increasingly, to finish — with guidance that isn't trying to sell them one brand's answer.
+- <em>Partners:</em> qualified golfers in decision mode, real product storytelling, and orders delivered to fulfil.</p>
+<p><strong>The flywheel (partner and investor conversations):</strong>
+More integrated partners → more of the catalog buyable on Clubhouse → better golfer experience → more golfers and more completed orders → more first-party data and intent → more value to partners → more partners integrate.
+Golfer-side loop: DISCOVERY → TRUST → PURCHASE → DATA → PERSONALIZATION → LOYALTY.</p>
+<p>Owning checkout is what makes the flywheel real: the purchase and its data happen on Clubhouse rather than on a partner's site.</p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Objections</span></summary>
+<div class="body">
+<h4>Side A — Golfers</h4>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Objection</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Why not just buy from Golf Galaxy / Amazon / the manufacturer?"</td>
+<td>You still can — Clubhouse shows you those options side by side, plus the ones you'd never have found, and for most items you can buy right here.</td>
+</tr>
+<tr>
+<td>"Are your recommendations just whoever pays you?"</td>
+<td>We're on the golfer's team, not one manufacturer's. New, used, premium and value all get shown, across brands and sellers. <em>(Disclosure standard still needs writing — Open Question 4.)</em></td>
+</tr>
+<tr>
+<td>"Is this a real store? Who do I call if something goes wrong?"</td>
+<td>Yes. When you check out on Clubhouse, Clubhouse is the seller — we take your payment, and we handle your order, questions and returns.</td>
+</tr>
+<tr>
+<td>"Why do I have to leave to buy this one?"</td>
+<td>Some sellers only sell on their own site. We mark those items clearly before you choose them, so you're never surprised at checkout.</td>
+</tr>
+<tr>
+<td>"Another golf site to check?"</td>
+<td>The point is the opposite — this is the one that means you don't check the other eight.</td>
+</tr>
+<tr>
+<td>"It's new — is there actually anything here?"</td>
+<td>Founding Member framing: you're one of the first 500 shaping it, with early access and a direct line into what gets built.</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Side B — Partners</h4>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Objection</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"So this is an affiliate site?"</td>
+<td>No. Clubhouse sells your products on its own checkout and sends you the order to fulfil. Referral links exist only for partners who can't integrate yet.</td>
+</tr>
+<tr>
+<td>"Will this cannibalize our DTC?"</td>
+<td>The golfers reaching you through Clubhouse are largely incremental — people comparing options who had not already chosen your brand. We don't bid against you for your own branded demand.</td>
+</tr>
+<tr>
+<td>"You'd own our customer."</td>
+<td>On orders placed on Clubhouse, yes — the same way any retail channel does. You gain a customer you would not otherwise have reached, and you keep the fulfilment and product relationship.</td>
+</tr>
+<tr>
+<td>"You don't have traffic yet."</td>
+<td>True, and we don't pretend otherwise. Early partners get founding placement, editorial features, launch announcements and a say in how their category is built. Proof points are built publicly as we grow.</td>
+</tr>
+<tr>
+<td>"What's the integration lift?"</td>
+<td>A product feed, an order channel (API, webhook, dashboard or CSV) and Stripe onboarding. Your only operational job is pick, pack and ship. Not ready? Start on a referral link and integrate later.</td>
+</tr>
+<tr>
+<td>"When do we get paid?"</td>
+<td>On the payout schedule we agree in your contract — not an automatic split at the point of sale. We collect via Stripe and remit on agreed terms. Bring the terms your finance team needs.</td>
+</tr>
+<tr>
+<td>"What's your fee?"</td>
+<td>A platform fee on each Clubhouse-completed order, agreed in writing before the first order. <em>(Rate not yet set — Open Question 1.)</em></td>
+</tr>
+<tr>
+<td>"Who bears risk on returns and liability?"</td>
+<td>Clubhouse is merchant of record and issues the customer's refund. Return handling, return shipping cost, warranty, product liability insurance and the data processing agreement are settled in the integration questionnaire before launch. Clubhouse never takes physical possession.</td>
+</tr>
+<tr>
+<td>"How do we know the tracking is right?"</td>
+<td>On completed orders there is nothing to track — the order is placed with you directly. On the referral line, network-level tracking plus Clubhouse's own click and attribution layer.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Anti-personas:</strong>
+- <em>Golfer side:</em> the single-brand loyalist who only buys one manufacturer direct; the pure bargain hunter who only wants the lowest coupon (Clubhouse is not a coupon site); the tour-level player whose equipment comes through a tour rep.
+- <em>Partner side:</em> brands that want pure discount-driven volume; anyone expecting guaranteed traffic today; partners who can't produce a product feed, meet a dispatch commitment or onboard to Stripe; partners who won't share photography rights; brands with exclusivity terms that block marketplace selling; anyone who wants a white-label storefront rather than a curated ecosystem.</p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Switching Dynamics</span></summary>
+<div class="body">
+<h4>Side A — Golfers</h4>
+<ul>
+<li><strong>Push:</strong> Hours lost across eight tabs; buying the wrong thing and eating the cost; ads and marketing noise from every direction; the sense that golf is more complicated than it needs to be.</li>
+<li><strong>Pull:</strong> One place to start and, for most items, to buy. Comparisons that make options understandable. New and used side by side. Brands, courses and experiences they'd never have found.</li>
+<li><strong>Habit:</strong> Muscle memory — Amazon search, the local shop, "whatever my buddy plays," the one retailer whose email they're on. Saved cards, accounts and loyalty points live elsewhere.</li>
+<li><strong>Anxiety:</strong> "Is this independent, or sponsored?" "Is this a real store — who handles my return?" "Why am I being sent somewhere else for this one item?" "Is there enough here yet to be worth it?" "Do I trust a new site with my card?"</li>
+</ul>
+<h4>Side B — Partners</h4>
+<ul>
+<li><strong>Push:</strong> Rising paid CAC; price commoditization at big box and marketplaces; affiliate programs that produce clicks but no brand-building; smaller brands invisible to golfers who'd love them.</li>
+<li><strong>Pull:</strong> Orders from qualified golfers in decision mode; editorial storytelling rather than a price grid; presence across the full journey; a checkout they don't have to build or run; founding-partner status; future data and personalization.</li>
+<li><strong>Habit:</strong> Existing affiliate programs that already "work"; annual media plans; partnerships teams measured on last-click ROAS; long-standing wholesale channels.</li>
+<li><strong>Anxiety:</strong> Channel conflict with DTC; a third party owning the customer relationship; money held between sale and payout, and the payout schedule; the platform fee; brand adjacency and control; MAP enforcement; integration and dispatch obligations; whether a young platform delivers volume.</li>
+</ul>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Customer Language</span></summary>
+<div class="body">
+<h4>How golfers describe the problem</h4>
+<ul>
+<li>"Golf has never had more players. Yet somehow the experience feels stuck."</li>
+<li>"There is a ton of golf out there and no easy way to navigate all of it."</li>
+<li>"Buying a new driver might be the easiest way to spend $600 badly."</li>
+<li>"Golf shouldn't require 20 websites."</li>
+<li><em>(All from internal strategy documents — verbatim golfer language still needed. Open Question 5.)</em></li>
+</ul>
+<h4>How partners describe the problem</h4>
+<ul>
+<li>"We need customer acquisition, not another commission link."</li>
+<li>"Golfers never find out what makes our product different."</li>
+<li><em>(Verbatim from partner calls still needed.)</em></li>
+</ul>
+<h4>How they describe us</h4>
+<ul>
+<li>"The place golfers start when they want to discover what's next for their game."</li>
+<li>"The knowledgeable golf friend you actually want to play 18 with."</li>
+<li><em>(Real quotes to be collected in beta and partner outreach.)</em></li>
+</ul>
+<h4>Words to use</h4>
+<p><strong>Everywhere:</strong> Discover · Compare · Choose · Buy · Explore · Improve · Experience · Connected · Trusted · Your game · Everything golf · Clubhouse</p>
+<p><strong>Golfer-facing:</strong> "Find the right gear." "Compare your options." "Discover new brands." "Improve your game." "Find places to play." "Plan your next golf trip." "New. Used. More options. One place." "Spend less time searching. Spend more time golfing." On product pages: <strong>"Add to cart"</strong> for Clubhouse-completed items; <strong>"Buy at [Retailer]"</strong> for referral items — never the same control for both.</p>
+<p><strong>Partner-facing:</strong> Orders · Customer acquisition · Qualified demand · Product education · Brand storytelling · Partner campaigns · Fulfilment · Payout terms · Ecosystem · Building with you, not against you · Discovery → Education → Conversion → Loyalty</p>
+<h4>Words to avoid</h4>
+<p><strong>Never say externally</strong> — these describe internal mechanics, not customer value: <em>affiliate marketplace, affiliate network, content monetization, publisher, aggregator, lead-generation platform.</em></p>
+<p><strong>Don't overclaim checkout.</strong> Avoid "buy everything in one place," "one checkout for all of golf" or "every item, one cart" until the referral line is gone. Say "one place to find it, and increasingly one place to buy it."</p>
+<p><strong>Use carefully:</strong> <em>revolutionary, game-changing, disrupting golf, the Amazon of golf.</em> The Amazon comparison helps internally to describe UX; externally it makes Clubhouse sound derivative when the goal is to create its own category.</p>
+<p><strong>Voice standard:</strong> Say "Here are the best options and why they matter." Avoid "This revolutionary industry-leading technology will transform your game."</p>
+<p><strong>Never pitch a partner with:</strong> "We're building a golf affiliate website."</p>
+<h4>Glossary</h4>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CHG</td>
+<td>Clubhouse Golf (internal shorthand; never in consumer copy)</td>
+</tr>
+<tr>
+<td>The Clubhouse</td>
+<td>The community and partner network: courses, teaching pros, brands, creators, tournament hosts, business partners</td>
+</tr>
+<tr>
+<td>Founding Member</td>
+<td>One of the first 500 golfers invited into the beta — early access, feedback, influence</td>
+</tr>
+<tr>
+<td>SHOP / IMPROVE / PLAY / EXPERIENCE / COMMUNITY</td>
+<td>The five functional areas of the ecosystem under the master brand</td>
+</tr>
+<tr>
+<td>DISCOVER</td>
+<td>Not an area — the layer running across all five; how golfers enter and move through Clubhouse</td>
+</tr>
+<tr>
+<td>DISCOVER / DECIDE / IMPROVE / EXPERIENCE / CLUBHOUSE</td>
+<td>The five content territories (see content mix)</td>
+</tr>
+<tr>
+<td>Message Ladder</td>
+<td>Levels 1–4: 3-second, 10-second, 20-second and full-vision versions of the story</td>
+</tr>
+<tr>
+<td>Partner → Agreement → Offering → Revenue Model</td>
+<td>The data architecture rule: partner type ≠ revenue type</td>
+</tr>
+<tr>
+<td>Merchant of record</td>
+<td>Who legally sells, collects and refunds. Clubhouse Golf on completed orders; the retailer on referral orders</td>
+</tr>
+<tr>
+<td>Clubhouse-completed order</td>
+<td>Transacted end to end on Clubhouse — cart, Stripe payment, partner fulfilment, CHG payout on agreed terms</td>
+</tr>
+<tr>
+<td>Fulfilment partner</td>
+<td>A partner integrated to receive Clubhouse orders and pick, pack and ship them</td>
+</tr>
+<tr>
+<td>Referral order</td>
+<td>An item the golfer must buy on the partner's own site because their program cannot support on-platform completion</td>
+</tr>
+<tr>
+<td>Parallel line</td>
+<td>The affiliate-referral revenue line that runs alongside owned checkout for non-integrated partners</td>
+</tr>
+<tr>
+<td>Split cart</td>
+<td>A basket mixing completed and referral items, so the golfer cannot check out once</td>
+</tr>
+<tr>
+<td>Completed-vs-referral ratio</td>
+<td>Share of catalog and orders Clubhouse can transact itself — the headline Phase 1 metric</td>
+</tr>
+<tr>
+<td>Supply posture</td>
+<td>Whether a company could plausibly become a fulfilment partner (priority target / possible / unlikely / referral only / not supply)</td>
+</tr>
+<tr>
+<td>Platform fee</td>
+<td>Clubhouse's retained share of each completed order</td>
+</tr>
+<tr>
+<td>Product feed</td>
+<td>Partner catalog data: title, description, brand, price, sale price, image, variants, stock</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Brand Voice</span></summary>
+<div class="body">
+<p><strong>Tone:</strong> Modern, confident, helpful, energetic. Editorial rather than salesy. Like the knowledgeable golf friend you actually want to play 18 with.</p>
+<p><strong>Style:</strong> Plain and direct. Lead with the golfer's decision, not the product's spec sheet. Every message should make Clubhouse easier to understand, easier to trust, or harder to forget.</p>
+<p><strong>Personality:</strong></p>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>We are</th>
+<th>We are not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Modern</td>
+<td>Stuffy</td>
+</tr>
+<tr>
+<td>Confident</td>
+<td>Corporate</td>
+</tr>
+<tr>
+<td>Energetic</td>
+<td>Hype-driven</td>
+</tr>
+<tr>
+<td>Helpful</td>
+<td>A coupon site</td>
+</tr>
+<tr>
+<td>Curious</td>
+<td>A golf bro yelling about 30 extra yards</td>
+</tr>
+<tr>
+<td>Passionate</td>
+<td>A country-club voice</td>
+</tr>
+<tr>
+<td>Approachable</td>
+<td>Overly technical unless the moment calls for it</td>
+</tr>
+<tr>
+<td>Occasionally funny</td>
+<td>Trying too hard to be funny</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Voice by side:</strong> Same brand, different register. Golfer-facing is warm, curious and practical. Partner-facing is commercially serious and specific — orders, fees, payout terms, dispatch, and exactly where that partner fits — but never corporate-stiff.</p>
+<p><strong>Voice at checkout:</strong> Clubhouse is now the seller, so transactional copy carries the brand too. Order confirmations, shipping updates, return instructions and support replies should sound like the same helpful friend, and say plainly who is shipping the order.</p>
+<p><strong>Trust rule:</strong> Trust is earned by helping golfers make decisions — and by handling their money and orders well — not by hyping everything we can monetize.</p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Proof Points</span></summary>
+<div class="body">
+<p><strong>Honest position today:</strong> Clubhouse is pre-launch. Say what Clubhouse does today; build toward what it becomes tomorrow. The homepage should not promise features that are not live — including checkout on items that are referral-only.</p>
+<p><strong>Verified facts available now:</strong>
+- CJ Product Feed API live and confirmed working (GraphQL); 3.5M+ catalog matches on "golf" alone
+- Referral programs approved: Golf Galaxy, TGW, Puma Golf, Cobra Golf, Pine Meadow Golf, plus FlexOffers programs (2nd Swing, Live Forever Golf, Performance Golf, Steadfast Golf) and Amazon Associates
+- Awin credentials in hand, live verification pending
+- <strong>Fulfilment partners signed: none yet</strong></p>
+<p><strong>Proof metrics to accumulate:</strong>
+Fulfilment partners integrated · Completed-vs-referral ratio · Orders completed on Clubhouse · Categories available · Products buyable on Clubhouse · Buying guides published · Courses represented · Instructors · Community size · Reviews · Traffic · Member count · Email subscribers · Partner testimonials · On-time dispatch rate</p>
+<p><strong>How messaging evolves as proof arrives:</strong> "100+ golf brands. One Clubhouse." · "1,000+ ways to improve your game." · "Trusted by X golfers every month." · Once the referral line is small: "Find it, compare it, buy it — all in one place."</p>
+<p><strong>Value themes:</strong></p>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Theme</th>
+<th>Audience</th>
+<th>Proof to build</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Everything Golf. One Place.</td>
+<td>Golfers</td>
+<td>Category and partner counts; breadth across SHOP/IMPROVE/PLAY/EXPERIENCE; share of catalog buyable on Clubhouse</td>
+</tr>
+<tr>
+<td>Confidence Over Clutter</td>
+<td>Golfers</td>
+<td>Buying guides and comparisons published; beta feedback; skill-level tags on products</td>
+</tr>
+<tr>
+<td>Built Around the Golfer</td>
+<td>Golfers</td>
+<td>New + used side by side; multi-brand, multi-seller coverage</td>
+</tr>
+<tr>
+<td>A store you can trust</td>
+<td>Golfers</td>
+<td>Order accuracy, dispatch times, return handling, support response times</td>
+</tr>
+<tr>
+<td>Better Together</td>
+<td>Partners</td>
+<td>Partner testimonials; orders delivered to partners; on-time payouts</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Testimonials:</strong> None yet. First sources: the 500 Founding Members in beta, and early fulfilment partners. Collect these deliberately — they unlock the strongest claims above.</p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Goals</span></summary>
+<div class="body">
+<h4>Business goals</h4>
+<ol>
+<li><strong>Sign the first fulfilment partners — brands first.</strong> Nothing else works without them: with no integrated partner, every item is a referral and the checkout promise is empty. Start with Puma and Cobra, then Performance Golf, Steadfast and Pine Meadow; approach Golf Avenue as the lead retailer candidate.</li>
+<li><strong>Launch Phase 1 with owned checkout.</strong> No inventory and no fulfilment, but Clubhouse runs payments, refunds, chargebacks, merchant-of-record tax, order routing, customer service and partner payouts from day one.</li>
+<li><strong>Grow the completed-vs-referral ratio</strong> until the split cart is the exception, not the norm.</li>
+<li>Build the habit: <em>thinking about golf → open Clubhouse.</em></li>
+<li>Establish the category: <strong>golf discovery = Clubhouse.</strong></li>
+</ol>
+<h4>Conversion actions</h4>
+<p><strong>Side A — Golfers (by intent):</strong></p>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Intent</th>
+<th>CTA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Discovery</td>
+<td>Explore Clubhouse · See What's Inside · Discover More Golf</td>
+</tr>
+<tr>
+<td>Products (completed)</td>
+<td>Add to Cart · Compare Options · Find Your Fit · See New + Used</td>
+</tr>
+<tr>
+<td>Products (referral)</td>
+<td>Buy at [Retailer] — visibly distinct from Add to Cart</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>See the Guide · Compare Them · Find What's Right for You</td>
+</tr>
+<tr>
+<td>Partner campaigns</td>
+<td>Meet the Brand · See What's New · Explore [Partner]</td>
+</tr>
+<tr>
+<td>Community</td>
+<td>Join the Clubhouse</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Get Inside Clubhouse</td>
+</tr>
+<tr>
+<td>Account</td>
+<td>Start Your Clubhouse</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Primary pre-launch conversion:</em> <strong>Join the waitlist</strong> / Become a Founding Member (first 500). The live site uses "Join Waitlist"; the internal copy says "Founding Member" — align them.
+<em>Primary post-launch conversion:</em> <strong>a completed order on Clubhouse.</strong> A referral click is the fallback conversion for items Clubhouse can't transact — worth less, and measured separately so the completed-vs-referral ratio is always visible.</p>
+<p><strong>Side B — Partners:</strong> "Let's explore how [Brand] fits into Clubhouse" → integration questionnaire returned to partnerships@chgolfco.com → agreement with platform fee and payout schedule → Stripe onboarding and test orders → live.</p>
+<p><strong>Current metrics:</strong> Pre-launch. No traffic, member, order or partner baselines yet.</p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Launch & Content Reference</span></summary>
+<div class="body">
+<p><strong>Launch phasing (say what's live, build toward the rest):</strong></p>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Goal</th>
+<th>Message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — What Is Clubhouse?</td>
+<td>Recognition</td>
+<td>"Golf shouldn't require 20 websites." Founder story, vision, problem, identity, partner previews</td>
+</tr>
+<tr>
+<td>2 — What's Inside?</td>
+<td>Credibility</td>
+<td>Equipment, new + used, apparel, technology, training, partners, guides. "Your options. One place."</td>
+</tr>
+<tr>
+<td>3 — Why Should I Use It?</td>
+<td>Utility</td>
+<td>Buying guides, comparisons, recommendations, checkout. "Spend less time searching. Spend more time golfing."</td>
+</tr>
+<tr>
+<td>4 — Why Should I Come Back?</td>
+<td>Habit</td>
+<td>Accounts, favorites, order history, personalization, rewards, community, trade-in, travel, instruction, member benefits</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Today vs. coming next:</strong> Market <em>Discover. Compare. Shop.</em> Build toward <em>Improve. Play. Experience.</em></p>
+<p><strong>Content mix:</strong> Discover 30% · Decide 25% · Improve 20% · Community/entertainment 15% · Clubhouse/partner announcements 10%. DECIDE is the strongest commercial territory — where content and checkout meet.</p>
+<p><strong>Social formula:</strong> HOOK → VALUE → CLUBHOUSE CONNECTION → CTA.</p>
+<p><strong>Partner announcement formula:</strong> "[BRAND] IS IN THE CLUBHOUSE" → who they are → what makes them different → what they bring Clubhouse golfers → what to check out → CTA. Every announcement must answer: <em>why should a golfer care?</em> For fulfilment partners, the CTA can now be "Shop [Brand] on Clubhouse."</p>
+<p><strong>Email franchises:</strong> The Clubhouse (weekly digest) · What's In The Bag? · Clubhouse Comparison · The Turn · Weekend Golf · New to the Clubhouse.</p>
+<p><strong>SEO:</strong> target decision moments, not head terms. <strong>Lead with cross-brand comparison</strong> ("TaylorMade Qi vs. Callaway Elyte", "5 wood vs. 3 hybrid") — the one query class no OEM, retailer or creator can contest, and where a checkout attached is unique. Treat the "best X for Y" list ("best driver for high handicap golfer", "best used golf drivers", "best launch monitor under $500") as a long fight: MyGolfSpy already owns most of it with original test data.</p>
+<p><strong>The one-sentence test:</strong> <em>"Clubhouse is the destination for everything golf — bringing products, brands, advice, services and experiences together so golfers can discover more, decide better, and buy it in one place."</em></p>
+</div>
+</details>
+<details class="block" open>
+<summary><span class="chev"></span><span class="sum-title">Open Questions</span></summary>
+<div class="body">
+<p>Gaps or conflicts in the source documents, most urgent first. Resolve them and bump the version.</p>
+<ol>
+<li><strong>Platform fee and payout schedule — blocking.</strong> No fulfilment partner can be signed without both, and neither is defined in any source document. Establish Golfstix's take rate first; partners will benchmark against it.</li>
+<li><strong>Settlement model conflicts with the Marketplace Report.</strong> That document specifies an automatic point-of-sale split via Stripe Connect / PayPal Commerce / Adyen. The confirmed model is collect-in-full via Stripe, then remit on agreed terms. They differ on cash flow, refund liability, chargeback exposure and partner negotiation. Update the Marketplace Report or restate the design.</li>
+<li><strong>Split-cart UX has no owner.</strong> How referral items are labelled, where they sit, what the golfer sees at checkout, and whether Amazon belongs in the launch catalog at all — a product decision needed before launch.</li>
+<li><strong>Disclosure and editorial-independence standard.</strong> "We're on the golfer's team" is the core trust claim while Clubhouse earns a platform fee on completed orders and commission on referrals. Write down the FTC-compliant disclosure approach and the rule for how revenue can and can't influence rankings before launch — it's a positioning commitment, not just a legal line.</li>
+<li><strong>Verbatim customer language.</strong> Every quote in Customer Language comes from internal strategy documents. Capture real phrasing from Founding Members and partner calls — the highest-value upgrade to this doc.</li>
+<li><strong>Commission rate discrepancies.</strong> Pine Meadow is 10% in the Phase 1 doc and undisclosed in the Marketplace Report; Puma/Cobra is 4% in the Phase 1 doc and undisclosed in the Marketplace Report. Which is current? (Also relevant if either moves from referral to fulfilment.)</li>
+<li><strong>GlobalGolf UTry status.</strong> If GlobalGolf's try-before-you-buy program is still live, "Try Before You Buy" is not a Clubhouse differentiator. Verify before using it.</li>
+<li><strong>Waitlist vs. Founding Member.</strong> The live site says "Join Waitlist"; internal copy says "Become a Founding Member — first 500." Pick one.</li>
+<li><strong>Geography.</strong> All evidence is U.S.-centric. Confirm launch scope is U.S.-only — it also determines merchant-of-record tax obligations.</li>
+<li><strong>Baseline metrics.</strong> No traffic, email, member, order or partner numbers recorded yet.</li>
+</ol>
+<p><strong>Resolved:</strong> <em>Where does the Phase 1 purchase happen?</em> — On Clubhouse. Confirmed 2026-09-20: owned checkout, Clubhouse as merchant of record, Stripe for payment, partner fulfilment, payout on agreed terms; affiliate referral as a parallel line for non-integrated partners.</p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Changelog</span></summary>
+<div class="body">
+<p><em>Newest first. One line per revision: what changed and why.</em>
+- v2 (2026-09-20) — <strong>Repositioned Phase 1 from affiliate redirect to owned checkout.</strong> Clubhouse is merchant of record, collects via Stripe, partners pick/pack/ship, and are paid on agreed timelines; affiliate referral is demoted to a parallel line for non-integrated partners. Downstream skills will now generate against a commerce platform, not an affiliate publisher. Added the split-cart constraint and the settlement divergence from the Marketplace Report; reordered partner targets to lead with brands, since retailers are unlikely to cede the customer; rebuilt the competitive landscape from the 15-profile analysis (MyGolfSpy now direct on audience grounds; Golfstix, GolfPass and Curated added; risk and supply posture per competitor); added checkout objections, fulfilment and finance personas, checkout-era glossary terms and the completed-vs-referral metric; reordered Open Questions with platform fee and payout terms first.
+- v1 (2026-09-20) — Initial context. Auto-drafted from the Brand GTM Playbook, Marketplace Report, "Modern Golf. Made Simple." site copy and the Phase 1 requirements; structured as a two-sided marketplace with golfer-side and partner-side messaging kept separate throughout.</p>
+</div>
+</details>
+</section>
+
+<section class="part" id="landscape">
+<div class="part-head">
+  <span class="eyebrow">Part II</span>
+  <h2>Competitive Landscape</h2>
+  <p>10 direct and 5 indirect competitors, discovered rather than supplied. Selection rule, queries run, and every candidate rejected are logged in <code>raw/_discovery-log.md</code>.</p>
+</div>
+
+<details class="block" open>
+<summary><span class="chev"></span><span class="sum-title">The shape of the market</span></summary>
+<div class="body">
+<p>Golf commerce is not an empty field with a fragmentation problem waiting to be solved &mdash; it is a crowded field in which <strong>every player has solved one slice of the problem well and none has solved the whole thing.</strong> The retailers (Golf Galaxy, PGA TOUR Superstore, TGW, 2nd Swing, GlobalGolf, Golf Avenue) own inventory, fulfilment and increasingly fitting, but their advice stops at their own shelf. The publishers (MyGolfSpy) and creators (the YouTube ecosystem) own trust and the decision moment, but hand the transaction away. The marketplaces (Golfstix, eBay) own liquidity but offer no guidance. Curated owns guidance, but only through expensive human labour and without a golf-native identity. GolfPass owns playing, watching and travelling &mdash; and barely touches equipment.</p>
+<p>Clubhouse Golf&rsquo;s thesis is that these are all one business and nobody has assembled it. <strong>That thesis holds.</strong> The harder finding is that two well-capitalized players started assembling it before Clubhouse launched. Pin High Golf acquired MyGolfSpy in May 2026 with an explicit mandate to scale affiliate commerce onto fifteen years of proprietary test data &mdash; building the marketplace from the audience side. GolfPass has bundled tee times, instruction, video and travel under Comcast for five years, and is one equipment layer away from the full picture. Clubhouse is entering from the third direction &mdash; commerce and discovery first &mdash; pre-launch, with a waitlist.</p>
+</div>
+</details>
+
+<details class="block" open>
+<summary><span class="chev"></span><span class="sum-title">All 15, side by side</span></summary>
+<div class="body">
+<div class="scroller"><table>
+<thead><tr><th>Competitor</th><th>Type</th><th>Owns checkout</th><th>Owns guidance</th><th>Physical</th><th>Beyond equipment</th><th>Key asset</th></tr></thead>
+<tbody>
+<tr><td><strong>MyGolfSpy / Pin High</strong></td><td>Direct</td><td>No</td><td><strong>Best in class</strong></td><td>Test facility</td><td>Travel, community</td><td>15 yrs proprietary test data; new institutional capital</td></tr>
+<tr><td><strong>GolfPass</strong></td><td>Direct</td><td>Yes (tee times)</td><td>Instruction</td><td>No</td><td><strong>Play, watch, travel</strong></td><td>11,000+ courses; Comcast; recurring revenue</td></tr>
+<tr><td><strong>Golfstix</strong></td><td>Direct</td><td><strong>Yes</strong></td><td>Weak</td><td>No</td><td>No</td><td>Two-sided marketplace already shipping</td></tr>
+<tr><td><strong>PGA TOUR Superstore</strong></td><td>Direct</td><td>Yes</td><td>Fitting + lessons</td><td>Extensive</td><td>Instruction</td><td>SHOP + IMPROVE both live; tour brand license</td></tr>
+<tr><td><strong>Golf Galaxy</strong></td><td>Direct</td><td>Yes</td><td>In-store</td><td>Extensive</td><td>No</td><td>Largest US specialty golf retailer</td></tr>
+<tr><td><strong>2nd Swing</strong></td><td>Direct</td><td>Yes</td><td>Fitting only</td><td>7 stores</td><td>No</td><td>Trade-in supply loop; Golf Digest Top 100 Fitter</td></tr>
+<tr><td><strong>GlobalGolf</strong></td><td>Direct</td><td>Yes</td><td>Weak</td><td>No</td><td>Apparel, shoes</td><td>300,000+ preowned items; 90-day guarantee</td></tr>
+<tr><td><strong>Curated</strong></td><td>Direct</td><td>Yes</td><td><strong>Human experts</strong></td><td>No</td><td>Multi-sport</td><td>1,000+ experts; near-0% return rate</td></tr>
+<tr><td><strong>TGW</strong> <em>(also CHG partner)</em></td><td>Direct</td><td>Yes</td><td>Golf Guide content</td><td>No</td><td>Carts</td><td>Logistics; existing CJ program at 6%</td></tr>
+<tr><td><strong>Golf Avenue</strong></td><td>Direct</td><td>Yes</td><td>Guides + quiz</td><td>No</td><td>No</td><td>25,157 verified reviews; skill-level tagging</td></tr>
+<tr><td><strong>Amazon</strong></td><td>Indirect</td><td>Yes</td><td><strong>None</strong></td><td>N/A</td><td>Everything</td><td>Logistics + stored payment = habit</td></tr>
+<tr><td><strong>Creator economy</strong></td><td>Indirect</td><td>No</td><td><strong>Parasocial trust</strong></td><td>No</td><td>Lifestyle</td><td>3M+ subscribers per top creator; free reach</td></tr>
+<tr><td><strong>TaylorMade DTC</strong></td><td>Indirect</td><td>Yes</td><td>Single-brand</td><td>No</td><td>Lifestyle goods</td><td>Brand authority; full margin; first-party data</td></tr>
+<tr><td><strong>Club Champion</strong></td><td>Indirect</td><td>Yes</td><td><strong>Measured fitting</strong></td><td>160+ locations</td><td>No</td><td>Brand-agnostic fitting, quantified outcomes</td></tr>
+<tr><td><strong>eBay / FB Marketplace</strong></td><td>Indirect</td><td>Yes</td><td>None</td><td>No</td><td>No</td><td>Price floor for the used category</td></tr>
+<tr><td><strong>Clubhouse Golf</strong> <em>(subject)</em></td><td>&mdash;</td><td><strong>Yes, on direct partners</strong></td><td>Planned</td><td>No</td><td>Planned</td><td>Cross-retailer neutrality; partner ecosystem</td></tr>
+</tbody></table></div>
+<p class="na">Every quantitative SEO column this analysis would normally carry &mdash; domain rank, referring domains, organic keywords, estimated traffic &mdash; is absent by necessity. See Part IV.</p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Positioning map</span></summary>
+<div class="body">
+<h4>Axis A &mdash; narrow category to everything golf</h4>
+<p><code>Club Champion &middot; TaylorMade &middot; eBay</code> &rarr; <code>2nd Swing &middot; Golf Avenue &middot; GlobalGolf &middot; Golfstix</code> &rarr; <code>TGW &middot; Golf Galaxy</code> &rarr; <code>PGA TOUR Superstore</code> &rarr; <code>MyGolfSpy</code> &rarr; <code>GolfPass</code> &rarr; <strong>Clubhouse (intended)</strong></p>
+<h4>Axis B &mdash; pure transaction to pure guidance</h4>
+<p><code>eBay &middot; Amazon</code> &rarr; <code>TGW &middot; GlobalGolf &middot; Golfstix</code> &rarr; <code>Golf Avenue &middot; 2nd Swing</code> &rarr; <code>Golf Galaxy &middot; PGA TOUR Superstore</code> &rarr; <code>Curated &middot; Club Champion</code> &rarr; <code>MyGolfSpy &middot; Creators</code></p>
+<div class="flag note">
+  <span class="eyebrow">The read</span>
+  <p><strong>Where Clubhouse claims to sit:</strong> top-right &mdash; maximum breadth <em>and</em> maximum guidance. Nobody occupies that quadrant. That is the opportunity, and also the warning: the quadrant is empty because reaching it means solving two hard problems at once, and every competitor here chose one.</p>
+  <p><strong>Where Clubhouse actually sits today:</strong> pre-launch, waitlist page, Fall 2026 date.</p>
+</div>
+</div>
+</details>
+
+<details class="block" open>
+<summary><span class="chev"></span><span class="sum-title">Seven takeaways</span></summary>
+<div class="body">
+<h4>1 &middot; MyGolfSpy is no longer a secondary competitor &mdash; it is the primary threat</h4>
+<p>Context v1 classified it as secondary (v2 now lists it as direct): &ldquo;useful comparison content, but it lives away from purchase.&rdquo; As of May 2026, Graham Sports &amp; Entertainment Partners and Bolt Ventures formed <strong>Pin High Golf</strong> around it, with a stated plan to <em>scale video and affiliate commerce, deepen OEM and retailer relationships, and acquire across golf media, data and experiences</em>. That is Clubhouse&rsquo;s business model and Clubhouse&rsquo;s roadmap &mdash; funded, with fifteen years of proprietary test data and an existing audience. <strong>Reclassify as direct.</strong></p>
+<h4>2 &middot; The SEO plan targets an incumbent&rsquo;s home turf</h4>
+<p>The GTM playbook names &ldquo;best driver for high handicap golfer&rdquo;, &ldquo;best used golf drivers&rdquo;, &ldquo;best golf shoes for walking&rdquo;, &ldquo;best launch monitor under $500&rdquo;. MyGolfSpy already publishes Best Drivers 2026, Best Wedges 2026, Best Spikeless Shoes 2026, Best Cart Bags 2026 and a Used Driver Finder, on original test data. Golf Avenue runs &ldquo;Best Golf Drivers for Every Handicap.&rdquo; TGW runs Golf Guide. The decision-query strategy is right, but a head-on fight is a multi-year battle Clubhouse is not resourced to win. <strong>The entry angle needs to be differentiated.</strong></p>
+<h4>3 &middot; One query class nobody can contest</h4>
+<p>No OEM can honestly rank for &ldquo;TaylorMade Qi vs. Callaway Elyte.&rdquo; No retailer compares its price against a rival&rsquo;s. No creator can be filtered by budget and handicap. Cross-brand, cross-retailer comparison is genuinely defensible, it is already on Clubhouse&rsquo;s target list, and <strong>it should be the wedge rather than one item among ten.</strong></p>
+<h4>4 &middot; Owning checkout fixes the structural weakness and creates a new one: the split cart</h4>
+<p>Phase 1 is on-platform checkout. CHG owns the cart, collects via Stripe, is merchant of record, and pays partners on agreed timelines. That puts Clubhouse at parity with fourteen of fifteen profiled competitors on the dimension that matters most &mdash; it keeps the customer file, the repeat-purchase data and the returns relationship rather than handing all three to a partner who is also a competitor.</p>
+<p>But it introduces a seam <strong>no competitor in this set has.</strong> Programs that cannot support on-platform completion &mdash; Amazon Associates above all &mdash; stay on tracked referral. A three-item basket where two items are Clubhouse-completed and one is an Amazon referral cannot be checked out once. Amazon, eBay, Golf Galaxy, 2nd Swing, GlobalGolf, TGW and Golfstix all have a single unified checkout. <strong>&ldquo;Everything Golf. One Clubhouse.&rdquo; is unambiguously true for discovery and decision, and not yet true for checkout on every item.</strong></p>
+<p>Two consequences. First, the launch bar rose sharply: <strong>no direct-fulfillment partner is signed yet</strong>, and with none signed every item is a referral and the checkout promise is empty. Second, the platform fee and payout schedule are now blocking commercial terms, not deferred questions.</p>
+<h4>5 &middot; Two competitors already ship Clubhouse&rsquo;s stated differentiators</h4>
+<p>Golfstix runs the two-sided marketplace with its own checkout today. GlobalGolf has historically run <strong>UTry</strong>, a try-before-you-buy program &mdash; and &ldquo;Try Before You Buy&rdquo; is a listed Clubhouse marketplace feature. UTry was not visible in this pass and is flagged unverified. <strong>Confirm before launch messaging is locked.</strong></p>
+<h4>6 &middot; The best merchandising idea in the field is nearly free to copy</h4>
+<p>Golf Avenue tags every product with a skill level (Beginner / Intermediate) and anchors every used price against retail. That turns &ldquo;Confidence Over Clutter&rdquo; from a slogan into a visible product feature, and serves the New/Returning Golfer better than any amount of copy.</p>
+<h4>7 &middot; The partner strategy is stronger than the consumer strategy, and underweighted</h4>
+<p>Three findings point the same way. OEMs will resist direct integration hardest because of channel conflict &mdash; so lead with challenger brands. Course operators have a long-standing grievance with tee-time platform economics &mdash; a real opening for &ldquo;we build with the industry, not against it.&rdquo; And creators, already on the partner target list, solve Clubhouse&rsquo;s single biggest weakness (no audience) faster than any paid channel. <strong>The partner side is where Clubhouse&rsquo;s differentiation is most defensible and least contested.</strong></p>
+</div>
+</details>
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Gaps &amp; opportunities</span></summary>
+<div class="body">
+<div class="scroller"><table>
+<thead><tr><th>Gap in the market</th><th>Who leaves it open</th><th>What Clubhouse could do</th></tr></thead>
+<tbody>
+<tr><td>Cross-retailer price and option comparison</td><td>Every retailer and every OEM, structurally</td><td>Make it the wedge, not a feature</td></tr>
+<tr><td>Equipment commerce inside an &ldquo;everything golf&rdquo; product</td><td>GolfPass &mdash; its weakest pillar by far</td><td>Enter where the strongest bundle is thinnest</td></tr>
+<tr><td>Creator verdicts + test data + live price in one view</td><td>Nobody in the set does this</td><td>Genuinely novel, and cheap relative to original testing</td></tr>
+<tr><td>Guidance layered onto used inventory</td><td>Golfstix, GlobalGolf, eBay &mdash; listings, no advice</td><td>Used-buying guides are high-intent and uncontested</td></tr>
+<tr><td>Golfer-legible merchandising (skill tags, price anchoring)</td><td>Everyone except Golf Avenue</td><td>Copy it in week one</td></tr>
+<tr><td>Expert-match advice, golf-native</td><td>Curated does it multi-category; nobody in golf</td><td>Teaching pros and fitters are a ready-made expert supply</td></tr>
+<tr><td>A partner proposition beyond a commission link</td><td>Affiliate networks offer nothing else</td><td>Already the sharpest message &mdash; resource it</td></tr>
+</tbody></table></div>
+</div>
+</details>
+
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Watchlist &mdash; not profiled, monitor quarterly</span></summary>
+<div class="body">
+<ul>
+<li><strong>Supreme Golf, GolfNow, Fairway Finder</strong> &mdash; tee-time aggregators running the same aggregation thesis in the PLAY vertical. They become direct competitors the moment &ldquo;Complete Clubhouse&rdquo; ships. Supreme Golf is the closest structural analogue to Clubhouse&rsquo;s ambition anywhere in golf.</li>
+<li><strong>Golfstix</strong> &mdash; the closest structural analogue, and further along: payments, sellers, trade-in and a unified checkout with no referral seam. Adding buying guides is a smaller lift for them than signing fulfillment partners is for Clubhouse. <strong>Monitor monthly, not quarterly.</strong></li>
+<li><strong>Pin High Golf</strong> &mdash; watch for further acquisitions across golf media, data and experiences.</li>
+<li><strong>18Birdies, Hole19, TheGrint, Arccos</strong> &mdash; own the habit loop Clubhouse wants; no discovery-to-purchase motion yet.</li>
+<li><strong>RepSpark</strong> &mdash; B2B wholesale platform reportedly used by ~80% of golf retailers and 150+ brands; relevant to the partner side.</li>
+</ul>
+</div>
+</details>
+
+<details class="block">
+<summary><span class="chev"></span><span class="sum-title">Recommended next steps</span></summary>
+<div class="body">
+<ol>
+<li><strong>Done in context v2:</strong> <s>Update the product marketing context</s> &mdash; reclassify MyGolfSpy / Pin High Golf from secondary to direct, and add Golfstix, GolfPass and Curated to the competitive landscape. Bump to v2 with a changelog entry.</li>
+<li><strong>Verify GlobalGolf UTry</strong> before the try-before-you-buy message ships.</li>
+<li><strong>Set the platform fee and payout schedule &mdash; blocking.</strong> No direct-fulfillment partner can be signed without both. Establish Golfstix&rsquo;s take rate first; partners will benchmark against it.</li>
+<li><strong>Re-run the profiling with a SEO data provider connected</strong> to fill the quantitative gaps and size the content opportunity properly.</li>
+<li><strong>Reconsider Amazon Associates at launch.</strong> Lowest commission in the set (3%), the heaviest engineering burden (no permanent image storage, caching and refresh obligations, price and availability timestamps) &mdash; and now the primary source of split carts. It buys catalog breadth at the cost of the checkout promise.</li>
+<li><strong>Design the split-cart flow before launch.</strong> Referral items need a visibly different affordance &mdash; &ldquo;Buy at [Retailer]&rdquo; rather than &ldquo;Add to cart&rdquo; &mdash; labelled before the golfer commits.</li>
+<li><strong>Reconcile the settlement model with the Marketplace Report</strong>, which specifies an automatic point-of-sale split rather than collect-then-remit.</li>
+</ol>
+</div>
+</details>
+</section>
+<section class="part" id="profiles">
+<div class="part-head">
+  <span class="eyebrow">Part III</span>
+  <h2>Competitor Profiles</h2>
+  <p>Grouped direct then indirect. The stripe and chip on each card encode <strong>risk</strong> &mdash; competitive <em>and</em> structural &mdash; and a second chip records <strong>supply posture</strong>: whether that company could plausibly become a fulfilment partner now that Clubhouse owns checkout.</p>
+</div>
+
+<details class="block" open>
+<summary><span class="chev"></span><span class="sum-title">Re-read after the Phase 1 checkout change &mdash; what moved</span></summary>
+<div class="body">
+<h4>Direct vs. indirect: no reclassifications</h4>
+<p>The test is unchanged &mdash; direct means the same solution to the same problem, indirect means a conflicting mechanism &mdash; and owning checkout does not move any company across that line. One basis did shift, though, and it is worth stating plainly.</p>
+<p><strong>MyGolfSpy was promoted to direct because it was building the affiliate-commerce model that used to be Clubhouse&rsquo;s Phase 1.</strong> That reasoning no longer applies: Clubhouse now transacts and MyGolfSpy still does not. It stays direct on a different basis &mdash; it competes for the decision moment and the DECIDE query set, which is where Clubhouse intends to acquire. The rivalry moved from <em>business model</em> to <em>audience and authority</em>.</p>
+<h4>Three risk ratings moved up</h4>
+<p><strong>TaylorMade / OEM direct &mdash; medium to high.</strong> Brands are the highest-value supply and now have the strongest reason to refuse. Channel conflict used to mean &ldquo;will you send us traffic?&rdquo; It now means &ldquo;will you let a third party own your customer, collect your money, and pay you later?&rdquo; This is the single biggest constraint on the launch catalog.</p>
+<p><strong>TGW &mdash; medium to high.</strong> The one signed partner is the clearest case of the new problem. As an affiliate they cost nothing to say yes to. As a fulfilment partner they would be handing the cart and the customer to a competitor. Expect them to prefer the referral link, and read that as the whole retailer category&rsquo;s answer.</p>
+<p><strong>Amazon &mdash; medium to high, on structural rather than competitive grounds.</strong> It is now the primary source of split carts: lowest commission in the set, heaviest engineering burden, and the only named reason a golfer must leave the ecosystem mid-basket. It actively degrades the promise the rest of the product is built on.</p>
+<div class="flag warn">
+<span class="eyebrow">The finding that matters most</span>
+<p><strong>Owning checkout splits this set along a new axis: who can plausibly say yes to fulfilment, and who now has a strong reason to say no.</strong></p>
+<p>Every large retailer in the direct set &mdash; Golf Galaxy, PGA TOUR Superstore, TGW, 2nd Swing, GlobalGolf &mdash; is a competitor being asked to surrender the customer relationship. Under the affiliate model they were cheap allies. Under owned checkout they are unlikely suppliers.</p>
+<p><strong>The answer is to recruit brands, not retailers.</strong> A brand already sells wholesale into channels it does not control, so letting Clubhouse own a checkout costs it nothing it currently has &mdash; whereas a retailer would be giving up a customer it owns today. Puma and Cobra via CJ are the beachhead; Performance Golf, Steadfast and Pine Meadow are the next tier. Among retailers, Golf Avenue is the best candidate: small enough to want the volume, already running refurbishment and fulfilment operations, and not competing with Clubhouse for a national brand position.</p>
+</div>
+<h4>What did not move</h4>
+<p>Golfstix, GolfPass and MyGolfSpy stay high risk. Club Champion, eBay and Golf Avenue stay low. Curated stays medium, though it is now a closer structural match than it was &mdash; both companies are merchant of record over third-party supply, which makes its unit-economics strain (the &ldquo;how is Curated still in business?&rdquo; signal) more directly relevant to Clubhouse than it was a week ago.</p>
+</div>
+</details>
+
+<details class="profile" id="p-mygolfspy" data-type="direct" data-threat="high">
+<summary><span class="chev"></span><span class="sum-title">MyGolfSpy / Pin High Golf</span><span class="chips"><span class="chip direct">Direct</span><span class="chip t-high">High risk</span><span class="chip sup">Not a supply source</span></span></summary>
+<div class="body">
+<div class="flag warn">
+  <span class="eyebrow">Reclassification</span>
+  <p>Context v1 listed MyGolfSpy as <em>secondary</em>; v2 now lists it as direct. As of May 2026 the v1 view was no longer accurate: institutional capital was deployed specifically to <strong>scale video and affiliate commerce</strong> on top of the testing content. That is Clubhouse&rsquo;s referral revenue line and its content strategy, better funded, with fifteen years of proprietary data behind it.</p>
+</div>
+<dl class="glance">
+<div><dt>Tagline</dt><dd>&ldquo;The World&rsquo;s Most Extensive Golf Equipment Reviews&rdquo;</dd></div>
+<div><dt>Founded</dt><dd>2008, Adam Beach, Yorktown VA</dd></div>
+<div><dt>Ownership</dt><dd>Pin High Golf &mdash; GSE Partners + Bolt Ventures, May 2026</dd></div>
+<div><dt>Testing assets</dt><dd>15 yrs data; 5 simulators; 300+ volunteer testers</dd></div>
+<div><dt>Observed engagement</dt><dd>259,224 views on one 2025 buyer&rsquo;s guide</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>Editorial independence as the product.</strong> Their homepage copy is almost word-for-word the problem Clubhouse claims to own: &ldquo;So many options, lofty promises, pricy clubs &mdash; what&rsquo;s a golfer to do? MyGolfSpy conducts independent, rigorous testing and analysis to help you get the data you need.&rdquo; Mission line: &ldquo;Golfer First. That&rsquo;s our mission&rdquo; &mdash; the same on-the-golfer&rsquo;s-team stance Clubhouse uses.</p>
+<h4>Product</h4>
+<p>Most Wanted flagship tests; Ball Lab teardowns; buyer&rsquo;s guides by category and year; reviews and &ldquo;We Tried It&rdquo;; instruction; tour coverage; travel (MyGolfSpy Experiences, Halcyon Golf Travel); a Deals section; Golfer&rsquo;s Forum; YouTube; the weekly No Putts Given podcast.</p>
+<h5>Notable differentiators</h5>
+<ul>
+<li><strong>Proprietary test data as a moat.</strong> Clubhouse&rsquo;s content plan is aggregation and curation; MyGolfSpy generates primary data nobody else has.</li>
+<li><strong>Named franchises</strong> &mdash; exactly the &ldquo;recurring formats make a young brand feel bigger&rdquo; strategy in Clubhouse&rsquo;s own email playbook, executed for over a decade.</li>
+<li><strong>Community</strong> &mdash; active forum and volunteer tester corps, the COMMUNITY pillar Clubhouse has scheduled for later.</li>
+<li><strong>Travel vertical already live.</strong></li>
+</ul>
+<h4>The SEO collision</h4>
+<p>Clubhouse&rsquo;s stated targets include &ldquo;best driver for high handicap golfer&rdquo;, &ldquo;best used golf drivers&rdquo;, &ldquo;best golf shoes for walking&rdquo;, &ldquo;best launch monitor under $500&rdquo;. MyGolfSpy already publishes Best Drivers 2026, Best Wedges 2026, Best Mini Drivers 2026, Best Spikeless Shoes 2026, Best Stand Bags 2026, Best Cart Bags 2026, and a &ldquo;Used Driver Finder: This Year&rsquo;s Winners, Matched To Data-Backed Alternatives For Less.&rdquo; <strong>Clubhouse&rsquo;s content SEO plan is a direct assault on an incumbent with fifteen years of domain authority and original test data.</strong></p>
+<h4>Strengths</h4>
+<ul>
+<li>Original test data no competitor can replicate cheaply</li>
+<li>Fifteen years of authority on exactly the queries Clubhouse targets</li>
+<li>Genuine community &mdash; forum, 300+ testers, high comment volume</li>
+<li>Newly capitalized with an explicit mandate to build commerce on the content</li>
+</ul>
+<h4>Weaknesses</h4>
+<ul>
+<li>No checkout, no inventory &mdash; still monetizes by sending golfers elsewhere, which Clubhouse no longer does on integrated partners</li>
+<li>Equipment-centric; no courses, tee times, apparel-as-lifestyle or brand marketplace</li>
+<li>Editorial independence and affiliate scale are in permanent tension &mdash; scaling commerce risks the &ldquo;Golfer First&rdquo; trust that is the whole asset</li>
+<li>Dense and enthusiast-oriented &mdash; poor fit for the New/Returning Golfer</li>
+</ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> they own the DECIDE territory Clubhouse calls its strongest commercial category, with better data, more authority and now more capital.</p>
+<p><strong>We&rsquo;re stronger:</strong> MyGolfSpy tells you what performs; it does not sell you anything, does not show you the used market, does not connect you to a course, a pro or a trip, and does not run a partner ecosystem. Their editorial-independence constraint actively prevents them from building the partner side Clubhouse depends on.</p>
+<p><strong>Opportunity:</strong> their independence pledge makes deep brand partnerships awkward. Clubhouse can offer brands something MyGolfSpy structurally cannot &mdash; curated placement and co-marketing. And citing their data beats competing with it: a layer that aggregates MyGolfSpy results alongside price and availability is additive.</p>
+<p><strong>Threat:</strong> the most serious competitor in this set. Pin High Golf is assembling the same ecosystem Clubhouse describes, starting from the audience rather than the marketplace &mdash; the easier direction to travel.</p>
+<p class="na">Sources: homepage via built-in browser (WebFetch 403); ownership and strategy via Ministry of Sport, SGB Media, GSE Partners, WeBrokr, Dealroom, PRNewswire. Raw: <code>raw/mygolfspy/2026-09-20/</code></p>
+</div>
+</details>
+<details class="profile" id="p-golfpass" data-type="direct" data-threat="high">
+<summary><span class="chev"></span><span class="sum-title">GolfPass (NBC Sports Next)</span><span class="chips"><span class="chip direct">Direct</span><span class="chip t-high">High risk</span><span class="chip sup">Not a supply source</span></span></summary>
+<div class="body">
+<p><em>The closest competitor to Clubhouse&rsquo;s long-term &ldquo;everything golf, one place&rdquo; ambition.</em></p>
+<dl class="glance">
+<div><dt>Tagline</dt><dd>&ldquo;The Best of Golf in One Convenient Membership&rdquo;</dd></div>
+<div><dt>Ownership</dt><dd>NBC Sports Next (Comcast); launched with Rory McIlroy Inc.</dd></div>
+<div><dt>Pricing</dt><dd>GolfPass+ $119/yr; free ad-supported tier; free trial</dd></div>
+<div><dt>Course reach</dt><dd>11,000+ courses worldwide via GolfNow / TeeOff</dd></div>
+<div><dt>Reported traction</dt><dd>Double-digit YoY membership growth; 100M+ minutes streamed</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>Bundle and belong.</strong> Where Clubhouse says &ldquo;everything golf in one place,&rdquo; GolfPass says &ldquo;the best of golf in one membership&rdquo; &mdash; the same sentence with a paywall and a distribution machine behind it. Four pillars: PLAY, INSTRUCTION, WATCH, TRAVEL. Member value is quantified: $120 in tee-time promo codes, waived booking fees, travel credit, Peacock Premium included.</p>
+<h4>Product</h4>
+<p>GolfNow tee-time booking with member promo codes, waived fees on 12 bookings and tee-time protection; GolfNow Compete; thousands of ad-free instruction videos with a full-swing curriculum plus fitness; original series and Golf Channel programming; course directory and ratings; resort and stay-and-play booking via golfpass.travel; GolfPass Points; a $10 referral bounty.</p>
+<h5>Notable differentiators</h5>
+<ul>
+<li><strong>Owns PLAY outright.</strong> GolfNow&rsquo;s tee-time inventory is the hardest asset in this set to replicate &mdash; it is Clubhouse&rsquo;s phase-three vision, already operating at 11,000+ courses.</li>
+<li><strong>Broadcast content library</strong> no startup can license affordably.</li>
+<li><strong>Recurring revenue</strong> with an ad-supported free tier feeding it.</li>
+</ul>
+<h4>Strengths</h4>
+<ul>
+<li>The most complete &ldquo;everything golf&rdquo; bundle actually shipping today</li>
+<li>Tee-time supply relationships with 11,000+ courses &mdash; a genuine network moat</li>
+<li>Recurring revenue plus a free tier for top-of-funnel</li>
+<li>Comcast distribution and licensed premium content</li>
+</ul>
+<h4>Weaknesses</h4>
+<ul>
+<li><strong>Almost nothing in equipment commerce.</strong> &ldquo;Shopping&rdquo; is a minor benefit, not a marketplace. The SHOP pillar &mdash; Clubhouse&rsquo;s entire Phase 1 &mdash; is their weakest area by far</li>
+<li>Paywalled: the valuable utility sits behind $119</li>
+<li>Course-operator relationships have historically been contentious around GolfNow&rsquo;s economics &mdash; a partner-trust opening</li>
+<li>No brand marketplace, no used equipment, no product comparison</li>
+</ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> they got to &ldquo;one place for golf&rdquo; first, with tee times, video and travel live and a subscription business funding it. Clubhouse&rsquo;s phase-three vision is largely their phase-one product.</p>
+<p><strong>We&rsquo;re stronger:</strong> GolfPass is a <em>membership</em>, not a <em>marketplace</em>. It cannot tell a golfer which driver to buy, cannot show the used market, and has no brand or retailer ecosystem. Clubhouse enters from the opposite end into a gap GolfPass has never filled &mdash; and Clubhouse is free, which matters enormously at the top of funnel.</p>
+<p><strong>Opportunity:</strong> equipment discovery and commerce is a genuine hole in the strongest &ldquo;everything golf&rdquo; product on the market. Separately, course-operator dissatisfaction with tee-time platform economics is a real partner-acquisition angle for the eventual PLAY vertical &mdash; &ldquo;Better Together&rdquo; lands hardest with exactly those operators.</p>
+<p><strong>Threat:</strong> if GolfPass adds a serious equipment commerce or comparison layer, they combine playing, learning, watching, travelling and shopping with 11,000 course relationships and Comcast behind them. That is the version of this market where Clubhouse&rsquo;s window closes.</p>
+<p class="na">Sources: homepage via WebFetch; NBC Sports / Comcast / PRNewswire releases and the GolfNow membership page via search. Raw: <code>raw/golfpass/2026-09-20/</code></p>
+</div>
+</details>
+<details class="profile" id="p-golfstix" data-type="direct" data-threat="high">
+<summary><span class="chev"></span><span class="sum-title">Golfstix</span><span class="chips"><span class="chip direct">Direct</span><span class="chip t-high">High risk</span><span class="chip sup">Not a supply source</span></span></summary>
+<div class="body">
+<p><em>The closest structural analogue to Clubhouse Golf in the entire set &mdash; and it has already shipped.</em></p>
+<dl class="glance">
+<div><dt>Positioning line</dt><dd>&ldquo;The golf marketplace to buy &amp; sell clubs, gear, and tech. Designed for golfers, by golfers.&rdquo;</dd></div>
+<div><dt>Model</dt><dd>Two-sided: individual sellers <em>and</em> established shops</dd></div>
+<div><dt>Fee claim</dt><dd>&ldquo;the lowest fees in golf&rdquo; &mdash; benchmarked against eBay; rates undisclosed</dd></div>
+<div><dt>Scale claims</dt><dd>&ldquo;thousands of clubs&rdquo;; &ldquo;thousands of golfers&rdquo;</dd></div>
+<div><dt>Adjacent property</dt><dd>ClubBuyer &mdash; instant trade-in offers</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>By golfers, for golfers</strong> &mdash; community credibility as the wedge against a generalist incumbent. Note this is the same rhetorical move Clubhouse makes against Amazon. Both sides addressed at once: buyers hunting value on used gear, sellers who feel gouged by eBay fees. That dual-audience structure mirrors Clubhouse&rsquo;s own golfers-and-partners split.</p>
+<h4>Product</h4>
+<p>Thousands of listings; buy-now, make-offer or auction formats; seller listing flow &ldquo;in minutes&rdquo; with photos, printable labels and payout; Golfstix Studio customization; My Fit personalization; ClubBuyer instant trade-in offer.</p>
+<h5>Notable differentiators</h5>
+<ul>
+<li><strong>Mixed seller supply</strong> &mdash; individuals alongside shops. Featured sellers include Clark&rsquo;s Golf Outlet (393,471 sales), PeoplesGolf (3,939), kingsgolfvault (446). Public sales counts function as trust infrastructure.</li>
+<li><strong>Three transaction formats</strong> &mdash; more flexible than any retailer in this set.</li>
+<li><strong>Owns checkout across its whole catalog</strong> &mdash; a unified basket with no referral seam, which Clubhouse will not have at launch.</li>
+</ul>
+<h4>Strengths</h4>
+<ul>
+<li>Already operating the two-sided model Clubhouse is building toward, including checkout</li>
+<li>Clear, quantified wedge against the incumbent (fees vs eBay)</li>
+<li>Services stack beyond listings &mdash; fitting, customization, trade-in</li>
+<li>Public seller sales counts build marketplace trust cheaply</li>
+</ul>
+<h4>Weaknesses</h4>
+<ul>
+<li>Equipment and tech only &mdash; no apparel-as-lifestyle, courses, travel, instruction or community</li>
+<li>Vague scale claims (&ldquo;thousands&rdquo;) suggest the marketplace is still thin on the buyer side</li>
+<li>No editorial or guidance layer &mdash; a transaction venue, not a decision tool</li>
+<li>Mixed individual sellers means variable condition and service quality</li>
+</ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> they have shipped, and every item on Golfstix can be bought on Golfstix. Clubhouse now owns checkout too &mdash; but only on directly integrated partners, of which none are signed yet, and its launch basket will mix completed and referral items.</p>
+<p><strong>We&rsquo;re stronger:</strong> Golfstix competes on price and fees; Clubhouse competes on confidence and breadth. They have no answer to &ldquo;where should I play,&rdquo; &ldquo;who should I take a lesson from,&rdquo; or &ldquo;which of these three drivers suits my swing.&rdquo;</p>
+<p><strong>Opportunity:</strong> benchmark their take rate before setting the platform fee &mdash; partners will compare. Their missing guidance layer is directly exploitable.</p>
+<p><strong>Threat:</strong> they already have payments, sellers, trade-in and a unified checkout. Adding buying guides is a far smaller lift for them than signing fulfillment partners is for Clubhouse. <strong>Monitor monthly.</strong></p>
+<p class="na">Source: homepage via WebFetch. Raw: <code>raw/golfstix/2026-09-20/</code></p>
+</div>
+</details>
+
+<details class="profile" id="p-pgatss" data-type="direct" data-threat="med">
+<summary><span class="chev"></span><span class="sum-title">PGA TOUR Superstore</span><span class="chips"><span class="chip direct">Direct</span><span class="chip t-med">Medium risk</span><span class="chip sup">Fulfilment unlikely</span></span></summary>
+<div class="body">
+<dl class="glance">
+<div><dt>Category</dt><dd>Omnichannel golf superstore with lessons and fitting</dd></div>
+<div><dt>Ownership</dt><dd>Arthur M. Blank Family of Businesses; licensed PGA TOUR brand</dd></div>
+<div><dt>Loyalty</dt><dd>The Players&rsquo; Club &mdash; points per dollar, birthday rewards</dd></div>
+<div><dt>Services</dt><dd>STUDIO Fittings, Fit &amp; Go, repair, trade-in, lessons, clinics</dd></div>
+<div><dt>Fulfilment</dt><dd>BOPIS plus same-day delivery via DoorDash</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>The authority store.</strong> The PGA TOUR name does the trust work that 2nd Swing gets from Golf Digest and GlobalGolf gets from tenure. Service-first navigation &mdash; &ldquo;Book A Fitting&rdquo; and &ldquo;Book A Lesson&rdquo; sit at the top level, not buried. The tennis and pickleball categories signal a play for the whole sporting household.</p>
+<h5>Notable differentiators</h5>
+<ul>
+<li><strong>Improve and Shop in one place.</strong> Of all 15 profiled companies, this is the closest to Clubhouse&rsquo;s own SHOP + IMPROVE architecture &mdash; and it already ships both. Clubhouse lists instruction as a later phase; PGA TOUR Superstore is booking lessons today.</li>
+<li><strong>Licensed authority brand</strong> &mdash; instant credibility no startup can buy.</li>
+<li><strong>Same-day delivery</strong> via DoorDash, closing the &ldquo;I need it before Saturday&rdquo; gap.</li>
+</ul>
+<h4>Strengths</h4>
+<ul><li>SHOP and IMPROVE both live today, integrated</li><li>PGA TOUR brand authority</li><li>Multi-format fulfilment including same-day</li><li>Loyalty program creating repeat behaviour</li></ul>
+<h4>Weaknesses</h4>
+<ul><li>Assortment limited to stocked inventory &mdash; the same shelf constraint as Golf Galaxy</li><li>Little cross-brand comparison content; the site sells rather than explains</li><li>Thin on used equipment</li><li>Category dilution into tennis and pickleball weakens the &ldquo;everything golf&rdquo; claim</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> two of Clubhouse&rsquo;s five ecosystem areas already delivered with physical infrastructure behind them, plus the trust mark. Clubhouse&rsquo;s &ldquo;improve&rdquo; is a roadmap item; theirs is a booking button.</p>
+<p><strong>We&rsquo;re stronger:</strong> no store carries everything, and no store gives brand-neutral advice about products it does not stock. They have nothing in PLAY, EXPERIENCE or COMMUNITY.</p>
+<p><strong>Threat:</strong> the single most complete competitor set in the field. If they add editorial comparison content, they cover SHOP + IMPROVE + guidance with stores and a tour brand behind it.</p>
+<p class="na">Source: homepage via WebFetch. Raw: <code>raw/pga-tour-superstore/2026-09-20/</code></p>
+</div>
+</details>
+<details class="profile" id="p-golfgalaxy" data-type="direct" data-threat="med">
+<summary><span class="chev"></span><span class="sum-title">Golf Galaxy (DICK&rsquo;S)</span><span class="chips"><span class="chip direct">Direct</span><span class="chip t-med">Medium risk</span><span class="chip">Scrape blocked</span><span class="chip sup">Fulfilment unlikely</span></span></summary>
+<div class="body">
+<div class="flag warn">
+  <span class="eyebrow">Source-quality warning</span>
+  <p>WebFetch returned HTTP 403; the built-in browser was served a bot-protection interstitial. No bypass was attempted. Everything below comes from third-party public sources and search-indexed service pages, not a live scrape &mdash; treat as weaker evidence than the other profiles.</p>
+</div>
+<dl class="glance">
+<div><dt>Ownership</dt><dd>DICK&rsquo;S Sporting Goods, acquired 2007</dd></div>
+<div><dt>Market position</dt><dd>Largest US specialty golf retailer (National Golf Foundation)</dd></div>
+<div><dt>Parent footprint</dt><dd>888 DICK&rsquo;S locations as of 2026</dd></div>
+<div><dt>Services</dt><dd>Fitting bays, lessons, trade-in, regripping and repair</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p>The national specialty golf store &mdash; full assortment plus in-person fitting, lessons and trade-in at scale, on DICK&rsquo;S retail infrastructure. Buy online, pick up in store, hit it in a bay, trade the old one at the counter.</p>
+<h5>Notable differentiators</h5>
+<ul>
+<li><strong>Parent-company leverage</strong> &mdash; DICK&rsquo;S loyalty program, credit card, media budget, distribution and real estate. No independent golf platform matches those customer-acquisition economics.</li>
+<li><strong>Physical density</strong> &mdash; the only real answer to &ldquo;I want to hit it first.&rdquo;</li>
+</ul>
+<h4>Strengths</h4>
+<ul><li>Largest US specialty golf retailer with a deep-pocketed parent</li><li>Fitting bays and lessons in every store &mdash; owns the high-intent moment offline</li><li>True omnichannel: research online, fulfil and trade in store</li><li>Mass-market brand recognition</li></ul>
+<h4>Weaknesses</h4>
+<ul><li>Assortment limited to what DICK&rsquo;S stocks &mdash; challenger and boutique brands largely invisible</li><li>Guidance is store-led and structurally biased toward stocked inventory</li><li>Aggressive bot-blocking signals a closed digital posture; less likely to behave as an open ecosystem partner</li><li>Weak on used equipment relative to 2nd Swing, GlobalGolf and Golf Avenue</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> everything physical, plus trust and reach. When the golfer&rsquo;s actual behaviour is &ldquo;drive to Golf Galaxy on Saturday,&rdquo; no amount of comparison content intercepts it.</p>
+<p><strong>We&rsquo;re stronger:</strong> Clubhouse can show the brands they don&rsquo;t carry, the used market they barely serve, and a recommendation not constrained by one chain&rsquo;s buying decisions. &ldquo;We are not on one manufacturer&rsquo;s team&rdquo; extends naturally to &ldquo;we are not on one retailer&rsquo;s shelf&rdquo; &mdash; and Golf Galaxy is the ideal foil for that story.</p>
+<p><strong>Threat:</strong> DICK&rsquo;S has the capital to build or buy a comparison layer, owns the customer relationship, and holds the fitting data. They can add guidance far faster than Clubhouse can add inventory and stores.</p>
+<p class="na">Sources: National Golf Foundation; Wikipedia (DICK&rsquo;S); indexed Golf Galaxy service pages. Raw: <code>raw/golf-galaxy/2026-09-20/</code></p>
+</div>
+</details>
+
+<details class="profile" id="p-2ndswing" data-type="direct" data-threat="med">
+<summary><span class="chev"></span><span class="sum-title">2nd Swing</span><span class="chips"><span class="chip direct">Direct</span><span class="chip t-med">Medium risk</span><span class="chip sup">Fulfilment unlikely</span></span></summary>
+<div class="body">
+<dl class="glance">
+<div><dt>Tagline</dt><dd>&ldquo;Highest Rated Golf Retailer&rdquo;</dd></div>
+<div><dt>Inventory</dt><dd>&ldquo;Over 150,000 clubs&rdquo;; 12,752 pre-owned added this week</dd></div>
+<div><dt>Credential</dt><dd>Golf Digest Top 100 Club Fitter</dd></div>
+<div><dt>Stores</dt><dd>7 &mdash; MN &times;2, AZ, DE, MD, TX, FL</dd></div>
+<div><dt>Self-description</dt><dd>&ldquo;family-owned small business&rdquo;</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>Expertise plus liquidity.</strong> Two claims do the work: a Golf Digest Top 100 Club Fitter badge for credibility, and 150,000 clubs with 12,752 added weekly for selection and freshness. The &ldquo;family-owned small business&rdquo; line is a deliberate counterweight to the big-box chains. Trade-in is the hook &mdash; &ldquo;Highest Values for Your Old Clubs,&rdquo; with a live 15% driver bonus.</p>
+<h5>Notable differentiators</h5>
+<ul>
+<li><strong>Trade-in flywheel</strong> &mdash; their used supply is generated by their own customers, which acquires inventory cheaply and locks in repeat purchase. A structural moat Clubhouse does not have.</li>
+<li><strong>Physical fitting bays</strong> &mdash; converts the highest-intent, highest-margin moment offline where no aggregator can follow.</li>
+</ul>
+<h4>Economics note</h4>
+<p>2nd Swing monetizes the same golfer two or three times &mdash; trade-in acquisition, resale margin, new club sale. Clubhouse&rsquo;s Phase 1 earns a single 4&ndash;10% commission on one referred transaction and nothing on the trade-in.</p>
+<h4>Strengths</h4>
+<ul><li>Trade-in supply loop competitors cannot replicate without inventory risk</li><li>Independent fitting credential from Golf Digest &mdash; third-party trust Clubhouse has none of yet</li><li>Physical presence in 7 metros for the try-before-you-buy moment</li><li>Enormous, constantly refreshed used catalog, quantified publicly</li></ul>
+<h4>Weaknesses</h4>
+<ul><li><strong>Equipment only.</strong> No instruction, courses, travel or apparel-as-lifestyle. Their world ends at the bag</li><li>Fitting limited to 7 stores &mdash; a fraction of the US golf population</li><li>Merchandising-led, not editorial; the site sells rather than explains</li><li>Promo-heavy surface (lottery, bonus percentages) sits closer to &ldquo;a coupon site&rdquo; than to trusted advisor</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> real inventory, real fitters, real trade-in cash, and a brand golfers already trust with a $600 decision.</p>
+<p><strong>We&rsquo;re stronger:</strong> breadth. They cannot tell a golfer where to play, who to take a lesson from, or where to go on a trip &mdash; and cannot cross-shop a Callaway against a Ping against a used Titleist <em>across retailers</em>, only within their own stock.</p>
+<p><strong>Opportunity:</strong> a strong affiliate partner candidate, not just a rival &mdash; their used inventory is exactly the &ldquo;new + used, one place&rdquo; promise, and they are not currently in the CHG network.</p>
+<p class="na">Source: homepage via WebFetch. Raw: <code>raw/2nd-swing/2026-09-20/</code></p>
+</div>
+</details>
+<details class="profile" id="p-globalgolf" data-type="direct" data-threat="med">
+<summary><span class="chev"></span><span class="sum-title">GlobalGolf</span><span class="chips"><span class="chip direct">Direct</span><span class="chip t-med">Medium risk</span><span class="chip sup">Fulfilment unlikely</span></span></summary>
+<div class="body">
+<dl class="glance">
+<div><dt>Operating since</dt><dd>&ldquo;Selling Preowned Since 2000&rdquo;</dd></div>
+<div><dt>Inventory</dt><dd>&ldquo;Shop Over 300,000 Preowned Golf Gear Items&rdquo;</dd></div>
+<div><dt>Guarantee</dt><dd>90-Day 100% Satisfaction Guarantee</dd></div>
+<div><dt>Free shipping</dt><dd>$179+ preowned &middot; $99+ new</dd></div>
+<div><dt>Loyalty</dt><dd>UPerks rewards</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>Scale plus safety.</strong> The pre-owned category&rsquo;s core objection is &ldquo;what condition will it actually arrive in.&rdquo; GlobalGolf answers with a guarantee and tenure, not with fitting expertise. The Second Chance program adds a sustainability frame: &ldquo;LIGHTER ON THE PLANET AND LIGHTER ON YOUR WALLET.&rdquo;</p>
+<h5>Notable differentiators</h5>
+<ul>
+<li><strong>The sustainability frame.</strong> The only profiled competitor merchandising used gear as an environmental choice rather than purely a price choice &mdash; that reframe reaches golfers price messaging does not.</li>
+<li><strong>Breadth beyond clubs</strong> &mdash; apparel, shoes and tech alongside equipment, broader than 2nd Swing or Golf Avenue.</li>
+</ul>
+<div class="flag warn">
+  <span class="eyebrow">Unverified &mdash; action required</span>
+  <p>GlobalGolf has historically run <strong>UTry</strong>, a try-before-you-buy rental-to-own program. It was <strong>not visible</strong> in this homepage extraction, so it is flagged unverified. This matters: &ldquo;Try Before You Buy&rdquo; is a listed Clubhouse marketplace feature. If UTry is live, a direct competitor already ships a stated Clubhouse differentiator. <strong>Verify before locking launch messaging.</strong></p>
+</div>
+<h4>Strengths</h4>
+<ul><li>Largest stated pre-owned selection of any profiled competitor</li><li>25-year operating history &mdash; trust by tenure</li><li>90-day guarantee neutralizes the category&rsquo;s biggest objection</li><li>Sustainability angle is differentiated and hard to copy cynically</li></ul>
+<h4>Weaknesses</h4>
+<ul><li>No fitting, no lessons, no physical presence &mdash; pure e-commerce</li><li>Guidance is thin; the golfer must already know what they want</li><li>$179 free-shipping threshold on preowned is friction at the value end</li><li>Equipment and apparel only &mdash; no courses, travel, instruction or community</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> inventory depth and a guarantee they can honour because they own the goods. In Phase 1 Clubhouse guarantees nothing &mdash; the retailer does.</p>
+<p><strong>We&rsquo;re stronger:</strong> cross-retailer comparison and the non-equipment verticals. GlobalGolf shows you <em>their</em> 300,000 items; Clubhouse&rsquo;s promise is to show you theirs and 2nd Swing&rsquo;s and Golf Galaxy&rsquo;s, side by side.</p>
+<p><strong>Opportunity:</strong> an obvious affiliate partner for the &ldquo;New. Used. More options. One place.&rdquo; message; their catalog-without-guidance posture leaves DECIDE wide open.</p>
+<p class="na">Source: homepage via WebFetch. Raw: <code>raw/globalgolf/2026-09-20/</code></p>
+</div>
+</details>
+
+<details class="profile" id="p-curated" data-type="direct" data-threat="med">
+<summary><span class="chev"></span><span class="sum-title">Curated (Golf)</span><span class="chips"><span class="chip direct">Direct</span><span class="chip t-med">Medium risk</span><span class="chip">Scrape blocked</span><span class="chip sup">Not a supply source</span></span></summary>
+<div class="body">
+<div class="flag warn">
+  <span class="eyebrow">Source-quality warning</span>
+  <p>WebFetch returned an empty body; the built-in browser was redirected to a bot-gated lander. No bypass attempted. Facts below come from third-party coverage (TechCrunch 2021, Bloomberg 2021, Dealroom) and the indexed &ldquo;How it Works&rdquo; page. Figures are as reported at publication and may be stale.</p>
+</div>
+<dl class="glance">
+<div><dt>Model</dt><dd>Two-sided: vetted human experts and consumers</dd></div>
+<div><dt>Expert network</dt><dd>1,000+ vetted experts (reported, 2021)</dd></div>
+<div><dt>Users</dt><dd>1M+ had used the tool (reported)</dd></div>
+<div><dt>Returns claim</dt><dd>Near 0% vs a reported 10&ndash;30% e-commerce average</dd></div>
+<div><dt>Categories</dt><dd>Golf, skis, snowboards, camping, cycling</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>The expert in your pocket.</strong> Where Clubhouse proposes to solve decision overload with comparisons, guides and structured data, Curated solves it with a human being who texts you back. Answer a short quiz, get matched to a golf expert, have a free consultation, receive a personalized shortlist, buy on Curated.</p>
+<h5>Notable differentiators</h5>
+<ul>
+<li><strong>Human advice at marketplace scale</strong> &mdash; the most credible answer to &ldquo;confidence over clutter&rdquo; in the entire competitive set.</li>
+<li><strong>Price matching</strong> &mdash; experts verify and approve a matched price, removing the &ldquo;I&rsquo;ll just check elsewhere&rdquo; leak.</li>
+<li><strong>Tipping</strong> &mdash; 100% goes to the expert, aligning the advisor with the golfer rather than the margin.</li>
+</ul>
+<p><strong>Caution:</strong> a public Indeed review thread titled &ldquo;How is Curated still in business?&rdquo; suggests contributor-side economic strain. Unverified, but worth monitoring &mdash; the unit economics of paid human advice on gear margin are not obviously sound.</p>
+<h4>Strengths</h4>
+<ul><li>Solves the exact emotional problem Clubhouse names, with the most convincing mechanism available (a person)</li><li>Proven across multiple gear verticals, so the model is not golf-dependent</li><li>Price matching and tipping both build trust structurally, not rhetorically</li><li>Owns checkout and the customer relationship</li></ul>
+<h4>Weaknesses</h4>
+<ul><li>Human advice does not scale cheaply; expert supply is the constraint and possibly the margin problem</li><li>Golf is one of several categories &mdash; no golf-native brand equity, community, course or travel dimension</li><li>Requires the golfer to engage in a conversation; many just want to browse</li><li>Bot-gated and thin on public content &mdash; weak top-of-funnel discovery</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> Curated has already built and validated the trusted-guidance layer, owns checkout, and can prove the advice works. Clubhouse&rsquo;s version of &ldquo;confidence over clutter&rdquo; is still a promise on a waitlist page.</p>
+<p><strong>We&rsquo;re stronger:</strong> Clubhouse is <em>only</em> golf. Curated will never build a golf community, feature courses, sell a golf trip, or run partner launches with Cobra.</p>
+<p><strong>Opportunity:</strong> the most valuable competitor here to learn from rather than beat. The expert-match model is a credible near-term feature &mdash; teaching pros and fitters in the partner network are a ready-made expert supply Curated had to recruit from scratch.</p>
+<p class="na">Sources: TechCrunch (2021-11-08); Bloomberg (2021-09-16); Curated &ldquo;How it Works&rdquo;; Dealroom; Growthcurve; Indeed. Raw: <code>raw/curated/2026-09-20/</code></p>
+</div>
+</details>
+<details class="profile" id="p-tgw" data-type="direct" data-threat="high">
+<summary><span class="chev"></span><span class="sum-title">TGW &mdash; The Golf Warehouse</span><span class="chips"><span class="chip direct">Direct</span><span class="chip t-high">High risk</span><span class="chip partner">Partner &amp; competitor</span><span class="chip sup">Referral only, realistically</span></span></summary>
+<div class="body">
+<div class="flag note">
+  <span class="eyebrow">Relationship</span>
+  <p><strong>Existing Clubhouse affiliate partner</strong> &mdash; CJ program, 6.0% advanced sale. Competitor and partner simultaneously, and a direct-fulfillment integration candidate under the Phase 1 checkout model.</p>
+</div>
+<dl class="glance">
+<div><dt>Headline</dt><dd>&ldquo;Golf Equipment, Gear and Apparel&rdquo;</dd></div>
+<div><dt>Shipping</dt><dd>Free over $99; free 2nd-day on in-stock clubs</dd></div>
+<div><dt>Programs</dt><dd>Club Trade-In; Golf Guide content section</dd></div>
+<div><dt>CHG commission</dt><dd>6.0% (CJ, advanced sale)</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>Breadth plus deal velocity.</strong> The hero is a sales event (up to 60% off), not a product thesis. Copy is aspirational-lifestyle rather than spec-led: &ldquo;golf is more than a sport; it&rsquo;s a passion, a lifestyle, and a pursuit of excellence.&rdquo;</p>
+<h5>Notable differentiators</h5>
+<ul>
+<li><strong>Golf carts</strong> &mdash; a category none of the other profiled retailers lead with.</li>
+<li><strong>Free 2nd-day delivery on in-stock clubs</strong> &mdash; a genuinely aggressive logistics promise.</li>
+<li><strong>Golf Guide</strong> &mdash; one of the few pure e-commerce players with a stated educational content layer, putting them closest to Clubhouse&rsquo;s content-plus-commerce motion among traditional retailers.</li>
+</ul>
+<h4>Strengths</h4>
+<ul><li>Broad assortment including categories others skip</li><li>Strong logistics promise on clubs</li><li>An actual content layer in Golf Guide</li><li>Established affiliate program, already integrated with CJ</li></ul>
+<h4>Weaknesses</h4>
+<ul><li>Discount-led positioning drifts toward the &ldquo;coupon site&rdquo; identity Clubhouse explicitly rejects</li><li>No fitting, no lessons, no physical presence</li><li>Thin social proof &mdash; no ratings, counts or testimonials visible</li><li>Single-retailer assortment; no cross-retailer comparison</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> they can fulfil, discount and ship in two days. Clubhouse in Phase 1 can do none of those.</p>
+<p><strong>We&rsquo;re stronger:</strong> Clubhouse can compare TGW&rsquo;s price against Golf Galaxy&rsquo;s and the used market in one view &mdash; the thing no single retailer will ever do. Editorial independence is a sharper trust claim than a retailer&rsquo;s own Golf Guide.</p>
+<div class="flag warn">
+  <span class="eyebrow">The partner-competitor tension, sharpened</span>
+  <p>With Phase 1 on-platform checkout confirmed, TGW is no longer just an affiliate to refer to. The ask becomes &ldquo;integrate as a fulfillment partner, let us own the cart and the customer, and take payment from us on agreed terms.&rdquo; That is a far harder yes from a retailer who is also a direct competitor. The 6% CJ program remains the fallback, but every referred sale funds a competitor&rsquo;s customer file while Clubhouse keeps only the margin. <strong>Expect TGW to prefer the affiliate relationship, and plan the partner ladder accordingly.</strong></p>
+</div>
+<p class="na">Sources: homepage via WebFetch; commission data from the Marketplace Report (31 Aug 2026). Raw: <code>raw/tgw/2026-09-20/</code></p>
+</div>
+</details>
+
+<details class="profile" id="p-golfavenue" data-type="direct" data-threat="low">
+<summary><span class="chev"></span><span class="sum-title">Golf Avenue</span><span class="chips"><span class="chip direct">Direct</span><span class="chip t-low">Low risk</span><span class="chip sup">Best retailer candidate</span></span></summary>
+<div class="body">
+<dl class="glance">
+<div><dt>Headline</dt><dd>&ldquo;Buy, sell or trade used golf clubs&rdquo;</dd></div>
+<div><dt>Reviews</dt><dd>25,157 certified (Yotpo), 4.7 average</dd></div>
+<div><dt>Lifetime purchases</dt><dd>547,753</dd></div>
+<div><dt>Throughput</dt><dd>2,506 clubs sold/traded in 30 days; 700 arrivals this week</dd></div>
+<div><dt>Trade-in incentive</dt><dd>20% Extra Value</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>Certified and responsible.</strong> Two trust mechanisms do the work: a published four-step refurbishment process (receive, inspect and certify, clean and refurbish, sell) and 25,157 third-party-verified reviews above the fold. Targets &ldquo;the everyday golfer&rsquo;s needs&rdquo; &mdash; Clubhouse&rsquo;s Everyday and New/Returning personas almost exactly.</p>
+<h5>Notable differentiators &mdash; worth copying</h5>
+<ul>
+<li><strong>Skill-level tagging on products.</strong> Items are labelled Beginner / Intermediate directly in listings. The single most golfer-friendly merchandising decision observed anywhere in this set, and cheap to implement.</li>
+<li><strong>Price anchoring</strong> &mdash; &ldquo;Used starting at $244.99 / Retail: $599.99&rdquo; on every card makes the value proposition self-evident without a coupon.</li>
+<li><strong>A real content layer</strong> &mdash; &ldquo;Best Golf Drivers for Every Handicap&rdquo;, &ldquo;Best Cobra Drivers Compared (2014&ndash;2025)&rdquo;.</li>
+</ul>
+<h4>Strengths</h4>
+<ul><li>Verified review volume at a scale that resolves the used-gear trust problem outright</li><li>Transparent refurbishment process, clearly explained</li><li>Genuinely superior merchandising</li><li>Content plus commerce already combined, if modestly</li></ul>
+<h4>Weaknesses</h4>
+<ul><li>Used-focused; limited new inventory, no fitting or lessons</li><li>Single-retailer assortment &mdash; no cross-retailer comparison</li><li>No courses, travel, instruction, community or brand marketplace</li><li>Smaller absolute scale than 2nd Swing or GlobalGolf</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> verified trust at volume, and the ability to certify condition because they physically handle every club. Clubhouse&rsquo;s Phase 1 model means it can vouch for nothing it lists.</p>
+<p><strong>We&rsquo;re stronger:</strong> they sell their own refurbished stock; Clubhouse&rsquo;s promise is to compare their price against 2nd Swing&rsquo;s, GlobalGolf&rsquo;s and a new-club option in one view &mdash; plus everything outside the bag.</p>
+<p><strong>Opportunity:</strong> a strong affiliate partner candidate not currently in the CHG network &mdash; and <strong>copy the skill-level tags and retail-price anchoring.</strong></p>
+<p class="na">Source: homepage via built-in browser (WebFetch 403); Yotpo aggregate captured on-page. Raw: <code>raw/golf-avenue/2026-09-20/</code></p>
+</div>
+</details>
+<details class="profile" id="p-amazon" data-type="indirect" data-threat="high">
+<summary><span class="chev"></span><span class="sum-title">Amazon (Golf category)</span><span class="chips"><span class="chip indirect">Indirect</span><span class="chip t-high">High risk</span><span class="chip">Not scraped</span><span class="chip sup">Referral only &mdash; forced</span></span></summary>
+<div class="body">
+<p><em>Conflicting approach: solves &ldquo;buy golf gear&rdquo; by removing guidance entirely and winning on convenience.</em></p>
+<p class="na">Not scraped &mdash; the storefront blocks automated retrieval and the model is not in dispute. Fields below are analyst assessment grounded in the category model and Clubhouse&rsquo;s own GTM playbook, which names Amazon as an explicit anti-reference.</p>
+<h4>Positioning</h4>
+<p><strong>Convenience absolutism.</strong> The value proposition to the golfer: it is already open in another tab, the price is probably fine, and it arrives tomorrow. Amazon does not attempt to help anyone decide &mdash; search results are ranked by a blend of relevance, conversion and paid placement, and the review corpus is the only guidance layer.</p>
+<p>Clubhouse&rsquo;s playbook flags &ldquo;the Amazon of golf&rdquo; as language to avoid. That instinct is right, and the reasoning cuts deeper than branding: <strong>Amazon is not the model to imitate, it is the behaviour to interrupt.</strong></p>
+<h4>Strengths</h4>
+<ul><li>Default consumer behaviour for any sub-$200 purchase &mdash; the true competitor for balls, gloves, training aids and accessories</li><li>Logistics and returns no golf specialist matches</li><li>Zero switching cost; the account already exists</li></ul>
+<h4>Weaknesses</h4>
+<ul><li><strong>No fit, no guidance, no golf expertise.</strong> Nobody buys a fitted driver on Amazon</li><li>Counterfeit and grey-market risk is a live concern in golf equipment</li><li>Reviews are noisy and gameable; they answer &ldquo;did it arrive&rdquo; far better than &ldquo;is it right for my swing&rdquo;</li><li>No community, courses, instruction or brand storytelling &mdash; golf is a category tree node</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> they own the low-consideration purchase outright, and they own the habit. For a sleeve of balls, Clubhouse will never win on convenience.</p>
+<p><strong>We&rsquo;re stronger:</strong> the $600 driver is exactly where Amazon&rsquo;s model fails and where Clubhouse&rsquo;s whole thesis lives. Amazon dumps hundreds of choices in front of a golfer; &ldquo;Confidence Over Clutter&rdquo; is a direct answer to that failure.</p>
+<p><strong>Opportunity:</strong> make Amazon the unnamed foil in launch messaging. &ldquo;Golf has never had more options and no way to navigate them&rdquo; describes the Amazon experience precisely, without naming it or sounding derivative.</p>
+<div class="flag warn">
+  <span class="eyebrow">Now the main split-cart source</span>
+  <p>Under the Phase 1 checkout model Amazon has become <strong>the primary source of split carts.</strong> It cannot support on-platform completion, so every Amazon item in a basket sends the golfer out of the Clubhouse ecosystem to finish buying &mdash; breaking the single-checkout promise on the item that earns the least (Associates pays ~3% on sports).</p>
+  <p>Its terms also constrain the product: per the Phase 1 requirements, Amazon restricts storage of Product Advertising Content, images generally cannot be permanently cached, and price and availability displays carry timestamp and refresh obligations. <strong>So Amazon carries the heaviest engineering burden, the lowest commission rate in the set, and the worst checkout experience.</strong> It buys catalog breadth at the cost of the brand promise &mdash; a real decision for launch week, not a formality.</p>
+</div>
+<p class="na">Raw: <code>raw/amazon-golf/2026-09-20/</code></p>
+</div>
+</details>
+<details class="profile" id="p-creators" data-type="indirect" data-threat="med">
+<summary><span class="chev"></span><span class="sum-title">The creator review economy</span><span class="chips"><span class="chip indirect">Indirect</span><span class="chip t-med">Medium risk</span><span class="chip sup">Marketing partner</span></span></summary>
+<div class="body">
+<p><em>Rick Shiels, Bryson DeChambeau, TXG/Cool Clubs, Good Good, Golf Sidekick and the wider golf YouTube ecosystem. Conflicting approach: solves &ldquo;help me decide&rdquo; with free, entertaining, personality-led video rather than structured comparison.</em></p>
+<dl class="glance">
+<div><dt>Reference channel</dt><dd>Rick Shiels Golf &mdash; 3,074,576 subscribers (June 2026)</dd></div>
+<div><dt>Views</dt><dd>First golf creator past 1 billion channel views</dd></div>
+<div><dt>Network scale</dt><dd>1.1B+ views, 3.7M+ subs, 150M+ watch hours</dd></div>
+<div><dt>Operation</dt><dd>&ldquo;upwards of 15 members of staff&rdquo;, Bolton, England</dd></div>
+<div><dt>Commercial influence</dt><dd>&ldquo;His reviews can cause products to sell out overnight&rdquo;</dd></div>
+<div><dt>Monetization mechanics</dt><dd class="na">Unverified</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>Parasocial trust</strong> &mdash; the hardest thing in the competitive set to replicate. Golfers do not trust &ldquo;MyGolfSpy the institution&rdquo; or &ldquo;Clubhouse the platform&rdquo; the way they trust a person whose voice they have heard for 400 hours. Clubhouse&rsquo;s own brand guidance &mdash; &ldquo;the knowledgeable golf friend you actually want to play 18 with&rdquo; &mdash; is an explicit attempt to manufacture exactly this, and creators already have it.</p>
+<h5>Notable differentiators</h5>
+<ul>
+<li><strong>Distribution is free and algorithmic.</strong> A creator reaches more golfers in one upload than most golf brands reach in a quarter, at zero media cost.</li>
+<li><strong>Demonstration beats description.</strong> Seeing a ball flight resolves a purchase decision faster than any comparison table.</li>
+<li><strong>Entertainment value</strong> &mdash; golfers watch with no purchase intent at all, which builds the trust that later converts.</li>
+</ul>
+<p><strong>Strategic note:</strong> creators are <em>also</em> affiliate publishers &mdash; competing for the same commission pool Clubhouse&rsquo;s Phase 1 depends on, with vastly greater reach and far lower operating cost.</p>
+<h4>Weaknesses</h4>
+<ul><li><strong>Not comparable or searchable.</strong> You cannot filter a video by budget, handicap or availability; finding &ldquo;the best driver under $400 for a 15 handicap&rdquo; means watching six videos</li><li>Sample size of one golfer&rsquo;s swing &mdash; the opposite of MyGolfSpy&rsquo;s methodology</li><li>Sponsorship blurs independence, and audiences increasingly know it</li><li>No transaction layer, no inventory, no price comparison, no used market</li><li>Key-person risk and platform dependency</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> trust and reach, by orders of magnitude. If a golfer&rsquo;s decision process is &ldquo;watch Rick Shiels, then buy,&rdquo; Clubhouse is not in the consideration set at all.</p>
+<p><strong>We&rsquo;re stronger:</strong> creators generate opinion; they do not organize it. Nobody can compare across fifty videos, check the used market, filter by budget, and buy. Clubhouse&rsquo;s role is the one thing the creator economy is structurally bad at.</p>
+<div class="flag note">
+  <span class="eyebrow">Most underrated item in the partner strategy</span>
+  <p>Creators are already on Clubhouse&rsquo;s partner target list. A creator partnership solves Clubhouse&rsquo;s single biggest weakness &mdash; zero audience &mdash; faster than any paid channel, and the Partner Announcement Formula works as well for a creator as for Cobra. Separately: aggregating and indexing creator verdicts alongside test data and price is a genuinely novel product. Nobody in this set does it.</p>
+</div>
+<p><strong>Threat:</strong> creators are moving downstream into commerce and own-brand products. A creator with 3M subscribers launching a storefront has the audience Clubhouse must buy, and needs only the marketplace layer.</p>
+<p class="na">Sources: HypeAuditor; Wikipedia; Today&rsquo;s Golfer; Athlon Sports; The Golf Wire; CreatorDB. Raw: <code>raw/creator-review-economy/2026-09-20/</code></p>
+</div>
+</details>
+<details class="profile" id="p-taylormade" data-type="indirect" data-threat="high">
+<summary><span class="chev"></span><span class="sum-title">TaylorMade (manufacturer DTC)</span><span class="chips"><span class="chip indirect">Indirect</span><span class="chip t-high">High risk</span><span class="chip sup">Priority fulfilment target</span></span></summary>
+<div class="body">
+<p><em>Representative of Callaway, Titleist, PING, Cobra and every other OEM direct channel. Conflicting approach: single-brand depth, and it owns the customer relationship Clubhouse needs to intermediate.</em></p>
+<dl class="glance">
+<div><dt>Category</dt><dd>Manufacturer DTC storefront</dd></div>
+<div><dt>Custom offering</dt><dd>&ldquo;Choose from 1000&rsquo;s of club components, grips, heads, and shafts&rdquo;</dd></div>
+<div><dt>Brand proof</dt><dd>2026 PGA TOUR: seven wins, a FedEx Cup, top three scoring average</dd></div>
+<div><dt>Product families</dt><dd>Qi4D, P-Series, Spider, TP5/TP5x</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>Authority through performance.</strong> Hero placements are tied to tour results within days (&ldquo;Bridgeman&rsquo;s Sunday Blitz &hellip; SHOP QI4D&rdquo;), converting Sunday&rsquo;s leaderboard into Monday&rsquo;s merchandising. No aggregator can move that fast on a brand&rsquo;s own story. Lifestyle extensions include officially licensed NFL and collegiate gear and MySymbol ball personalization.</p>
+<h5>Notable differentiators</h5>
+<ul>
+<li><strong>Configuration depth</strong> &mdash; thousands of component combinations no retailer stocks.</li>
+<li><strong>Narrative control</strong> &mdash; brand story, tour results and product education in one owned channel.</li>
+<li><strong>First-party data and direct customer relationship</strong> &mdash; precisely what a brand gives up when it sells through an aggregator.</li>
+</ul>
+<h4>Economics note</h4>
+<p>Full margin capture at MSRP, no retailer or affiliate share. MAP policies enforced downstream constrain what Clubhouse&rsquo;s retail partners can discount &mdash; a real limit on Clubhouse&rsquo;s ability to differentiate on price.</p>
+<h4>Weaknesses</h4>
+<ul><li><strong>Single-brand by definition.</strong> Every recommendation path terminates in a TaylorMade product &mdash; they cannot answer &ldquo;is this the right driver for me?&rdquo;, only &ldquo;which TaylorMade driver?&rdquo;</li><li>No used market, no cross-brand trade-in comparison</li><li>No courses, travel, instruction marketplace or community</li><li>Golfers know the advice is not neutral, which caps its trust value</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> deep pockets, brand love, product authority, certainty about their own equipment &mdash; and they own the customer file.</p>
+<p><strong>We&rsquo;re stronger:</strong> neutrality. &ldquo;We are not on one manufacturer&rsquo;s team&rdquo; is a claim TaylorMade structurally cannot make, and <strong>the cross-brand comparison query is a permanent gap in every OEM&rsquo;s coverage</strong> &mdash; which is why &ldquo;TaylorMade Qi vs. Callaway Elyte&rdquo; is defensible territory.</p>
+<p><strong>Opportunity:</strong> OEMs are the highest-value partner category, and the Puma/Cobra CJ relationship is the beachhead. The partner pitch is strongest exactly where DTC is weakest &mdash; reaching golfers who have <em>not</em> already decided on the brand. That is a genuinely incremental customer, the one thing a DTC channel cannot buy for itself.</p>
+<div class="flag warn">
+  <span class="eyebrow">Central partner objection</span>
+  <p>Channel conflict is already logged in the context document. OEMs pushing DTC have a structural reason to resist any intermediary that owns the customer relationship &mdash; exactly what on-platform checkout asks them to accept. <strong>Expect the biggest brands to be hardest to sign; plan the partner ladder around challenger brands first.</strong></p>
+</div>
+<p class="na">Source: homepage via built-in browser (WebFetch hit a redirect loop). Raw: <code>raw/taylormade-dtc/2026-09-20/</code></p>
+</div>
+</details>
+<details class="profile" id="p-clubchampion" data-type="indirect" data-threat="low">
+<summary><span class="chev"></span><span class="sum-title">Club Champion</span><span class="chips"><span class="chip indirect">Indirect</span><span class="chip t-low">Low risk</span><span class="chip sup">Services partner</span></span></summary>
+<div class="body">
+<p><em>Conflicting approach: solves &ldquo;what&rsquo;s right for my game&rdquo; with an in-person expert and a launch monitor instead of with information.</em></p>
+<dl class="glance">
+<div><dt>Tagline</dt><dd>&ldquo;Better Fit, Lower Scores&rdquo;</dd></div>
+<div><dt>Scale</dt><dd>&ldquo;the world&rsquo;s top club fitter, with more than 160 locations&rdquo;</dd></div>
+<div><dt>Component library</dt><dd>65,000+ head, shaft and grip combinations</dd></div>
+<div><dt>Fitting pricing</dt><dd>Full bag $400 ($100 with purchase); driver $175 ($50)</dd></div>
+<div><dt>Performance claims</dt><dd>21+ yards off the tee; 3+ strokes saved per round</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>Proof through measurement.</strong> Every claim is a number &mdash; the most quantified value proposition in the entire competitive set, and worth studying. Clubhouse&rsquo;s own playbook says &ldquo;do not make massive claims without evidence&rdquo;; Club Champion demonstrates what the evidenced version looks like.</p>
+<div class="flag note">
+  <span class="eyebrow">The uncomfortable overlap</span>
+  <p>&ldquo;Club Champion is brand agnostic and dedicated to finding the best possible club combination for every level of golfer&rdquo; is, functionally, Clubhouse&rsquo;s &ldquo;We are not on one manufacturer&rsquo;s team. We are on the golfer&rsquo;s team&rdquo; &mdash; already delivered, with a launch monitor as proof.</p>
+</div>
+<h4>Product</h4>
+<p>An eight-step fitting methodology: consultation, baseline assessment, shaft isolation, head optimization, spec finalization, SAM PuttLab putter fitting, build sheet, handcrafted build by Master Builders. Brand agnosticism is structurally true, not asserted &mdash; they stock components from every major manufacturer.</p>
+<h4>Strengths</h4>
+<ul><li>The most credible answer in golf to &ldquo;what should I actually buy&rdquo; &mdash; measured, not argued</li><li>Genuinely brand-neutral because they stock every brand&rsquo;s components</li><li>Quantified outcome claims that make marketing easy</li><li>National footprint for an inherently local service</li></ul>
+<h4>Weaknesses</h4>
+<ul><li>Expensive and time-consuming &mdash; a booked appointment, not a browse</li><li>Serves only the committed end; the New/Returning Golfer is priced and intimidated out</li><li>Equipment only; no apparel, courses, travel or community</li><li>Limited digital discovery value &mdash; you cannot be fitted through a website</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> they deliver certainty. A golfer leaving a Club Champion fitting knows what fits; a golfer leaving a comparison page has read an opinion.</p>
+<p><strong>We&rsquo;re stronger:</strong> reach and cost. They serve golfers willing to pay $175&ndash;$400 and block out an afternoon; Clubhouse serves everyone else, free, at the moment of curiosity rather than commitment.</p>
+<p><strong>Opportunity: partner, don&rsquo;t fight.</strong> Fitters are on Clubhouse&rsquo;s own partner target list. Club Champion is a lead-generation partner for the IMPROVE vertical, and &ldquo;we&rsquo;re building with the industry, not against it&rdquo; is tailor-made for them. Also steal the evidence discipline &mdash; replace &ldquo;Confidence Over Clutter&rdquo; as a slogan with measured claims as soon as beta data allows.</p>
+<p class="na">Source: homepage via WebFetch. Raw: <code>raw/club-champion/2026-09-20/</code></p>
+</div>
+</details>
+
+<details class="profile" id="p-ebay" data-type="indirect" data-threat="low">
+<summary><span class="chev"></span><span class="sum-title">eBay &amp; Facebook Marketplace</span><span class="chips"><span class="chip indirect">Indirect</span><span class="chip t-low">Low risk</span><span class="chip">Not scraped</span><span class="chip sup">Not a supply source</span></span></summary>
+<div class="body">
+<p><em>Peer-to-peer golf resale. Conflicting approach: golfer-to-golfer transaction with no intermediary guidance or guarantee.</em></p>
+<p class="na">Not scraped &mdash; both are login- and bot-gated for category browsing. Evidence from third-party coverage retrieved 2026-09-20 and from a competitor&rsquo;s own benchmarking.</p>
+<dl class="glance">
+<div><dt>eBay</dt><dd>Largest marketplace for used clubs, with fees and high shipping costs</dd></div>
+<div><dt>Facebook Marketplace</dt><dd>Lowest prices if you accept meetups; suits experienced golfers who can inspect</dd></div>
+<div><dt>Corroborating signal</dt><dd>Golfstix benchmarks &ldquo;the lowest fees in golf&rdquo; explicitly against eBay</dd></div>
+<div><dt>SEO metrics</dt><dd class="na">Not available</dd></div>
+</dl>
+<h4>Positioning</h4>
+<p><strong>Pure liquidity.</strong> The lowest possible price and the widest pool of used equipment, in exchange for accepting risk and doing your own homework. Neither platform offers golf expertise, condition certification or fit guidance &mdash; the golfer is the expert; the platform is just the venue.</p>
+<h5>Notable differentiators</h5>
+<p>eBay&rsquo;s completed-listings data is the de facto price index for used golf equipment &mdash; the closest thing the category has to a transparent market rate. Facebook&rsquo;s zero fees plus local pickup produce prices no managed marketplace can match.</p>
+<h4>Strengths</h4>
+<ul><li>Price floor for the entire used category &mdash; everyone else is benchmarked against them</li><li>Inventory depth including out-of-production and rare equipment</li><li>Established habit among value-driven and enthusiast segments</li><li>Facebook adds genuine local community and in-person inspection</li></ul>
+<h4>Weaknesses</h4>
+<ul><li>No condition certification; misrepresentation is the category&rsquo;s defining complaint</li><li>No fit guidance whatsoever</li><li>Fees and shipping erode eBay&rsquo;s price advantage</li><li>Facebook requires meetups and scheduling; scams are common</li><li>Generalist platforms &mdash; no golf-native trust, brand relationships or ecosystem</li></ul>
+<h4>Implications for Clubhouse</h4>
+<p><strong>They&rsquo;re stronger:</strong> on price, and for the golfer who knows exactly which shaft they want and just needs the cheapest one. Clubhouse cannot beat a private-sale price.</p>
+<p><strong>We&rsquo;re stronger:</strong> everything around the transaction. &ldquo;New. Used. More options. One place.&rdquo; is aimed at a golfer not confident enough to buy blind from a stranger &mdash; which is most golfers, and all of the New/Returning persona.</p>
+<p><strong>Opportunity:</strong> the anxiety these platforms create is the best possible setup for surfacing certified used inventory from Golf Avenue, 2nd Swing and GlobalGolf alongside private-sale pricing. Showing the price gap <em>and</em> explaining what the gap buys you is a strong comparison-content format. eBay completed-listings data is also a legitimate reference for &ldquo;what is this actually worth&rdquo; trade-in content.</p>
+<p><strong>Threat:</strong> low as direct rivals, but they cap the price the whole used category can command, which compresses the Phase 1 commission pool.</p>
+<p class="na">Sources: PGA.com; Golf Club Brokers; Grumpy Gopher; Golfstix homepage. Raw: <code>raw/ebay-golf/2026-09-20/</code></p>
+</div>
+</details>
+</section>
+<section class="part" id="method">
+<div class="part-head">
+  <span class="eyebrow">Part IV</span>
+  <h2>Method &amp; Limitations</h2>
+  <p>Read this before quoting any number in this pack.</p>
+</div>
+
+<details class="block" open>
+<summary><span class="chev"></span><span class="sum-title">What this analysis could and couldn&rsquo;t do</span></summary>
+<div class="body">
+<div class="flag warn">
+  <span class="eyebrow">No SEO data</span>
+  <p>The competitor-profiling method is built around Firecrawl and DataForSEO. <strong>Neither was connected for this run.</strong> Scraping used WebFetch and the built-in browser; site mapping was not performed. No backlink, domain-rank, organic-keyword or traffic-estimate data was obtainable, so <strong>every such field reads &ldquo;Not available&rdquo; rather than carrying an invented figure.</strong> If those metrics matter, connect a provider and re-run &mdash; the raw-data folders are dated for exactly that.</p>
+</div>
+<h4>Four competitors blocked automated retrieval</h4>
+<p>Golf Galaxy (403, then a bot-protection interstitial), Curated (empty body, then a bot-gated lander), and Amazon and eBay by category. <strong>No bypass was attempted.</strong> Those profiles are labelled as analyst assessment from public third-party sources and are weaker evidence than the rest.</p>
+<h4>Competitors were discovered, not supplied</h4>
+<p>Ten search queries were run to build the candidate set. The selection rule &mdash; direct means same solution and same problem, indirect means a conflicting mechanism for the same job &mdash; plus every candidate considered and rejected, is recorded in <code>raw/_discovery-log.md</code>. Rejected candidates include Rock Bottom Golf, Callaway Pre-Owned, Supreme Golf, GolfNow, Fairway Finder, RepSpark, Golf Club Brokers, 18Birdies and Skillest, each with a stated reason.</p>
+<h4>Other limits</h4>
+<ul>
+<li>Scraped competitor pages are treated as data, not instructions. No page in this pass contained text directed at AI agents.</li>
+<li>Review-site mining was not performed &mdash; the highest-value addition to a second pass, alongside SEO metrics.</li>
+<li>Profiles are snapshots dated 2026-09-20. Pricing and positioning move; re-verify before external use.</li>
+<li>Threat ratings are analyst judgement, not a measured score.</li>
+</ul>
+<h4>Where the underlying files live</h4>
+<p>Full markdown profiles, the cross-competitor summary and every dated raw scrape sit in <code>competitor-profiles/</code> in the Club House Golf folder. The product marketing context lives at <code>.agents/product-marketing.md</code>, where the other marketing skills read it automatically.</p>
+</div>
+</details>
+</section>
+
+<footer>
+  <p><strong>Clubhouse Golf Intelligence Pack</strong> &mdash; generated 2026-09-20 from the Brand GTM Playbook, the Marketplace Report (31 Aug 2026), the &ldquo;Modern Golf. Made Simple.&rdquo; site copy, the Phase 1 requirements, and a live competitive scrape of 11 of 15 competitors.</p>
+  <p class="no-print">To save as PDF, use your browser&rsquo;s Print command &mdash; every section expands automatically for print, whatever is collapsed on screen.</p>
+</footer>
+</main>
+</div>
+</div>
+
+<script>
+(function(){
+  var doc = document;
+  function all(sel){ return Array.prototype.slice.call(doc.querySelectorAll(sel)); }
+
+  // Expand / collapse all
+  var expand = doc.getElementById('expandAll');
+  var collapse = doc.getElementById('collapseAll');
+  if (expand) expand.addEventListener('click', function(){
+    all('details').forEach(function(d){ if(!d.hidden) d.open = true; });
+  });
+  if (collapse) collapse.addEventListener('click', function(){
+    all('details').forEach(function(d){ d.open = false; });
+  });
+
+  // Filter profiles by type / threat
+  var buttons = all('.filt');
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var f = btn.getAttribute('data-f');
+      buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(b === btn)); });
+      all('details.profile').forEach(function(card){
+        var show = f === 'all'
+          || (f === 'high' ? card.getAttribute('data-threat') === 'high'
+                           : card.getAttribute('data-type') === f);
+        card.hidden = !show;
+        if (!show) card.open = false;
+      });
+    });
+  });
+
+  // Remember open sections for this viewer only; never required for the page to render
+  var KEY = 'chg-report-open-v1';
+  function load(){
+    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; }
+  }
+  function save(){
+    try {
+      localStorage.setItem(KEY, JSON.stringify(
+        all('details').map(function(d, i){ return d.open ? i : -1; }).filter(function(i){ return i > -1; })
+      ));
+    } catch (e) { /* private window or blocked storage - ignore */ }
+  }
+  var remembered = load();
+  if (remembered.length) {
+    all('details').forEach(function(d, i){ d.open = remembered.indexOf(i) > -1; });
+  }
+  all('details').forEach(function(d){ d.addEventListener('toggle', save); });
+
+  // Expand everything for print, restore afterwards
+  var printState = null;
+  window.addEventListener('beforeprint', function(){
+    printState = all('details').map(function(d){ return d.open; });
+    all('details').forEach(function(d){ d.open = true; });
+  });
+  window.addEventListener('afterprint', function(){
+    if (printState) all('details').forEach(function(d, i){ d.open = printState[i]; });
+    printState = null;
+  });
+})();
+</script>

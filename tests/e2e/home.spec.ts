@@ -10,7 +10,12 @@ async function openHome(page: Page) {
   page.on("response", (res) => {
     if (res.status() >= 400) problems.push(`${res.status()} ${res.url()}`);
   });
-  page.on("requestfailed", (req) => problems.push(`failed ${req.url()}`));
+  page.on("requestfailed", (req) => {
+    const reason = req.failure()?.errorText ?? "";
+    // Next.js cancels superseded link prefetches on purpose - not a failure.
+    if (/ERR_ABORTED|NS_BINDING_ABORTED|cancelled/i.test(reason)) return;
+    problems.push(`failed ${req.url()} (${reason})`);
+  });
 
   await page.goto("./");
   await page.waitForLoadState("networkidle");
@@ -55,9 +60,10 @@ test("contact CTAs lead to the footer email link", async ({ page }) => {
   const email = page.getByRole("link", { name: "Email us" });
   await expect(email).toBeVisible();
   await expect(email).toHaveAttribute("href", "mailto:hello@chgolfco.com");
+  // Root-relative so the header CTA also works from the Reports pages.
   await expect(page.getByRole("link", { name: "Contact Us" })).toHaveAttribute(
     "href",
-    "#contact",
+    "/TheClubHouseGolf/#contact",
   );
 });
 
