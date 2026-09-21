@@ -167,7 +167,8 @@ describe("reports", () => {
       path.join(OUT, "reports/marketing/demographics-device-mix-2026-09.html"),
       "utf8",
     );
-    expect(embedded).toContain("Clubhouse Scorecard");
+    expect(embedded).toContain("<h1>Demographics · Device Mix</h1>");
+    expect(embedded).not.toContain("Clubhouse Scorecard");
     expect(embedded).toContain("The 19th hole");
   });
 });
