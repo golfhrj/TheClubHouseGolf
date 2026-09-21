@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 const STRATEGY = /\/TheClubHouseGolf\/reports\/marketing\/strategy\/$/;
 const STRATEGY_TITLE =
   "Clubhouse Golf Marketing Strategy Report V2 - Sept 20 2026";
-const SCORECARD_TITLE = "Clubhouse Scorecard - Demographics · Device Mix";
+const SCORECARD_TITLE = "Demographics · Device Mix";
 
 test("Reports › Marketing › Strategy tabs lead to the report", async ({
   page,
@@ -123,7 +123,7 @@ test("Marketing › Demographics · Device Mix shows the scorecard", async ({
   }
 
   const scorecard = page.frameLocator(`iframe[title="${SCORECARD_TITLE}"]`);
-  await expect(scorecard.locator("h1")).toHaveText("Clubhouse Scorecard");
+  await expect(scorecard.locator("h1")).toHaveText(SCORECARD_TITLE);
   await expect(
     scorecard.getByRole("heading", { name: /The 19th hole/ }),
   ).toBeVisible();
@@ -137,7 +137,10 @@ test("Marketing section lists both reports with their details", async ({
   await expect(
     page.getByRole("link", { name: /Strategy Report V2/ }),
   ).toHaveAttribute("href", "/TheClubHouseGolf/reports/marketing/strategy/");
-  const card = page.getByRole("link", { name: /Clubhouse Scorecard/ });
+  // The tab shares the card's name, so pick the card by its details.
+  const card = page.getByRole("link", {
+    name: /Demographics · Device Mix.*Prepared for/,
+  });
   await expect(card).toHaveAttribute(
     "href",
     "/TheClubHouseGolf/reports/marketing/demographics-device-mix/",

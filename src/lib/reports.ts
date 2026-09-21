@@ -40,7 +40,7 @@ export const REPORT_SECTIONS: ReportSection[] = [
       {
         slug: "demographics-device-mix",
         label: "Demographics · Device Mix",
-        title: "Clubhouse Scorecard - Demographics · Device Mix",
+        title: "Demographics · Device Mix",
         summary:
           "Who's buying golf gear, where they buy it, and which phone is in their hand when they do - carded for the Clubhouse Golf app build.",
         date: "2026-09",
