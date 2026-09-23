@@ -132,7 +132,7 @@ test("Marketing › Demographics · Device Mix shows the scorecard", async ({
   expect(failed).toEqual([]);
 });
 
-test("Marketing section lists both reports with their details", async ({
+test("Marketing section lists every report with its details", async ({
   page,
 }) => {
   await page.goto("./reports/marketing/");
@@ -149,6 +149,44 @@ test("Marketing section lists both reports with their details", async ({
   );
   await expect(card).toContainText("Clubhouse Golf (chgolfco)");
   await expect(card).toContainText("3 + the 19th");
+
+  const membership = page.getByRole("link", { name: /Membership Approach/ });
+  await expect(membership).toHaveAttribute(
+    "href",
+    "/TheClubHouseGolf/reports/marketing/membership/",
+  );
+  await expect(membership).toContainText("29 Sep (feature freeze)");
+});
+
+test("Marketing › Membership shows the Phase 1 recommendation", async ({
+  page,
+}) => {
+  const failed: string[] = [];
+  page.on("response", (res) => {
+    if (res.status() >= 400) failed.push(`${res.status()} ${res.url()}`);
+  });
+
+  await page.goto("./reports/marketing/strategy/");
+  const reports = page.getByRole("navigation", { name: "Marketing reports" });
+  await reports.getByRole("link", { name: "Membership" }).click();
+  await expect(page).toHaveURL(
+    /\/TheClubHouseGolf\/reports\/marketing\/membership\/$/,
+  );
+  await expect(page).toHaveTitle(
+    "Membership Approach - Phase 1 - Marketing | Clubhouse Golf",
+  );
+
+  const brief = page.frameLocator(
+    'iframe[title="Membership Approach - Phase 1"]',
+  );
+  await expect(brief.locator("h1")).toHaveText("Membership Approach — Phase 1");
+  await expect(
+    brief.getByRole("heading", { name: "The recommendation" }),
+  ).toBeVisible();
+  await expect(
+    brief.getByText("Ship Founding Member as a badge and an account flag"),
+  ).toBeVisible();
+  expect(failed).toEqual([]);
 });
 
 test("site theme is mirrored into the scorecard", async ({ page }) => {

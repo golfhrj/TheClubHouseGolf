@@ -106,6 +106,7 @@ describe("reports", () => {
     "reports/marketing/index.html",
     "reports/marketing/strategy/index.html",
     "reports/marketing/demographics-device-mix/index.html",
+    "reports/marketing/membership/index.html",
   ];
 
   it("exports a page for Reports, Marketing and each report", () => {
