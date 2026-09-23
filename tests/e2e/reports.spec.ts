@@ -156,6 +156,46 @@ test("Marketing section lists every report with its details", async ({
     "/TheClubHouseGolf/reports/marketing/membership/",
   );
   await expect(membership).toContainText("29 Sep (feature freeze)");
+
+  const feedback = page.getByRole("link", { name: /Website Feedback Report/ });
+  await expect(feedback).toHaveAttribute(
+    "href",
+    "/TheClubHouseGolf/reports/marketing/website-feedback/",
+  );
+  await expect(feedback).toContainText("5 changes, ~80% of impact");
+});
+
+test("Marketing › Website Feedback leads with the suggested fixes", async ({
+  page,
+}) => {
+  const failed: string[] = [];
+  page.on("response", (res) => {
+    if (res.status() >= 400) failed.push(`${res.status()} ${res.url()}`);
+  });
+
+  await page.goto("./reports/marketing/strategy/");
+  const reports = page.getByRole("navigation", { name: "Marketing reports" });
+  await reports.getByRole("link", { name: "Website Feedback" }).click();
+  await expect(page).toHaveURL(
+    /\/TheClubHouseGolf\/reports\/marketing\/website-feedback\/$/,
+  );
+  await expect(page).toHaveTitle(
+    "Website Feedback Report - Marketing | Clubhouse Golf",
+  );
+
+  const report = page.frameLocator('iframe[title="Website Feedback Report"]');
+  await expect(report.locator("h1")).toHaveText("Website Feedback Report");
+  await expect(
+    report.getByRole("heading", {
+      name: "Five changes deliver about 80% of the impact",
+    }),
+  ).toBeVisible();
+  await expect(
+    report.getByRole("heading", {
+      name: "Take the demo store offline until launch",
+    }),
+  ).toBeVisible();
+  expect(failed).toEqual([]);
 });
 
 test("Marketing › Membership shows the Phase 1 recommendation", async ({
