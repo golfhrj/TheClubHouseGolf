@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Website Feedback Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#F6F8F5; --surface:#FFFFFF; --surface-2:#F0F3EE;
+  --ink:#15201A; --ink-2:#5B675E; --ink-3:#7E8A80;
+  --line:#DDE3DB; --line-2:#C9D2C6;
+  --accent:#1F6F4A; --accent-ink:#14563A; --accent-soft:#E6F0EA;
+  --threat:#A83A24; --threat-soft:#F7E6E1;
+  --watch:#96702A; --watch-soft:#F6EDDC;
+  --calm:#3F7B57; --calm-soft:#E7F1EA;
+  --shadow:0 1px 2px rgba(21,32,26,.05),0 8px 24px -16px rgba(21,32,26,.22);
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --body:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+    --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#7F8B7F;
+    --line:#2A312A; --line-2:#3A433A;
+    --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+    --threat:#E08063; --threat-soft:#2E1E18;
+    --watch:#D6AB5E; --watch-soft:#2B2417;
+    --calm:#77BE95; --calm-soft:#17261D;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+  --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#7F8B7F;
+  --line:#2A312A; --line-2:#3A433A;
+  --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+  --threat:#E08063; --threat-soft:#2E1E18;
+  --watch:#D6AB5E; --watch-soft:#2B2417;
+  --calm:#77BE95; --calm-soft:#17261D;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.shell{padding-inline:clamp(16px,3vw,32px);padding-block:0 64px;max-width:1240px;margin:0 auto}
+h1,h2,h3,h4,.ui{font-family:var(--display)}
+h2,h3,h4{text-wrap:balance;line-height:1.24;margin:0}
+p{margin:0}
+a{color:var(--accent-ink);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink-2);word-break:break-word}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+
+/* masthead */
+.masthead{padding-block:40px 28px;border-bottom:2px solid var(--ink)}
+.masthead h1{font-size:clamp(30px,5.2vw,50px);font-weight:700;letter-spacing:-.02em;line-height:1.05;margin:10px 0 14px}
+.standfirst{font-size:clamp(16px,2.2vw,19px);color:var(--ink-2);max-width:64ch}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 28px;margin-top:22px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.02em}
+.meta div b{display:block;color:var(--ink-2);font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:10.5px;margin-bottom:2px}
+
+/* layout */
+.layout{display:grid;grid-template-columns:minmax(0,1fr)}
+.rail{display:none}
+@media(min-width:960px){
+  .layout{grid-template-columns:220px minmax(0,1fr);gap:48px;align-items:start}
+  .rail{display:block;position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);max-height:calc(100vh - 48px);overflow-y:auto;padding-block:32px 20px}
+}
+.rail .eyebrow{display:block;margin:0 0 10px}
+.rail a{display:block;font-family:var(--display);font-size:13.5px;font-weight:500;color:var(--ink-2);text-decoration:none;padding:5px 0 5px 11px;border-left:2px solid var(--line);line-height:1.35}
+.rail a:hover{color:var(--accent-ink);border-left-color:var(--accent)}
+.doc{padding-block:32px 0;min-width:0}
+
+.part{margin:0 0 56px;scroll-margin-top:24px}
+.part-head{border-top:1px solid var(--line-2);padding-top:14px;margin-bottom:22px}
+.part-head h2{font-size:clamp(21px,3vw,27px);font-weight:700;letter-spacing:-.015em;margin-top:6px}
+.part-head p{color:var(--ink-2);font-size:15px;max-width:68ch;margin-top:8px}
+
+/* verdict */
+.verdict{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px clamp(16px,3vw,28px);box-shadow:var(--shadow);display:grid;gap:14px}
+.verdict p{max-width:70ch}
+.scores{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.score{border-top:2px solid var(--line-2);padding-top:8px}
+.score .ui{font-size:13px;font-weight:600}
+.score span{display:block;font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+.score.bad{border-top-color:var(--threat)} .score.mid{border-top-color:var(--watch)} .score.ok{border-top-color:var(--calm)}
+
+/* priority table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.n{font-family:var(--mono);color:var(--ink-3);font-variant-numeric:tabular-nums;width:1%}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.chip.c{background:var(--threat-soft);color:var(--threat)}
+.chip.h{background:var(--watch-soft);color:var(--watch)}
+.chip.m{background:var(--calm-soft);color:var(--calm)}
+
+/* section audit */
+.sec{margin-bottom:34px}
+.sec-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 12px;margin-bottom:10px}
+.sec-top h3{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.issues{margin:0 0 14px;padding-left:20px;color:var(--ink);max-width:72ch}
+.issues li{margin-bottom:6px}
+.issues li::marker{color:var(--ink-3)}
+.swap{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+@media(min-width:760px){.swap{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}}
+.pane{border-radius:10px;padding:14px 16px;border:1px solid var(--line)}
+.pane .eyebrow{display:block;margin-bottom:8px}
+.pane.now{background:var(--surface-2);color:var(--ink-2)}
+.pane.new{background:var(--accent-soft);border-color:transparent;color:var(--ink)}
+.pane.new .eyebrow{color:var(--accent-ink)}
+.copy{font-size:15px}
+.copy .h{font-family:var(--display);font-weight:700;font-size:17px;line-height:1.3;color:var(--ink);margin-bottom:6px}
+.pane.now .copy .h{color:var(--ink-2);font-weight:600}
+.copy .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:10px 0 2px}
+.copy .k:first-child{margin-top:0}
+.copy p+p{margin-top:6px}
+.copy ul{margin:4px 0 0;padding-left:18px}
+.btn{display:inline-block;font-family:var(--display);font-weight:600;font-size:13px;padding:5px 12px;border-radius:6px;background:var(--accent);color:var(--surface);margin:6px 6px 0 0}
+.btn.ghost{background:transparent;color:var(--accent-ink);border:1px solid var(--accent)}
+.why{margin-top:10px;font-size:14px;color:var(--ink-2);max-width:74ch}
+.why b{font-family:var(--display);font-weight:600;color:var(--ink)}
+.alts{margin-top:10px;display:grid;gap:6px;font-size:14.5px}
+.alts div{padding-left:12px;border-left:2px solid var(--line-2)}
+.alts b{font-family:var(--display);font-weight:600}
+.alts span{color:var(--ink-2)}
+.ph{font-family:var(--mono);font-size:.82em;background:var(--watch-soft);color:var(--watch);padding:1px 5px;border-radius:4px}
+
+.flag{background:var(--threat-soft);border-radius:10px;padding:16px 18px;color:var(--ink)}
+.flag h3{font-size:16px;color:var(--threat);margin-bottom:6px}
+.flag p{max-width:72ch;font-size:15px}
+.flag p+p{margin-top:6px}
+
+.list{display:grid;gap:10px}
+.list > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.list h4{font-size:15px;font-weight:600;margin-bottom:4px}
+.list p{font-size:14.5px;color:var(--ink-2);max-width:74ch}
+
+footer.foot{border-top:1px solid var(--line-2);padding-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+<style>
+.rt td:nth-child(3){white-space:nowrap}
+.src{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-top:8px}
+.crit-list{display:grid;gap:12px}
+</style>
+<div class="shell">
+<header class="masthead">
+  <span class="eyebrow">Clubhouse Golf · www.chgolfco.com</span>
+  <h1>Website Feedback Report</h1>
+  <p class="standfirst">The live site already has a waitlist, a shop, a cart, a checkout and a Caddy AI chat. The biggest risks aren't on the homepage. They're in the preview features: a shop that lists Nike, Puma, adidas and FootJoy products with made-up star ratings, and a Caddy AI demo that promises to "pull your shot history". Below: what to change, in priority order, with replacement copy.</p>
+  <div class="meta">
+    <div><b>Source</b>www.chgolfco.com: home, /shop, all 26 /product pages, /cart, /checkout, /login, /privacy, /terms, Caddy AI widget, robots.txt, sitemap</div>
+    <div><b>Audience</b>Golfers (Side A), plus one partner link</div>
+    <div><b>Context used</b>brand-voice.md v1 · product-marketing.md v3 · chg_marketing_claude.md §4–5</div>
+    <div><b>Audited</b>23 Sep 2026, 22 days before the 15 Oct launch</div>
+    <div><b>Status</b>DRAFT v5: red-teamed, live-tested, 80/20 stress-tested, not approved</div>
+    <div><b>Revision</b>v5 renames the report and adds <a href="#fixes">Suggestions of Fixes</a> (the 5 changes that deliver about 80% of the impact). v4 added live tests: waitlist form, contact form, checkout up to Pay, and a mobile pass at 375px. v3 replaced v1–v2, which audited the old GitHub Pages copy. <a href="#tests">Test results</a> · <a href="#redteam">Red-team log</a></div>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="rail" aria-label="Report sections">
+  <span class="eyebrow">In this report</span>
+  <a href="#fixes"><strong>Suggestions of Fixes</strong></a>
+  <a href="#verdict">Verdict</a>
+  <a href="#priorities">Priority fixes</a>
+  <a href="#shop">Shop &amp; product pages</a>
+  <a href="#cart">Cart, checkout, sign-in</a>
+  <a href="#caddy">Caddy AI widget</a>
+  <a href="#legal">Terms &amp; Privacy</a>
+  <a href="#launchops">Countdown, indexing, old site</a>
+  <a href="#tests">Live test results</a>
+  <a href="#nav">Header &amp; navigation</a>
+  <a href="#hero">Hero &amp; waitlist</a>
+  <a href="#problem">Problem</a>
+  <a href="#answer">The Clubhouse answer</a>
+  <a href="#launch">What's in the first release</a>
+  <a href="#catalogue">Category strip</a>
+  <a href="#roadmap">Vision &amp; roadmap</a>
+  <a href="#partners">Partner section</a>
+  <a href="#founder">Founder</a>
+  <a href="#faq">New: FAQ</a>
+  <a href="#footer">Contact &amp; footer</a>
+  <a href="#decisions">Open decisions</a>
+  <a href="#redteam">Red-team log</a>
+</nav>
+
+<main class="doc">
+
+<style>
+.fix-grid{display:grid;gap:12px}
+.fix{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:8px}
+.fix-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.fix-head .num{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--accent-ink);background:var(--accent-soft);padding:2px 8px;border-radius:999px}
+.fix-head h3{font-size:18px;font-weight:700;letter-spacing:-.01em;flex:1 1 260px}
+.fix-meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+.fix-meta b{color:var(--ink-2);font-weight:500}
+.fix p{max-width:74ch;font-size:15px}
+.fix ul{margin:0;padding-left:20px;font-size:15px;max-width:74ch}
+.fix li{margin-bottom:4px}
+.bars{display:grid;gap:8px;margin:4px 0 0}
+.bar-row{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr) 7.5rem;gap:10px;align-items:center;font-size:13.5px}
+.bar-row .lbl{font-family:var(--display);font-weight:600;color:var(--ink)}
+.bar-track{height:14px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;background:var(--accent);border-radius:3px}
+.bar-row.rest .bar-fill{background:var(--line-2)}
+.bar-row .val{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);font-variant-numeric:tabular-nums;text-align:right}
+@media(max-width:620px){.bar-row{grid-template-columns:minmax(0,1fr) 6.5rem}.bar-row .bar-track{grid-column:1 / -1;grid-row:2}}
+.headline-stat{display:flex;flex-wrap:wrap;gap:8px 28px;font-family:var(--display)}
+.headline-stat div{display:grid}
+.headline-stat b{font-size:clamp(26px,4vw,34px);font-weight:700;letter-spacing:-.02em;color:var(--accent-ink);line-height:1.1;font-variant-numeric:tabular-nums}
+.headline-stat span{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+details.scores-detail{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-top:12px}
+details.scores-detail summary{cursor:pointer;padding:12px 16px;font-family:var(--display);font-weight:600;font-size:14.5px}
+details.scores-detail .tbl-wrap{border:0;border-top:1px solid var(--line);border-radius:0 0 10px 10px}
+.sub-h{font-size:17px;font-weight:700;margin:26px 0 10px}
+</style>
+<section class="part" id="fixes">
+  <div class="part-head"><span class="eyebrow">Suggestions of Fixes · the 80/20</span><h2>Five changes deliver about 80% of the impact</h2><p>The report lists 22 separate issues. Five fixes, several of which solve a whole cluster of issues at once, cover about 80% of the total impact for about a quarter of the effort. Do these first. Everything else in the report is the long tail.</p></div>
+
+  <div class="verdict" style="margin-bottom:16px">
+    <div class="headline-stat">
+      <div><b>5 fixes</b><span>cover 15 of 22 issues</span></div>
+      <div><b>80%</b><span>of total impact</span></div>
+      <div><b>≈24%</b><span>of total effort</span></div>
+      <div><b>66–80%</b><span>impact across 7 stress tests</span></div>
+    </div>
+    <div class="bars" role="img" aria-label="Share of total impact by fix: F1 23 percent, F5 21 percent, F4 17 percent, F3 12 percent, F2 7 percent, remaining 17 issues 20 percent">
+      <div class="bar-row"><span class="lbl">F1 · Demo store offline</span><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><span class="val">52 pts · 23%</span></div>
+      <div class="bar-row"><span class="lbl">F5 · Launch switches</span><div class="bar-track"><div class="bar-fill" style="width:92.3%"></div></div><span class="val">48 pts · 21%</span></div>
+      <div class="bar-row"><span class="lbl">F4 · Homepage truth pass</span><div class="bar-track"><div class="bar-fill" style="width:71.2%"></div></div><span class="val">37 pts · 17%</span></div>
+      <div class="bar-row"><span class="lbl">F3 · One waitlist path</span><div class="bar-track"><div class="bar-fill" style="width:51.9%"></div></div><span class="val">27 pts · 12%</span></div>
+      <div class="bar-row"><span class="lbl">F2 · Caddy AI preview mode</span><div class="bar-track"><div class="bar-fill" style="width:30.8%"></div></div><span class="val">16 pts · 7%</span></div>
+      <div class="bar-row rest"><span class="lbl">17 other issues</span><div class="bar-track"><div class="bar-fill" style="width:84.6%"></div></div><span class="val">44 pts · 20%</span></div>
+    </div>
+    <p class="src">Impact points = severity (1–5) × how many visitors see it (1–5), per issue, summed per fix. Total: 224 points across 22 issues. Scores are in the table below.</p>
+  </div>
+
+  <h3 class="sub-h">The five fixes, in the order to do them</h3>
+  <div class="fix-grid">
+
+    <div class="fix">
+      <div class="fix-head"><span class="num">F1</span><h3>Take the demo store offline until launch</h3></div>
+      <div class="fix-meta"><span><b>When</b> today</span><span><b>Effort</b> low: nav + redirects</span><span><b>Who</b> developer</span><span><b>Solves issues</b> 1, 2, 4, 5b, 15</span><span><b>Impact</b> 52 pts</span></div>
+      <p>Remove SHOP from the header and footer, and hide the cart and sign-in icons. Redirect /shop, /product/*, /cart, /checkout and /login to the homepage until launch.</p>
+      <p>One change removes the report's two most serious issues (unsigned Nike, Puma, adidas and FootJoy listings; about 3,900 made-up ratings). It also removes the unagreed shipping and returns promises, the demo checkout addresses, the broken mobile Shop layout and the premature "Welcome back" sign-in.</p>
+      <p><strong>At launch:</strong> bring the store back with signed partners only, no ratings until real ones exist, partner-agreed shipping and returns lines, and the mobile filter-row fix.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-head"><span class="num">F2</span><h3>Put Caddy AI in honest preview mode, or hide it</h3></div>
+      <div class="fix-meta"><span><b>When</b> today</span><span><b>Effort</b> low: 4 text strings</span><span><b>Who</b> developer or marketing</span><span><b>Solves issue</b> 3</span><span><b>Impact</b> 16 pts</span></div>
+      <p>Change the welcome to "Hi, I'm Caddy AI, Clubhouse's golf assistant. I'm in preview, so any answer here is a sample. I go live with Clubhouse." Remove both suggested prompts, and make the demo reply say only that it's a preview.</p>
+      <p>It scores lowest of the five on points but is in because the widget is on every page, the fix is a few minutes' work, and today it promises two things your rules specifically prohibit: on-course club selection, and "I'll pull your shot history". Hiding the widget until launch works just as well.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-head"><span class="num">F3</span><h3>One clear waitlist path, uncovered on phones</h3></div>
+      <div class="fix-meta"><span><b>When</b> this week</span><span><b>Effort</b> medium: copy + 2 CSS changes</span><span><b>Who</b> marketing + developer</span><span><b>Solves issues</b> 7, 5c</span><span><b>Impact</b> 27 pts</span></div>
+      <ul>
+        <li>Use one button label everywhere: header, hero and footer. "Join the Waitlist", or "Become a Founding Member" once that offer is confirmed.</li>
+        <li>Use one promise everywhere, before and after signing up: "We'll email you when Clubhouse opens." That replaces both "the moment the new site goes live" and "the day we're live".</li>
+        <li>New hero subhead: "Stop bouncing between 20 websites. Compare gear side by side and ask golfers and coaches what's worth it. One place to find it, and increasingly one place to buy it."</li>
+        <li>On phones, stop pinning the social buttons over the content, and make the Caddy AI tab smaller so it doesn't clip headings. Let the problem chip row wrap so "Technology · Events · Communities" show.</li>
+      </ul>
+      <p>The waitlist is the only thing the site is trying to get visitors to do before launch. Every visitor sees this path, and the form already works; only its copy and the overlapping buttons hold it back.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-head"><span class="num">F4</span><h3>Homepage truth pass: four copy edits</h3></div>
+      <div class="fix-meta"><span><b>When</b> this week</span><span><b>Effort</b> medium: copy only</span><span><b>Who</b> marketing</span><span><b>Solves issues</b> 8, 9, 13, 17</span><span><b>Impact</b> 37 pts</span></div>
+      <ul>
+        <li>Replace "Golf doesn't need another store." with "Golf doesn't need more options. It needs one place to make sense of them."</li>
+        <li>Replace "Start here" with "What's inside at launch": shop and compare, the Clubhouse Feed (app), virtual lessons and coaches, Caddy AI, plus the honest "Add to Cart / Buy at [Retailer]" note.</li>
+        <li>Change the "Experience" pillar to "Improve", and "Used &amp; Trade-In Clubs" to "Used Clubs".</li>
+        <li>Stage 1 of the roadmap: add the Feed, lessons and Caddy AI. Take "coaching connections" and "community" out of stages 2–3.</li>
+      </ul>
+      <p>Every visitor reads this page. Today it leaves out half of what launches and promises some things that don't. All four edits reuse replacement copy already written in this report.</p>
+    </div>
+
+    <div class="fix">
+      <div class="fix-head"><span class="num">F5</span><h3>Three launch switches</h3></div>
+      <div class="fix-meta"><span><b>When</b> countdown + old site now; indexing on launch day</span><span><b>Effort</b> low: settings</span><span><b>Who</b> developer + owner</span><span><b>Solves issues</b> 6, 10, 11</span><span><b>Impact</b> 48 pts</span></div>
+      <ul>
+        <li><strong>Countdown:</strong> retarget from 18:30 UTC on 14 Oct (midnight India time) to the planned US go-live moment <span class="ph">[e.g. 15 Oct, 9:00 am ET — confirm]</span>.</li>
+        <li><strong>Search indexing:</strong> on launch day, remove <code>noindex, nofollow</code> and the robots.txt <code>Disallow: /</code>, or search engines will never list the store. Put it on the launch checklist with a named owner.</li>
+        <li><strong>Old GitHub Pages site:</strong> take it down or redirect it to chgolfco.com. It still publishes your internal strategy report and is open to search engines.</li>
+      </ul>
+      <p>Each is a one-line change, and each is costly if missed: a countdown that "launches" a day early, a store search engines can't see, strategy documents in public.</p>
+    </div>
+  </div>
+
+  <h3 class="sub-h">Required before launch, whatever the 80/20 says</h3>
+  <div class="list">
+    <div><h4>Stripe's own payment fields (issue 4b)</h4><p>Card numbers are currently typed into plain boxes on your page. Real checkout needs Stripe Elements or Checkout. This is out of the top five only because it's larger engineering work and already implied by "(demo)". It can't be skipped: without it there's no legitimate way to take payment.</p></div>
+    <div><h4>Legal review of the Terms and Privacy Policy (issue 5)</h4><p>Few visitors read them, so the score is low. But they currently describe an affiliate model and course bookings, not the merchant-of-record checkout. Counsel has to sign off before the first order.</p></div>
+  </div>
+
+  <h3 class="sub-h">Next tier, after the five</h3>
+  <p style="max-width:74ch">Add the FAQ (issue 14, 8 pts), fix tap-target sizes (17b, 8 pts), move the partner pitch to /partners (12, 4 pts), and tidy nav labels and spellings (16, 5 pts). Worth doing, but together they add only about 11% more impact.</p>
+
+  <h3 class="sub-h">Stress test: does the selection hold?</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Challenge</th><th>How it was tested</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>"Your scores are subjective."</td><td>Re-scored with severity ignored, so only how many visitors see each issue counts.</td><td>The five still cover <strong>72%</strong>. The top four hold. F2 slips just behind nav labels (4 vs 5 pts) because this test removes severity, which is F2's whole case: it's a prohibited claim on every page.</td></tr>
+      <tr><td>"Indexing is a launch-day problem, not today's."</td><td>Scored indexing at today's reach (1 instead of 5).</td><td><strong>78%</strong>. F5 drops from second to third; the selection is unchanged.</td></tr>
+      <tr><td>"You picked the scores to fit your answer."</td><td>Adversarial re-score: every issue inside the five −1 severity, every issue outside +1.</td><td>Still <strong>66%</strong> of impact for 24% of effort. F1, F5, F4 and F3 stay top. F2 is passed by Stripe (15 vs 12) and ties tap targets and the FAQ. Stripe is already required, and F2 wins on effort (1 unit vs 2–3).</td></tr>
+      <tr><td>"Stripe matters more than Caddy AI."</td><td>Scored Stripe at full launch-day reach (5).</td><td>Stripe (20 pts) beats F2 (16) on raw impact, but not per unit of effort (6.7 vs 16), and it's a required step anyway. Listed above as required, not dropped.</td></tr>
+      <tr><td>"Five fixes that solve 15 issues isn't 20%."</td><td>Counted effort, not issues: each issue is 1–3 effort units, 29 in total.</td><td>The five cost about 7 units, <strong>24% of effort</strong>. Grouped fixes are cheaper than fixing each issue separately. That's where the leverage comes from.</td></tr>
+      <tr><td>"Hiding the store is temporary. The issues come back at launch."</td><td>Checked what F1 removes versus what it only postpones.</td><td>True for issues 1, 2, 4 and 5b. F1 is the fix for <em>now</em>; the "At launch" line under F1 lists the work that remains.</td></tr>
+      <tr><td>"The effort guesses are optimistic."</td><td>Raised F3 and F4 to high effort (3 each).</td><td>9 of 29 units, <strong>31%</strong> of effort for 80% of impact. Still well weighted toward the five.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <details class="scores-detail">
+    <summary>Show the scores for all 22 issues</summary>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Issue</th><th>Severity</th><th>Reach</th><th>Impact</th><th>Effort</th><th>Fix</th></tr></thead>
+      <tbody>
+<tr><td class="n">1</td><td>Unsigned real brands in demo shop</td><td class="n">5</td><td class="n">3</td><td class="n">15</td><td class="n">1</td><td>F1</td></tr>
+<tr><td class="n">2</td><td>Made-up ratings on 26 products</td><td class="n">5</td><td class="n">3</td><td class="n">15</td><td class="n">1</td><td>F1</td></tr>
+<tr><td class="n">3</td><td>Caddy AI out-of-scope claims</td><td class="n">4</td><td class="n">4</td><td class="n">16</td><td class="n">1</td><td>F2</td></tr>
+<tr><td class="n">4</td><td>Unagreed shipping/returns; demo addresses</td><td class="n">3</td><td class="n">3</td><td class="n">9</td><td class="n">1</td><td>F1</td></tr>
+<tr><td class="n">4b</td><td>Stripe card fields</td><td class="n">4</td><td class="n">3</td><td class="n">12</td><td class="n">3</td><td>Required</td></tr>
+<tr><td class="n">5</td><td>Terms &amp; Privacy mismatch</td><td class="n">4</td><td class="n">1</td><td class="n">4</td><td class="n">2</td><td>Required</td></tr>
+<tr><td class="n">5b</td><td>Mobile Shop overflow (724px)</td><td class="n">3</td><td class="n">3</td><td class="n">9</td><td class="n">1</td><td>F1</td></tr>
+<tr><td class="n">5c</td><td>Mobile overlaps, clipped chip row</td><td class="n">3</td><td class="n">4</td><td class="n">12</td><td class="n">1</td><td>F3</td></tr>
+<tr><td class="n">6</td><td>Countdown ends 14 Oct in the US</td><td class="n">3</td><td class="n">5</td><td class="n">15</td><td class="n">1</td><td>F5</td></tr>
+<tr><td class="n">7</td><td>Waitlist offer and labels</td><td class="n">3</td><td class="n">5</td><td class="n">15</td><td class="n">1</td><td>F3</td></tr>
+<tr><td class="n">8</td><td>"Another store" line</td><td class="n">2</td><td class="n">5</td><td class="n">10</td><td class="n">1</td><td>F4</td></tr>
+<tr><td class="n">9</td><td>Phase 1 features missing</td><td class="n">3</td><td class="n">5</td><td class="n">15</td><td class="n">2</td><td>F4</td></tr>
+<tr><td class="n">10</td><td>noindex / robots at launch</td><td class="n">5</td><td class="n">5</td><td class="n">25</td><td class="n">1</td><td>F5</td></tr>
+<tr><td class="n">11</td><td>Old GitHub site public</td><td class="n">4</td><td class="n">2</td><td class="n">8</td><td class="n">1</td><td>F5</td></tr>
+<tr><td class="n">12</td><td>Partner page</td><td class="n">2</td><td class="n">2</td><td class="n">4</td><td class="n">2</td><td>Next tier</td></tr>
+<tr><td class="n">13</td><td>Experience → Improve; Trade-in</td><td class="n">2</td><td class="n">4</td><td class="n">8</td><td class="n">1</td><td>F4</td></tr>
+<tr><td class="n">14</td><td>FAQ</td><td class="n">2</td><td class="n">4</td><td class="n">8</td><td class="n">2</td><td>Next tier</td></tr>
+<tr><td class="n">15</td><td>Sign-in before launch</td><td class="n">2</td><td class="n">2</td><td class="n">4</td><td class="n">1</td><td>F1</td></tr>
+<tr><td class="n">16</td><td>Nav labels and spellings</td><td class="n">1</td><td class="n">5</td><td class="n">5</td><td class="n">1</td><td>Next tier</td></tr>
+<tr><td class="n">17</td><td>Roadmap merge, founder</td><td class="n">1</td><td class="n">4</td><td class="n">4</td><td class="n">1</td><td>F4</td></tr>
+<tr><td class="n">17b</td><td>Tap targets</td><td class="n">2</td><td class="n">4</td><td class="n">8</td><td class="n">2</td><td>Next tier</td></tr>
+<tr><td class="n">18</td><td>Mechanics and keywords</td><td class="n">1</td><td class="n">3</td><td class="n">3</td><td class="n">1</td><td>Long tail</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </details>
+</section>
+
+<section class="part" id="verdict">
+  <div class="part-head"><span class="eyebrow">Verdict</span><h2>The homepage is on brand. The preview features make claims that aren't true.</h2></div>
+  <div class="verdict">
+    <p>The homepage tone is right: modern, confident and golf-literate, with a clear problem ("Golf is scattered everywhere") and a working waitlist form. Its copy issues are fixable in an afternoon: one line contradicts the checkout model, and the page describes the wrong feature list.</p>
+    <p><strong>The serious problems are one click away.</strong> "Shop" in the main nav opens a catalog with real brand names and real model names, brand wordmarks as product images, prices, "Trending" badges and star ratings with review counts. one Nike shoe shows "4.7 (412 reviews)". None of it is labeled as sample content, and no brand has signed. The Caddy AI demo on every page suggests on-course club selection and promises to "pull your shot history and club data". Phase 1 rules out both. The Terms of Service describe an affiliate model and course bookings, not the confirmed merchant-of-record checkout.</p>
+    <div class="scores" role="list">
+      <div class="score bad" role="listitem"><div class="ui">Truthfulness</div><span>Fake ratings, unsigned brands</span></div>
+      <div class="score bad" role="listitem"><div class="ui">Scope accuracy</div><span>Caddy AI, legal pages</span></div>
+      <div class="score mid" role="listitem"><div class="ui">Conversion path</div><span>Works; weak offer</span></div>
+      <div class="score mid" role="listitem"><div class="ui">Audience focus</div><span>Partner pitch on golfer page</span></div>
+      <div class="score ok" role="listitem"><div class="ui">Voice &amp; tone</div><span>On brand</span></div>
+      <div class="score ok" role="listitem"><div class="ui">Problem framing</div><span>Clear, relatable</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="priorities">
+  <div class="part-head"><span class="eyebrow">Action list</span><h2>Priority fixes</h2><p>"Now" means fix it while the site is public, even before launch. "Before launch" means fix it before 15 October. Each row links to the detail.</p></div>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>#</th><th>Change</th><th>Where</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>Hide /shop and the product pages until launch, or relabel them as sample content. Either way, remove Nike, Puma, adidas and FootJoy (names, real model names, wordmark images) and the line "from every partner brand in the clubhouse".</td><td><a href="#shop">Shop</a></td><td><span class="chip c">Now</span></td></tr>
+      <tr><td class="n">2</td><td>Remove the star ratings and review counts from all 26 products. No reviews exist.</td><td><a href="#shop">Products</a></td><td><span class="chip c">Now</span></td></tr>
+      <tr><td class="n">3</td><td>Rewrite the Caddy AI welcome, suggested prompts and demo reply. Remove the club-at-150-yards prompt, the course-under-$60 prompt and "I'll pull your shot history and club data".</td><td><a href="#caddy">Caddy AI</a></td><td><span class="chip c">Now</span></td></tr>
+      <tr><td class="n">4</td><td>Take the shipping and returns promises ("Flat $12, 3–5 business days", "Free within 30 days") off product pages until partner terms are agreed. Replace the realistic demo addresses at checkout.</td><td><a href="#cart">Products, checkout</a></td><td><span class="chip c">Now</span></td></tr>
+      <tr><td class="n">4b</td><td>Checkout card fields are plain text boxes on the Clubhouse page, not Stripe's secure card fields, and Stripe's script isn't loaded. Before launch, use Stripe's own payment fields (Elements or Checkout). Only then is "Secured by Stripe" true, and card numbers never touch Clubhouse's servers.</td><td><a href="#tests">Checkout</a></td><td><span class="chip c">Before launch</span></td></tr>
+      <tr><td class="n">5</td><td>Get legal review of the Terms and Privacy Policy against the confirmed model. They describe affiliate fulfillment and course bookings. Clubhouse is the merchant of record, and course booking isn't in Phase 1.</td><td><a href="#legal">Legal</a></td><td><span class="chip c">Before launch</span></td></tr>
+      <tr><td class="n">5b</td><td>Mobile: the Shop page is 724px wide on a 375px phone, so it scrolls sideways, and the logo and "Join Waitlist" are pushed off-screen. The cause is the category filter row; developer fix: <code>min-width: 0</code> on that row.</td><td><a href="#tests">Mobile</a></td><td><span class="chip h">High</span></td></tr>
+      <tr><td class="n">5c</td><td>Mobile: the fixed social buttons (bottom right) and the Caddy AI tab (right edge) sit over headings and body text. The problem chip row is cut off after "Travel · Tech…".</td><td><a href="#tests">Mobile</a></td><td><span class="chip h">High</span></td></tr>
+      <tr><td class="n">6</td><td>Fix the countdown. It reaches zero at 18:30 UTC on 14 Oct (11:30 am Pacific), while the header says "LIVE OCT 15".</td><td><a href="#launchops">Countdown</a></td><td><span class="chip h">High</span></td></tr>
+      <tr><td class="n">7</td><td>Strengthen the waitlist offer and use one label. The header says "JOIN WAITLIST" but the button says "Notify me", and "the new site" implies an old one. The form promises an email "the moment" the site goes live; the success message says "the day we're live". Pick one.</td><td><a href="#hero">Hero</a></td><td><span class="chip h">High</span></td></tr>
+      <tr><td class="n">8</td><td>Replace "Golf doesn't need another store." The site now has a shop, a cart and a checkout.</td><td><a href="#problem">Problem</a></td><td><span class="chip h">High</span></td></tr>
+      <tr><td class="n">9</td><td>Add the Phase 1 features the homepage never names: the Clubhouse Feed, virtual lessons and the coach directory, and Caddy AI. Caddy AI floats on every page but the copy never mentions it.</td><td><a href="#launch">Launch</a>, <a href="#roadmap">Roadmap</a></td><td><span class="chip h">High</span></td></tr>
+      <tr><td class="n">10</td><td>Launch-day switch: the whole site is <code>noindex, nofollow</code> and robots.txt says <code>Disallow: /</code>. That's fine before launch if deliberate, but both must flip on launch day.</td><td><a href="#launchops">Indexing</a></td><td><span class="chip h">Launch day</span></td></tr>
+      <tr><td class="n">11</td><td>Take down or redirect the old GitHub Pages site (golfhrj.github.io/TheClubHouseGolf). It's still public and indexable, and it links internal strategy reports.</td><td><a href="#launchops">Old site</a></td><td><span class="chip h">High</span></td></tr>
+      <tr><td class="n">12</td><td>Move the six-card partner pitch to a /partners page (currently a 404). Leave one partner link on the homepage.</td><td><a href="#partners">Partners</a></td><td><span class="chip h">High</span></td></tr>
+      <tr><td class="n">13</td><td>Change "Experience" to "Improve" in the three pillars, and drop "Trade-In" from the category strip.</td><td><a href="#answer">Answer</a>, <a href="#catalogue">Categories</a></td><td><span class="chip h">High</span></td></tr>
+      <tr><td class="n">14</td><td>Add a short FAQ: who sells, returns, "Buy at [Retailer]" items, cost and the app.</td><td><a href="#faq">FAQ</a></td><td><span class="chip h">High</span></td></tr>
+      <tr><td class="n">15</td><td>Sign-in page: "WELCOME BACK" and "Create an account" appear before anyone can have an account. Hide Sign in and the cart icon until launch, or reword the page.</td><td><a href="#cart">Sign-in</a></td><td><span class="chip m">Medium</span></td></tr>
+      <tr><td class="n">16</td><td>Nav: the "REBUILDING" strip, "THE CLUBHOUSE" vs "The Course" for the same link, and "The Team" casing. UK spellings: "CATALOGUE" on the shop page and "General enquiry" in the contact form (US: catalog, inquiry).</td><td><a href="#nav">Nav</a></td><td><span class="chip m">Medium</span></td></tr>
+      <tr><td class="n">17</td><td>Merge "Long-term vision" and "The road ahead". Tighten the founder copy.</td><td><a href="#roadmap">Roadmap</a>, <a href="#founder">Founder</a></td><td><span class="chip m">Medium</span></td></tr>
+      <tr><td class="n">17b</td><td>Mobile tap targets: the header icons (alerts, theme, cart, account) are 18×18px and the hero slide dots are 6×6px. That's below Apple's 44px guideline and may fail WCAG 2.2's 24px minimum. Checkout card fields have no labels or card autofill.</td><td><a href="#tests">Mobile</a></td><td><span class="chip m">Medium</span></td></tr>
+      <tr><td class="n">18</td><td>Mechanics: hyphens used as dashes; meta keywords still say "AI golf caddie" and "buy sell used golf clubs".</td><td><a href="#footer">Throughout</a></td><td><span class="chip m">Low</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="part" id="shop">
+  <div class="part-head"><span class="eyebrow">Fix now</span><h2>Shop &amp; product pages: a demo presented as a real store</h2><p>"SHOP" is in the main nav and footer and opens without a login. <code>noindex</code> keeps it out of search, but not away from anyone who clicks through from Instagram, TikTok or LinkedIn.</p></div>
+  <div class="crit-list">
+    <div class="flag">
+      <h3>Real brands that haven't signed</h3>
+      <p>The shop lists Nike, Puma, adidas and FootJoy with their real model names (Air Zoom Victory Tour 3, IGNITE Articulate, Codechaos 22, Tour360 24, Pro/SL, Premiere Series). The product "image" is each brand's name set as a large wordmark. Product copy speaks for the brand: "FootJoy's best-selling spikeless shoe". Some fictional sellers reuse real product-line names too: "Tour Velvet Grips" is a Golf Pride line. The page intro says "Equipment, apparel and accessories from every partner brand in the clubhouse."</p>
+      <p>No brand has signed as a partner. Puma is a target, not a confirmed partner. Your rules say never name a partner as live until confirmed, and use partner names and imagery only with rights. As it stands, the page implies relationships that don't exist.</p>
+    </div>
+    <div class="flag">
+      <h3>Made-up ratings on every product</h3>
+      <p>All 26 products show a star rating and review count, about 3,900 "reviews" in total. Examples: Air Zoom Victory Tour 3 "4.7 (412 reviews)", Pro/SL "4.7 (356 reviews)", Tour Forged Irons "4.8 (96 reviews)". Clubhouse has no customers yet. Your brand rules say never invent reviews or ratings. The FTC's 2024 rule on fake reviews may also apply to ratings shown to consumers. <span class="ph">Legal to confirm</span></p>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:18px">
+    <ul class="issues">
+      <li>"TRENDING" and "JUST IN" badges are demand signals from a store that has no sales.</li>
+      <li>The only "DEMO MODE" label on the site is inside the Caddy AI panel. The shop, product pages and cart carry no sample label. Only the checkout says "(demo)".</li>
+      <li>"CATALOGUE" is UK spelling. Your house style is US English: "catalog".</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now · /shop</span><div class="copy">
+        <div class="k">Eyebrow · H1 · intro</div><p>CATALOGUE · The Shop · Equipment, apparel and accessories from every partner brand in the clubhouse.</p>
+        <div class="k">Product card</div><p>SHOES · TRENDING · Air Zoom Victory Tour 3 · Nike · ★ 4.7 (412 reviews) · $190</p>
+      </div></div>
+      <div class="pane new"><span class="eyebrow">Proposed</span><div class="copy">
+        <div class="k">Option A (recommended)</div><p>Remove SHOP from the nav and footer, and redirect /shop and /product/* to the homepage until the launch catalog, with signed partners, is loaded.</p>
+        <div class="k">Option B · keep a labeled preview</div>
+        <p>Banner on every shop, product and cart page:</p>
+        <p><strong>PREVIEW · Sample products that show how the shop will work. Nothing here is for sale, and the brands are illustrative.</strong></p>
+        <p>Then: use made-up brands and model names only; no ratings; no TRENDING or JUST IN badges; the eyebrow reads CATALOG.</p>
+        <div class="k">Intro (either option, at launch)</div><p>Equipment, apparel and accessories from Clubhouse partners, compared side by side.</p>
+      </div></div>
+    </div>
+    <p class="why"><b>Why:</b> Option A takes the risk off the site in one change. Option B keeps a preview but makes it plainly a preview. "Every partner brand" becomes "Clubhouse partners", which stays true however many have signed. At launch, show ratings only when they come from real Clubhouse orders, or from a clearly credited source you have rights to.</p>
+  </div>
+</section>
+
+<section class="part" id="cart">
+  <div class="part-head"><span class="eyebrow">Fix now / before launch</span><h2>Product terms, cart, checkout &amp; sign-in</h2></div>
+  <div class="sec">
+    <ul class="issues">
+      <li><strong>Product pages promise terms nobody has agreed:</strong> "Shipping: Flat $12, 3–5 business days" and "Returns: Free within 30 days". The cart charges $12. Dispatch times, return handling and return shipping cost are still being worked out in the partner questionnaire, and live carrier rates aren't in Phase 1.</li>
+      <li><strong>No line says who sells or ships.</strong> Your brand rules say the transactional copy must "say plainly who is shipping the order", especially when a cart holds more than one partner.</li>
+      <li><strong>The cart has no tax line.</strong> As merchant of record, Clubhouse collects sales tax, so the total will change at checkout.</li>
+      <li><strong>The checkout demo pre-fills a realistic street address</strong> ("214 Fairway Ridge Dr, Scottsdale, AZ") and a "Clubhouse Locker" option delivering to a named golf club's bag room. Locker delivery isn't in the Phase 1 scope. The "(demo) — no real charge will be made" label is good; keep it while this is a preview.</li>
+      <li><strong>The sign-in page says "WELCOME BACK" and offers "Create an account"</strong> before launch. No visitor can have an account yet, and open sign-up competes with the waitlist.</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now</span><div class="copy">
+        <div class="k">Product page</div><p>Shipping: Flat $12, 3-5 business days<br>Returns: Free within 30 days</p>
+        <div class="k">Cart</div><p>Subtotal $190.00 · Shipping $12.00 · Total $202.00 · Checkout</p>
+        <div class="k">Sign in</div><p>WELCOME BACK · Sign in · New here? Create an account</p>
+      </div></div>
+      <div class="pane new"><span class="eyebrow">Proposed</span><div class="copy">
+        <div class="k">Product page (at launch)</div><p>Sold by Clubhouse Golf · Ships from <span class="ph">[Partner]</span><br>Shipping: <span class="ph">[rate and dispatch time, per partner agreement]</span><br>Returns: <span class="ph">[window and who pays return shipping, per partner agreement]</span></p>
+        <div class="k">Referral item (at launch)</div><p><span class="btn ghost">Buy at [Retailer]</span> Sold and shipped by <span class="ph">[Retailer]</span> on their site.</p>
+        <div class="k">Cart</div><p>Subtotal · Shipping · <strong>Tax: calculated at checkout</strong> · Total<br>Under each item: "Ships from <span class="ph">[Partner]</span>"</p>
+        <div class="k">Checkout demo</div><p>Use obviously sample data ("123 Sample Street, Anytown, USA"). Remove Clubhouse Locker unless it's confirmed for launch.</p>
+        <div class="k">Sign in (before launch)</div><p>Hide the Sign in and cart icons. Or: <strong>Sign in</strong> · "Accounts open on 15 October. <u>Join the waitlist</u> to get in first."</p>
+      </div></div>
+    </div>
+    <p class="why"><b>Why:</b> Shipping and returns lines are promises a golfer will hold you to. Leave them as placeholders until each partner agreement fixes the numbers. Naming the seller and shipper up front answers "Is this a real store? Who handles my return?", the top anxiety for a new store.</p>
+    <p class="src">Seen on the site (not copy): the cart emptied after a full page reload in testing. Worth a product check before launch.</p>
+  </div>
+</section>
+
+<section class="part" id="caddy">
+  <div class="part-head"><span class="eyebrow">Fix now</span><h2>Caddy AI widget: promises Phase 1 doesn't include</h2><p>A "CADDY AI" tab floats on every page. It opens a chat labeled "DEMO MODE" in small type.</p></div>
+  <div class="sec">
+    <ul class="issues">
+      <li>Suggested prompt <strong>"What's my strong side approach club at 150 yards?"</strong> is on-course club selection. Your rules: Caddy AI is off-course only in Phase 1, with no club recommendations from shot, GPS or round data.</li>
+      <li>The demo reply says <strong>"once we're live I'll pull your shot history and club data for a real answer"</strong>. That's a direct promise of shot data, which Phase 1 excludes. It also contradicts the rule never to write "knows your game".</li>
+      <li>Suggested prompt <strong>"Recommend a course near me under $60"</strong> implies location-based course finding with prices. Tee-time booking isn't in Phase 1, and Caddy AI's sources aren't defined.</li>
+      <li>"Ask me anything about your game, gear, or a course" describes a scope that hasn't been set (Open Question 11).</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now</span><div class="copy">
+        <p>Hey, I'm Caddy AI - your on-demand golf assistant. Ask me anything about your game, gear, or a course.</p>
+        <p>[What's my strong side approach club at 150 yards?] [Recommend a course near me under $60.]</p>
+        <p>"…once we're live I'll pull your shot history and club data for a real answer. For now, here's the demo response: keep your tempo smooth…"</p>
+      </div></div>
+      <div class="pane new"><span class="eyebrow">Proposed</span><div class="copy">
+        <div class="k">Label</div><p>Caddy AI · PREVIEW</p>
+        <div class="k">Welcome</div><p>Hi, I'm Caddy AI, Clubhouse's golf assistant. I'm in preview, so any answer here is a sample. I go live with Clubhouse.</p>
+        <div class="k">Suggested prompts</div><p>Remove them until Caddy AI's scope is set.</p>
+        <div class="k">Demo reply (any question)</div><p>This is a preview answer. Caddy AI goes live with Clubhouse, and we'll say exactly what it can help with then.</p>
+        <div class="k">Only if scope is confirmed to cover gear questions</div><p>[Blade or cavity-back irons for a 15 handicap?] [What changes between a 9° and a 10.5° driver?]</p>
+      </div></div>
+    </div>
+    <p class="why"><b>Why:</b> Until Open Question 11 is answered, the only safe copy says Caddy AI exists and is coming. Suggested prompts are promises: whatever you show as a question, visitors read as "it can answer this". Gear-decision prompts would connect Caddy AI to comparing and buying, but only if that's its confirmed job.</p>
+  </div>
+</section>
+
+<section class="part" id="legal">
+  <div class="part-head"><span class="eyebrow">Before launch · legal review</span><h2>Terms &amp; Privacy describe a different product</h2><p>This is a copy audit, not legal advice. These are the places where the legal pages disagree with the confirmed Phase 1 model. Counsel should decide the wording.</p></div>
+  <div class="list">
+    <div><h4>Terms · "Orders, courses, and partner brands"</h4><p>Says equipment is "supplied by partner brands and affiliate networks; availability, pricing, and fulfillment for those items are governed by the partner's own terms." The confirmed model: on Clubhouse-checkout orders, Clubhouse is the merchant of record, takes payment through Stripe, and handles refunds and customer service. Only referral items ("Buy at [Retailer]") follow the retailer's terms. "Affiliate networks" is also on your never-say list.</p></div>
+    <div><h4>Terms · course bookings</h4><p>"Golf course bookings are made with independent, partnered golf courses." Tee-time booking isn't in Phase 1. The directory routes enquiries and booking requests to courses, and the wording should match that.</p></div>
+    <div><h4>Terms · missing Phase 1 topics</h4><p>No returns and refunds section for Clubhouse-checkout orders. No rules for posts in the Clubhouse Feed (content, reporting, blocking), which app review expects for user-generated content (Open Question 12). No terms for virtual lessons with coaches.</p></div>
+    <div><h4>Privacy · scope</h4><p>Describes "course bookings" and "swing/lesson tracking". It doesn't name the payment processor (Stripe). It doesn't say whether Caddy AI conversations are stored or sent to an AI provider. It doesn't cover Feed posts.</p></div>
+  </div>
+</section>
+
+<section class="part" id="launchops">
+  <div class="part-head"><span class="eyebrow">Launch mechanics</span><h2>Countdown, search indexing and the old site</h2></div>
+  <div class="list">
+    <div><h4>The countdown ends a day early for US visitors</h4><p>Its fixed target is 18:30 UTC on 14 October, which is midnight on 15 October in India. In the US it reaches zero at 2:30 pm Eastern / 11:30 am Pacific on 14 October, while the header strip says "LIVE OCT 15". Set it to the planned US go-live moment <span class="ph">[e.g. 15 Oct, 9:00 am ET — confirm]</span>, and decide what the page says at zero.</p></div>
+    <div><h4>Search engines are blocked site-wide</h4><p>Every page is <code>noindex, nofollow</code> and robots.txt says <code>Disallow: /</code>. That's reasonable while the shop is a demo. Put "remove noindex and the robots block" on the launch-day checklist, or the store stays invisible to search. The sitemap lists only the homepage.</p></div>
+    <div><h4>The old GitHub Pages site is still public</h4><p>golfhrj.github.io/TheClubHouseGolf, checked earlier today, carries an older copy of this homepage with no signup form. Its nav links /reports/, which publishes the internal strategy report (competitor analysis, platform fee questions, "No fulfillment partner signed yet"), tagged <code>index, follow</code>. Take it down or redirect it to chgolfco.com. <span class="ph">Owner decision</span></p></div>
+  </div>
+</section>
+
+<section class="part" id="tests">
+  <div class="part-head"><span class="eyebrow">Live tests · 23 Sep 2026</span><h2>What happened when the forms, checkout and mobile layout were used</h2><p>Forms were submitted with a dummy address on a reserved domain (<code>copy-audit-test@example.com</code>) that can't receive mail. <strong>Clean-up for your team:</strong> delete that waitlist entry, and the contact message marked "TEST MESSAGE … Please ignore and delete".</p></div>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Test</th><th>Result</th><th>What visitors see</th><th>Finding</th></tr></thead>
+    <tbody>
+      <tr><td>Waitlist: empty or invalid email</td><td><span class="chip m">Pass</span></td><td>The browser's standard "Please fill out this field." / "Please include an '@'…"</td><td>Works. Optional: your own error copy in the brand voice.</td></tr>
+      <tr><td>Waitlist: valid email</td><td><span class="chip m">Pass</span></td><td>"You're on the list - we'll email you the day we're live." (<code>POST /api/waitlist</code> → 200)</td><td>Works. Copy: hyphen used as a dash, and "the day we're live" contradicts "the moment the new site goes live". Proposed: <em>"You're on the list. We'll email you when Clubhouse opens."</em></td></tr>
+      <tr><td>Waitlist: same email again (footer form)</td><td><span class="chip m">Pass</span></td><td>"You're already on the list - we'll email you the day we're live."</td><td>Good duplicate handling. Proposed: <em>"You're already on the list. We'll email you when Clubhouse opens."</em> Confirmation email not checked: the test address can't receive mail.</td></tr>
+      <tr><td>Contact: empty submit</td><td><span class="chip m">Pass</span></td><td>Browser "Please fill out this field." on name, email and message</td><td>All fields required; topic defaults to "General enquiry".</td></tr>
+      <tr><td>Contact: valid message</td><td><span class="chip m">Pass</span></td><td>"Thanks - we've got your message and will get back to you soon." (<code>POST /api/contact</code> → 200)</td><td>Works. Proposed: <em>"Thanks, we've got your message. We'll reply within <span class="ph">[X business days]</span>."</em> Change "General enquiry" to "General inquiry".</td></tr>
+      <tr><td>Shop → product → cart → checkout</td><td><span class="chip h">Partial</span></td><td>Add to Cart → "View cart" → Checkout, with demo addresses pre-filled</td><td>The flow works. Pay stays disabled until card details are entered. <strong>I didn't enter card details</strong>, not even Stripe test numbers, so the step after Pay wasn't tested. A person on your team should run it.</td></tr>
+      <tr><td>Checkout: card fields</td><td><span class="chip c">Fix before launch</span></td><td>"Secured by Stripe (demo) — no real charge will be made." above plain Card number / MM/YY / CVC boxes</td><td>The boxes are ordinary inputs on the Clubhouse page, not Stripe's secure card fields, and Stripe.js isn't loaded. Fine for a labeled demo. For launch, use Stripe Elements or Checkout, add field labels and card autofill, and add a tax line.</td></tr>
+      <tr><td>Mobile 375px: homepage</td><td><span class="chip h">Issues</span></td><td>No sideways scroll. Hero, countdown and form fit once the intro animation finishes.</td><td>(1) The fixed social buttons (148×77px, bottom right) cover headings and body text as you scroll, including "everywhere." and the chip row. (2) The Caddy AI tab clips the right edge of headings ("Golf.", "scattered"). (3) The problem chip row is 582px in a 343px space, so "Technology · Events · Communities" are cut off. (4) Header icons are 18×18px and the slide dots 6×6px.</td></tr>
+      <tr><td>Mobile 375px: /shop</td><td><span class="chip c">Broken</span></td><td>The page is 724px wide and scrolls sideways. The logo is cut off, "Join Waitlist" is off-screen, and the intro runs past the edge.</td><td>The category filter row (All, Clubs, Apparel…) can't shrink inside its column. Developer fix: <code>min-width: 0</code> on that row.</td></tr>
+      <tr><td>Mobile 375px: product, cart, checkout, Caddy AI</td><td><span class="chip m">Mostly pass</span></td><td>Product and checkout fit. The cart is 4px too wide. The Caddy AI panel fits.</td><td>Minor: the cart's 4px overflow.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="part" id="nav">
+  <div class="part-head"><span class="eyebrow">Homepage</span><h2>Header &amp; navigation</h2></div>
+  <div class="sec">
+    <ul class="issues">
+      <li>The header strip says <strong>"REBUILDING - LIVE OCT 15"</strong>. Before launch, "rebuilding" suggests something broke.</li>
+      <li><strong>"THE CLUBHOUSE"</strong> in the header and <strong>"The Course"</strong> in the footer point to the same place (<code>#course</code>, the hero). Neither name says what's there. "The Course" also suggests a course feature that isn't launching.</li>
+      <li>"SHOP" leads to the demo catalog (see <a href="#shop">Shop</a>). "The Team" is in title case among caps and opens "Meet the founder".</li>
+      <li>"JOIN WAITLIST" in the header is good: the prime spot goes to the main action.</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now</span><div class="copy"><p>Strip: REBUILDING - LIVE OCT 15</p><p>THE CLUBHOUSE · SHOP · WHAT'S COMING · The Team · <span class="btn">JOIN WAITLIST</span></p><p>Footer: The Course · Shop · What's Coming · The Team</p></div></div>
+      <div class="pane new"><span class="eyebrow">Proposed</span><div class="copy"><p>Strip: OPENING 15 OCTOBER</p><p>WHAT'S INSIDE · ROADMAP · FOUNDER · FAQ · FOR PARTNERS · <span class="btn">JOIN THE WAITLIST</span></p><p>Footer: the same labels.</p><p style="margin-top:8px;font-size:14px;color:var(--ink-2)">What's inside → the first-release section · Roadmap → the merged roadmap · For Partners → /partners. Bring SHOP back at launch, when the catalog is real. The button label must match the hero button (see <a href="#hero">Hero</a>).</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="hero">
+  <div class="part-head"><span class="eyebrow">Homepage</span><h2>Hero &amp; waitlist: keep the form, sell the offer</h2></div>
+  <div class="sec">
+    <ul class="issues">
+      <li>The H1 "Everything Golf. One Clubhouse." uses correct brand casing. Keep it.</li>
+      <li>The subhead lists verbs without naming what the golfer escapes. It reads as a description, not a new ability.</li>
+      <li>The form sells a notification ("Be first to know… Notify me"), not a place in the Clubhouse. The approved offer, Founding Member for the first 500, isn't used anywhere on the site.</li>
+      <li>"We'll email you the moment <strong>the new site</strong> goes live" implies there's an old one.</li>
+      <li>There are three labels for one action: "Join the waitlist", "JOIN WAITLIST", "Notify me".</li>
+      <li>Not tested: the confirmation copy after submitting. I didn't submit the form.</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now</span><div class="copy">
+        <div class="h">Everything Golf. One Clubhouse.</div>
+        <p>Discover products, compare your options, and find the brands, people and experiences that make your game better - all in one place.</p>
+        <p>[Countdown] BE FIRST TO KNOW WHEN WE LAUNCH · [you@email.com] <span class="btn">Notify me</span></p>
+        <p>We'll email you the moment the new site goes live.</p>
+      </div></div>
+      <div class="pane new"><span class="eyebrow">Proposed</span><div class="copy">
+        <div class="k">H1 (keep)</div><div class="h">Everything Golf. One Clubhouse.</div>
+        <div class="k">Subhead</div><p>Stop bouncing between 20 websites. Compare gear side by side and ask golfers and coaches what's worth it. One place to find it, and increasingly one place to buy it.</p>
+        <div class="k">Form label · button · microcopy (if Founding Member is confirmed)</div>
+        <p>BE ONE OF THE FIRST 500 · <span class="btn">Become a Founding Member</span></p>
+        <p>Free for golfers. Founding Members get in first. Unsubscribe anytime.</p>
+        <div class="k">Fallback (waitlist only)</div>
+        <p>GET EARLY ACCESS · <span class="btn">Join the Waitlist</span></p>
+        <p>We'll email you when Clubhouse opens. Unsubscribe anytime.</p>
+      </div></div>
+    </div>
+    <p class="why"><b>Why:</b> The subhead follows the Human Action Model: the discomfort (20 websites), the vision (compare and ask), then the path. It ends on the brand's approved honest checkout line word for word. With no fulfillment partner signed, "buy it here" could be false on launch day. Use the same button label in the header, hero and footer.</p>
+    <div class="alts">
+      <div><b>Headline test A:</b> "Golf shouldn't require 20 websites." <span>Problem-led, from the launch Phase 1 messaging. Good for cold social traffic.</span></div>
+      <div><b>Headline test B:</b> "Spend less time searching. Spend more time golfing." <span>Outcome-led and already in the approved vocabulary.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="problem">
+  <div class="part-head"><span class="eyebrow">Homepage</span><h2>Problem: good diagnosis, one line contradicts the site</h2></div>
+  <div class="sec">
+    <ul class="issues">
+      <li>"Golf is scattered everywhere" and the chip row work.</li>
+      <li>The body is abstract. Show the cost with one concrete moment.</li>
+      <li><strong>"Golf doesn't need another store."</strong> The same site has a Shop, a Cart and a Checkout, and from launch Clubhouse is the seller. The line contradicts the product.</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now</span><div class="copy">
+        <p>All disconnected - so golfers end up bouncing between brands, retailers, websites and apps just to get started.</p>
+        <p><strong>Golf doesn't need another store. It needs one place to start.</strong></p>
+      </div></div>
+      <div class="pane new"><span class="eyebrow">Proposed</span><div class="copy">
+        <p>New clubs on one site. Used clubs on another. Reviews in videos, advice in forums, lessons somewhere else. So choosing a $600 driver takes eight tabs and a weekend, and still feels like a guess.</p>
+        <p><strong>Golf doesn't need more options. It needs one place to make sense of them.</strong></p>
+      </div></div>
+    </div>
+    <p class="why"><b>Why:</b> The copy names types of source (videos, forums), not rival sites: the enemy is fragmentation. The $600 driver comes from the approved brand hook and illustrates the problem; it isn't a price claim.</p>
+  </div>
+</section>
+
+<section class="part" id="answer">
+  <div class="part-head"><span class="eyebrow">Homepage</span><h2>The Clubhouse answer: swap "Experience" for what ships</h2></div>
+  <div class="sec">
+    <ul class="issues">
+      <li>The Experience pillar promises "coaches, courses, events, travel, community". Coaches, community and course listings (in the partner directory) are in Phase 1. Events, travel and tee-time booking aren't.</li>
+      <li>Decide promises "more personalized recommendations", but the site's own roadmap puts personalization in stage 2.</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now</span><div class="copy">
+        <div class="h">Built around the golfer, not one retailer.</div>
+        <p><strong>Discover</strong> · <strong>Decide</strong>: Compare options and get smarter, more personalized recommendations. · <strong>Experience</strong>: Connect with more of the game - coaches, courses, events, travel, community.</p>
+      </div></div>
+      <div class="pane new"><span class="eyebrow">Proposed</span><div class="copy">
+        <div class="h">Built around the golfer, not one brand or retailer.</div>
+        <p><strong>Discover</strong>: Big names and new brands, new and used, side by side.</p>
+        <p><strong>Decide</strong>: Compare clubs head to head, with guides on what matters for your game.</p>
+        <p><strong>Improve</strong>: Book a virtual lesson with a Clubhouse coach, or ask other golfers in the Clubhouse Feed (in the app).</p>
+      </div></div>
+    </div>
+    <p class="why"><b>Why:</b> Each pillar now describes something in the first release. "Not one brand or retailer" also answers the "why not buy direct?" objection.</p>
+  </div>
+</section>
+
+<section class="part" id="launch">
+  <div class="part-head"><span class="eyebrow">Homepage</span><h2>"Start here" leaves out half of the launch</h2></div>
+  <div class="sec">
+    <ul class="issues">
+      <li>It lists Shop / Discover / Decide only. The Feed, virtual training, 1-on-1 virtual lessons and the coach directory are confirmed for Phase 1 and aren't mentioned. Caddy AI floats on the page but the copy never mentions it.</li>
+      <li>There's no honest note about checkout, and this is the right place for one.</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now</span><div class="copy"><div class="h">Start here.</div><p>Shop · Discover · Decide</p></div></div>
+      <div class="pane new"><span class="eyebrow">Proposed</span><div class="copy">
+        <div class="k">Eyebrow · H2</div><p>WHAT'S IN THE FIRST RELEASE · <strong>What's inside at launch.</strong></p>
+        <p><strong>Shop &amp; compare</strong>: Equipment, apparel and tech, new and used side by side, with head-to-head club comparisons and buying guides.</p>
+        <p><strong>The Clubhouse Feed</strong>: Ask a question, share a round, upvote the best answer. In the Clubhouse app for iPhone and Android.</p>
+        <p><strong>Improve</strong>: Training videos, 1-on-1 virtual lessons and a directory of coaches.</p>
+        <p><strong>Caddy AI</strong>: Clubhouse's golf AI assistant, on the website and in the app. More on what it does at launch.</p>
+        <div class="k">Checkout note (small print)</div>
+        <p>Items marked "Add to Cart" check out right here, and Clubhouse handles your order and returns. Some sellers only sell on their own site. Those items say "Buy at [Retailer]" before you choose them.</p>
+      </div></div>
+    </div>
+    <p class="why"><b>Why:</b> The heading says "at launch", not a date. The Feed is app-only, and the app's date depends on store review. The checkout note ties "check out right here" to the Add to Cart label, which stays true however many partners have integrated. <strong>Optional:</strong> once they agree to be named, feature Gimmie Golf Co and Paul Clewell, the two confirmed directory partners. They're the only real proof available before launch.</p>
+  </div>
+</section>
+
+<section class="part" id="catalogue">
+  <div class="part-head"><span class="eyebrow">Homepage</span><h2>Category strip: trim to what's stocked</h2></div>
+  <div class="sec">
+    <ul class="issues">
+      <li>"Used &amp; Trade-In Clubs": trade-in isn't in Phase 1. Change it to "Used Clubs".</li>
+      <li>Club Fittings, Simulators and Junior Equipment: keep them only if a launch partner covers them.</li>
+      <li>The heading repeats the brand line for the third time on the page.</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now</span><div class="copy"><div class="h">EVERYTHING GOLF. ONE CLUBHOUSE.</div><p>… Used &amp; Trade-In Clubs …</p></div></div>
+      <div class="pane new"><span class="eyebrow">Proposed</span><div class="copy"><div class="h">Everything in the bag, and everything you wear.</div><p>… Used Clubs … <span class="ph">[confirm each category has launch inventory]</span></p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="roadmap">
+  <div class="part-head"><span class="eyebrow">Homepage</span><h2>Vision &amp; roadmap: merge, and fix stage 1</h2></div>
+  <div class="sec">
+    <ul class="issues">
+      <li>Two back-to-back sections describe the future. One is enough. Keep "The goal isn't to own every part of golf. It's to connect it." as the heading.</li>
+      <li>Stage 1, "Discover. Compare. Shop. - Fall 2026", leaves out the Feed and coaching. Stages 2 and 3 list "coaching connections" and "community", which ship in stage 1.</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now</span><div class="copy"><p><strong>1 Foundation</strong>: Discover. Compare. Shop. - Fall 2026<br><strong>2 Personalization</strong>: Smarter recommendations, member profiles, coaching connections<br><strong>3 Complete Clubhouse</strong>: Courses, travel, tournaments and community</p></div></div>
+      <div class="pane new"><span class="eyebrow">Proposed</span><div class="copy">
+        <p style="color:var(--ink-2)">Building the Clubhouse, one hole at a time.</p>
+        <p><strong>Hole 1 · On the tee</strong>: The website opens 15 October. Discover, compare and shop, book a virtual lesson and meet Caddy AI. The Clubhouse app brings the Clubhouse Feed.</p>
+        <p><strong>Hole 2 · Coming next</strong>: Recommendations that learn your game, and richer member profiles.</p>
+        <p><strong>Hole 3 · Further down the fairway</strong>: Places to play, golf trips, events and tournaments.</p>
+      </div></div>
+    </div>
+    <p class="why"><b>Why:</b> Each future item is labeled "coming", with no dates until they're committed. The hole metaphor from the heading now runs through each stage.</p>
+  </div>
+</section>
+
+<section class="part" id="partners">
+  <div class="part-head"><span class="eyebrow">Homepage</span><h2>Partner section: give partners their own page</h2></div>
+  <div class="sec">
+    <ul class="issues">
+      <li>Six cards (Brands, Courses, Coaches, Creators, Local golf, Golfers) mix the two audiences on a golfer page, and golfers are listed as a "partner".</li>
+      <li>"We're on everyone's team" weakens the core golfer trust claim, "on the golfer's team, not one manufacturer's".</li>
+      <li>/partners is a 404 today. The contact form does have a "Partnerships" option. Pre-select it when a visitor arrives from the partner link.</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now</span><div class="copy"><div class="h">We're on everyone's team.</div><p>[6 cards] <span class="btn ghost">PARTNER WITH CLUBHOUSE</span> → contact form</p></div></div>
+      <div class="pane new"><span class="eyebrow">Proposed · homepage band</span><div class="copy">
+        <div class="h">Brand, course, coach or creator?</div>
+        <p>Clubhouse is built with the golf industry, not against it. See where you fit.</p>
+        <p><span class="btn ghost">Partner with Clubhouse →</span> (/partners)</p>
+        <div class="k">/partners · H1 and subhead</div>
+        <p><strong>Reach golfers while they're still deciding.</strong></p>
+        <p>Golfers discover, compare and buy on Clubhouse. We explain your products properly, with guides, comparisons and features, and send you the orders to fulfill.</p>
+      </div></div>
+    </div>
+    <p class="why"><b>Why:</b> Each page stays in one voice. On /partners, don't quote a platform fee, payout terms or coach terms, and don't name any partner as live. All are open decisions.</p>
+  </div>
+</section>
+
+<section class="part" id="founder">
+  <div class="part-head"><span class="eyebrow">Homepage</span><h2>Founder: tighten Zach's own words, add a next step</h2></div>
+  <div class="sec">
+    <ul class="issues">
+      <li>The pull quote, "Why isn't there one place for all of this?", is the best line on the page.</li>
+      <li>No surname, and the section ends without a call to action.</li>
+    </ul>
+    <div class="swap">
+      <div class="pane now"><span class="eyebrow">Live now</span><div class="copy"><p>I'm a golfer, and I found myself constantly bouncing between websites - researching products, comparing clubs, looking for apparel, finding training tools, courses and experiences. That's what we're building: one place for all of it.</p></div></div>
+      <div class="pane new"><span class="eyebrow">Proposed</span><div class="copy">
+        <p>I'm a golfer, and I kept bouncing between websites: researching products, comparing clubs, hunting for apparel, training tools, courses and experiences. There was no single place for any of it. So that's what we're building: one place for all of it, on the golfer's side.</p>
+        <p>— Zach <span class="ph">[SURNAME]</span>, Founder</p>
+        <p><span class="btn">Join the Waitlist</span> <span style="font-size:13px;color:var(--ink-2)">(same label as the hero)</span></p>
+      </div></div>
+    </div>
+    <p class="why"><b>Why:</b> This is an edit of Zach's own words, not new claims, with the core trust line added at the end. A real, specific moment from Zach would make it stronger. <span class="ph">Zach to approve the wording</span></p>
+  </div>
+</section>
+
+<section class="part" id="faq">
+  <div class="part-head"><span class="eyebrow">New section</span><h2>Add a short FAQ after the founder</h2></div>
+  <div class="list">
+    <div><h4>Is Clubhouse free?</h4><p>Yes, Clubhouse is free for golfers. <span class="ph">[add the Founding Member line once confirmed]</span></p></div>
+    <div><h4>Who am I buying from?</h4><p>When you check out on Clubhouse, Clubhouse is the seller. We take your payment and handle your order, questions and returns. The brand or shop ships it to you. <span class="ph">[only once a fulfillment partner is live]</span></p></div>
+    <div><h4>Why do some items say "Buy at [Retailer]"?</h4><p>A few sellers only sell on their own site. We label those items before you choose them, so there are no surprises at checkout.</p></div>
+    <div><h4>Are your recommendations paid for?</h4><p>We show new, used, premium and value options across brands and sellers, and we say when we earn from a sale. <span class="ph">[pending the disclosure standard, Open Question 4]</span></p></div>
+    <div><h4>Is there an app?</h4><p>Yes. The Clubhouse app, for iPhone and Android, is home to the Clubhouse Feed. <span class="ph">[no fixed app date; it depends on store review]</span></p></div>
+    <div><h4>Where is Clubhouse available?</h4><p><span class="ph">[US only? Confirm launch geography, Open Question 9]</span></p></div>
+  </div>
+</section>
+
+<section class="part" id="footer">
+  <div class="part-head"><span class="eyebrow">Homepage</span><h2>Contact, footer &amp; mechanics</h2></div>
+  <div class="list">
+    <div><h4>Contact form: keep</h4><p>"Questions before we launch? We're reading every message." is warm and on voice, and the topic dropdown (General, Partnerships, Press &amp; media, Support) routes partners properly.</p></div>
+    <div><h4>Footer signup</h4><p>"Stay in the loop · Notify me" repeats the hero form, which is good. Use the same label and microcopy as the hero, without "the new site".</p></div>
+    <div><h4>Dashes</h4><p>Hyphens stand in for dashes throughout ("all in one place", "Fall 2026", the founder copy, the Caddy AI welcome). Use an em dash or restructure the sentence.</p></div>
+    <div><h4>Meta tags</h4><p>The title and description are fine and don't overclaim. The keywords tag still lists "AI golf caddie" and "buy sell used golf clubs" (peer-to-peer selling isn't at launch). Search engines ignore the keywords tag, but it should still describe the product accurately. Replace with: golf equipment, compare golf clubs, new and used golf clubs, golf apparel, golf lessons online, golf community app.</p></div>
+    <div><h4>Image alt text: no change</h4><p>The 5 hero photos have empty alt text, which is correct for decorative backgrounds.</p></div>
+  </div>
+</section>
+
+<section class="part" id="decisions">
+  <div class="part-head"><span class="eyebrow">Open decisions</span><h2>What this copy assumes</h2><p>These decisions are flagged, not settled. Each one changes a line above.</p></div>
+  <div class="list">
+    <div><h4>Waitlist vs Founding Member (Open Question 8)</h4><p>The site uses a waitlist. The draft gives Founding Member copy (first 500, free, no "lifetime") plus a waitlist fallback. The context doc says the live site uses "Join Waitlist": true for chgolfco.com, and the header says exactly that.</p></div>
+    <div><h4>Shop before launch</h4><p>Hide it (Option A) or label it as a preview with made-up brands (Option B). Either way, remove real brands and ratings now.</p></div>
+    <div><h4>Caddy AI scope (Open Question 11)</h4><p>Decides whether suggested prompts come back, and what they are.</p></div>
+    <div><h4>Shipping and returns per partner</h4><p>Decides the product-page and cart lines, which are placeholders until then.</p></div>
+    <div><h4>Launch moment and geography (Open Question 9)</h4><p>Sets the countdown target, and the FAQ answer on where Clubhouse is available.</p></div>
+    <div><h4>Launch partners</h4><p>No fulfillment partner has signed. If none signs by launch, every item is "Buy at [Retailer]": drop the checkout note and the "Who am I buying from?" answer. The hero line still holds.</p></div>
+    <div><h4>Disclosure standard (Open Question 4)</h4><p>Needed for the FAQ and any recommendation copy.</p></div>
+    <div><h4>Old GitHub Pages site</h4><p>Take it down or redirect it. Owner decision.</p></div>
+  </div>
+</section>
+
+<section class="part" id="redteam">
+  <div class="part-head"><span class="eyebrow">Red-team log</span><h2>How this report was challenged</h2><p>Each finding and each proposed line was attacked and re-checked against the live site and the <code>_context/</code> rules. Verdicts: <b>Stands</b>, <b>Corrected</b> or <b>Dropped</b>.</p></div>
+  <div class="tbl-wrap">
+  <table class="rt">
+    <thead><tr><th>#</th><th>Challenge</th><th>Verdict</th><th>What was checked, and what changed</th></tr></thead>
+    <tbody>
+      <tr><td class="n">R1</td><td>"The shop is a private staging demo, not a public claim."</td><td><span class="chip h">Stands</span></td><td>It's linked from the header and footer and opens without a login. <code>noindex</code> blocks search, not social or direct traffic. Reframed as "hide it or label it" rather than "delete it".</td></tr>
+      <tr><td class="n">R2</td><td>"The ratings may be placeholders someone forgot."</td><td><span class="chip h">Stands</span></td><td>All 26 product pages were fetched: every one shows a rating and review count. The only "DEMO MODE" label is inside the Caddy AI panel. Whether it was intended doesn't change what visitors see.</td></tr>
+      <tr><td class="n">R3</td><td>"Citing the FTC rule is overreach for a copy audit."</td><td><span class="chip m">Corrected</span></td><td>Softened to "may apply", flagged for legal to confirm. The finding rests on your own brand rule: never invent ratings.</td></tr>
+      <tr><td class="n">R4</td><td>"The countdown resets on every visit."</td><td><span class="chip m">Corrected</span></td><td>My first suspicion was wrong. After a reload, the target was fixed at 18:30 UTC on 14 Oct. The real issue is the time zone: midnight in India, 14 Oct midday in the US.</td></tr>
+      <tr><td class="n">R5</td><td>"Add to Cart is broken."</td><td><span class="chip m">Dropped</span></td><td>A retest worked. The cart emptied after a full reload; noted as a product check, not a copy finding.</td></tr>
+      <tr><td class="n">R6</td><td>"The Caddy AI prompts are just a demo; the demo label covers them."</td><td><span class="chip h">Stands</span></td><td>The rules prohibit on-course club-selection and shot-data promises in any Phase 1 copy. The reply promises what Caddy AI will do "once we're live".</td></tr>
+      <tr><td class="n">R7</td><td>"Proposed Caddy AI prompts would quietly define its scope."</td><td><span class="chip m">Corrected</span></td><td>The recommendation is now to remove the prompts. Gear prompts are offered only if the scope is confirmed.</td></tr>
+      <tr><td class="n">R8</td><td>"The v1/v2 homepage findings carry over unchanged."</td><td><span class="chip m">Corrected</span></td><td>Each was re-verified against chgolfco.com. Dropped (not true here): no signup form, the Reports nav link, H1 casing, the founder "1 Mission" stat, the meta description overclaims. Kept: every issue whose text is identical on this site.</td></tr>
+      <tr><td class="n">R9</td><td>"The hero line 'buy it right here' overclaims checkout."</td><td><span class="chip m">Corrected (in v2)</span></td><td>Replaced with the approved line, "One place to find it, and increasingly one place to buy it". No fulfillment partner has signed.</td></tr>
+      <tr><td class="n">R10</td><td>"The launch section dates app features."</td><td><span class="chip m">Corrected (in v2)</span></td><td>"Live on 15 October" became "at launch". The Feed is marked app-only, because the app date depends on store review.</td></tr>
+      <tr><td class="n">R11</td><td>"The founder rewrite puts words in Zach's mouth."</td><td><span class="chip m">Corrected (in v2)</span></td><td>Rebuilt from his published words only, with Zach to approve.</td></tr>
+      <tr><td class="n">R12</td><td>"'Never pay' is the unconfirmed lifetime promise in other words."</td><td><span class="chip m">Corrected (in v2)</span></td><td>Now "Free for golfers", the confirmed position.</td></tr>
+      <tr><td class="n">R13</td><td>"The problem rewrite names rival sites (Reddit, YouTube)."</td><td><span class="chip m">Corrected (in v2)</span></td><td>Now "videos" and "forums". The enemy is fragmentation, never a competitor.</td></tr>
+      <tr><td class="n">R14</td><td>"'Every partner brand' and 'most items' can't be checked."</td><td><span class="chip m">Corrected</span></td><td>Replaced with wording that stays true at any partner count: "Clubhouse partners", and items "marked Add to Cart".</td></tr>
+      <tr><td class="n">R15</td><td>"The report calls a real product line fictional."</td><td><span class="chip h">Stands (narrowed)</span></td><td>Named only lines I'm sure of: Tour Velvet (Golf Pride) and the Nike, Puma, adidas and FootJoy models shown under those brands' own names.</td></tr>
+      <tr><td class="n">R16</td><td>"The legal findings go beyond a copy audit."</td><td><span class="chip m">Corrected</span></td><td>Framed as mismatches with the confirmed model, for counsel to resolve. No legal wording is proposed.</td></tr>
+      <tr><td class="n">R17</td><td>"Parts of the audit weren't tested."</td><td><span class="chip m">Tested in v4</span></td><td>Waitlist, contact form, checkout up to Pay, and mobile at 375px are now tested (see <a href="#tests">Test results</a>). Still untested: the step after Pay (needs card details, which I won't enter), the confirmation emails, and the sign-up flow past the sign-in page.</td></tr>
+      <tr><td class="n">R18</td><td>Final pass: search all proposed copy for banned or risky phrases.</td><td><span class="chip h">Clean</span></td><td>Checked: "buy everything / every item", "lifetime", "never pay", "most items", fixed app dates, "on every shot", "knows your game", "affiliate", "CHG", named rival sites, hype words. Every remaining match is a quote of the live site or a rule citation, never proposed copy.</td></tr>
+      <tr><td class="n">R19</td><td>Second pass on the assembled report: "The roadmap says Caddy AI is app-only, and pairs '15 October' with app features."</td><td><span class="chip m">Corrected</span></td><td>The live site runs Caddy AI as a website widget, so v3 no longer calls it app-only. Hole 1 now dates only the website; the app is mentioned without a date.</td></tr>
+      <tr><td class="n">R20</td><td>"The waitlist form gives no feedback on submit."</td><td><span class="chip m">Dropped</span></td><td>My first attempt set the field's value without the page seeing it, so nothing was sent. Retyped like a real visitor, it posted and showed a success message. This was my test method, not a site bug.</td></tr>
+      <tr><td class="n">R21</td><td>"Mobile overlap is a screenshot artifact of the intro animation."</td><td><span class="chip h">Stands</span></td><td>Re-checked after the animation settled, and again while scrolling. The fixed social block and Caddy AI tab still cover text. The chip row clipping is measured (582px in 343px).</td></tr>
+      <tr><td class="n">R22</td><td>"The 724px Shop width might be the emulator."</td><td><span class="chip h">Stands</span></td><td>The same emulator gives 375px on the homepage, product and checkout pages. The overflow traces to one element, the filter row.</td></tr>
+      <tr><td class="n">R23</td><td>"'Secured by Stripe' is false."</td><td><span class="chip m">Corrected</span></td><td>The page says "(demo)", so today it's disclosed. Reframed as a before-launch requirement: Stripe's own payment fields must be in place before that line appears without "(demo)".</td></tr>
+      <tr><td class="n">R24</td><td>"The 18px icons fail WCAG."</td><td><span class="chip m">Corrected</span></td><td>WCAG 2.2's 24px rule has a spacing exception I didn't measure. Now worded "may fail", with Apple's 44px guideline as the firmer benchmark.</td></tr>
+      <tr><td class="n">R25</td><td>"The 80/20 selection is cherry-picked."</td><td><span class="chip h">Stands</span></td><td>Seven stress tests in <a href="#fixes">Suggestions of Fixes</a>: the five hold 66–80% of impact for 24–31% of effort in every case. The top four never change. F2 is the marginal pick and stays on effort and severity. Stripe's fields and the legal review are listed as required rather than hidden in the long tail.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<footer class="foot">Draft for review · Prepared 23 Sep 2026 from www.chgolfco.com and marketing/_context/ · Saved as report/2026-09-23_website-feedback-report_v5.html · Nothing on the live site was changed</footer>
+</main>
+</div>
+</div>
+
+</html>

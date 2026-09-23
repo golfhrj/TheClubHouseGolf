@@ -65,6 +65,20 @@ export const REPORT_SECTIONS: ReportSection[] = [
         ],
         file: "/reports/marketing/membership-approach-2026-09-22.html",
       },
+      {
+        slug: "website-feedback",
+        label: "Website Feedback",
+        title: "Website Feedback Report",
+        summary:
+          "A red-teamed, live-tested review of chgolfco.com - the five fixes that deliver about 80% of the impact, then the full section-by-section feedback with replacement copy.",
+        date: "2026-09-23",
+        details: [
+          { label: "Source", value: "www.chgolfco.com" },
+          { label: "Top fixes", value: "5 changes, ~80% of impact" },
+          { label: "Status", value: "Draft v5 - not approved" },
+        ],
+        file: "/reports/marketing/website-feedback-report-2026-09-23.html",
+      },
     ],
   },
 ];
