@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Membership Approach - Phase 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#F6F8F5; --surface:#FFFFFF; --surface-2:#F0F3EE;
+  --ink:#15201A; --ink-2:#5B675E; --ink-3:#8A958C;
+  --line:#DDE3DB; --line-2:#C9D2C6;
+  --accent:#1F6F4A; --accent-ink:#14563A; --accent-soft:#E6F0EA;
+  --threat:#A83A24; --threat-soft:#F7E6E1;
+  --watch:#96702A; --watch-soft:#F6EDDC;
+  --calm:#3F7B57; --calm-soft:#E7F1EA;
+  --shadow:0 1px 2px rgba(21,32,26,.05),0 8px 24px -16px rgba(21,32,26,.22);
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --body:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+    --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#778377;
+    --line:#2A312A; --line-2:#3A433A;
+    --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+    --threat:#E08063; --threat-soft:#2E1E18;
+    --watch:#D6AB5E; --watch-soft:#2B2417;
+    --calm:#77BE95; --calm-soft:#17261D;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+  --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#778377;
+  --line:#2A312A; --line-2:#3A433A;
+  --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+  --threat:#E08063; --threat-soft:#2E1E18;
+  --watch:#D6AB5E; --watch-soft:#2B2417;
+  --calm:#77BE95; --calm-soft:#17261D;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.shell{padding-inline:clamp(16px,3vw,32px);padding-block:0 64px;max-width:1320px;margin:0 auto}
+h1,h2,h3,h4,summary,.ui{font-family:var(--display)}
+h2,h3,h4{text-wrap:balance;line-height:1.24;margin:0}
+a{color:var(--accent-ink);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink-2);word-break:break-word}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3)}
+</style>
+<style>
+/* ---- masthead ---- */
+.masthead{padding-block:40px 28px;border-bottom:2px solid var(--ink);margin-bottom:0}
+.masthead h1{font-size:clamp(30px,5.2vw,50px);font-weight:700;letter-spacing:-.02em;
+  line-height:1.05;margin:10px 0 14px}
+.standfirst{font-size:clamp(16px,2.2vw,19px);color:var(--ink-2);max-width:62ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.03em}
+.meta b{color:var(--ink-2);font-weight:500}
+/* ---- layout ---- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.rail{display:none}
+@media(min-width:960px){
+  .layout{grid-template-columns:232px minmax(0,1fr);gap:44px;align-items:start}
+  .rail{display:block;grid-column:1;position:sticky;
+    top:calc(env(safe-area-inset-top,0px) + 16px);
+    max-height:calc(100vh - 48px);overflow-y:auto;padding-block:32px 20px}
+  .doc{grid-column:2}
+}
+@media(min-width:1280px){ .layout{grid-template-columns:256px minmax(0,1fr);gap:56px} }
+.rail .eyebrow{display:block;margin:0 0 10px}
+.rail a{display:block;font-family:var(--display);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);text-decoration:none;padding:5px 0 5px 11px;
+  border-left:2px solid var(--line);line-height:1.35}
+.rail a:hover{color:var(--accent-ink);border-left-color:var(--accent)}
+.rail .sub{font-size:12.5px;color:var(--ink-3);padding-left:22px}
+.rail hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.doc{padding-block:32px 0;min-width:0}
+/* ---- sections ---- */
+.part{margin:0 0 56px;scroll-margin-top:24px}
+.part-head{border-top:1px solid var(--line-2);padding-top:14px;margin-bottom:22px}
+.part-head h2{font-size:clamp(21px,3vw,27px);font-weight:700;letter-spacing:-.015em;margin-top:6px}
+.part-head p{color:var(--ink-2);font-size:15px;max-width:66ch;margin:8px 0 0}
+/* ---- collapsibles ---- */
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  margin-bottom:10px;overflow:hidden}
+details[open]{box-shadow:var(--shadow)}
+summary{cursor:pointer;list-style:none;padding:13px 16px;display:flex;align-items:center;
+  gap:11px;font-weight:600;font-size:15.5px;color:var(--ink);background:var(--surface)}
+summary::-webkit-details-marker{display:none}
+summary:hover{background:var(--surface-2)}
+.chev{flex:0 0 auto;width:9px;height:9px;border-right:2px solid var(--ink-3);
+  border-bottom:2px solid var(--ink-3);transform:rotate(-45deg);transition:transform .18s ease;
+  margin-right:2px}
+details[open]>summary .chev{transform:rotate(45deg)}
+.sum-title{flex:1 1 auto;min-width:0}
+details .body{padding:2px 20px 22px;border-top:1px solid var(--line)}
+details .body>*:first-child{margin-top:16px}
+@media(prefers-reduced-motion:reduce){.chev{transition:none}}
+/* ---- prose ---- */
+.body p,.body li{font-size:15.5px;max-width:74ch}
+.body p{margin:0 0 13px}
+.body h4{font-size:12.5px;font-family:var(--mono);font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--accent-ink);margin:26px 0 10px}
+.body h5{font-family:var(--display);font-size:15px;font-weight:600;margin:20px 0 8px}
+.body ul{margin:0 0 14px;padding-left:19px}
+.body li{margin-bottom:6px}
+.body strong{font-weight:600}
+blockquote{margin:16px 0;padding:12px 16px;background:var(--watch-soft);
+  border-left:3px solid var(--watch);border-radius:0 6px 6px 0}
+blockquote p{margin:0;font-size:14.5px}
+</style>
+<style>
+/* ---- chips ---- */
+.chips{display:flex;gap:6px;flex-wrap:wrap;flex:0 0 auto}
+.chip{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;padding:3px 7px;border-radius:4px;white-space:nowrap;
+  background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
+.chip.direct{background:var(--accent-soft);color:var(--accent-ink);border-color:transparent}
+.chip.indirect{background:var(--surface-2);color:var(--ink-2)}
+.chip.t-high{background:var(--threat-soft);color:var(--threat);border-color:transparent}
+.chip.t-med{background:var(--watch-soft);color:var(--watch);border-color:transparent}
+.chip.t-low{background:var(--calm-soft);color:var(--calm);border-color:transparent}
+.chip.partner{background:var(--watch-soft);color:var(--watch);border-color:transparent}
+.chip.sup{background:transparent;color:var(--ink-3);border:1px dashed var(--line-2)}
+/* severity stripe on profile cards */
+details.profile{border-left:3px solid var(--line-2)}
+details.profile[data-threat="high"]{border-left-color:var(--threat)}
+details.profile[data-threat="med"]{border-left-color:var(--watch)}
+details.profile[data-threat="low"]{border-left-color:var(--calm)}
+/* ---- tables ---- */
+.scroller{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-family:var(--display);font-size:13px;
+  font-variant-numeric:tabular-nums;background:var(--surface)}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);
+  vertical-align:top;line-height:1.4}
+thead th{background:var(--surface-2);font-size:10.5px;font-family:var(--mono);font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap;
+  position:sticky;top:0}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--surface-2)}
+td strong{font-weight:600}
+.na{color:var(--ink-3);font-style:italic}
+/* ---- key-value glance grid ---- */
+.glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));
+  gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:16px 0}
+.glance div{padding:10px 13px;border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);background:var(--surface)}
+.glance dt{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 3px}
+.glance dd{margin:0;font-family:var(--display);font-size:13.5px;font-weight:500;line-height:1.4}
+/* ---- callouts ---- */
+.flag{border-radius:8px;padding:14px 16px;margin:18px 0;border:1px solid var(--line)}
+.flag.warn{background:var(--threat-soft);border-color:transparent}
+.flag.note{background:var(--accent-soft);border-color:transparent}
+.flag .eyebrow{color:inherit;opacity:.72;display:block;margin-bottom:6px}
+.flag.warn{color:var(--threat)}
+.flag.note{color:var(--accent-ink)}
+.flag p{margin:0 0 8px;font-size:14.5px;color:var(--ink)}
+.flag p:last-child{margin-bottom:0}
+/* ---- toolbar ---- */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;
+  padding:11px 13px;background:var(--surface);border:1px solid var(--line);border-radius:9px}
+.toolbar .eyebrow{margin-right:2px}
+button{font-family:var(--display);font-size:12.5px;font-weight:500;cursor:pointer;
+  padding:5px 11px;border-radius:6px;border:1px solid var(--line-2);
+  background:var(--surface);color:var(--ink-2)}
+button:hover{border-color:var(--accent);color:var(--accent-ink)}
+button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] button[aria-pressed="true"],
+[data-theme="dark"] button[aria-pressed="true"]{color:#101410}
+.spacer{flex:1 1 auto}
+footer{border-top:1px solid var(--line-2);margin-top:44px;padding-top:20px;
+  font-size:13.5px;color:var(--ink-3);max-width:70ch}
+/* ---- print / PDF export ---- */
+@media print{
+  :root{--ground:#fff;--surface:#fff;--surface-2:#fff;--shadow:none}
+  .rail,.toolbar,.no-print{display:none!important}
+  .shell{max-width:none;padding:0}
+  details{border:0;border-radius:0;box-shadow:none;margin-bottom:6px;break-inside:avoid}
+  details .body{padding:0 0 10px;border-top:0}
+  summary{padding:8px 0;border-bottom:1px solid #ccc}
+  .chev{display:none}
+  .part{margin-bottom:26px}
+  h2,summary{break-after:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="shell">
+<header class="masthead">
+  <span class="eyebrow">Clubhouse Golf &middot; chgolfco.com &middot; Internal &middot; Decision brief</span>
+  <h1>Membership Approach &mdash; Phase 1</h1>
+  <p class="standfirst">Three membership models were on the table. This brief recommends one for 15 October &mdash; <strong>Founding Member, partner-funded, free</strong> &mdash; built as a badge and an account flag only, and explains why the calendar, not the strategy, decides it.</p>
+  <div class="meta">
+    <span><b>Prepared</b> 2026&#8209;09&#8209;22</span>
+    <span><b>Decision by</b> 29 Sep (feature freeze)</span>
+    <span><b>Audience</b> Internal</span>
+    <span><b>Status</b> Draft &mdash; not approved</span>
+    <span><b>Context</b> product-marketing v3</span>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="rail" aria-label="Contents">
+  <span class="eyebrow">Contents</span>
+  <a href="#rec">1 &middot; The recommendation</a>
+  <a href="#timeline">2 &middot; Why this is the smart call for this timeline</a>
+  <a href="#free">3 &middot; Why free, and why partner-funded later</a>
+  <a href="#not">4 &middot; What we are deliberately not doing, and why</a>
+  <a href="#copy">5 &middot; What Founding Member means in copy</a>
+  <a href="#gates">6 &middot; When membership comes back — the gates</a>
+  <a href="#risks">7 &middot; What this depends on, and what would change the answer</a>
+</nav>
+
+<main class="doc">
+<section class="part" id="rec">
+<div class="part-head">
+  <span class="eyebrow">Section 1</span>
+  <h2>The recommendation</h2>
+</div>
+<div class="body">
+<div class="flag warn"><span class="eyebrow">Decision needed before 29 September</span><p><strong>Ship Founding Member as a badge and an account flag. Nothing else.</strong> Everything that touches money — cashback, wallet credit, member pricing, a paid tier — is deferred to Phase 2 and gated behind the criteria in §6.</p></div>
+<p>Of the three membership models on the table, only one can ship on 15 October without putting the date at risk: <strong>Founding Member, partner-funded, free.</strong> And it only stays safe if it ships in its thinnest possible form.</p>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th></th>
+<th>In Phase 1</th>
+<th>Deferred</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Account flag</strong></td>
+<td>Founding Member status on the member account, set by staff</td>
+<td>Tiered entitlements</td>
+</tr>
+<tr>
+<td><strong>Badge</strong></td>
+<td>A visual badge on the member's Feed posts and profile</td>
+<td>Member-only surfaces beyond the badge</td>
+</tr>
+<tr>
+<td><strong>Meaning</strong></td>
+<td>Early access and influence: a direct line into what gets built</td>
+<td>Member pricing, early-drop windows</td>
+</tr>
+<tr>
+<td><strong>Money</strong></td>
+<td>None</td>
+<td>Cashback, wallet credit, paid tiers, coaching bundles</td>
+</tr>
+<tr>
+<td><strong>Copy</strong></td>
+<td>"One of the first 500. You help decide what we build."</td>
+<td>Anything implying a discount or a price</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What this is:</strong> a recognition and access program for the first 500 golfers, funded by nothing, promising nothing we do not already control.</p>
+<p><strong>What this is not:</strong> a loyalty program, a discount club or a subscription. Those are real options — they are Phase 2 options, for the reasons below.</p>
+</div>
+</section>
+<section class="part" id="timeline">
+<div class="part-head">
+  <span class="eyebrow">Section 2</span>
+  <h2>Why this is the smart call for this timeline</h2>
+</div>
+<div class="body">
+<div class="flag note"><span class="eyebrow">Seven days</span><p>From today, <strong>22 September</strong>, there are seven days to app feature freeze. The build proposal is explicit: nine weeks <em>“is achievable on the scope written here. It is not achievable if the scope grows mid-build. Change requests after design sign-off move the launch date.”</em></p></div>
+<h4>The calendar decides this, not the strategy</h4>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Gate</th>
+<th>Days from today</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>22 Sep 2026</strong></td>
+<td>Today</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>29 Sep</strong></td>
+<td>App feature freeze</td>
+<td>7</td>
+</tr>
+<tr>
+<td><strong>1 Oct</strong></td>
+<td>Builds submitted to Apple and Google</td>
+<td>9</td>
+</tr>
+<tr>
+<td><strong>7–14 Oct</strong></td>
+<td>Client UAT, fixes, catalog freeze</td>
+<td>15–22</td>
+</tr>
+<tr>
+<td><strong>15 Oct</strong></td>
+<td>Launch — website live, app subject to store review</td>
+<td>23</td>
+</tr>
+</tbody>
+</table></div>
+<p>Apple's review is not ours to control, and a rejection resets the clock. Anything that lands in the app after 29 September does not ship on time.</p>
+<h4>Every richer model lands in the riskiest code</h4>
+<p>A badge and a flag touch the member account. Cashback, wallet credit and member pricing touch the <strong>wallet, refunds, the platform fee and per-partner settlement</strong> — the parts of Phase 1 that handle real money, and the parts where a defect is not a cosmetic bug but a financial one. Adding them in the final week would mean:</p>
+<ul>
+<li>changing money-handling code after the point where there is time to test it properly;</li>
+<li>a refund path that now has to claw back credit already issued;</li>
+<li>a settlement report that has to account for a discount nobody has agreed with a partner yet.</li>
+</ul>
+<h4>It is the only model that survives having no signed partners</h4>
+<p>No fulfillment partner is signed yet. A partner-funded perk is a promise written against someone else's signature. The badge is the one piece of the program that is true on 15 October regardless of how the partner conversations land.</p>
+<h4>It keeps the launch promise small and true</h4>
+<p>Pre-launch, the credible claim is access, not value. "You are one of the first 500 and you help decide what gets built" is verifiable on day one. "Members save money" is not, and the moment it is printed it has to be honoured.</p>
+</div>
+</section>
+<section class="part" id="free">
+<div class="part-head">
+  <span class="eyebrow">Section 3</span>
+  <h2>Why free, and why partner-funded later</h2>
+</div>
+<div class="body">
+<p><strong>Free is the market default, not a concession.</strong> 18Birdies has a free tier at 10M self-reported users, GHIN is free to handicap golfers, r/golf and GolfWRX are free. A paid tier over a catalog that is still thin — and a checkout that still splits on referral items — reads as a toll booth on an unfinished road.</p>
+<p><strong>There is no traffic to convert yet.</strong> Subscription economics need an audience; Clubhouse has a waitlist. Charging the first 500 golfers, who are being asked to give feedback, inverts the relationship.</p>
+<p><strong>The eventual paywall is already visible.</strong> Caddy AI costs money per message, and that cost scales with usage rather than revenue. When a paid tier is right, unlimited Caddy AI is the natural thing behind it — not a discount on gear, which is the partner's margin to give.</p>
+<p><strong>Partner-funded perks are the right Phase 2 shape</strong> — early access to drops, member offers, wallet credit on completed orders — because they are paid for by the supply side rather than by the golfer. They just cannot be promised before the partners exist.</p>
+</div>
+</section>
+<section class="part" id="not">
+<div class="part-head">
+  <span class="eyebrow">Section 4</span>
+  <h2>What we are deliberately not doing, and why</h2>
+</div>
+<div class="body">
+<div class="flag warn"><span class="eyebrow">Five traps</span><p>Each of these looked attractive and has a concrete reason to wait. None is a marketing judgement call; four are commercial or legal.</p></div>
+<h4>1. Cashback on orders</h4>
+<p>Funded out of a platform fee that is <strong>not yet set</strong>. On referral items the commission is as low as 3% (Amazon Associates) and arrives 60–80 days later, so cashback there can cost more than the order earns. As merchant of record, every refund then needs a clawback path.</p>
+<h4>2. Member-only pricing</h4>
+<p>Brands enforce minimum advertised price. A member discount on a brand's product can breach <strong>MAP</strong> — and MAP enforcement is already a stated partner anxiety. The perk that wins golfers could be the thing that loses the brand.</p>
+<h4>3. A paid digital tier in the app</h4>
+<p>Physical goods sold through Stripe avoid Apple's commission, which is why the build is compliant today. A <strong>digital subscription</strong> (unlimited Caddy AI, training content) generally does not — Apple expects in-app purchase, at up to 30%. That changes the economics of any paid tier and needs checking before one is designed, not after.</p>
+<h4>4. Wallet credit as a member perk</h4>
+<p>Stored value can attract gift-card, unclaimed-property and revenue-recognition rules. A wallet that holds refunds is one thing; a wallet that issues promotional credit is another. Legal review first.</p>
+<h4>5. "Free lifetime membership"</h4>
+<p>The proposal promises the first 500 a free lifetime membership; the live site says "Join Waitlist"; the context document says free access and influence. Committing to <em>lifetime</em> now either gives away the future paid tier to the most valuable 500 golfers, or forces a public promise to be walked back. <strong>Say "founding access", not "lifetime", until this is decided</strong> (Open Question 8).</p>
+</div>
+</section>
+<section class="part" id="copy">
+<div class="part-head">
+  <span class="eyebrow">Section 5</span>
+  <h2>What Founding Member means in copy</h2>
+</div>
+<div class="body">
+<p>One promise, said the same way everywhere:</p>
+<blockquote>
+<p><strong>Founding Members are the first 500 golfers inside Clubhouse. You get in early, and you help decide what gets built.</strong></p>
+</blockquote>
+<p><strong>Say:</strong> first 500 · founding access · early access to what we build next · a direct line to the team · your feedback shapes the product · member badge in the Feed.</p>
+<p><strong>Don't say:</strong> lifetime · free forever · member pricing · members save · exclusive deals · discount · VIP.</p>
+<p><strong>Two rules that follow from the launch scope:</strong></p>
+<ul>
+<li><strong>No sample content may show member pricing.</strong> The TestFlight Feed currently includes a demo post about "Founding Member pricing on the new driver lineup". That post cannot ship.</li>
+<li><strong>The badge is a label, not a claim.</strong> It says who someone is. It must not imply a benefit that has not been agreed with a partner.</li>
+</ul>
+<p>Align the site too: the live site's "Join Waitlist" and the internal "Become a Founding Member" should say the same thing by launch.</p>
+</div>
+</section>
+<section class="part" id="gates">
+<div class="part-head">
+  <span class="eyebrow">Section 6</span>
+  <h2>When membership comes back — the gates</h2>
+</div>
+<div class="body">
+<p>Membership returns as a real product when the business can support it. Three gates, all measurable:</p>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Threshold</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Supply</strong></td>
+<td>3+ fulfillment partners live</td>
+<td>Perks and cashback need margin and a catalog worth joining for</td>
+</tr>
+<tr>
+<td><strong>Community</strong></td>
+<td>Sustained weekly posting in the Feed, most posts answered</td>
+<td>A badge signals nothing in an empty room</td>
+</tr>
+<tr>
+<td><strong>Terms</strong></td>
+<td>Platform fee and payout schedule set</td>
+<td>You cannot fund a perk out of an undefined margin</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Cheap tests to run before any of it is built</strong> — none of these touch the app:</p>
+<ol>
+<li>Ask the waitlist what they would actually pay for. One question, one email.</li>
+<li>Put a "Clubhouse Plus — register interest" link on the site and count clicks.</li>
+<li>Ask the first five partner conversations what member benefit they would fund, and what breaches their MAP policy.</li>
+</ol>
+<p><strong>Phase 2 sequence, once the gates are met:</strong> entitlements on the member account → partner-funded perks (early access, member offers) → wallet credit on completed orders → a paid tier whose paywall is Caddy AI usage, priced against 18Birdies Premium ($99.99/yr) and GolfPass ($99–119/yr — the two figures in our sources disagree; re-verify before quoting).</p>
+</div>
+</section>
+<section class="part" id="risks">
+<div class="part-head">
+  <span class="eyebrow">Section 7</span>
+  <h2>What this depends on, and what would change the answer</h2>
+</div>
+<div class="body">
+<h4>Open decisions this brief assumes (it does not resolve them)</h4>
+<div class="scroller"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Open decision</th>
+<th>Effect if it moves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Platform fee and payout schedule</strong></td>
+<td>Sets whether any funded perk is affordable at all</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Disclosure standard</strong></td>
+<td>Any member benefit tied to a recommendation needs it</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Founding Member offer</strong> — "lifetime" vs access</td>
+<td>Decides the launch copy above</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Caddy AI scope</strong></td>
+<td>Decides the Phase 2 paywall</td>
+</tr>
+<tr>
+<td>16</td>
+<td><strong>Coach terms</strong></td>
+<td>Decides whether a coaching bundle is ever viable</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Kill criteria</h4>
+<ul>
+<li>If partner-funded perks require discounts that breach MAP, this is not a membership — it is a loyalty program, and should be scoped and named as one.</li>
+<li>If a digital tier attracts Apple's commission, a paid tier is a web-first product or not a product at all.</li>
+<li>If the Feed does not sustain weekly posting, the badge has no audience and the program should stay a quiet account flag.</li>
+</ul>
+<h4>The honest counter-argument</h4>
+<p>Membership is a retention answer, and Clubhouse's bottleneck today is supply: <strong>no fulfillment partner is signed</strong>, so the checkout promise is empty. The strongest case against spending any time here is opportunity cost — every hour before 15 October is better spent signing a brand. This brief is written to close the question cheaply, not to open a workstream.</p>
+</div>
+</section>
+
+
+<footer>
+  <p><strong>Membership Approach &mdash; Phase 1</strong> &middot; prepared 22 September 2026 from the Phase 1 build proposal (14 Aug 2026), <code>_context/product-marketing.md</code> v3, <code>_context/_summary.md</code> and the competitor profiles dated 2026&#8209;09&#8209;20 and 2026&#8209;09&#8209;21. Competitor prices are snapshots &mdash; re-verify before external use. Apple commission, MAP and stored-value points are flagged for legal and commercial review, not settled here.</p>
+  <p class="no-print">To save as PDF, use your browser&rsquo;s Print command.</p>
+</footer>
+</main>
+</div>
+</div>
+
+<script>
+(function(){
+  var all = function(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); };
+  var printState = null;
+  window.addEventListener('beforeprint', function(){
+    printState = all('details').map(function(d){ return d.open; });
+    all('details').forEach(function(d){ d.open = true; });
+  });
+  window.addEventListener('afterprint', function(){
+    if (printState) all('details').forEach(function(d, i){ d.open = printState[i]; });
+    printState = null;
+  });
+})();
+</script>

@@ -51,6 +51,20 @@ export const REPORT_SECTIONS: ReportSection[] = [
         ],
         file: "/reports/marketing/demographics-device-mix-2026-09.html",
       },
+      {
+        slug: "membership",
+        label: "Membership",
+        title: "Membership Approach - Phase 1",
+        summary:
+          "Three membership models were on the table. This brief recommends one for 15 October - Founding Member, partner-funded, free - built as a badge and an account flag only.",
+        date: "2026-09-22",
+        details: [
+          { label: "Decision by", value: "29 Sep (feature freeze)" },
+          { label: "Recommends", value: "Founding Member - free" },
+          { label: "Phase 1 build", value: "Badge + account flag only" },
+        ],
+        file: "/reports/marketing/membership-approach-2026-09-22.html",
+      },
     ],
   },
 ];
