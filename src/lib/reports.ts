@@ -70,14 +70,14 @@ export const REPORT_SECTIONS: ReportSection[] = [
         label: "Website Feedback",
         title: "Website Feedback Report",
         summary:
-          "A red-teamed, live-tested review of chgolfco.com - the five fixes that deliver about 80% of the impact, then the full section-by-section feedback with replacement copy.",
-        date: "2026-09-23",
+          "A red-teamed, live-tested review of chgolfco.com - the five fixes that deliver about 80% of the impact, the full section-by-section feedback with replacement copy, and an SEO audit of what must change before launch for the site to be indexed.",
+        date: "2026-09-24",
         details: [
           { label: "Source", value: "www.chgolfco.com" },
           { label: "Top fixes", value: "5 changes, ~80% of impact" },
-          { label: "Status", value: "Draft v5 - not approved" },
+          { label: "Status", value: "Draft v6 - not approved" },
         ],
-        file: "/reports/marketing/website-feedback-report-2026-09-23.html",
+        file: "/reports/marketing/website-feedback-report-2026-09-24.html",
       },
     ],
   },

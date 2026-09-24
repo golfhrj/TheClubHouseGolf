@@ -159,9 +159,9 @@ html{scroll-behavior:smooth}
     <div><b>Source</b>www.chgolfco.com: home, /shop, all 26 /product pages, /cart, /checkout, /login, /privacy, /terms, Caddy AI widget, robots.txt, sitemap</div>
     <div><b>Audience</b>Golfers (Side A), plus one partner link</div>
     <div><b>Context used</b>brand-voice.md v1 · product-marketing.md v3 · chg_marketing_claude.md §4–5</div>
-    <div><b>Audited</b>23 Sep 2026, 22 days before the 15 Oct launch</div>
-    <div><b>Status</b>DRAFT v5: red-teamed, live-tested, 80/20 stress-tested, not approved</div>
-    <div><b>Revision</b>v5 renames the report and adds <a href="#fixes">Suggestions of Fixes</a> (the 5 changes that deliver about 80% of the impact). v4 added live tests: waitlist form, contact form, checkout up to Pay, and a mobile pass at 375px. v3 replaced v1–v2, which audited the old GitHub Pages copy. <a href="#tests">Test results</a> · <a href="#redteam">Red-team log</a></div>
+    <div><b>Audited</b>23 Sep 2026, 22 days before the 15 Oct launch · SEO audit 24 Sep 2026</div>
+    <div><b>Status</b>DRAFT v6: red-teamed, live-tested, 80/20 stress-tested, not approved</div>
+    <div><b>Revision</b>v6 adds the <a href="#seo">SEO Audit</a>: launch-day indexing blockers (including canonical tags on all 33 pages), the keyword plan, content gaps and a technical checklist. v5 renames the report and adds <a href="#fixes">Suggestions of Fixes</a> (the 5 changes that deliver about 80% of the impact). v4 added live tests: waitlist form, contact form, checkout up to Pay, and a mobile pass at 375px. v3 replaced v1–v2, which audited the old GitHub Pages copy. <a href="#tests">Test results</a> · <a href="#redteam">Red-team log</a></div>
   </div>
 </header>
 
@@ -176,6 +176,7 @@ html{scroll-behavior:smooth}
   <a href="#caddy">Caddy AI widget</a>
   <a href="#legal">Terms &amp; Privacy</a>
   <a href="#launchops">Countdown, indexing, old site</a>
+  <a href="#seo"><strong>SEO Audit</strong></a>
   <a href="#tests">Live test results</a>
   <a href="#nav">Header &amp; navigation</a>
   <a href="#hero">Hero &amp; waitlist</a>
@@ -391,6 +392,7 @@ details.scores-detail .tbl-wrap{border:0;border-top:1px solid var(--line);border
       <tr><td class="n">8</td><td>Replace "Golf doesn't need another store." The site now has a shop, a cart and a checkout.</td><td><a href="#problem">Problem</a></td><td><span class="chip h">High</span></td></tr>
       <tr><td class="n">9</td><td>Add the Phase 1 features the homepage never names: the Clubhouse Feed, virtual lessons and the coach directory, and Caddy AI. Caddy AI floats on every page but the copy never mentions it.</td><td><a href="#launch">Launch</a>, <a href="#roadmap">Roadmap</a></td><td><span class="chip h">High</span></td></tr>
       <tr><td class="n">10</td><td>Launch-day switch: the whole site is <code>noindex, nofollow</code> and robots.txt says <code>Disallow: /</code>. That's fine before launch if deliberate, but both must flip on launch day.</td><td><a href="#launchops">Indexing</a></td><td><span class="chip h">Launch day</span></td></tr>
+      <tr><td class="n">10b</td><td>Canonical tags: all 33 pages (shop, cart, checkout, sign-in, legal and all 26 products) name <code>https://chgolfco.com</code> as their canonical, and that address redirects to www. Removing <code>noindex</code> alone won't get the shop or product pages listed. Give each page its own canonical on one host.</td><td><a href="#seo">SEO</a></td><td><span class="chip c">Before launch</span></td></tr>
       <tr><td class="n">11</td><td>Take down or redirect the old GitHub Pages site (golfhrj.github.io/TheClubHouseGolf). It's still public and indexable, and it links internal strategy reports.</td><td><a href="#launchops">Old site</a></td><td><span class="chip h">High</span></td></tr>
       <tr><td class="n">12</td><td>Move the six-card partner pitch to a /partners page (currently a 404). Leave one partner link on the homepage.</td><td><a href="#partners">Partners</a></td><td><span class="chip h">High</span></td></tr>
       <tr><td class="n">13</td><td>Change "Experience" to "Improve" in the three pillars, and drop "Trade-In" from the category strip.</td><td><a href="#answer">Answer</a>, <a href="#catalogue">Categories</a></td><td><span class="chip h">High</span></td></tr>
@@ -512,9 +514,151 @@ details.scores-detail .tbl-wrap{border:0;border-top:1px solid var(--line);border
   <div class="part-head"><span class="eyebrow">Launch mechanics</span><h2>Countdown, search indexing and the old site</h2></div>
   <div class="list">
     <div><h4>The countdown ends a day early for US visitors</h4><p>Its fixed target is 18:30 UTC on 14 October, which is midnight on 15 October in India. In the US it reaches zero at 2:30 pm Eastern / 11:30 am Pacific on 14 October, while the header strip says "LIVE OCT 15". Set it to the planned US go-live moment <span class="ph">[e.g. 15 Oct, 9:00 am ET — confirm]</span>, and decide what the page says at zero.</p></div>
-    <div><h4>Search engines are blocked site-wide</h4><p>Every page is <code>noindex, nofollow</code> and robots.txt says <code>Disallow: /</code>. That's reasonable while the shop is a demo. Put "remove noindex and the robots block" on the launch-day checklist, or the store stays invisible to search. The sitemap lists only the homepage.</p></div>
+    <div><h4>Search engines are blocked site-wide</h4><p>Every page is <code>noindex, nofollow</code> and robots.txt says <code>Disallow: /</code>. That's reasonable while the shop is a demo. Put "remove noindex and the robots block" on the launch-day checklist, or the store stays invisible to search. The sitemap lists only the homepage. Flipping these two isn't enough on its own: the canonical tags also need fixing. See the <a href="#seo">SEO Audit</a>.</p></div>
     <div><h4>The old GitHub Pages site is still public</h4><p>golfhrj.github.io/TheClubHouseGolf, checked earlier today, carries an older copy of this homepage with no signup form. Its nav links /reports/, which publishes the internal strategy report (competitor analysis, platform fee questions, "No fulfillment partner signed yet"), tagged <code>index, follow</code>. Take it down or redirect it to chgolfco.com. <span class="ph">Owner decision</span></p></div>
   </div>
+</section>
+
+<section class="part" id="seo">
+  <div class="part-head"><span class="eyebrow">SEO Audit · 24 Sep 2026</span><h2>SEO: fix three settings before any page can rank</h2><p>This checks the site's raw HTML, <code>robots.txt</code>, sitemap, redirects and response headers on all 33 public routes. The site is deliberately <code>noindex</code>, so it has no rankings yet. The questions are whether it will be found after launch, and what to target. No SEO data provider is connected (Ahrefs isn't authorized), and the PageSpeed API hit its daily limit. So there are no search-volume, difficulty, backlink or speed-score numbers here. Where the report rates demand or difficulty, that's a judgment, labeled as one.</p></div>
+
+  <div class="headline-stat" style="margin-bottom:18px">
+    <div><b>0</b><span>Pages search can index today</span></div>
+    <div><b>33 / 33</b><span>Pages whose canonical is the homepage</span></div>
+    <div><b>1</b><span>URL in the sitemap</span></div>
+    <div><b>5.3 MB</b><span>Homepage hero images</span></div>
+  </div>
+
+  <h3 class="sub-h">Launch-day blockers</h3>
+  <div class="crit-list">
+    <div class="flag">
+      <h3>1 · Crawlers are blocked two ways</h3>
+      <p><code>robots.txt</code> says <code>Disallow: /</code> on both chgolfco.com and www.chgolfco.com, and every page carries <code>&lt;meta name="robots" content="noindex, nofollow"&gt;</code>. That's right while the shop is a demo (see <a href="#shop">Shop</a>). On launch day, replace robots.txt with <code>Allow: /</code> plus a <code>Sitemap:</code> line, and switch the meta tag to <code>index, follow</code>. Keep <code>/cart</code>, <code>/checkout</code> and <code>/login</code> on <code>noindex</code>.</p>
+    </div>
+    <div class="flag">
+      <h3>2 · Every page says it's a copy of the homepage</h3>
+      <p>All 33 routes (home, /shop, /cart, /checkout, /login, /privacy, /terms and /product/p1 to p26) declare <code>&lt;link rel="canonical" href="https://chgolfco.com"&gt;</code>. A canonical tells Google which URL is the original. Unfixed, Google will fold the shop and every product page into the homepage and list none of them, even after <code>noindex</code> is removed. Developer fix: give each route its own self-referencing canonical, e.g. <code>alternates.canonical</code> per page in Next.js, instead of one site-wide value.</p>
+    </div>
+    <div class="flag">
+      <h3>3 · The site's two addresses disagree</h3>
+      <p>chgolfco.com redirects (308) to www.chgolfco.com, but the canonical, <code>og:url</code>, the sitemap and the JSON-LD schema all use the non-www address, so every signal points at a redirect. <code>http://chgolfco.com</code> takes two hops to reach the page. <code>llms.txt</code> uses www. Pick one host, then make <code>metadataBase</code>, the sitemap, the schema and llms.txt all match it. <span class="ph">Owner decision: www or non-www</span></p>
+    </div>
+  </div>
+
+  <h3 class="sub-h">What already works</h3>
+  <p style="max-width:74ch">One H1 per page and a logical H2 structure. A clear title ("Clubhouse Golf | Everything Golf. One Clubhouse.", 48 characters) and meta description. Complete Open Graph and Twitter tags with a 1200×630 share image. WebSite and Organization schema linking LinkedIn, Instagram and TikTok. HTTPS, a real 404 for unknown URLs, a mobile viewport and an <code>llms.txt</code>. That's more groundwork than most sites have before launch.</p>
+
+  <h3 class="sub-h">On-page issues</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Page</th><th>Issue</th><th>Severity</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>/shop, /cart, all /product pages</td><td>They reuse the homepage meta description. /cart and /checkout also reuse the homepage title.</td><td><span class="chip h">High</span></td><td>A unique description per page. Products: brand, model, the one spec that changes the decision. No hard prices in evergreen copy.</td></tr>
+      <tr><td>/product/p1 to p26</td><td>URLs say nothing: <code>/product/p17</code>.</td><td><span class="chip h">High</span></td><td>Readable slugs, e.g. <code>/product/[brand]-[model]</code>, set before launch so they never need redirecting.</td></tr>
+      <tr><td>/product pages</td><td>No Product schema. The only ratings on the page are the made-up ones (see <a href="#shop">Shop</a>).</td><td><span class="chip h">High</span></td><td>Add Product and Offer schema at launch with real catalog data. Add <code>AggregateRating</code> only when ratings come from real Clubhouse orders. Marking up invented reviews breaks Google's review-snippet policy.</td></tr>
+      <tr><td>Homepage</td><td>The H1 is the brand line only, with no words a golfer would search for.</td><td><span class="chip m">Medium</span></td><td>Keep the H1. Add a descriptive line near it, e.g. "Compare golf clubs, gear and coaches in one place" <span class="ph">copy to confirm</span>.</td></tr>
+      <tr><td>Homepage</td><td>The nav mostly scrolls within one page (<code>#course</code>, <code>#whats-coming</code>, <code>#team</code>), so there are few pages to rank. /partners is a 404.</td><td><span class="chip m">Medium</span></td><td>Give Partners, About or Team, and the FAQ their own URLs (see <a href="#partners">Partner section</a>, <a href="#faq">FAQ</a>).</td></tr>
+      <tr><td>All pages</td><td>The meta keywords tag lists "AI golf caddie" and "buy sell used golf clubs". Search engines ignore it, but it is still out of scope (see row 18).</td><td><span class="chip m">Low</span></td><td>Delete the tag.</td></tr>
+      <tr><td>Homepage</td><td>The five hero images have <code>alt=""</code>.</td><td><span class="chip m">Low</span></td><td>Fine if they're decorative backgrounds. Give any image that carries meaning a short description.</td></tr>
+      <tr><td>llms.txt</td><td>Tells AI crawlers not to cite the site until launch. Lists <code>zach@</code>; the site uses <code>hello@</code>.</td><td><span class="chip m">Low</span></td><td>Rewrite at launch with the real sections and one contact address.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 class="sub-h">Technical checklist</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Check</th><th>Status</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>robots.txt</td><td><span class="chip c">Fail</span></td><td><code>Disallow: /</code> on both hosts. Flip on launch day.</td></tr>
+      <tr><td>Meta robots</td><td><span class="chip c">Fail</span></td><td><code>noindex, nofollow</code> on all 33 routes.</td></tr>
+      <tr><td>Canonical tags</td><td><span class="chip c">Fail</span></td><td>All 33 point to the non-www homepage.</td></tr>
+      <tr><td>Image weight</td><td><span class="chip c">Fail</span></td><td>The homepage loads 5 hero images, about 5.3 MB in total, including a 3.3 MB PNG (<code>hero-coastal-polo.png</code>). They're served straight from <code>/images/</code>, not through Next.js image optimization. Convert to WebP or AVIF at display size.</td></tr>
+      <tr><td>XML sitemap</td><td><span class="chip h">Warning</span></td><td>Lists one URL (the non-www homepage). Generate it from the catalog: shop, products, guides.</td></tr>
+      <tr><td>Redirects</td><td><span class="chip h">Warning</span></td><td><code>http://chgolfco.com</code> → <code>https://chgolfco.com</code> → www: two hops. Make it one.</td></tr>
+      <tr><td>Caching</td><td><span class="chip h">Warning</span></td><td>Images are served with <code>Cache-Control: max-age=0</code>, so browsers re-check them on every visit.</td></tr>
+      <tr><td>Speed (LCP)</td><td><span class="chip h">Not measured</span></td><td>The PageSpeed API hit its limit. The "Teeing off" loading overlay and heavy hero images probably delay the Largest Contentful Paint (when the main content appears). Run <a href="https://pagespeed.web.dev/">PageSpeed Insights</a> on mobile before launch.</td></tr>
+      <tr><td>Structured data</td><td><span class="chip h">Warning</span></td><td>WebSite and Organization are present. Add Product and Offer, BreadcrumbList and FAQPage at launch.</td></tr>
+      <tr><td>HTTPS · 404 · viewport · lang</td><td><span class="chip m">Pass</span></td><td>HTTPS on Vercel. Unknown URLs return 404. <code>width=device-width</code>. <code>lang="en"</code>.</td></tr>
+      <tr><td>Open Graph · Twitter</td><td><span class="chip m">Pass</span></td><td>Complete, with a 1200×630 image.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 class="sub-h">Keyword plan: lead with comparison</h3>
+  <p style="max-width:74ch;margin-bottom:12px">The GTM Playbook's SEO rule is to target decision moments, not broad terms. <code>_summary.md</code> sharpens it: cross-brand comparison ("TaylorMade Qi vs. Callaway Elyte") is the one query class no manufacturer, retailer or creator can credibly own, and Clubhouse can put a checkout next to it. The "best X for Y" lists are a long fight: MyGolfSpy publishes Best Drivers 2026 and similar lists on 15 years of its own test data, and Golf Avenue runs "Best Golf Drivers for Every Handicap". Every term below is in Phase 1 scope. None has a ranking yet, because the site is <code>noindex</code>.</p>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Keyword</th><th>Est. difficulty</th><th>Opportunity</th><th>Intent</th><th>Content</th></tr></thead>
+    <tbody>
+      <tr><td>[model] vs [model], e.g. "Qi35 vs Elyte driver"</td><td>Easy to moderate</td><td><span class="chip m">High</span></td><td>Commercial</td><td>Templated comparison pages from catalog data, with fair trade-offs</td></tr>
+      <tr><td>[club type] vs [club type], e.g. "5 wood vs 3 hybrid"</td><td>Moderate</td><td><span class="chip m">High</span></td><td>Commercial</td><td>Comparison guide</td></tr>
+      <tr><td>Clubhouse Golf, "Clubhouse Golf Co"</td><td>Moderate: name collision</td><td><span class="chip m">High</span></td><td>Navigational</td><td>Homepage, Organization schema, consistent profiles</td></tr>
+      <tr><td>best golf clubs under $1,000</td><td>Moderate</td><td><span class="chip m">High</span></td><td>Commercial</td><td>Budget guide filtered from the catalog (date the prices)</td></tr>
+      <tr><td>beginner golf equipment checklist</td><td>Easy</td><td><span class="chip m">High</span></td><td>Informational</td><td>Starter guide for New / Returning golfers</td></tr>
+      <tr><td>new vs used golf clubs</td><td>Easy to moderate</td><td><span class="chip h">Medium</span></td><td>Commercial</td><td>Guide linking to "See New + Used" results</td></tr>
+      <tr><td>online golf lessons / virtual golf lessons</td><td>Moderate</td><td><span class="chip h">Medium</span></td><td>Transactional</td><td>Virtual tutoring landing page (no coach pricing until Open Question 16 is settled)</td></tr>
+      <tr><td>golf coach near me, golf lessons [city]</td><td>Moderate, local</td><td><span class="chip h">Medium</span></td><td>Transactional</td><td>Coach and trainer directory pages</td></tr>
+      <tr><td>golf rangefinder vs GPS watch</td><td>Easy to moderate</td><td><span class="chip h">Medium</span></td><td>Commercial</td><td>Comparison guide</td></tr>
+      <tr><td>golf training aids for beginners</td><td>Moderate</td><td><span class="chip h">Medium</span></td><td>Commercial</td><td>Guide tied to the training modules</td></tr>
+      <tr><td>new golf brands / independent golf brands</td><td>Easy</td><td><span class="chip h">Medium</span></td><td>Informational</td><td>Brand discovery pages (signed partners only)</td></tr>
+      <tr><td>best driver for high handicap golfer</td><td>Hard</td><td><span class="chip h">Medium</span></td><td>Commercial</td><td>Guide, but a long fight against MyGolfSpy and Golf Avenue</td></tr>
+      <tr><td>best used golf drivers</td><td>Hard</td><td><span class="chip c">Low</span></td><td>Commercial</td><td>Hold: MyGolfSpy's Used Driver Finder and GlobalGolf's catalog own it</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="why"><b>Left out on purpose:</b> trade-in, golf travel, tee times, and on-course club selection ("what club from 150 yards"). None is in Phase 1 scope, and content ranking for them would promise what the site can't do. "AI golf caddie" is left out too: Caddy AI's scope isn't defined yet (Open Question 11), and the phrase suggests on-course use.</p>
+
+  <h3 class="sub-h">Content gaps</h3>
+  <div class="list">
+    <div><h4>Comparison pages, built from the catalog · High · substantial</h4><p>The wedge. One template ("[A] vs [B]": specs that change the decision, who each suits, new and used prices, then Add to Cart or Buy at [Retailer]) scales across the catalog. Needs clean spec data per product. Every page needs the commercial-relationship disclosure (disclosure standard still open).</p></div>
+    <div><h4>Category buying guides · High · multi-day each</h4><p>Drivers, irons, putters, balls, rangefinders. Guides link into comparisons and products. Aim at the decision the golfer is making, not at MyGolfSpy's test-data territory.</p></div>
+    <div><h4>Beginner hub · Medium · multi-day</h4><p>Nothing on the site speaks to the New / Returning golfer yet. A checklist plus 5–8 short guides fills the top of the funnel.</p></div>
+    <div><h4>Coach directory and virtual tutoring pages · Medium · moderate</h4><p>Both are in Phase 1 and both have local or transactional search demand. Needs Open Question 16 (coach terms) settled before pricing appears.</p></div>
+    <div><h4>Brand pages for signed partners · Medium · scales with signings</h4><p>One page per confirmed partner. Partners have a reason to link to them, which is how a new domain earns links. Signed partners only, and only with image rights.</p></div>
+    <div><h4>About, FAQ and Partners pages · Medium · 1–2 hours each</h4><p>Already proposed in this report (<a href="#faq">FAQ</a>, <a href="#partners">Partners</a>). As separate URLs they also build trust signals and help separate Clubhouse from the other "Clubhouse Golf" businesses.</p></div>
+  </div>
+
+  <h3 class="sub-h">The name is shared</h3>
+  <div class="list">
+    <div><h4>Three other businesses use "Clubhouse Golf"</h4><p>A search for "Clubhouse Golf" returns clubhousegolf.co.uk (a large UK golf retailer), clubhousegolfcompany.com (an apparel brand) and clubhousegolf.nyc (a simulator venue in New York). chgolfco.com won't win the bare name quickly. Use "Clubhouse Golf" plus a descriptor consistently, keep the Organization schema's <code>sameAs</code> links current, and point every profile (LinkedIn, Instagram, TikTok, Crunchbase, app store listings) at one URL. The GitHub repository <code>golfhrj/TheClubHouseGolf</code> also shows up for the brand search (see <a href="#launchops">Old site</a>).</p></div>
+  </div>
+
+  <h3 class="sub-h">Competitor comparison (judgment, not data)</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Dimension</th><th>Clubhouse</th><th>MyGolfSpy</th><th>GlobalGolf</th><th>Golf Avenue</th></tr></thead>
+    <tbody>
+      <tr><td>Indexable pages</td><td>0 today</td><td>Large</td><td>Very large: 300,000-item catalog</td><td>Large</td></tr>
+      <tr><td>Content layer</td><td>Homepage only</td><td>Buyer's guides, test franchises, head-to-head tool</td><td>Catalog, little editorial</td><td>Buying guides, brand-history comparisons</td></tr>
+      <tr><td>Owns</td><td>Nothing yet</td><td>"Best X" terms, on its own test data</td><td>"Used [brand] [model]" long tail</td><td>Used and refurbished, handicap guides</td></tr>
+      <tr><td>Cross-brand comparison with checkout</td><td>Planned: the wedge</td><td>Comparison, but buying happens elsewhere</td><td>No</td><td>Partial</td></tr>
+      <tr><td>Technical base</td><td>Modern (Next.js on Vercel), after the three fixes</td><td>Established</td><td>Established</td><td>Established</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="src">From the _context/ profiles (20–21 Sep 2026). No backlink, domain-rank or traffic data is available for any site. Golf Avenue is also Clubhouse's lead retailer target, so treat it as a partner prospect first.</p>
+
+  <h3 class="sub-h">Action plan</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>#</th><th>Action</th><th>When</th><th>Impact</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td class="n">S1</td><td>Fix canonicals: one per page, self-referencing, on one host</td><td><span class="chip c">Before launch</span></td><td>High</td><td>1 hr</td></tr>
+      <tr><td class="n">S2</td><td>Choose www or non-www; align <code>metadataBase</code>, sitemap, schema, llms.txt; one-hop redirect</td><td><span class="chip c">Before launch</span></td><td>High</td><td>30 min</td></tr>
+      <tr><td class="n">S3</td><td>Readable product slugs; unique titles and descriptions for /shop and products; <code>noindex</code> on cart, checkout and sign-in</td><td><span class="chip c">Before launch</span></td><td>High</td><td>2 hr</td></tr>
+      <tr><td class="n">S4</td><td>Compress hero images to WebP or AVIF; long-lived image caching</td><td><span class="chip h">Before launch</span></td><td>Medium</td><td>1 hr</td></tr>
+      <tr><td class="n">S5</td><td>Generate the sitemap from the catalog; verify the domain in Google Search Console and Bing Webmaster Tools</td><td><span class="chip h">Before launch</span></td><td>High</td><td>1 hr</td></tr>
+      <tr><td class="n">S6</td><td>Launch day: flip robots.txt and meta robots, submit the sitemap, request indexing, rewrite llms.txt</td><td><span class="chip h">Launch day</span></td><td>High</td><td>30 min</td></tr>
+      <tr><td class="n">S7</td><td>Add Product and Offer schema from real catalog data (no ratings until they're real)</td><td><span class="chip h">Launch week</span></td><td>Medium</td><td>Half day</td></tr>
+      <tr><td class="n">S8</td><td>Build the comparison template and the first 20 pages for the most-compared clubs in the launch catalog</td><td><span class="chip m">Q4</span></td><td>High</td><td>Multi-week</td></tr>
+      <tr><td class="n">S9</td><td>Driver buying guide, then the beginner hub</td><td><span class="chip m">Q4</span></td><td>Medium</td><td>Multi-day each</td></tr>
+      <tr><td class="n">S10</td><td>Coach directory and virtual tutoring pages; brand pages as partners sign</td><td><span class="chip m">Q4</span></td><td>Medium</td><td>Moderate</td></tr>
+      <tr><td class="n">S11</td><td>Connect an SEO data provider and re-run this audit with real volume, difficulty and ranking data</td><td><span class="chip m">After launch</span></td><td>Medium</td><td>1 hr setup</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="why"><b>Depends on:</b> S1–S3 are one developer pass. S6 needs a named owner on the launch checklist, together with row 10. S8 needs structured spec data per product and a decision on the disclosure standard.</p>
 </section>
 
 <section class="part" id="tests">
@@ -804,12 +948,15 @@ details.scores-detail .tbl-wrap{border:0;border-top:1px solid var(--line);border
       <tr><td class="n">R23</td><td>"'Secured by Stripe' is false."</td><td><span class="chip m">Corrected</span></td><td>The page says "(demo)", so today it's disclosed. Reframed as a before-launch requirement: Stripe's own payment fields must be in place before that line appears without "(demo)".</td></tr>
       <tr><td class="n">R24</td><td>"The 18px icons fail WCAG."</td><td><span class="chip m">Corrected</span></td><td>WCAG 2.2's 24px rule has a spacing exception I didn't measure. Now worded "may fail", with Apple's 44px guideline as the firmer benchmark.</td></tr>
       <tr><td class="n">R25</td><td>"The 80/20 selection is cherry-picked."</td><td><span class="chip h">Stands</span></td><td>Seven stress tests in <a href="#fixes">Suggestions of Fixes</a>: the five hold 66–80% of impact for 24–31% of effort in every case. The top four never change. F2 is the marginal pick and stays on effort and severity. Stripe's fields and the legal review are listed as required rather than hidden in the long tail.</td></tr>
+      <tr><td class="n">R26</td><td>"The canonical bug is only a pre-launch setting, like <code>noindex</code>."</td><td><span class="chip h">Stands</span></td><td>Nothing on the site suggests it's temporary: the tag points at the homepage on all 33 routes, including every product page. It's listed as before-launch work because flipping <code>noindex</code> won't fix it. Recheck it on launch day.</td></tr>
+      <tr><td class="n">R27</td><td>"The first SEO draft proposed trade-in, travel, on-course club and 'AI golf caddie' keywords."</td><td><span class="chip m">Corrected</span></td><td>Checked against launch scope: all are out of Phase 1 or undefined (Caddy AI, Open Question 11). Removed from the keyword plan and noted as left out on purpose.</td></tr>
+      <tr><td class="n">R28</td><td>"Difficulty ratings and the competitor table look like data."</td><td><span class="chip m">Corrected</span></td><td>No SEO provider is connected, so both are labeled as judgment. Competitor rows use only what the _context/ profiles record.</td></tr>
     </tbody>
   </table>
   </div>
 </section>
 
-<footer class="foot">Draft for review · Prepared 23 Sep 2026 from www.chgolfco.com and marketing/_context/ · Saved as report/2026-09-23_website-feedback-report_v5.html · Nothing on the live site was changed</footer>
+<footer class="foot">Draft for review · Prepared 23 Sep 2026 from www.chgolfco.com and marketing/_context/ · SEO Audit added 24 Sep 2026 · Saved as report/2026-09-24_website-feedback-report_v6.html · Nothing on the live site was changed</footer>
 </main>
 </div>
 </div>

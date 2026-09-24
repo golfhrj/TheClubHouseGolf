@@ -195,6 +195,11 @@ test("Marketing › Website Feedback leads with the suggested fixes", async ({
       name: "Take the demo store offline until launch",
     }),
   ).toBeVisible();
+  await expect(
+    report.getByRole("heading", {
+      name: "SEO: fix three settings before any page can rank",
+    }),
+  ).toBeVisible();
   expect(failed).toEqual([]);
 });
 
