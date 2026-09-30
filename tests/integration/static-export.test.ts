@@ -108,6 +108,7 @@ describe("reports", () => {
     "reports/marketing/demographics-device-mix/index.html",
     "reports/marketing/membership/index.html",
     "reports/marketing/website-feedback/index.html",
+    "reports/marketing/rebrand-ideas/index.html",
   ];
 
   it("exports a page for Reports, Marketing and each report", () => {
