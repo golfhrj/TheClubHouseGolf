@@ -1,9 +1,12 @@
 /**
  * Brand directions the site can be previewed in (see the Rebrand Ideas
- * report). The choice lives on `<html data-brand>`; globals.css swaps the
- * palette and type for each one while the logo stays the same.
+ * report), plus today's chgolfco.com look as the baseline. The choice lives
+ * on `<html data-brand>`; globals.css swaps the palette and type for each
+ * one while the logo stays the same. "existing" has no overrides of its own,
+ * it is simply the default tokens in globals.css.
  */
 export const BRANDS = [
+  { id: "existing", label: "Existing", shortLabel: "Now" },
   { id: "evolve", label: "Evolve", shortLabel: "Evolve" },
   { id: "sunday", label: "Sunday Sessions", shortLabel: "Sunday" },
 ] as const;

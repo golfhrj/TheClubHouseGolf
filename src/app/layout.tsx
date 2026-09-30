@@ -6,7 +6,6 @@ import {
   JetBrains_Mono,
   Manrope,
 } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { CursorProvider } from "@/components/cursor-provider";
 import { SiteLoader } from "@/components/site-loader";
@@ -154,16 +153,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${fraunces.variable} ${manrope.variable} ${bricolage.variable} ${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Plain inline scripts, not next/script: App Router queues
+            beforeInteractive scripts and runs them after the page is first
+            styled, which flashed the default theme and brand (and animated
+            every transition-colors element) on each load. These run while
+            the HTML is parsed, before first paint. */}
+        <script
+          id="pre-paint-init"
+          dangerouslySetInnerHTML={{
+            __html: THEME_INIT_SCRIPT + BRAND_INIT_SCRIPT + LOADER_INIT_SCRIPT,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-ink">
-        <Script id="theme-init" strategy="beforeInteractive">
-          {THEME_INIT_SCRIPT}
-        </Script>
-        <Script id="brand-init" strategy="beforeInteractive">
-          {BRAND_INIT_SCRIPT}
-        </Script>
-        <Script id="loader-init" strategy="beforeInteractive">
-          {LOADER_INIT_SCRIPT}
-        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
