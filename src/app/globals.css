@@ -126,37 +126,6 @@
   --color-highlight: #e9b949;
 }
 
-:root[data-brand="sunday"] {
-  --color-background: #fffdf8;
-  --color-surface: #bfe3f5; /* sky: the direction's signature ground */
-  --color-surface-high: #a9d8ef;
-  --color-border: rgba(27, 35, 64, 0.14);
-  --color-border-subtle: rgba(27, 35, 64, 0.08);
-  --color-ink: #1b2340;
-  --color-ink-muted: #4a5270;
-  --color-ink-faint: #4f5875;
-  --color-brand-green: #1b2340;
-  --color-brand-sage: #4a5270;
-  --color-brand-charcoal: #2a3560;
-  --color-accent: #17632f; /* deep grass, AA on chalk and sky */
-  --color-accent-hover: #145a2a;
-  --color-accent-subtle: rgba(245, 155, 176, 0.18);
-  --color-accent-glow: rgba(245, 155, 176, 0.35);
-  --color-accent-fill: #f59bb0;
-  --color-accent-fill-hover: #f07f99;
-  --color-on-accent-fill: #1b2340;
-  --color-cta: #1b2340;
-  --color-cta-hover: #2a3560;
-  --color-cta-ink: #fffdf8;
-  --color-hairline-on-photo: rgba(255, 253, 248, 0.55);
-  --color-ink-on-photo: #fffdf8;
-  --color-night: #1b2340;
-  --color-on-night: #fffdf8;
-  --color-highlight: #f59bb0;
-  --brand-font-display: var(--font-bricolage);
-  --brand-font-sans: var(--font-dm-sans);
-}
-
 :root[data-brand="evolve"][data-theme="dark"] {
   --color-background: #0b1a15;
   --color-surface: #10231c;
@@ -176,24 +145,44 @@
   --color-night: #0b3024;
 }
 
+/* Sunday Sessions is a daytime palette with no dark variant, so it holds
+   its light look even when the dark theme is on (the theme switch is hidden
+   while it's selected - see the rule below). Roles follow the REBRAND Ideas
+   palette: sky = ground, chalk = cards, navy = text and primary CTA,
+   flamingo = fills and the sun, grass = links and eyebrows. */
+:root[data-brand="sunday"],
 :root[data-brand="sunday"][data-theme="dark"] {
-  --color-background: #111833;
-  --color-surface: #18214a;
-  --color-surface-high: #202a58;
-  --color-border: #2a3462;
-  --color-border-subtle: #1c2550;
-  --color-ink: #fffdf8;
-  --color-ink-muted: #b8bfd9;
-  --color-ink-faint: #959dbd;
-  --color-brand-green: #0b1026;
-  --color-brand-charcoal: #2a3462;
-  --color-accent: #f59bb0;
-  --color-accent-hover: #f7b3c3;
-  --color-accent-subtle: #3a2140;
-  --color-cta: #f59bb0;
-  --color-cta-hover: #f07f99;
-  --color-cta-ink: #1b2340;
-  --color-night: #0b1026;
+  --color-background: #bfe3f5; /* sky */
+  --color-surface: #fffdf8; /* chalk cards */
+  --color-surface-high: #ffffff;
+  --color-border: rgba(27, 35, 64, 0.16);
+  --color-border-subtle: rgba(27, 35, 64, 0.1);
+  --color-ink: #1b2340; /* navy */
+  --color-ink-muted: #4a5270;
+  --color-ink-faint: #4f5875;
+  /* Sky under the hero photo and its wash, so the hero reads as daylight. */
+  --color-brand-green: #bfe3f5;
+  --color-brand-sage: #4a5270;
+  --color-brand-charcoal: #7fa9c2;
+  /* Palette grass #1F7A3A is 3.98:1 on sky; one step darker passes AA. */
+  --color-accent: #17632f;
+  --color-accent-hover: #145a2a;
+  --color-accent-subtle: rgba(245, 155, 176, 0.18);
+  --color-accent-glow: rgba(245, 155, 176, 0.35);
+  --color-accent-fill: #f59bb0; /* flamingo */
+  --color-accent-fill-hover: #f07f99;
+  --color-on-accent-fill: #1b2340;
+  --color-cta: #1b2340;
+  --color-cta-hover: #2a3560;
+  --color-cta-ink: #fffdf8;
+  --color-hairline-on-photo: rgba(27, 35, 64, 0.3);
+  --color-ink-on-photo: #1b2340;
+  --color-night: #1b2340;
+  --color-on-night: #fffdf8;
+  --color-highlight: #f59bb0;
+  --color-success: #1f7a3a;
+  --brand-font-display: var(--font-bricolage);
+  --brand-font-sans: var(--font-dm-sans);
 }
 
 /* Sunday Sessions is rounder and friendlier: pill buttons and chips,
@@ -205,7 +194,19 @@
   border-radius: 20px;
 }
 :root[data-brand="sunday"] .hero-ball {
-  opacity: 0.5;
+  opacity: 0.7;
+}
+/* Heavier sky wash than the other brands' tint, so navy hero text stays AA. */
+:root[data-brand="sunday"] .hero-vignette {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(191, 227, 245, 0.92),
+    rgba(191, 227, 245, 0.74) 45%,
+    rgba(191, 227, 245, 0.95)
+  );
+}
+:root[data-brand="sunday"] .theme-toggle {
+  display: none;
 }
 :root[data-brand="sunday"] .hero-ball .fill-ink-on-photo {
   fill: var(--color-accent-fill);
