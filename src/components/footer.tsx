@@ -26,7 +26,7 @@ export function Footer() {
             </p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="mt-4 inline-block border border-accent bg-accent px-4 py-2.5 text-caption font-semibold uppercase tracking-wide text-[#1A1508] transition-colors hover:bg-accent-hover"
+              className="mt-4 inline-block border border-accent-fill bg-accent-fill px-4 py-2.5 text-caption font-semibold uppercase tracking-wide text-on-accent-fill transition-colors hover:bg-accent-fill-hover"
             >
               Email us
             </a>
@@ -72,7 +72,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center gap-4 border-t border-border-subtle pt-10">
-          <span className="flex items-center gap-2 font-display text-body font-medium uppercase tracking-[0.14em] text-ink">
+          <span className="flex items-center gap-2 font-logo text-body font-medium uppercase tracking-[0.14em] text-ink">
             <BrandMark className="h-5 w-5" />
             Clubhouse Golf
           </span>

@@ -48,14 +48,14 @@ export function RoadAhead() {
   return (
     <section
       id="road-ahead"
-      className="relative overflow-hidden bg-[#0a0b0b] py-20 sm:py-28"
+      className="relative overflow-hidden bg-night py-20 sm:py-28"
     >
       {/* Mowing-stripe texture, echoing the hero fairway */}
       <div
         className="absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(115deg, rgba(245,241,231,0.6) 0px, rgba(245,241,231,0.6) 2px, transparent 2px, transparent 90px)",
+            "repeating-linear-gradient(115deg, color-mix(in srgb, var(--color-on-night) 60%, transparent) 0px, color-mix(in srgb, var(--color-on-night) 60%, transparent) 2px, transparent 2px, transparent 90px)",
         }}
         aria-hidden="true"
       />
@@ -66,16 +66,16 @@ export function RoadAhead() {
         fill="none"
         aria-hidden="true"
       >
-        <circle cx="200" cy="200" r="190" stroke="#F5F1E7" strokeWidth="1" />
-        <circle cx="200" cy="200" r="130" stroke="#F5F1E7" strokeWidth="1" />
-        <circle cx="200" cy="200" r="70" stroke="#C49A43" strokeWidth="1" />
+        <circle className="stroke-on-night" cx="200" cy="200" r="190" strokeWidth="1" />
+        <circle className="stroke-on-night" cx="200" cy="200" r="130" strokeWidth="1" />
+        <circle className="stroke-highlight" cx="200" cy="200" r="70" strokeWidth="1" />
       </svg>
 
       <ScrollReveal className="relative text-center">
-        <p className="text-eyebrow uppercase tracking-[0.3em] text-accent">
+        <p className="text-eyebrow uppercase tracking-[0.3em] text-highlight">
           The road ahead
         </p>
-        <h2 className="mt-4 font-display text-h1 text-[#f5f1e7] text-balance">
+        <h2 className="mt-4 font-display text-h1 text-on-night text-balance">
           Building the Clubhouse, one hole at a time.
         </h2>
       </ScrollReveal>
@@ -88,11 +88,11 @@ export function RoadAhead() {
           className="absolute inset-0 h-full w-full"
           aria-hidden="true"
         >
-          <path
+          <path className="stroke-on-night"
             id="road-path"
             d={PATH_D}
             fill="none"
-            stroke="#f5f1e7"
+           
             strokeOpacity="0.22"
             strokeWidth="0.35"
             strokeDasharray="0.6 1.6"
@@ -101,10 +101,10 @@ export function RoadAhead() {
           {/* Traveling ball - animateMotion moves it exactly along road-path,
               in the same coordinate space, so it never drifts off the line
               regardless of how the SVG gets stretched to fill the section. */}
-          <circle r="1" fill="#C49A43">
+          <circle className="fill-highlight" r="1">
             <animateMotion dur="14s" repeatCount="indefinite" path={PATH_D} />
           </circle>
-          <circle r="1" fill="#C49A43" opacity="0.35">
+          <circle className="fill-highlight" r="1" opacity="0.35">
             <animate
               attributeName="r"
               values="1;2.6;1"
@@ -136,28 +136,28 @@ export function RoadAhead() {
             >
               {!labelBelow && (
                 <div className="mb-3 w-[150px] lg:w-[170px]">
-                  <p className="text-[0.7rem] font-semibold uppercase tracking-wide text-[#f5f1e7]">
+                  <p className="text-[0.7rem] font-semibold uppercase tracking-wide text-on-night">
                     {m.title}
                   </p>
-                  <p className="mt-1 text-[0.68rem] leading-snug text-[#f5f1e7]/50">
+                  <p className="mt-1 text-[0.68rem] leading-snug text-on-night/50">
                     {m.subtitle}
                   </p>
                 </div>
               )}
 
-              <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-accent/50 bg-[#0a0b0b] text-accent shadow-[0_0_0_4px_rgba(10,11,11,1)]">
+              <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-highlight/50 bg-night text-highlight shadow-[0_0_0_4px_var(--color-night)]">
                 <FlagIcon className="h-5 w-5" />
-                <span className="absolute -bottom-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-accent font-mono text-[0.6rem] font-semibold text-[#0a0b0b]">
+                <span className="absolute -bottom-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-accent-fill font-mono text-[0.6rem] font-semibold text-on-accent-fill">
                   {m.hole}
                 </span>
               </div>
 
               {labelBelow && (
                 <div className="mt-3 w-[150px] lg:w-[170px]">
-                  <p className="text-[0.7rem] font-semibold uppercase tracking-wide text-[#f5f1e7]">
+                  <p className="text-[0.7rem] font-semibold uppercase tracking-wide text-on-night">
                     {m.title}
                   </p>
-                  <p className="mt-1 text-[0.68rem] leading-snug text-[#f5f1e7]/50">
+                  <p className="mt-1 text-[0.68rem] leading-snug text-on-night/50">
                     {m.subtitle}
                   </p>
                 </div>
@@ -176,21 +176,21 @@ export function RoadAhead() {
             className="relative flex gap-4 pb-8 last:pb-0"
           >
             <div className="flex flex-col items-center">
-              <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-accent/50 text-accent">
+              <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-highlight/50 text-highlight">
                 <FlagIcon className="h-4 w-4" />
               </div>
               {i < MILESTONES.length - 1 && (
-                <div className="mt-1 w-px flex-1 bg-gradient-to-b from-[#f5f1e7]/25 to-transparent" />
+                <div className="mt-1 w-px flex-1 bg-gradient-to-b from-on-night/25 to-transparent" />
               )}
             </div>
             <div className="pt-1.5">
-              <p className="font-mono text-[0.65rem] text-accent">
+              <p className="font-mono text-[0.65rem] text-highlight">
                 Hole {m.hole}
               </p>
-              <p className="mt-0.5 text-body font-semibold uppercase tracking-wide text-[#f5f1e7]">
+              <p className="mt-0.5 text-body font-semibold uppercase tracking-wide text-on-night">
                 {m.title}
               </p>
-              <p className="mt-1 text-caption text-[#f5f1e7]/50">
+              <p className="mt-1 text-caption text-on-night/50">
                 {m.subtitle}
               </p>
             </div>

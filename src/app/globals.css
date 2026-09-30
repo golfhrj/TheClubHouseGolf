@@ -40,6 +40,19 @@
   --color-warning: #b45309;
   --color-danger: #b91c1c;
 
+  /* Dark feature sections (loader, Launching First, Road Ahead). */
+  --color-night: #0a0b0b;
+  --color-on-night: #f5f1e7;
+  /* Decorative accent on dark/photo grounds - never body text. */
+  --color-highlight: #c49a43;
+  /* Solid accent buttons and badges, and the text that sits on them. */
+  --color-accent-fill: var(--color-accent);
+  --color-accent-fill-hover: var(--color-accent-hover);
+  --color-on-accent-fill: #1a1508;
+
+  --brand-font-display: var(--font-fraunces);
+  --brand-font-sans: var(--font-manrope);
+
   --ease-out-sharp: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -75,6 +88,120 @@
   --color-danger: #dc2626;
 }
 
+/**
+ * Brand directions under review (Reports > Marketing > REBRAND Ideas),
+ * switched by <html data-brand> - see components/brand-toggle.tsx. Only
+ * palette, type and a few shapes change; the logo never does. Dark-theme
+ * blocks come after and are more specific, so they win when both apply.
+ */
+:root[data-brand="evolve"] {
+  --color-background: #ffffff;
+  --color-surface: #f3f5f2;
+  --color-surface-high: #e7ece8;
+  --color-border: rgba(15, 61, 46, 0.14);
+  --color-border-subtle: rgba(15, 61, 46, 0.08);
+  --color-ink: #14201b;
+  --color-ink-muted: #56695e;
+  --color-ink-faint: #5f6e65;
+  --color-brand-green: #0f3d2e;
+  --color-brand-sage: #56695e;
+  --color-brand-charcoal: #1c2b25;
+  /* Flagstick yellow only works on pine, so light-mode accent text is pine. */
+  --color-accent: #0f3d2e;
+  --color-accent-hover: #16513d;
+  --color-accent-subtle: rgba(233, 185, 73, 0.16);
+  --color-accent-glow: rgba(233, 185, 73, 0.3);
+  --color-accent-fill: #e9b949;
+  --color-accent-fill-hover: #d9a935;
+  --color-on-accent-fill: #0f3d2e;
+  --color-cta: #0f3d2e;
+  --color-cta-hover: #16513d;
+  --color-cta-ink: #ffffff;
+  --color-hairline-on-photo: rgba(255, 255, 255, 0.55);
+  --color-ink-on-photo: #ffffff;
+  --color-night: #0f3d2e;
+  --color-on-night: #ffffff;
+  --color-highlight: #e9b949;
+}
+
+:root[data-brand="sunday"] {
+  --color-background: #fffdf8;
+  --color-surface: #eaf5fb;
+  --color-surface-high: #bfe3f5;
+  --color-border: rgba(27, 35, 64, 0.14);
+  --color-border-subtle: rgba(27, 35, 64, 0.08);
+  --color-ink: #1b2340;
+  --color-ink-muted: #4a5270;
+  --color-ink-faint: #5e6680;
+  --color-brand-green: #1b2340;
+  --color-brand-sage: #4a5270;
+  --color-brand-charcoal: #2a3560;
+  --color-accent: #1f7a3a;
+  --color-accent-hover: #17632f;
+  --color-accent-subtle: rgba(245, 155, 176, 0.18);
+  --color-accent-glow: rgba(245, 155, 176, 0.35);
+  --color-accent-fill: #f59bb0;
+  --color-accent-fill-hover: #f07f99;
+  --color-on-accent-fill: #1b2340;
+  --color-cta: #1b2340;
+  --color-cta-hover: #2a3560;
+  --color-cta-ink: #fffdf8;
+  --color-hairline-on-photo: rgba(255, 253, 248, 0.55);
+  --color-ink-on-photo: #fffdf8;
+  --color-night: #1b2340;
+  --color-on-night: #fffdf8;
+  --color-highlight: #f59bb0;
+  --brand-font-display: var(--font-bricolage);
+  --brand-font-sans: var(--font-dm-sans);
+}
+
+:root[data-brand="evolve"][data-theme="dark"] {
+  --color-background: #0b1a15;
+  --color-surface: #10231c;
+  --color-surface-high: #16302a;
+  --color-border: #22352d;
+  --color-border-subtle: #16261f;
+  --color-ink: #f2f5f1;
+  --color-ink-muted: #a9b8af;
+  --color-ink-faint: #8fa096;
+  --color-brand-charcoal: #22352d;
+  --color-accent: #e9b949;
+  --color-accent-hover: #f0c966;
+  --color-accent-subtle: #2a2710;
+  --color-cta: #e9b949;
+  --color-cta-hover: #d9a935;
+  --color-cta-ink: #0f3d2e;
+  --color-night: #0f3d2e;
+}
+
+:root[data-brand="sunday"][data-theme="dark"] {
+  --color-background: #111833;
+  --color-surface: #18214a;
+  --color-surface-high: #202a58;
+  --color-border: #2a3462;
+  --color-border-subtle: #1c2550;
+  --color-ink: #fffdf8;
+  --color-ink-muted: #b8bfd9;
+  --color-ink-faint: #959dbd;
+  --color-brand-green: #0b1026;
+  --color-brand-charcoal: #2a3462;
+  --color-accent: #f59bb0;
+  --color-accent-hover: #f7b3c3;
+  --color-accent-subtle: #3a2140;
+  --color-cta: #f59bb0;
+  --color-cta-hover: #f07f99;
+  --color-cta-ink: #1b2340;
+  --color-night: #0b1026;
+}
+
+/* Sunday Sessions is rounder and friendlier: pill buttons, upright display type. */
+:root[data-brand="sunday"] :is(.bg-cta, .bg-accent-fill) {
+  border-radius: 999px;
+}
+:root[data-brand="sunday"] .font-display.italic {
+  font-style: normal;
+}
+
 @theme inline {
   --color-background: var(--color-background);
   --color-foreground: var(--color-ink);
@@ -98,9 +225,18 @@
   --color-success: var(--color-success);
   --color-warning: var(--color-warning);
   --color-danger: var(--color-danger);
+  --color-night: var(--color-night);
+  --color-on-night: var(--color-on-night);
+  --color-highlight: var(--color-highlight);
+  --color-accent-fill: var(--color-accent-fill);
+  --color-accent-fill-hover: var(--color-accent-fill-hover);
+  --color-on-accent-fill: var(--color-on-accent-fill);
+  --color-ink-on-photo: var(--color-ink-on-photo);
 
-  --font-display: var(--font-fraunces);
-  --font-sans: var(--font-manrope);
+  --font-display: var(--brand-font-display);
+  --font-sans: var(--brand-font-sans);
+  /* The wordmark stays in Fraunces whatever the brand direction. */
+  --font-logo: var(--font-fraunces);
   --font-mono: var(--font-jetbrains-mono);
 
   --text-display: clamp(2.75rem, 5.5vw, 5rem);
