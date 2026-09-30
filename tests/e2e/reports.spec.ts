@@ -169,7 +169,7 @@ test("Marketing section lists every report with its details", async ({
     "href",
     "/TheClubHouseGolf/reports/marketing/rebrand-ideas/",
   );
-  await expect(rebrand).toContainText("A · Clubhouse Modern");
+  await expect(rebrand).toContainText("Clubhouse Golf NYC lookalike");
 });
 
 test("Marketing › REBRAND Ideas shows all four directions", async ({
@@ -195,6 +195,7 @@ test("Marketing › REBRAND Ideas shows all four directions", async ({
     "Yardage Book",
     "Sunday Sessions",
     "Range Data",
+    "Lookalike check: who already looks like this",
     "Recommendation",
   ]) {
     await expect(report.getByRole("heading", { name, exact: true })).toBeVisible();
