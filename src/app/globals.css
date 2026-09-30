@@ -90,7 +90,9 @@
 
 /**
  * Brand directions under review (Reports > Marketing > REBRAND Ideas),
- * switched by <html data-brand> - see components/brand-toggle.tsx. Only
+ * switched by <html data-brand> - see components/brand-toggle.tsx.
+ * data-brand="existing" (today's chgolfco.com look) has no block here: it
+ * uses the :root defaults above. Only
  * palette, type and a few shapes change; the logo never does. Dark-theme
  * blocks come after and are more specific, so they win when both apply.
  */
@@ -119,25 +121,25 @@
   --color-cta-ink: #ffffff;
   --color-hairline-on-photo: rgba(255, 255, 255, 0.55);
   --color-ink-on-photo: #ffffff;
-  --color-night: #0f3d2e;
+  --color-night: #0b3024; /* deeper than pine so 50% captions pass */
   --color-on-night: #ffffff;
   --color-highlight: #e9b949;
 }
 
 :root[data-brand="sunday"] {
   --color-background: #fffdf8;
-  --color-surface: #eaf5fb;
-  --color-surface-high: #bfe3f5;
+  --color-surface: #bfe3f5; /* sky: the direction's signature ground */
+  --color-surface-high: #a9d8ef;
   --color-border: rgba(27, 35, 64, 0.14);
   --color-border-subtle: rgba(27, 35, 64, 0.08);
   --color-ink: #1b2340;
   --color-ink-muted: #4a5270;
-  --color-ink-faint: #5e6680;
+  --color-ink-faint: #4f5875;
   --color-brand-green: #1b2340;
   --color-brand-sage: #4a5270;
   --color-brand-charcoal: #2a3560;
-  --color-accent: #1f7a3a;
-  --color-accent-hover: #17632f;
+  --color-accent: #17632f; /* deep grass, AA on chalk and sky */
+  --color-accent-hover: #145a2a;
   --color-accent-subtle: rgba(245, 155, 176, 0.18);
   --color-accent-glow: rgba(245, 155, 176, 0.35);
   --color-accent-fill: #f59bb0;
@@ -171,7 +173,7 @@
   --color-cta: #e9b949;
   --color-cta-hover: #d9a935;
   --color-cta-ink: #0f3d2e;
-  --color-night: #0f3d2e;
+  --color-night: #0b3024;
 }
 
 :root[data-brand="sunday"][data-theme="dark"] {
@@ -194,9 +196,19 @@
   --color-night: #0b1026;
 }
 
-/* Sunday Sessions is rounder and friendlier: pill buttons, upright display type. */
-:root[data-brand="sunday"] :is(.bg-cta, .bg-accent-fill) {
+/* Sunday Sessions is rounder and friendlier: pill buttons and chips,
+   soft cards, upright display type, and a flamingo sun in the hero. */
+:root[data-brand="sunday"] :is(.bg-cta, .bg-accent-fill, .cat-pill) {
   border-radius: 999px;
+}
+:root[data-brand="sunday"] :is(.shadow-card, .border.bg-surface) {
+  border-radius: 20px;
+}
+:root[data-brand="sunday"] .hero-ball {
+  opacity: 0.5;
+}
+:root[data-brand="sunday"] .hero-ball .fill-ink-on-photo {
+  fill: var(--color-accent-fill);
 }
 :root[data-brand="sunday"] .font-display.italic {
   font-style: normal;

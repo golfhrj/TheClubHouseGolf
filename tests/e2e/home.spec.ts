@@ -137,6 +137,17 @@ test("brand preview switches direction, persists, and keeps the logo", async ({
 
   await page.reload();
   await expect(html).toHaveAttribute("data-brand", "sunday");
+
+  // "Existing" falls back to today's chgolfco.com tokens.
+  await preview.getByRole("button", { name: "Existing" }).click();
+  await expect(html).toHaveAttribute("data-brand", "existing");
+  const accent = await page.evaluate(() =>
+    getComputedStyle(document.documentElement)
+      .getPropertyValue("--color-accent")
+      .trim(),
+  );
+  expect(accent).toBe("#a97f2c");
+  expect(await logoFont()).toBe(evolveLogo);
 });
 
 test("a ?brand= link opens in that direction", async ({ page }) => {

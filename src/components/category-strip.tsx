@@ -24,7 +24,7 @@ const CATEGORIES = [
 
 function Pill({ label }: { label: string }) {
   return (
-    <span className="whitespace-nowrap border border-border bg-background px-3.5 py-2 text-[0.76rem] font-medium text-ink-muted shadow-sm transition-colors hover:border-accent/60 hover:text-ink sm:px-5 sm:py-2.5 sm:text-body">
+    <span className="cat-pill whitespace-nowrap border border-border bg-background px-3.5 py-2 text-[0.76rem] font-medium text-ink-muted shadow-sm transition-colors hover:border-accent/60 hover:text-ink sm:px-5 sm:py-2.5 sm:text-body">
       {label}
     </span>
   );

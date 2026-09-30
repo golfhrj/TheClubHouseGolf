@@ -11,8 +11,9 @@ import {
 } from "@/lib/brand";
 
 /**
- * Floating switch for comparing the two shortlisted brand directions on the
- * real site. It deliberately keeps its own neutral look (and Manrope) so it
+ * Floating switch for comparing today's look with the two shortlisted brand
+ * directions on the real site. On phones it sits above the social links
+ * (bottom-right) so the two never collide. It deliberately keeps its own neutral look (and Manrope) so it
  * reads the same under either brand. The choice is saved and written to
  * `?brand=` so a link opens in the same direction.
  */
@@ -43,7 +44,7 @@ export function BrandToggle() {
     <div
       role="group"
       aria-label="Brand preview"
-      className="fixed bottom-4 left-4 z-40 flex items-center gap-1 rounded-full border border-white/15 bg-[#141614]/92 p-1 font-[family-name:var(--font-manrope)] text-white shadow-lg backdrop-blur-md sm:bottom-6 sm:left-6"
+      className="fixed bottom-[6.5rem] left-4 z-40 flex items-center gap-1 rounded-full border border-white/15 bg-[#141614]/92 p-1 font-[family-name:var(--font-manrope)] text-white shadow-lg backdrop-blur-md sm:bottom-6 sm:left-6"
     >
       <span className="hidden pl-3 pr-1 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white/75 sm:inline">
         Brand preview
@@ -62,7 +63,7 @@ export function BrandToggle() {
                 : "text-white/85 hover:bg-white/10 hover:text-white"
             }`}
           >
-            {/* Short label on phones so the switch clears the social links. */}
+            {/* Short labels on phones keep the three options on one line. */}
             <span className="sm:hidden" aria-hidden="true">
               {b.shortLabel}
             </span>

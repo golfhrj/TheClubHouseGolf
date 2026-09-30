@@ -147,7 +147,7 @@ export function FairwayHeroBg() {
 
       {/* Large soft golf-ball silhouette, bottom right */}
       <svg
-        className="absolute -bottom-24 -right-24 h-[32rem] w-[32rem] opacity-[0.14] sm:h-[40rem] sm:w-[40rem]"
+        className="hero-ball absolute -bottom-24 -right-24 h-[32rem] w-[32rem] opacity-[0.14] sm:h-[40rem] sm:w-[40rem]"
         viewBox="0 0 200 200"
         fill="none"
         aria-hidden="true"
