@@ -79,6 +79,20 @@ export const REPORT_SECTIONS: ReportSection[] = [
         ],
         file: "/reports/marketing/website-feedback-report-2026-09-24.html",
       },
+      {
+        slug: "rebrand-ideas",
+        label: "REBRAND Ideas",
+        title: "Rebrand Ideas",
+        summary:
+          "Four brand directions for Clubhouse Golf - Clubhouse Modern, Yardage Book, Sunday Sessions and Range Data - red-teamed against the brand voice and the live branding of 15 competitors and same-name businesses, with a launch recommendation.",
+        date: "2026-09-30",
+        details: [
+          { label: "Directions", value: "4 concepts, 1 ruled out" },
+          { label: "Launch risk", value: "Clubhouse Golf NYC lookalike" },
+          { label: "Status", value: "Draft v2 - red-teamed" },
+        ],
+        file: "/reports/marketing/rebrand-ideas-2026-09-30.html",
+      },
     ],
   },
 ];

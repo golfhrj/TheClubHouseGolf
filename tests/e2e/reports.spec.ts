@@ -163,6 +163,44 @@ test("Marketing section lists every report with its details", async ({
     "/TheClubHouseGolf/reports/marketing/website-feedback/",
   );
   await expect(feedback).toContainText("5 changes, ~80% of impact");
+
+  const rebrand = page.getByRole("link", { name: /Rebrand Ideas/ });
+  await expect(rebrand).toHaveAttribute(
+    "href",
+    "/TheClubHouseGolf/reports/marketing/rebrand-ideas/",
+  );
+  await expect(rebrand).toContainText("Clubhouse Golf NYC lookalike");
+});
+
+test("Marketing › REBRAND Ideas shows all four directions", async ({
+  page,
+}) => {
+  const failed: string[] = [];
+  page.on("response", (res) => {
+    if (res.status() >= 400) failed.push(`${res.status()} ${res.url()}`);
+  });
+
+  await page.goto("./reports/marketing/strategy/");
+  const reports = page.getByRole("navigation", { name: "Marketing reports" });
+  await reports.getByRole("link", { name: "REBRAND Ideas" }).click();
+  await expect(page).toHaveURL(
+    /\/TheClubHouseGolf\/reports\/marketing\/rebrand-ideas\/$/,
+  );
+  await expect(page).toHaveTitle("Rebrand Ideas - Marketing | Clubhouse Golf");
+
+  const report = page.frameLocator('iframe[title="Rebrand Ideas"]');
+  await expect(report.locator("h1")).toHaveText("Four ways Clubhouse could look");
+  for (const name of [
+    "Clubhouse Modern",
+    "Yardage Book",
+    "Sunday Sessions",
+    "Range Data",
+    "Lookalike check: who already looks like this",
+    "Recommendation",
+  ]) {
+    await expect(report.getByRole("heading", { name, exact: true })).toBeVisible();
+  }
+  expect(failed).toEqual([]);
 });
 
 test("Marketing › Website Feedback leads with the suggested fixes", async ({
