@@ -156,3 +156,22 @@ test("a ?brand= link opens in that direction", async ({ page }) => {
   await page.goto("./?brand=bogus");
   await expect(page.locator("html")).toHaveAttribute("data-brand", "sunday");
 });
+
+test("Sunday Sessions keeps its daytime palette in dark mode", async ({
+  page,
+}) => {
+  await openHome(page);
+  await page.getByRole("button", { name: "Switch to dark theme" }).click();
+  await page.goto("./?brand=sunday");
+  const html = page.locator("html");
+  await expect(html).toHaveAttribute("data-theme", "dark");
+  await expect(html).toHaveAttribute("data-brand", "sunday");
+  // Sky ground and navy ink, not a dark variant.
+  const colors = await page.evaluate(() => ({
+    bg: getComputedStyle(document.body).backgroundColor,
+    ink: getComputedStyle(document.querySelector("h1")!).color,
+  }));
+  expect(colors).toEqual({ bg: "rgb(191, 227, 245)", ink: "rgb(27, 35, 64)" });
+  // The theme switch does nothing under Sunday, so it's hidden.
+  await expect(page.locator(".theme-toggle")).toBeHidden();
+});

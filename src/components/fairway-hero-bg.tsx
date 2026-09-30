@@ -180,7 +180,7 @@ export function FairwayHeroBg() {
       </div>
 
       {/* Vignette for text legibility */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand-green/75 via-brand-green/25 to-brand-green/85" />
+      <div className="hero-vignette pointer-events-none absolute inset-0 bg-gradient-to-b from-brand-green/75 via-brand-green/25 to-brand-green/85" />
     </div>
   );
 }
