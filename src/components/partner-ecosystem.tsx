@@ -49,7 +49,7 @@ export function PartnerEcosystem() {
       <ScrollReveal delay={0.3} className="mt-12 text-center">
         <a
           href="#contact"
-          className="inline-block border border-accent bg-accent px-6 py-3 text-caption font-semibold uppercase tracking-wide text-[#1A1508] transition-colors hover:bg-accent-hover"
+          className="inline-block border border-accent-fill bg-accent-fill px-6 py-3 text-caption font-semibold uppercase tracking-wide text-on-accent-fill transition-colors hover:bg-accent-fill-hover"
         >
           Partner with Clubhouse
         </a>

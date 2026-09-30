@@ -87,7 +87,7 @@ export function Navbar({ solid = false }: { solid?: boolean }) {
           className="pointer-events-auto absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 sm:gap-2.5"
         >
           <BrandMark className="h-5 w-5 sm:h-7 sm:w-7" />
-          <span className="max-w-[10.5rem] truncate font-display text-[0.72rem] font-semibold uppercase tracking-[0.12em] sm:max-w-none sm:text-lg sm:tracking-[0.18em]">
+          <span className="max-w-[10.5rem] truncate font-logo text-[0.72rem] font-semibold uppercase tracking-[0.12em] sm:max-w-none sm:text-lg sm:tracking-[0.18em]">
             Clubhouse Golf
           </span>
         </Link>
@@ -113,7 +113,7 @@ export function Navbar({ solid = false }: { solid?: boolean }) {
             : "border-[color:var(--color-hairline-on-photo)]"
         }`}
       >
-        <nav className="mx-auto flex max-w-6xl items-center gap-3 overflow-x-auto px-4 py-2.5 text-[0.7rem] uppercase tracking-[0.05em] sm:gap-4 sm:px-8 sm:py-3 sm:text-caption sm:tracking-[0.06em]">
+        <nav className="scrollbar-hide mx-auto flex max-w-6xl items-center gap-3 overflow-x-auto px-4 py-2.5 text-[0.7rem] uppercase tracking-[0.05em] sm:gap-4 sm:px-8 sm:py-3 sm:text-caption sm:tracking-[0.06em]">
           {NAV_LINKS.map((l) => {
             const active = !l.href.includes("#") && pathname.startsWith(l.href);
             return (

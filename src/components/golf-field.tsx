@@ -11,17 +11,17 @@ export function GolfField() {
         fill="none"
         aria-hidden="true"
       >
-        <ellipse cx="1150" cy="260" rx="600" ry="420" stroke="#252B28" strokeWidth="1" />
-        <ellipse cx="1150" cy="260" rx="420" ry="290" stroke="#252B28" strokeWidth="1" />
-        <ellipse cx="1150" cy="260" rx="200" ry="130" stroke="#53695C" strokeWidth="1" />
-        <path
+        <ellipse className="stroke-brand-charcoal" cx="1150" cy="260" rx="600" ry="420" strokeWidth="1" />
+        <ellipse className="stroke-brand-charcoal" cx="1150" cy="260" rx="420" ry="290" strokeWidth="1" />
+        <ellipse className="stroke-brand-sage" cx="1150" cy="260" rx="200" ry="130" strokeWidth="1" />
+        <path className="stroke-brand-charcoal"
           d="M300 120 C 620 40, 900 40, 1180 260"
-          stroke="#3a3f38"
+         
           strokeDasharray="2 8"
           strokeWidth="1.4"
         />
-        <circle cx="1180" cy="260" r="5" fill="#C49A43" />
-        <circle cx="300" cy="120" r="3" fill="#53695C" />
+        <circle className="fill-highlight" cx="1180" cy="260" r="5" />
+        <circle className="fill-brand-sage" cx="300" cy="120" r="3" />
       </svg>
 
       {/* Huge, very faint brand mark watermark - subtle texture, never

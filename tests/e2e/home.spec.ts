@@ -108,3 +108,40 @@ test("unknown pages get the 404 page", async ({ page }) => {
   expect(res?.status()).toBe(404);
   await expect(page.getByText(/404|could not be found/i).first()).toBeVisible();
 });
+
+test("brand preview switches direction, persists, and keeps the logo", async ({
+  page,
+}) => {
+  await openHome(page);
+  const html = page.locator("html");
+  const preview = page.getByRole("group", { name: "Brand preview" });
+  const evolve = preview.getByRole("button", { name: "Evolve" });
+  const sunday = preview.getByRole("button", { name: "Sunday Sessions" });
+  const wordmark = page.locator("header a[href$='/']").first();
+  const logoFont = () =>
+    wordmark.locator("span").last().evaluate((el) => getComputedStyle(el).fontFamily);
+  const bodyFont = () =>
+    page.evaluate(() => getComputedStyle(document.body).fontFamily);
+
+  await expect(html).toHaveAttribute("data-brand", "evolve");
+  await expect(evolve).toHaveAttribute("aria-pressed", "true");
+  const evolveLogo = await logoFont();
+  const evolveBody = await bodyFont();
+
+  await sunday.click();
+  await expect(html).toHaveAttribute("data-brand", "sunday");
+  await expect(sunday).toHaveAttribute("aria-pressed", "true");
+  await expect(page).toHaveURL(/[?&]brand=sunday/);
+  expect(await logoFont()).toBe(evolveLogo);
+  expect(await bodyFont()).not.toBe(evolveBody);
+
+  await page.reload();
+  await expect(html).toHaveAttribute("data-brand", "sunday");
+});
+
+test("a ?brand= link opens in that direction", async ({ page }) => {
+  await page.goto("./?brand=sunday");
+  await expect(page.locator("html")).toHaveAttribute("data-brand", "sunday");
+  await page.goto("./?brand=bogus");
+  await expect(page.locator("html")).toHaveAttribute("data-brand", "sunday");
+});

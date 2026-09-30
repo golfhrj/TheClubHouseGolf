@@ -72,7 +72,7 @@ export default function Home() {
                 </p>
                 <a
                   href="#contact"
-                  className="whitespace-nowrap rounded-md bg-accent px-6 py-3 text-center text-caption font-semibold text-black transition-colors hover:bg-accent-hover sm:text-body"
+                  className="whitespace-nowrap rounded-md bg-accent-fill px-6 py-3 text-center text-caption font-semibold text-on-accent-fill transition-colors hover:bg-accent-fill-hover sm:text-body"
                 >
                   Get in touch
                 </a>

@@ -144,13 +144,13 @@ export function SiteLoader() {
       ref={overlayRef}
       id="site-loader"
       data-active={active ? "1" : "0"}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0a0b0b] data-[active=0]:hidden"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-night data-[active=0]:hidden"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(115deg, rgba(245,241,231,0.6) 0px, rgba(245,241,231,0.6) 2px, transparent 2px, transparent 90px)",
+            "repeating-linear-gradient(115deg, color-mix(in srgb, var(--color-on-night) 60%, transparent) 0px, color-mix(in srgb, var(--color-on-night) 60%, transparent) 2px, transparent 2px, transparent 90px)",
         }}
       />
 
@@ -160,10 +160,10 @@ export function SiteLoader() {
         className="h-[42vh] w-[92vw] max-w-2xl"
         aria-hidden="true"
       >
-        <path
+        <path className="stroke-on-night"
           d={PATH_D}
           fill="none"
-          stroke="#f5f1e7"
+         
           strokeOpacity="0.2"
           strokeWidth="0.4"
           strokeDasharray="0.8 1.8"
@@ -171,42 +171,42 @@ export function SiteLoader() {
         />
 
         {/* Tee marker - where the ball starts */}
-        <circle
+        <circle className="stroke-on-night"
           cx="8"
           cy="56"
           r="0.9"
           fill="none"
-          stroke="#f5f1e7"
+         
           strokeOpacity="0.35"
           strokeWidth="0.3"
         />
 
         {/* Hole + flag */}
-        <ellipse
+        <ellipse className="fill-night stroke-highlight"
           cx={HOLE.x}
           cy={HOLE.y + 1.5}
           rx="2.6"
           ry="1"
-          fill="#0a0b0b"
-          stroke="#C49A43"
+         
+         
           strokeWidth="0.35"
         />
-        <line
+        <line className="stroke-on-night"
           x1={HOLE.x - 0.2}
           y1={HOLE.y - 12}
           x2={HOLE.x - 0.2}
           y2={HOLE.y + 1.2}
-          stroke="#f5f1e7"
+         
           strokeWidth="0.4"
           strokeLinecap="round"
         />
-        <path
+        <path className="fill-highlight"
           d={`M${HOLE.x - 0.2} ${HOLE.y - 12} L${HOLE.x + 4.2} ${HOLE.y - 10.5} L${HOLE.x - 0.2} ${HOLE.y - 9} Z`}
-          fill="#C49A43"
+         
         />
 
         {/* Ball - flies the path, then plops into the hole */}
-        <circle r="1.15" fill="#f5f1e7">
+        <circle className="fill-on-night" r="1.15">
           <animateMotion
             ref={ballMotionRef}
             id="loaderMotion"
@@ -233,10 +233,10 @@ export function SiteLoader() {
       </svg>
 
       <div className="mt-8 text-center">
-        <p className="font-mono text-[2.75rem] font-semibold tabular-nums tracking-widest text-accent">
+        <p className="font-mono text-[2.75rem] font-semibold tabular-nums tracking-widest text-highlight">
           {progress}%
         </p>
-        <p className="mt-2 text-[0.68rem] uppercase tracking-[0.3em] text-[#f5f1e7]/55">
+        <p className="mt-2 text-[0.68rem] uppercase tracking-[0.3em] text-on-night/55">
           Teeing off
         </p>
       </div>
@@ -244,7 +244,7 @@ export function SiteLoader() {
       <button
         type="button"
         onClick={skip}
-        className="absolute bottom-6 right-6 text-[0.65rem] uppercase tracking-[0.2em] text-[#f5f1e7]/40 transition-colors hover:text-[#f5f1e7]/80"
+        className="absolute bottom-6 right-6 text-[0.65rem] uppercase tracking-[0.2em] text-on-night/40 transition-colors hover:text-on-night/80"
       >
         Skip
       </button>

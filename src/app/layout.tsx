@@ -1,9 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Manrope, JetBrains_Mono } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  DM_Sans,
+  Fraunces,
+  JetBrains_Mono,
+  Manrope,
+} from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { CursorProvider } from "@/components/cursor-provider";
 import { SiteLoader } from "@/components/site-loader";
+import { BrandToggle } from "@/components/brand-toggle";
+import { BRAND_INIT_SCRIPT, DEFAULT_BRAND } from "@/lib/brand";
 import { asset, siteUrl } from "@/lib/site";
 
 const fraunces = Fraunces({
@@ -17,6 +25,19 @@ const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+});
+
+// Sunday Sessions brand direction (see lib/brand.ts).
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -129,12 +150,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${manrope.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      data-brand={DEFAULT_BRAND}
+      className={`${fraunces.variable} ${manrope.variable} ${bricolage.variable} ${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-ink">
         <Script id="theme-init" strategy="beforeInteractive">
           {THEME_INIT_SCRIPT}
+        </Script>
+        <Script id="brand-init" strategy="beforeInteractive">
+          {BRAND_INIT_SCRIPT}
         </Script>
         <Script id="loader-init" strategy="beforeInteractive">
           {LOADER_INIT_SCRIPT}
@@ -148,6 +173,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <CursorProvider />
         <SiteLoader />
         {children}
+        <BrandToggle />
       </body>
     </html>
   );

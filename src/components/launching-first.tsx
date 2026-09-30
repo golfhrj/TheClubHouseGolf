@@ -90,24 +90,24 @@ const COLUMNS = [
 
 export function LaunchingFirst() {
   return (
-    <section className="relative overflow-hidden bg-[#0a0b0b] py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-night py-20 sm:py-28">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(115deg, rgba(245,241,231,0.6) 0px, rgba(245,241,231,0.6) 2px, transparent 2px, transparent 90px)",
+            "repeating-linear-gradient(115deg, color-mix(in srgb, var(--color-on-night) 60%, transparent) 0px, color-mix(in srgb, var(--color-on-night) 60%, transparent) 2px, transparent 2px, transparent 90px)",
         }}
       />
 
       <div className="relative mx-auto max-w-5xl scroll-mt-32 px-4 text-center sm:px-10">
         <ScrollReveal>
-          <p className="text-eyebrow uppercase tracking-widest text-accent">
+          <p className="text-eyebrow uppercase tracking-widest text-highlight">
             What we&apos;re launching first
           </p>
-          <h2 className="mt-4 font-display text-h1 text-[#f5f1e7] text-balance">
+          <h2 className="mt-4 font-display text-h1 text-on-night text-balance">
             Start here.
           </h2>
-          <p className="mx-auto mt-3 max-w-md text-body text-[#f5f1e7]/70">
+          <p className="mx-auto mt-3 max-w-md text-body text-on-night/70">
             Our first job is simple: make golf easier to navigate.
           </p>
         </ScrollReveal>
@@ -123,16 +123,16 @@ export function LaunchingFirst() {
                 className={`text-left ${isLastOdd ? "col-span-2 mx-auto w-1/2 min-w-[10rem] sm:col-span-1 sm:mx-0 sm:w-auto" : ""}`}
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-accent/40 text-accent">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-highlight/40 text-highlight">
                     <div className="h-4.5 w-4.5">{c.icon}</div>
                   </div>
-                  <h3 className="font-display text-h3 text-[#f5f1e7]">
+                  <h3 className="font-display text-h3 text-on-night">
                     {c.title}
                   </h3>
                 </div>
-                <ul className="mt-4 flex flex-col gap-1.5 border-t border-[#f5f1e7]/15 pt-4">
+                <ul className="mt-4 flex flex-col gap-1.5 border-t border-on-night/15 pt-4">
                   {c.items.map((item) => (
-                    <li key={item} className="text-caption text-[#f5f1e7]/65">
+                    <li key={item} className="text-caption text-on-night/65">
                       {item}
                     </li>
                   ))}
