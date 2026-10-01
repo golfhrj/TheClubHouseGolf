@@ -11,10 +11,10 @@ import {
 } from "@/lib/brand";
 
 /**
- * Floating switch for comparing today's look with the two shortlisted brand
- * directions on the real site. On phones it sits above the social links
+ * Floating switch for comparing today's look with the brand directions
+ * under review on the real site. On phones it sits above the social links
  * (bottom-right) so the two never collide. It deliberately keeps its own neutral look (and Manrope) so it
- * reads the same under either brand. The choice is saved and written to
+ * reads the same under every brand. The choice is saved and written to
  * `?brand=` so a link opens in the same direction.
  */
 export function BrandToggle() {
@@ -63,7 +63,7 @@ export function BrandToggle() {
                 : "text-white/85 hover:bg-white/10 hover:text-white"
             }`}
           >
-            {/* Short labels on phones keep the three options on one line. */}
+            {/* Short labels on phones keep every option on one line. */}
             <span className="sm:hidden" aria-hidden="true">
               {b.shortLabel}
             </span>

@@ -175,3 +175,34 @@ test("Sunday Sessions keeps its daytime palette in dark mode", async ({
   // The theme switch does nothing under Sunday, so it's hidden.
   await expect(page.locator(".theme-toggle")).toBeHidden();
 });
+
+test("GolfMerce uses its emerald palette and DM Sans, with a dark variant", async ({
+  page,
+}) => {
+  await page.goto("./?brand=golfmerce");
+  const html = page.locator("html");
+  await expect(html).toHaveAttribute("data-brand", "golfmerce");
+  await expect(
+    page
+      .getByRole("group", { name: "Brand preview" })
+      .getByRole("button", { name: "GolfMerce" }),
+  ).toHaveAttribute("aria-pressed", "true");
+  const token = (name: string) =>
+    page.evaluate(
+      (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim(),
+      name,
+    );
+  expect(await token("--color-accent")).toBe("#006646");
+  expect(await token("--color-cta")).toBe("#15800a");
+  const h1 = await page.evaluate(() => {
+    const s = getComputedStyle(document.querySelector("h1")!);
+    return { font: s.fontFamily, weight: s.fontWeight };
+  });
+  expect(h1.font).toMatch(/DM Sans/i);
+  expect(h1.weight).toBe("900");
+
+  // Unlike Sunday Sessions, GolfMerce keeps the theme switch.
+  await page.getByRole("button", { name: "Switch to dark theme" }).click();
+  await expect(html).toHaveAttribute("data-theme", "dark");
+  expect(await token("--color-cta")).toBe("#00cc8c");
+});
