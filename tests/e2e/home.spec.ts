@@ -119,7 +119,10 @@ test("brand preview switches direction, persists, and keeps the logo", async ({
   const sunday = preview.getByRole("button", { name: "Sunday Sessions" });
   const wordmark = page.locator("header a[href$='/']").first();
   const logoFont = () =>
-    wordmark.locator("span").last().evaluate((el) => getComputedStyle(el).fontFamily);
+    wordmark
+      .locator("span")
+      .last()
+      .evaluate((el) => getComputedStyle(el).fontFamily);
   const bodyFont = () =>
     page.evaluate(() => getComputedStyle(document.body).fontFamily);
 
@@ -176,33 +179,67 @@ test("Sunday Sessions keeps its daytime palette in dark mode", async ({
   await expect(page.locator(".theme-toggle")).toBeHidden();
 });
 
-test("GolfMerce uses its emerald palette and DM Sans, with a dark variant", async ({
+test("GolfMerce keeps the Existing palette with a storefront layout", async ({
   page,
 }) => {
   await page.goto("./?brand=golfmerce");
   const html = page.locator("html");
   await expect(html).toHaveAttribute("data-brand", "golfmerce");
-  await expect(
-    page
-      .getByRole("group", { name: "Brand preview" })
-      .getByRole("button", { name: "GolfMerce" }),
-  ).toHaveAttribute("aria-pressed", "true");
   const token = (name: string) =>
     page.evaluate(
-      (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim(),
+      (n) =>
+        getComputedStyle(document.documentElement).getPropertyValue(n).trim(),
       name,
     );
-  expect(await token("--color-accent")).toBe("#006646");
-  expect(await token("--color-cta")).toBe("#15800a");
-  const h1 = await page.evaluate(() => {
-    const s = getComputedStyle(document.querySelector("h1")!);
-    return { font: s.fontFamily, weight: s.fontWeight };
-  });
-  expect(h1.font).toMatch(/DM Sans/i);
-  expect(h1.weight).toBe("900");
+  expect(await token("--color-accent")).toBe("#a97f2c");
 
-  // Unlike Sunday Sessions, GolfMerce keeps the theme switch.
-  await page.getByRole("button", { name: "Switch to dark theme" }).click();
-  await expect(html).toHaveAttribute("data-theme", "dark");
-  expect(await token("--color-cta")).toBe("#00cc8c");
+  // The storefront layout replaces the standard one - one of each section.
+  const search = page
+    .getByRole("searchbox", { name: "Search categories" })
+    .first();
+  await expect(search).toBeVisible();
+  await expect(page.locator("h1")).toHaveCount(1);
+  for (const id of ["course", "catalogue", "whats-coming", "team", "contact"]) {
+    await expect(page.locator(`#${id}`)).toHaveCount(1);
+  }
+  const h1Font = await page.evaluate(
+    () => getComputedStyle(document.querySelector("h1")!).fontFamily,
+  );
+  expect(h1Font).toMatch(/DM Sans/i);
+
+  // Search filters the category tiles, with an empty state.
+  const tiles = page.locator("#catalogue li");
+  await search.fill("putt");
+  await expect(tiles).toHaveCount(1);
+  await expect(tiles).toHaveText("Putters");
+  await search.fill("zzz");
+  await expect(page.getByText(/Nothing matches yet/)).toBeVisible();
+  await page.getByRole("button", { name: "Clear" }).click();
+  await expect(tiles).toHaveCount(20);
+
+  // Carousel arrows start at the left edge.
+  const back = page.getByRole("button", { name: "Scroll what's coming back" });
+  const forward = page.getByRole("button", {
+    name: "Scroll what's coming forward",
+  });
+  await expect(back).toBeDisabled();
+  await forward.click();
+  await expect(back).toBeEnabled();
+
+  // Switching brand swaps back to the standard layout.
+  await page
+    .getByRole("group", { name: "Brand preview" })
+    .getByRole("button", { name: "Evolve" })
+    .click();
+  await expect(
+    page.getByRole("searchbox", { name: "Search categories" }),
+  ).toHaveCount(0);
+  await expect(page.locator("#course")).toHaveCount(1);
+});
+
+test("a GolfMerce #hash link lands on that section", async ({ page }) => {
+  await page.goto("./?brand=golfmerce#whats-coming");
+  await expect(
+    page.getByRole("heading", { name: "What's Coming", level: 2 }),
+  ).toBeInViewport();
 });
