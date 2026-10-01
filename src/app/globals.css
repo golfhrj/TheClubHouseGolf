@@ -215,59 +215,30 @@
   font-style: normal;
 }
 
-/* GolfMerce, modelled on golfmerce.com: white ground, mint-grey cards,
-   emerald #006646 for links and accents, grass green for the primary CTA,
-   mint #00CC8C fills and #86EFAC highlights on the deep-green hero.
-   GolfMerce's own CTA green #1A920A is 4.07:1 under white text, so the
-   CTA is one step darker (#15800A, 5.09:1). DM Sans throughout. */
+/* GolfMerce keeps the Existing palette (the :root tokens) and takes
+   golfmerce.com's layout and type: on the home page it swaps in a
+   storefront-style layout (components/golfmerce), and everywhere it sets
+   DM Sans throughout. */
 :root[data-brand="golfmerce"] {
-  --color-background: #ffffff;
-  --color-surface: #f2f5f3;
-  --color-surface-high: #e6ede8;
-  --color-border: rgba(0, 76, 51, 0.14);
-  --color-border-subtle: rgba(0, 76, 51, 0.08);
-  --color-ink: #1a1c1c;
-  --color-ink-muted: #3f4943;
-  --color-ink-faint: #5b6660;
-  --color-brand-green: #004c33;
-  --color-brand-sage: #3f4943;
-  --color-brand-charcoal: #04422f;
-  --color-accent: #006646;
-  --color-accent-hover: #004c33;
-  --color-accent-subtle: rgba(0, 204, 140, 0.12);
-  --color-accent-glow: rgba(0, 204, 140, 0.28);
-  --color-accent-fill: #00cc8c;
-  --color-accent-fill-hover: #00b47c;
-  --color-on-accent-fill: #00301f;
-  --color-cta: #15800a;
-  --color-cta-hover: #116b08;
-  --color-cta-ink: #ffffff;
-  --color-hairline-on-photo: rgba(255, 255, 255, 0.55);
-  --color-ink-on-photo: #ffffff;
-  --color-night: #04422f;
-  --color-on-night: #ffffff;
-  --color-highlight: #86efac;
-  --color-success: #15800a;
   --brand-font-display: var(--font-dm-sans);
   --brand-font-sans: var(--font-dm-sans);
 }
-
-:root[data-brand="golfmerce"][data-theme="dark"] {
-  --color-background: #07140f;
-  --color-surface: #0c1f17;
-  --color-surface-high: #12291f;
-  --color-border: #1d3a2d;
-  --color-border-subtle: #13281f;
-  --color-ink: #eef3ef;
-  --color-ink-muted: #a3b3aa;
-  --color-ink-faint: #8a9a91;
-  --color-brand-charcoal: #1d3a2d;
-  --color-accent: #00cc8c;
-  --color-accent-hover: #1fdc9f;
-  --color-accent-subtle: #0d2a20;
-  --color-cta: #00cc8c;
-  --color-cta-hover: #1fdc9f;
-  --color-cta-ink: #062a1d;
+/* The static HTML holds the standard home layout; hide it before first
+   paint so it doesn't flash before the GolfMerce layout mounts. */
+:root[data-brand="golfmerce"] .brand-default-layout {
+  visibility: hidden;
+}
+/* GolfMerce's deep-green footer, in the Existing green: re-point the ink
+   tokens inside it so the shared footer markup reads light-on-dark. */
+:root[data-brand="golfmerce"] footer {
+  background: var(--color-brand-green);
+  border-color: transparent;
+  --color-ink: #f5f1e7;
+  --color-ink-muted: rgba(245, 241, 231, 0.8);
+  --color-ink-faint: rgba(245, 241, 231, 0.7);
+  --color-border: rgba(245, 241, 231, 0.18);
+  --color-border-subtle: rgba(245, 241, 231, 0.14);
+  --color-accent: var(--color-highlight);
 }
 
 /* GolfMerce is heavy, upright and tightly set: Black-weight display type,
