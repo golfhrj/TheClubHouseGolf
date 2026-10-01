@@ -9,6 +9,8 @@ export const BRANDS = [
   { id: "existing", label: "Existing", shortLabel: "Now" },
   { id: "evolve", label: "Evolve", shortLabel: "Evolve" },
   { id: "sunday", label: "Sunday Sessions", shortLabel: "Sunday" },
+  // Modelled on golfmerce.com (emerald + grass green, DM Sans Black).
+  { id: "golfmerce", label: "GolfMerce", shortLabel: "GM" },
 ] as const;
 
 export type BrandId = (typeof BRANDS)[number]["id"];

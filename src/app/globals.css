@@ -215,6 +215,81 @@
   font-style: normal;
 }
 
+/* GolfMerce, modelled on golfmerce.com: white ground, mint-grey cards,
+   emerald #006646 for links and accents, grass green for the primary CTA,
+   mint #00CC8C fills and #86EFAC highlights on the deep-green hero.
+   GolfMerce's own CTA green #1A920A is 4.07:1 under white text, so the
+   CTA is one step darker (#15800A, 5.09:1). DM Sans throughout. */
+:root[data-brand="golfmerce"] {
+  --color-background: #ffffff;
+  --color-surface: #f2f5f3;
+  --color-surface-high: #e6ede8;
+  --color-border: rgba(0, 76, 51, 0.14);
+  --color-border-subtle: rgba(0, 76, 51, 0.08);
+  --color-ink: #1a1c1c;
+  --color-ink-muted: #3f4943;
+  --color-ink-faint: #5b6660;
+  --color-brand-green: #004c33;
+  --color-brand-sage: #3f4943;
+  --color-brand-charcoal: #04422f;
+  --color-accent: #006646;
+  --color-accent-hover: #004c33;
+  --color-accent-subtle: rgba(0, 204, 140, 0.12);
+  --color-accent-glow: rgba(0, 204, 140, 0.28);
+  --color-accent-fill: #00cc8c;
+  --color-accent-fill-hover: #00b47c;
+  --color-on-accent-fill: #00301f;
+  --color-cta: #15800a;
+  --color-cta-hover: #116b08;
+  --color-cta-ink: #ffffff;
+  --color-hairline-on-photo: rgba(255, 255, 255, 0.55);
+  --color-ink-on-photo: #ffffff;
+  --color-night: #04422f;
+  --color-on-night: #ffffff;
+  --color-highlight: #86efac;
+  --color-success: #15800a;
+  --brand-font-display: var(--font-dm-sans);
+  --brand-font-sans: var(--font-dm-sans);
+}
+
+:root[data-brand="golfmerce"][data-theme="dark"] {
+  --color-background: #07140f;
+  --color-surface: #0c1f17;
+  --color-surface-high: #12291f;
+  --color-border: #1d3a2d;
+  --color-border-subtle: #13281f;
+  --color-ink: #eef3ef;
+  --color-ink-muted: #a3b3aa;
+  --color-ink-faint: #8a9a91;
+  --color-brand-charcoal: #1d3a2d;
+  --color-accent: #00cc8c;
+  --color-accent-hover: #1fdc9f;
+  --color-accent-subtle: #0d2a20;
+  --color-cta: #00cc8c;
+  --color-cta-hover: #1fdc9f;
+  --color-cta-ink: #062a1d;
+}
+
+/* GolfMerce is heavy, upright and tightly set: Black-weight display type,
+   10px buttons (its "Start Shopping" shape), 16px cards, pill chips. */
+:root[data-brand="golfmerce"] .font-display {
+  font-weight: 800;
+  font-style: normal;
+  letter-spacing: -0.02em;
+}
+:root[data-brand="golfmerce"] h1.font-display {
+  font-weight: 900;
+}
+:root[data-brand="golfmerce"] :is(.bg-cta, .bg-accent-fill) {
+  border-radius: 10px;
+}
+:root[data-brand="golfmerce"] .cat-pill {
+  border-radius: 999px;
+}
+:root[data-brand="golfmerce"] :is(.shadow-card, .border.bg-surface) {
+  border-radius: 16px;
+}
+
 @theme inline {
   --color-background: var(--color-background);
   --color-foreground: var(--color-ink);
