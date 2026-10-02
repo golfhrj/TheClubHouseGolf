@@ -75,44 +75,49 @@ export function FairwayHeroBg() {
         fill="none"
         aria-hidden="true"
       >
-        <ellipse className="stroke-ink-on-photo"
+        <ellipse
+          className="stroke-ink-on-photo"
           cx="1150"
           cy="230"
           rx="620"
           ry="440"
-         
+
           strokeOpacity="0.18"
           strokeWidth="1"
         />
-        <ellipse className="stroke-ink-on-photo"
+        <ellipse
+          className="stroke-ink-on-photo"
           cx="1150"
           cy="230"
           rx="430"
           ry="300"
-         
+
           strokeOpacity="0.22"
           strokeWidth="1"
         />
-        <ellipse className="stroke-highlight"
+        <ellipse
+          className="stroke-highlight"
           cx="1150"
           cy="230"
           rx="210"
           ry="140"
-         
+
           strokeOpacity="0.4"
           strokeWidth="1"
         />
         {/* Dotted flight path, tee (top-left club) arcing toward the ball (bottom-right) */}
-        <path className="stroke-ink-on-photo"
+        <path
+          className="stroke-ink-on-photo"
           d="M150 140 C 480 60, 850 220, 1160 560"
-         
+
           strokeOpacity="0.2"
           strokeDasharray="2 8"
           strokeWidth="1.4"
         />
-        <path className="stroke-ink-on-photo"
+        <path
+          className="stroke-ink-on-photo"
           d="M260 760 C 620 900, 900 900, 1150 660"
-         
+
           strokeOpacity="0.16"
           strokeDasharray="2 8"
           strokeWidth="1.4"
@@ -126,20 +131,22 @@ export function FairwayHeroBg() {
         fill="none"
         aria-hidden="true"
       >
-        <line className="stroke-ink-on-photo"
+        <line
+          className="stroke-ink-on-photo"
           x1="30"
           y1="12"
           x2="150"
           y2="132"
-         
+
           strokeWidth="3.5"
           strokeLinecap="round"
         />
         <circle className="fill-ink-on-photo" cx="30" cy="12" r="7" />
-        <path className="stroke-ink-on-photo"
+        <path
+          className="stroke-ink-on-photo"
           d="M146 126 L182 141 Q190 152 180 161 Q170 168 162 160 L142 136 Z"
           fill="none"
-         
+
           strokeWidth="3.5"
           strokeLinejoin="round"
         />
@@ -161,12 +168,13 @@ export function FairwayHeroBg() {
             const dy = cy - 100;
             if (Math.sqrt(dx * dx + dy * dy) > 85) return null;
             return (
-              <circle className="fill-brand-green"
+              <circle
+                className="fill-brand-green"
                 key={`${row}-${col}`}
                 cx={cx}
                 cy={cy}
                 r="4.5"
-               
+
                 opacity="0.5"
               />
             );

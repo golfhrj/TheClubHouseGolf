@@ -160,10 +160,11 @@ export function SiteLoader() {
         className="h-[42vh] w-[92vw] max-w-2xl"
         aria-hidden="true"
       >
-        <path className="stroke-on-night"
+        <path
+          className="stroke-on-night"
           d={PATH_D}
           fill="none"
-         
+
           strokeOpacity="0.2"
           strokeWidth="0.4"
           strokeDasharray="0.8 1.8"
@@ -171,38 +172,40 @@ export function SiteLoader() {
         />
 
         {/* Tee marker - where the ball starts */}
-        <circle className="stroke-on-night"
+        <circle
+          className="stroke-on-night"
           cx="8"
           cy="56"
           r="0.9"
           fill="none"
-         
+
           strokeOpacity="0.35"
           strokeWidth="0.3"
         />
 
         {/* Hole + flag */}
-        <ellipse className="fill-night stroke-highlight"
+        <ellipse
+          className="fill-night stroke-highlight"
           cx={HOLE.x}
           cy={HOLE.y + 1.5}
           rx="2.6"
           ry="1"
-         
-         
+
           strokeWidth="0.35"
         />
-        <line className="stroke-on-night"
+        <line
+          className="stroke-on-night"
           x1={HOLE.x - 0.2}
           y1={HOLE.y - 12}
           x2={HOLE.x - 0.2}
           y2={HOLE.y + 1.2}
-         
+
           strokeWidth="0.4"
           strokeLinecap="round"
         />
-        <path className="fill-highlight"
+        <path
+          className="fill-highlight"
           d={`M${HOLE.x - 0.2} ${HOLE.y - 12} L${HOLE.x + 4.2} ${HOLE.y - 10.5} L${HOLE.x - 0.2} ${HOLE.y - 9} Z`}
-         
         />
 
         {/* Ball - flies the path, then plops into the hole */}

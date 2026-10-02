@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { BRANDS, DEFAULT_BRAND, isBrand, resolveBrand } from "../../src/lib/brand";
+import {
+  BRANDS,
+  DEFAULT_BRAND,
+  isBrand,
+  resolveBrand,
+} from "../../src/lib/brand";
 
 describe("brand directions", () => {
   it("offers Existing, Evolve, Sunday Sessions and GolfMerce, defaulting to Evolve", () => {

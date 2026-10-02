@@ -18,14 +18,23 @@ type Props = {
 };
 
 /** Fades + rises children into view as they cross into the viewport. */
-export function ScrollReveal({ children, className, y = 28, delay = 0, as = "div", id }: Props) {
+export function ScrollReveal({
+  children,
+  className,
+  y = 28,
+  delay = 0,
+  as = "div",
+  id,
+}: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const Tag = as as React.ElementType;
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (reduced) {
       gsap.set(el, { opacity: 1, y: 0 });
       return;

@@ -66,9 +66,27 @@ export function RoadAhead() {
         fill="none"
         aria-hidden="true"
       >
-        <circle className="stroke-on-night" cx="200" cy="200" r="190" strokeWidth="1" />
-        <circle className="stroke-on-night" cx="200" cy="200" r="130" strokeWidth="1" />
-        <circle className="stroke-highlight" cx="200" cy="200" r="70" strokeWidth="1" />
+        <circle
+          className="stroke-on-night"
+          cx="200"
+          cy="200"
+          r="190"
+          strokeWidth="1"
+        />
+        <circle
+          className="stroke-on-night"
+          cx="200"
+          cy="200"
+          r="130"
+          strokeWidth="1"
+        />
+        <circle
+          className="stroke-highlight"
+          cx="200"
+          cy="200"
+          r="70"
+          strokeWidth="1"
+        />
       </svg>
 
       <ScrollReveal className="relative text-center">
@@ -88,11 +106,12 @@ export function RoadAhead() {
           className="absolute inset-0 h-full w-full"
           aria-hidden="true"
         >
-          <path className="stroke-on-night"
+          <path
+            className="stroke-on-night"
             id="road-path"
             d={PATH_D}
             fill="none"
-           
+
             strokeOpacity="0.22"
             strokeWidth="0.35"
             strokeDasharray="0.6 1.6"
@@ -190,9 +209,7 @@ export function RoadAhead() {
               <p className="mt-0.5 text-body font-semibold uppercase tracking-wide text-on-night">
                 {m.title}
               </p>
-              <p className="mt-1 text-caption text-on-night/50">
-                {m.subtitle}
-              </p>
+              <p className="mt-1 text-caption text-on-night/50">{m.subtitle}</p>
             </div>
           </ScrollReveal>
         ))}
