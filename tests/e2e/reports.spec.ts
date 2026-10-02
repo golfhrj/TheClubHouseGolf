@@ -189,7 +189,9 @@ test("Marketing › REBRAND Ideas shows all four directions", async ({
   await expect(page).toHaveTitle("Rebrand Ideas - Marketing | Clubhouse Golf");
 
   const report = page.frameLocator('iframe[title="Rebrand Ideas"]');
-  await expect(report.locator("h1")).toHaveText("Four ways Clubhouse could look");
+  await expect(report.locator("h1")).toHaveText(
+    "Four ways Clubhouse could look",
+  );
   for (const name of [
     "Clubhouse Modern",
     "Yardage Book",
@@ -198,7 +200,9 @@ test("Marketing › REBRAND Ideas shows all four directions", async ({
     "Lookalike check: who already looks like this",
     "Recommendation",
   ]) {
-    await expect(report.getByRole("heading", { name, exact: true })).toBeVisible();
+    await expect(
+      report.getByRole("heading", { name, exact: true }),
+    ).toBeVisible();
   }
   expect(failed).toEqual([]);
 });

@@ -11,12 +11,34 @@ export function GolfField() {
         fill="none"
         aria-hidden="true"
       >
-        <ellipse className="stroke-brand-charcoal" cx="1150" cy="260" rx="600" ry="420" strokeWidth="1" />
-        <ellipse className="stroke-brand-charcoal" cx="1150" cy="260" rx="420" ry="290" strokeWidth="1" />
-        <ellipse className="stroke-brand-sage" cx="1150" cy="260" rx="200" ry="130" strokeWidth="1" />
-        <path className="stroke-brand-charcoal"
+        <ellipse
+          className="stroke-brand-charcoal"
+          cx="1150"
+          cy="260"
+          rx="600"
+          ry="420"
+          strokeWidth="1"
+        />
+        <ellipse
+          className="stroke-brand-charcoal"
+          cx="1150"
+          cy="260"
+          rx="420"
+          ry="290"
+          strokeWidth="1"
+        />
+        <ellipse
+          className="stroke-brand-sage"
+          cx="1150"
+          cy="260"
+          rx="200"
+          ry="130"
+          strokeWidth="1"
+        />
+        <path
+          className="stroke-brand-charcoal"
           d="M300 120 C 620 40, 900 40, 1180 260"
-         
+
           strokeDasharray="2 8"
           strokeWidth="1.4"
         />
@@ -34,8 +56,21 @@ export function GolfField() {
 /** A single golf flag — used as a section marker / accent icon. */
 export function FlagIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
-      <line x1="5" y1="21" x2="5" y2="3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      aria-hidden="true"
+    >
+      <line
+        x1="5"
+        y1="21"
+        x2="5"
+        y2="3"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
       <path d="M5 4 L18 8 L5 12 Z" fill="currentColor" />
       <circle cx="5" cy="21" r="1.6" fill="currentColor" />
     </svg>
@@ -45,7 +80,12 @@ export function FlagIcon({ className }: { className?: string }) {
 /** A dimpled golf ball icon — used as a bullet / list marker. */
 export function BallIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      aria-hidden="true"
+    >
       <circle cx="12" cy="12" r="9" fill="currentColor" opacity="0.12" />
       <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.2" />
       <circle cx="9" cy="9" r="0.9" fill="currentColor" />
@@ -62,9 +102,22 @@ export function BallIcon({ className }: { className?: string }) {
 /** A golf tee — used as a small decorative divider. */
 export function TeeIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      aria-hidden="true"
+    >
       <path d="M8 4 L16 4 L13.2 10 L10.8 10 Z" fill="currentColor" />
-      <line x1="12" y1="10" x2="12" y2="20" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      <line
+        x1="12"
+        y1="10"
+        x2="12"
+        y2="20"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
