@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Golfer Personas &amp; Caddy AI Application</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#F6F8F5; --surface:#FFFFFF; --surface-2:#F0F3EE;
+  --ink:#15201A; --ink-2:#5B675E; --ink-3:#8A958C;
+  --line:#DDE3DB; --line-2:#C9D2C6;
+  --accent:#1F6F4A; --accent-ink:#14563A; --accent-soft:#E6F0EA;
+  --new:#1F6F4A; --new-soft:#E6F0EA;
+  --core:#2E5A8A; --core-soft:#E3ECF5;
+  --overlay:#96702A; --overlay-soft:#F6EDDC;
+  --flag:#A83A24; --flag-soft:#F7E6E1;
+  --shadow:0 1px 2px rgba(21,32,26,.05),0 8px 24px -16px rgba(21,32,26,.22);
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --body:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+    --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#778377;
+    --line:#2A312A; --line-2:#3A433A;
+    --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+    --new:#5CB98A; --new-soft:#17261D;
+    --core:#79A6D8; --core-soft:#172333;
+    --overlay:#D6AB5E; --overlay-soft:#2B2417;
+    --flag:#E08063; --flag-soft:#2E1E18;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+  --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#778377;
+  --line:#2A312A; --line-2:#3A433A;
+  --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+  --new:#5CB98A; --new-soft:#17261D;
+  --core:#79A6D8; --core-soft:#172333;
+  --overlay:#D6AB5E; --overlay-soft:#2B2417;
+  --flag:#E08063; --flag-soft:#2E1E18;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+img,svg{max-width:100%}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;margin:0}
+.shell{padding-inline:clamp(16px,3vw,32px);padding-block:0 64px;max-width:1320px;margin:0 auto}
+h1,h2,h3,h4,.ui{font-family:var(--display)}
+h2,h3,h4{text-wrap:balance;line-height:1.24;margin:0}
+a{color:var(--accent-ink);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink-2)}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3)}
+
+/* ---- masthead ---- */
+.masthead{padding-block:40px 28px;border-bottom:2px solid var(--ink)}
+.masthead h1{font-size:clamp(30px,5.2vw,50px);font-weight:700;letter-spacing:-.02em;
+  line-height:1.05;margin:10px 0 14px;max-width:20ch}
+.standfirst{font-size:clamp(16px,2.2vw,19px);color:var(--ink-2);max-width:66ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.03em}
+.meta b{color:var(--ink-2);font-weight:500}
+
+/* ---- layout ---- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.rail{display:none}
+@media(min-width:960px){
+  .layout{grid-template-columns:240px minmax(0,1fr);gap:48px;align-items:start}
+  .rail{display:block;grid-column:1;position:sticky;
+    top:calc(env(safe-area-inset-top,0px) + 16px);
+    max-height:calc(100vh - 48px);overflow-y:auto;padding-block:32px 20px}
+  .doc{grid-column:2}
+}
+.rail .eyebrow{display:block;margin:0 0 10px}
+.rail a{display:block;font-family:var(--display);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);text-decoration:none;padding:5px 0 5px 11px;
+  border-left:2px solid var(--line);line-height:1.35}
+.rail a:hover,.rail a:focus-visible{color:var(--accent-ink);border-left-color:var(--accent)}
+.rail .sub{font-size:12.5px;color:var(--ink-3);padding-left:22px}
+.rail hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+.doc{padding-block:32px 0;min-width:0}
+
+/* ---- parts ---- */
+.part{margin:0 0 56px;scroll-margin-top:24px}
+.part-head{border-top:1px solid var(--line-2);padding-top:14px;margin-bottom:22px}
+.part-head .eyebrow{display:block}
+.part-head h2{font-size:clamp(21px,3vw,28px);font-weight:700;letter-spacing:-.015em;margin-top:6px}
+.part-head p{color:var(--ink-2);font-size:15.5px;max-width:68ch;margin:8px 0 0}
+.doc p{max-width:72ch}
+
+/* ---- persona cards ---- */
+.grid{display:grid;gap:14px}
+.grid.core{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:18px 20px;box-shadow:var(--shadow)}
+.card.full{border-left:4px solid var(--new)}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:4px}
+.card-head h3{font-size:18px;font-weight:700;letter-spacing:-.01em}
+.card.full .card-head h3{font-size:20px}
+.pill{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.pill.core{background:var(--core-soft);color:var(--core)}
+.pill.new{background:var(--new-soft);color:var(--new)}
+.pill.overlay{background:var(--overlay-soft);color:var(--overlay)}
+.pill.conf{background:var(--surface-2);color:var(--ink-3)}
+.tagline{color:var(--ink-2);font-size:14.5px;margin:0 0 10px}
+.card.core-card .tagline{margin-bottom:0}
+dl.rows{display:grid;grid-template-columns:132px minmax(0,1fr);gap:7px 16px;margin:12px 0 0;
+  font-size:14.5px}
+dl.rows dt{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+dl.rows dd{margin:0;color:var(--ink)}
+@media(max-width:560px){dl.rows{grid-template-columns:1fr;gap:1px}dl.rows dd{margin:0 0 7px}}
+.flag{display:flex;gap:10px;margin:14px 0 0;padding:11px 14px;border-radius:0 8px 8px 0;
+  background:var(--flag-soft);border-left:3px solid var(--flag);font-size:14px}
+.flag b{font-family:var(--display)}
+.vocab{color:var(--ink-2);font-style:italic}
+
+/* ---- table ---- */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin-top:6px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14px;background:var(--surface)}
+caption{text-align:left;font-size:13px;color:var(--ink-3);padding:12px 16px 0;font-family:var(--mono)}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);position:sticky;top:0}
+tbody th{font-family:var(--display);font-weight:600;color:var(--ink);font-size:14px;white-space:nowrap}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+td .no{color:var(--flag);font-weight:600}
+
+/* ---- psychology / uses lists ---- */
+.lede{font-size:16px;color:var(--ink);max-width:70ch}
+.model{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:14px 18px;margin-bottom:10px}
+.model h4{font-size:15.5px;font-weight:600;margin:0 0 4px}
+.model p{font-size:14.5px;color:var(--ink-2);margin:0;max-width:72ch}
+.model .mods{font-family:var(--mono);font-size:11px;color:var(--accent-ink);
+  letter-spacing:.04em;margin-top:6px}
+ol.uses{counter-reset:u;list-style:none;margin:0;padding:0}
+ol.uses>li{position:relative;padding:0 0 0 42px;margin:0 0 18px;max-width:74ch}
+ol.uses>li::before{counter-increment:u;content:counter(u);position:absolute;left:0;top:0;
+  width:28px;height:28px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);
+  font-family:var(--display);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+ol.uses h4{font-size:16px;font-weight:600;margin:3px 0 4px}
+ol.uses p{font-size:15px;color:var(--ink-2);margin:0}
+.callout{background:var(--accent-soft);border-radius:10px;padding:16px 20px;margin:18px 0;
+  border:1px solid var(--line)}
+.callout p{margin:0;font-size:15px;max-width:74ch}
+
+/* ---- sources ---- */
+.sources{border-top:1px solid var(--line-2);padding-top:18px;font-size:13.5px;color:var(--ink-2)}
+.sources h2{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin:0 0 10px}
+.sources li{margin-bottom:5px}
+</style>
+<body>
+<div class="shell">
+
+  <header class="masthead">
+    <span class="eyebrow">Clubhouse Golf · Marketing · Customer Research</span>
+    <h1>Golfer Personas — &amp; Caddy AI Application</h1>
+    <p class="standfirst">The golfer audience mapped end to end: four core personas, three new segments and two cross-cutting overlays — each paired with the marketing-psychology lever that moves it and the way Caddy AI should serve it in conversation.</p>
+    <div class="meta">
+      <span><b>Prepared for</b> Clubhouse Golf (chgolfco)</span>
+      <span><b>Date</b> 3 October 2026</span>
+      <span><b>Lenses</b> Customer research · Marketing psychology</span>
+      <span><b>Status</b> Draft v1 — proxy-sourced</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="rail" aria-label="Contents">
+      <span class="eyebrow">Contents</span>
+      <a href="#personas">1 · The Personas</a>
+      <a class="sub" href="#core">Core — the four</a>
+      <a class="sub" href="#new">New — three segments</a>
+      <a class="sub" href="#overlays">Overlays — two lenses</a>
+      <hr>
+      <a href="#psychology">2 · Psychology layer</a>
+      <a href="#caddy">3 · Caddy AI application</a>
+      <hr>
+      <a href="#sources">Sources</a>
+    </nav>
+
+    <main class="doc">
+
+      <!-- ===================== PART 1 ===================== -->
+      <section class="part" id="personas">
+        <div class="part-head">
+          <span class="eyebrow">Part 1</span>
+          <h2>The Personas</h2>
+          <p>Seven audiences on three different axes — how they shop, where they play, and why they buy. The four <b>core</b> personas are the shopping-style segments already in the product-marketing context; the three <b>new</b> segments and two <b>overlays</b> extend the map. All are proxy-sourced from golf-industry data and public community voice, and are provisional until validated against the first Founding Members.</p>
+        </div>
+
+        <h3 id="core" style="margin:0 0 12px;font-size:16px;" class="ui">Core — the four shopping-style personas</h3>
+        <div class="grid core">
+          <article class="card core-card">
+            <div class="card-head"><h3>The Everyday Golfer</h3><span class="pill core">Core</span></div>
+            <p class="tagline">Wants trustworthy picks and simpler shopping — loves golf but won't research for hours.</p>
+          </article>
+          <article class="card core-card">
+            <div class="card-head"><h3>The Gear &amp; Performance Golfer</h3><span class="pill core">Core</span></div>
+            <p class="tagline">Comparisons, specs, new vs. used, multiple buying options — buys <em>right, once</em>.</p>
+          </article>
+          <article class="card core-card">
+            <div class="card-head"><h3>The Golf Lifestyle Golfer</h3><span class="pill core">Core</span></div>
+            <p class="tagline">Apparel, travel, courses, events, brands and content — golf as a way of life.</p>
+          </article>
+          <article class="card core-card">
+            <div class="card-head"><h3>The New / Returning Golfer</h3><span class="pill core">Core</span></div>
+            <p class="tagline">Where to start, what's enough, what things cost — golf feels complicated and expensive.</p>
+          </article>
+        </div>
+
+        <h3 id="new" style="margin:28px 0 12px;font-size:16px;" class="ui">New — three segments the core four miss</h3>
+        <div class="grid">
+
+          <article class="card full">
+            <div class="card-head"><h3>The Social Golfer</h3><span class="pill new">New</span><span class="pill conf">Confidence: High</span></div>
+            <p class="tagline">Off-course and entertainment-first — Topgolf, simulators and the range, where golf is a social outing, not a scorecard.</p>
+            <dl class="rows">
+              <dt>Profile</dt><dd>Younger, the most gender-balanced segment (43% of off-course-only players are women); one of ~19M who played golf <em>only</em> off-course in 2025. May rarely play 18.</dd>
+              <dt>Job to be done</dt><dd><b>Functional:</b> look good and have fun at the bay without a "serious golfer" setup. <b>Emotional:</b> belong, not be judged. <b>Social:</b> be the friend with the cool gear.</dd>
+              <dt>Triggers</dt><dd>A Topgolf birthday or bachelor party · buying a home simulator or Garmin R10 · a corporate outing · "everyone's into golf now."</dd>
+              <dt>Top pains</dt><dd>Golf retail feels built for low-handicap men; doesn't know what to buy first; nothing speaks to the sim/range crowd.</dd>
+              <dt>Desired outcome</dt><dd>A confident first purchase with no fitting; gear that looks good and works off-course; a low-pressure on-ramp into the game.</dd>
+              <dt>Objections</dt><dd>"Is this for serious golfers only?" · "Will I get upsold clubs I don't need?"</dd>
+              <dt>Alternatives</dt><dd>Amazon · Topgolf pro shop · apparel brands · big-box · borrowing.</dd>
+              <dt>Vocabulary</dt><dd class="vocab">"I'm not a real golfer but…" · "just for Topgolf" · "getting into golf" · "home setup."</dd>
+              <dt>Reach</dt><dd>Instagram / TikTok · venues · lifestyle creators; content like "what to wear to Topgolf," "best starter setup," "home sim guide."</dd>
+              <dt>CHG fit</dt><dd>Apparel · Tech · Simulators · Practice; the DISCOVER / lifestyle territory. The largest growth segment the core four ignore.</dd>
+            </dl>
+          </article>
+
+          <article class="card full">
+            <div class="card-head"><h3>The Equipment Enthusiast</h3><span class="pill new">New</span><span class="pill conf">Confidence: Medium</span></div>
+            <p class="tagline">The gear-obsessed golfer — collectors chasing limited and tour-only pieces, and tinkerers always buying the next club that'll fix their game. Highest lifetime value, loudest community voice.</p>
+            <dl class="rows">
+              <dt>Profile</dt><dd>Mid-to-low handicap, deeply brand-aware, lives in forums and on YouTube. Two motivations to serve together: <b>collectors</b> (Scotty Cameron, Bettinardi, limited/tour-only) and <b>tinkerers</b> (chasing the next fix).</dd>
+              <dt>Job to be done</dt><dd><b>Functional:</b> find, compare and acquire specific gear — new, used and rare — faster than anyone. <b>Emotional:</b> the hunt and the new-club high. <b>Social:</b> "what's in the bag" status.</dd>
+              <dt>Triggers</dt><dd>A product drop · a tour win on a club · a rare used listing · a bad round · sell-to-upgrade cycles.</dd>
+              <dt>Top pains</dt><dd>Deals, drops and rare used inventory scattered across a dozen sites and forums; can't compare new vs. used for the <em>same</em> spec in one place; misses limited releases.</dd>
+              <dt>Desired outcome</dt><dd>One place to track, compare and pounce (new + used, across sellers); price history; drop and restock alerts; trusted used-condition grading.</dd>
+              <dt>Objections</dt><dd>"Will your used specs and condition be accurate?" · "Do you have the rare stuff, or just mainstream retail?"</dd>
+              <dt>Alternatives</dt><dd>GolfWRX BST · 2nd Swing / GlobalGolf · eBay · Facebook Marketplace.</dd>
+              <dt>Vocabulary</dt><dd class="vocab">"WITB" · "BST" · "tour issue" · "gamer" · "grail" · "slot in the bag."</dd>
+              <dt>Reach</dt><dd>GolfWRX · r/golf · YouTube reviewers · Discord. Ideal Clubhouse Feed seed users.</dd>
+              <dt>CHG fit</dt><dd>The core of the cross-brand / new-plus-used comparison wedge, and prime Feed fuel. Distinct from the Gear &amp; Performance Golfer, who buys right once; the Enthusiast buys constantly.</dd>
+            </dl>
+          </article>
+
+          <article class="card full">
+            <div class="card-head"><h3>The Improver</h3><span class="pill new">New</span><span class="pill conf">Confidence: Medium</span></div>
+            <p class="tagline">The data-and-improvement golfer — measures the game, finds the weakness, buys or books the fix, and checks it worked.</p>
+            <dl class="rows">
+              <dt>Profile</dt><dd>Committed golfer chasing lower scores; uses GHIN, Arccos / Shot Scope, 18Birdies and a launch monitor. Buys gear in service of measured improvement, plus lessons and training aids.</dd>
+              <dt>Job to be done</dt><dd><b>Functional:</b> measure → find the weakness → buy/learn the fix → verify. <b>Emotional:</b> confidence that effort and money are translating into lower scores. <b>Social:</b> the handicap number as a badge.</dd>
+              <dt>Triggers</dt><dd>A plateau or bad stretch · a launch-monitor session exposing a gap · a lesson recommending a change · a new-season goal.</dd>
+              <dt>Top pains</dt><dd>Data, lessons, gear and coaching live in separate apps and sites — the insight never connects to the purchase or the drill.</dd>
+              <dt>Desired outcome</dt><dd>The connected loop: see the weakness → get the fix (gear, drill or coach) → buy or book it → confirm it worked.</dd>
+              <dt>Alternatives</dt><dd>Arccos · GHIN / TheGrint · 18Birdies · Skillest / GOLFTEC · MyGolfSpy test data.</dd>
+              <dt>Vocabulary</dt><dd class="vocab">"strokes gained" · "gapping" · "dialing it in" · "break 80" · "dispersion" · "my miss."</dd>
+              <dt>Reach</dt><dd>MyGolfSpy · the Arccos / 18Birdies ecosystems · instruction YouTube; Caddy AI Q&amp;A.</dd>
+              <dt>CHG fit</dt><dd>The IMPROVE layer — virtual tutoring, the coach directory, launch monitors (Tech). The persona the connected-loop story was built for.</dd>
+            </dl>
+            <p class="flag"><span><b>Honesty flag.</b> On-course tracking (the Course tab) is <b>out of Phase 1</b>. Clubhouse can serve this persona's <em>improve → decide → buy</em> loop, but not on-course shot tracking at launch — so don't promise Caddy AI can track their round.</span></p>
+          </article>
+
+        </div>
+
+        <h3 id="overlays" style="margin:28px 0 12px;font-size:16px;" class="ui">Overlays — two lenses, not standalone personas</h3>
+        <div class="grid core" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+          <article class="card">
+            <div class="card-head"><h3>The Modern Woman Golfer</h3><span class="pill overlay">Overlay · lens</span></div>
+            <p class="tagline">Nearly 8M women golfers and a fifth straight year of growth; women are 35% of beginners and 35% of juniors. Distinct pains — gear built and marketed for men, poor fit and selection. Not a seventh box: a lens every persona, filter and line of copy must pass.</p>
+          </article>
+          <article class="card">
+            <div class="card-head"><h3>The Golf Gifter</h3><span class="pill overlay">Overlay · occasion</span></div>
+            <p class="tagline">Someone buying golf <em>for</em> a golfer — partner, parent, corporate — often low on category knowledge and seasonal (holidays, Father's Day). Every other persona assumes the shopper is the player; this is the exception. Needs "help me pick," gift cards and reassuring returns.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===================== PART 2 ===================== -->
+      <section class="part" id="psychology">
+        <div class="part-head">
+          <span class="eyebrow">Part 2</span>
+          <h2>The marketing-psychology layer</h2>
+          <p>The highest-leverage mental model for each new segment and overlay — the lever that actually changes behaviour, not a list of everything that could apply.</p>
+        </div>
+
+        <div class="model">
+          <h4>The Social Golfer</h4>
+          <p>New to the category and easily overwhelmed. Curate, don't catalogue: one recommended starter kit, plain language, and a free-shipping / free-returns hook to lower the risk of a first buy.</p>
+          <p class="mods">Paradox of Choice · Default Effect · Zero-Price Effect · Curse of Knowledge</p>
+        </div>
+        <div class="model">
+          <h4>The Equipment Enthusiast</h4>
+          <p>Driven by the hunt and the next release. Drop calendars and restock / price-drop alerts open loops they can't leave unclosed; a "build your bag" configurator turns effort into attachment.</p>
+          <p class="mods">Scarcity · Zeigarnik (open loops) · Endowment / IKEA Effect · Loss Aversion</p>
+        </div>
+        <div class="model">
+          <h4>The Improver</h4>
+          <p>Motivated by progress. Frame the gap as nearly closed, start with a trivially small first step (a free question to Caddy), and lend authority through named coaches.</p>
+          <p class="mods">Goal-Gradient · Commitment &amp; Consistency · Authority</p>
+        </div>
+        <div class="model">
+          <h4>The Modern Woman Golfer (lens)</h4>
+          <p>Speak as one of them, not down to them. Relatable voice and imagery, and an honest admission that golf retail wasn't built for everyone — which Clubhouse is fixing.</p>
+          <p class="mods">Unity · Liking / Similarity · Pratfall Effect</p>
+        </div>
+        <div class="model">
+          <h4>The Golf Gifter (occasion)</h4>
+          <p>Anxious about picking wrong for someone else. Remove the regret: three price-anchored bundles, a guided "help me pick," gift cards and easy returns.</p>
+          <p class="mods">Regret Aversion · Anchoring · Paradox of Choice</p>
+        </div>
+
+        <div class="callout">
+          <p><b>The cross-cutting insight.</b> Every golfer persona shares one enemy — <em>overwhelm and fragmentation</em>, Clubhouse's own stated problem. So <b>Hick's Law</b>, <b>Paradox of Choice</b> and <b>Activation Energy</b> are the master models for all of them: fewer, smarter options beat more. That is exactly the job Caddy AI should do.</p>
+        </div>
+      </section>
+
+      <!-- ===================== PART 3 ===================== -->
+      <section class="part" id="caddy">
+        <div class="part-head">
+          <span class="eyebrow">Part 3</span>
+          <h2>How to use this for Caddy AI</h2>
+          <p>Personas earn their keep when something acts on them in real time. Caddy AI — the Clubhouse AI helper — is that actuator. It infers a golfer's need-state from the first messages (it never shows a label) and adapts how it answers.</p>
+        </div>
+
+        <div class="tablewrap">
+          <table>
+            <caption>Persona → Caddy behaviour routing. Caddy detects a need-state and adjusts tone, depth, how many options it shows, and the default next step.</caption>
+            <thead>
+              <tr>
+                <th scope="col">If Caddy detects…</th>
+                <th scope="col">Tone</th>
+                <th scope="col">Depth</th>
+                <th scope="col">Options shown</th>
+                <th scope="col">Default CTA</th>
+                <th scope="col">Don't</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Social / beginner <span class="vocab">("just for Topgolf")</span></th>
+                <td>Warm, plain</td><td>Low</td><td><b>One</b> recommended starter kit</td><td>"See the starter kit"</td><td>Use jargon; show 20 SKUs</td>
+              </tr>
+              <tr>
+                <th scope="row">Enthusiast <span class="vocab">("WITB", "tour issue")</span></th>
+                <td>Peer-to-peer</td><td>High</td><td>New <b>vs</b> used, same spec, side by side</td><td>"Compare these 3"</td><td>Dumb it down</td>
+              </tr>
+              <tr>
+                <th scope="row">Improver <span class="vocab">("break 80", "my miss")</span></th>
+                <td>Coach-like</td><td>Medium</td><td>Fix = drill <b>+</b> coach <b>+</b> gear</td><td>"Ask a coach / see the fix"</td><td class="no">Promise on-course tracking</td>
+              </tr>
+              <tr>
+                <th scope="row">Gifter <span class="vocab">("buying for my dad")</span></th>
+                <td>Reassuring</td><td>Low</td><td>3 price-anchored bundles</td><td>"See the gift guide"</td><td>Overwhelm with choice</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin:26px 0 14px;font-size:17px;" class="ui">Five ways Caddy uses the personas</h3>
+        <ol class="uses">
+          <li>
+            <h4>Intent routing, not labels</h4>
+            <p>Caddy classifies the golfer's need-state from the first messages and adapts tone, depth, option count and default CTA per the table above — without ever showing the golfer a persona label.</p>
+          </li>
+          <li>
+            <h4>The fix for the universal pain</h4>
+            <p>Overwhelm is the shared enemy. Caddy applies Hick's Law and Activation Energy live, turning ten tabs and two hundred SKUs into one good next step — the single most on-strategy thing it can do.</p>
+          </li>
+          <li>
+            <h4>A live first-party research engine</h4>
+            <p>Every conversation is unprompted, first-party signal: which need-states actually appear, in what words, how often. Fed back into these personas, it converts the whole set from proxy-based to evidence-based within weeks of launch.</p>
+          </li>
+          <li>
+            <h4>Ethical psychology, in conversation</h4>
+            <p>Goal-Gradient for Improvers ("you're close"), Reciprocity for everyone (answer the question first, options second), Authority via named coaches, and honest Social Proof ("most golfers in your spot choose…").</p>
+          </li>
+          <li>
+            <h4>Launch guardrails</h4>
+            <p>Caddy is off-course only at launch — no club-from-shot, no GPS, no "knows your game." It answers the question before showing anything to buy, and discloses any commercial relationship near a recommendation. Its exact answer scope is an open decision for launch (product-marketing Open Question 11).</p>
+          </li>
+        </ol>
+
+        <div class="callout">
+          <p><b>Why it matters commercially.</b> A persona-aware Caddy lowers activation energy and decision friction at the exact moment of intent — moving the North Star (a completed order on Clubhouse) more than any extra persona on a slide ever will.</p>
+        </div>
+      </section>
+
+      <section class="sources" id="sources">
+        <h2>Sources &amp; notes</h2>
+        <ul>
+          <li>National Golf Foundation — <em>Golf Participation in the U.S. 2025</em> (off-course 19M, women ~8M, beginner / junior gender mix).</li>
+          <li>LINKS Magazine — <em>5 things to know about the state of recreational golf in 2025</em>.</li>
+          <li>Golf Digest — women's golf participation (NGF data).</li>
+          <li>GolfWRX community — collectors &amp; tinkerers ("club junkie") archetypes.</li>
+          <li>Clubhouse Golf product-marketing context v3 — core personas, Phase 1 scope, Caddy AI Open Question 11.</li>
+        </ul>
+        <p style="margin-top:12px;color:var(--ink-3);font-size:13px;">Draft v1 · proxy-sourced · no first-party golfer data yet. Validate with r/golf, GolfWRX and app-review mining, then the first 500 Founding Members, before these personas enter the product-marketing context.</p>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>
