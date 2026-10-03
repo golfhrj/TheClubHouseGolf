@@ -93,6 +93,20 @@ export const REPORT_SECTIONS: ReportSection[] = [
         ],
         file: "/reports/marketing/rebrand-ideas-2026-09-30.html",
       },
+      {
+        slug: "golfer-personas",
+        label: "Golfer Personas",
+        title: "Golfer Personas & Caddy AI Application",
+        summary:
+          "The golfer audience mapped end to end - the four core personas plus three new segments (Social, Equipment Enthusiast, Improver) and two overlays (Women, Gifters), each with a marketing-psychology lever and a Caddy AI behaviour pattern.",
+        date: "2026-10-03",
+        details: [
+          { label: "Personas", value: "4 core + 3 new + 2 overlays" },
+          { label: "Lenses", value: "Customer research + Marketing psychology" },
+          { label: "Status", value: "Draft v1 - proxy-sourced" },
+        ],
+        file: "/reports/marketing/golfer-personas-caddy-ai-2026-10-03.html",
+      },
     ],
   },
 ];
