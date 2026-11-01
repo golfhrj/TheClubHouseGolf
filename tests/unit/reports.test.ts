@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   REPORT_SECTIONS,
@@ -38,6 +40,7 @@ describe("report registry", () => {
           new RegExp(`^/reports/${s.slug}/[\\w.-]+\\.html$`),
         );
         expect(r.date).toMatch(/^\d{4}-\d{2}(-\d{2})?$/);
+        expect(existsSync(join("public", r.file))).toBe(true);
       }
     }
   });

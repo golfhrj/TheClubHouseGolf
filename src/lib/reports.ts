@@ -107,6 +107,21 @@ export const REPORT_SECTIONS: ReportSection[] = [
         ],
         file: "/reports/marketing/golfer-personas-caddy-ai-2026-10-03.html",
       },
+      {
+        slug: "revenue-conversation",
+        label: "Revenue Conversation",
+        title: "Revenue Conversation with the Founders",
+        summary:
+          "The blunt 90-day revenue brief, then every premise in it verified against the platform code and the affiliate networks' own payment terms. The conclusion holds - the next 90 days won't produce meaningful revenue - but the ordering, two of the numbers and one of the five recommendations don't survive.",
+        date: "2026-11-01",
+        details: [
+          { label: "Window", value: "1 Nov 2026 - 30 Jan 2027" },
+          { label: "Claims checked", value: "9 - 3 false or overstated" },
+          { label: "Biggest gap", value: "Peak season missed by the plan" },
+          { label: "Status", value: "Draft v1 - repo-sourced" },
+        ],
+        file: "/reports/marketing/revenue-conversation-2026-11-01.html",
+      },
     ],
   },
 ];

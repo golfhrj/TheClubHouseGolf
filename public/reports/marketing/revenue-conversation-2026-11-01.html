@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Revenue Conversation with Founders &mdash; Red-Teamed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#F6F8F5; --surface:#FFFFFF; --surface-2:#F0F3EE;
+  --ink:#15201A; --ink-2:#5B675E; --ink-3:#8A958C;
+  --line:#DDE3DB; --line-2:#C9D2C6;
+  --accent:#1F6F4A; --accent-ink:#14563A; --accent-soft:#E6F0EA;
+  --new:#1F6F4A; --new-soft:#E6F0EA;
+  --core:#2E5A8A; --core-soft:#E3ECF5;
+  --overlay:#96702A; --overlay-soft:#F6EDDC;
+  --flag:#A83A24; --flag-soft:#F7E6E1;
+  --shadow:0 1px 2px rgba(21,32,26,.05),0 8px 24px -16px rgba(21,32,26,.22);
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --body:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+    --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#778377;
+    --line:#2A312A; --line-2:#3A433A;
+    --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+    --new:#5CB98A; --new-soft:#17261D;
+    --core:#79A6D8; --core-soft:#172333;
+    --overlay:#D6AB5E; --overlay-soft:#2B2417;
+    --flag:#E08063; --flag-soft:#2E1E18;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+  --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#778377;
+  --line:#2A312A; --line-2:#3A433A;
+  --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+  --new:#5CB98A; --new-soft:#17261D;
+  --core:#79A6D8; --core-soft:#172333;
+  --overlay:#D6AB5E; --overlay-soft:#2B2417;
+  --flag:#E08063; --flag-soft:#2E1E18;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+img,svg{max-width:100%}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;margin:0}
+.shell{padding-inline:clamp(16px,3vw,32px);padding-block:0 64px;max-width:1320px;margin:0 auto}
+h1,h2,h3,h4,.ui{font-family:var(--display)}
+h2,h3,h4{text-wrap:balance;line-height:1.24;margin:0}
+a{color:var(--accent-ink);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink-2)}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3)}
+
+/* ---- masthead ---- */
+.masthead{padding-block:40px 28px;border-bottom:2px solid var(--ink)}
+.masthead h1{font-size:clamp(30px,5.2vw,50px);font-weight:700;letter-spacing:-.02em;
+  line-height:1.05;margin:10px 0 14px;max-width:20ch}
+.standfirst{font-size:clamp(16px,2.2vw,19px);color:var(--ink-2);max-width:66ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.03em}
+.meta b{color:var(--ink-2);font-weight:500}
+
+/* ---- layout ---- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.rail{display:none}
+@media(min-width:960px){
+  .layout{grid-template-columns:240px minmax(0,1fr);gap:48px;align-items:start}
+  .rail{display:block;grid-column:1;position:sticky;
+    top:calc(env(safe-area-inset-top,0px) + 16px);
+    max-height:calc(100vh - 48px);overflow-y:auto;padding-block:32px 20px}
+  .doc{grid-column:2}
+}
+.rail .eyebrow{display:block;margin:0 0 10px}
+.rail a{display:block;font-family:var(--display);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);text-decoration:none;padding:5px 0 5px 11px;
+  border-left:2px solid var(--line);line-height:1.35}
+.rail a:hover,.rail a:focus-visible{color:var(--accent-ink);border-left-color:var(--accent)}
+.rail .sub{font-size:12.5px;color:var(--ink-3);padding-left:22px}
+.rail hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+.doc{padding-block:32px 0;min-width:0}
+
+/* ---- parts ---- */
+.part{margin:0 0 56px;scroll-margin-top:24px}
+.part-head{border-top:1px solid var(--line-2);padding-top:14px;margin-bottom:22px}
+.part-head .eyebrow{display:block}
+.part-head h2{font-size:clamp(21px,3vw,28px);font-weight:700;letter-spacing:-.015em;margin-top:6px}
+.part-head p{color:var(--ink-2);font-size:15.5px;max-width:68ch;margin:8px 0 0}
+.doc p{max-width:72ch}
+
+/* ---- persona cards ---- */
+.grid{display:grid;gap:14px}
+.grid.core{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:18px 20px;box-shadow:var(--shadow)}
+.card.full{border-left:4px solid var(--new)}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:4px}
+.card-head h3{font-size:18px;font-weight:700;letter-spacing:-.01em}
+.card.full .card-head h3{font-size:20px}
+.pill{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.pill.core{background:var(--core-soft);color:var(--core)}
+.pill.new{background:var(--new-soft);color:var(--new)}
+.pill.overlay{background:var(--overlay-soft);color:var(--overlay)}
+.pill.conf{background:var(--surface-2);color:var(--ink-3)}
+.tagline{color:var(--ink-2);font-size:14.5px;margin:0 0 10px}
+.card.core-card .tagline{margin-bottom:0}
+dl.rows{display:grid;grid-template-columns:132px minmax(0,1fr);gap:7px 16px;margin:12px 0 0;
+  font-size:14.5px}
+dl.rows dt{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+dl.rows dd{margin:0;color:var(--ink)}
+@media(max-width:560px){dl.rows{grid-template-columns:1fr;gap:1px}dl.rows dd{margin:0 0 7px}}
+.flag{display:flex;gap:10px;margin:14px 0 0;padding:11px 14px;border-radius:0 8px 8px 0;
+  background:var(--flag-soft);border-left:3px solid var(--flag);font-size:14px}
+.flag b{font-family:var(--display)}
+.vocab{color:var(--ink-2);font-style:italic}
+
+/* ---- table ---- */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin-top:6px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14px;background:var(--surface)}
+caption{text-align:left;font-size:13px;color:var(--ink-3);padding:12px 16px 0;font-family:var(--mono)}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);position:sticky;top:0}
+tbody th{font-family:var(--display);font-weight:600;color:var(--ink);font-size:14px;white-space:nowrap}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+td .no{color:var(--flag);font-weight:600}
+
+/* ---- psychology / uses lists ---- */
+.lede{font-size:16px;color:var(--ink);max-width:70ch}
+.model{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:14px 18px;margin-bottom:10px}
+.model h4{font-size:15.5px;font-weight:600;margin:0 0 4px}
+.model p{font-size:14.5px;color:var(--ink-2);margin:0;max-width:72ch}
+.model .mods{font-family:var(--mono);font-size:11px;color:var(--accent-ink);
+  letter-spacing:.04em;margin-top:6px}
+ol.uses{counter-reset:u;list-style:none;margin:0;padding:0}
+ol.uses>li{position:relative;padding:0 0 0 42px;margin:0 0 18px;max-width:74ch}
+ol.uses>li::before{counter-increment:u;content:counter(u);position:absolute;left:0;top:0;
+  width:28px;height:28px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);
+  font-family:var(--display);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+ol.uses h4{font-size:16px;font-weight:600;margin:3px 0 4px}
+ol.uses p{font-size:15px;color:var(--ink-2);margin:0}
+.callout{background:var(--accent-soft);border-radius:10px;padding:16px 20px;margin:18px 0;
+  border:1px solid var(--line)}
+.callout p{margin:0;font-size:15px;max-width:74ch}
+
+/* ---- sources ---- */
+.sources{border-top:1px solid var(--line-2);padding-top:18px;font-size:13.5px;color:var(--ink-2)}
+.sources h2{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin:0 0 10px}
+.sources li{margin-bottom:5px}
+</style>
+<style>
+.pill.ok{background:var(--new-soft);color:var(--new)}
+.pill.no{background:var(--flag-soft);color:var(--flag)}
+.pill.mixed{background:var(--overlay-soft);color:var(--overlay)}
+.verdict td:first-child{font-family:var(--mono);font-size:11px}
+.math{font-family:var(--mono);font-size:13.5px;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto;line-height:1.9}
+.math b{color:var(--accent-ink);font-weight:600}
+.ask{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);
+  border-radius:0 10px 10px 0;padding:14px 18px;margin:12px 0}
+.ask h4{font-size:15px;font-weight:600;margin:0 0 4px}
+.ask p{font-size:14.5px;color:var(--ink-2);margin:0;max-width:72ch}
+.cal{display:grid;gap:8px;margin:14px 0}
+@media(min-width:720px){.cal{grid-template-columns:repeat(3,1fr)}}
+.cal div{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--surface)}
+.cal .peak{border-left:4px solid var(--new)}
+.cal .trough{border-left:4px solid var(--flag)}
+.cal span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+.cal p{margin:0;font-size:14px}
+code.path{font-size:.84em}
+</style>
+<body>
+<div class="shell">
+
+  <header class="masthead">
+    <span class="eyebrow">Clubhouse Golf &middot; Marketing &middot; Revenue</span>
+    <h1>Revenue Conversation &mdash; with the Founders</h1>
+    <p class="standfirst">The blunt version of the 90-day revenue brief, then every premise in it checked against the live codebase and the affiliate networks' own terms. The headline conclusion survives. The ordering, two of the numbers, and one of the five recommendations do not.</p>
+    <div class="meta">
+      <span><b>Prepared for</b> Clubhouse Golf (chgolfco)</span>
+      <span><b>Date</b> 1 November 2026</span>
+      <span><b>Window</b> 1 Nov 2026 &ndash; 30 Jan 2027</span>
+      <span><b>Method</b> Verify &middot; validate &middot; red team</span>
+      <span><b>Status</b> Draft v1 &mdash; repo-sourced</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="rail" aria-label="Contents">
+      <span class="eyebrow">Contents</span>
+      <a href="#verdict">0 &middot; Verdict in one screen</a>
+      <hr>
+      <a href="#premises">1 &middot; The premises, checked</a>
+      <a href="#math">2 &middot; The math, rebuilt</a>
+      <a href="#redteam">3 &middot; Where the plan breaks</a>
+      <a class="sub" href="#calendar">The calendar problem</a>
+      <a href="#revised">4 &middot; The revised 90 days</a>
+      <a href="#room">5 &middot; In the room</a>
+      <hr>
+      <a href="#sources">Sources &amp; notes</a>
+    </nav>
+
+    <main class="doc">
+
+      <!-- ============ VERDICT ============ -->
+      <section class="part" id="verdict">
+        <div class="part-head">
+          <span class="eyebrow">Part 0</span>
+          <h2>Verdict in one screen</h2>
+          <p>The brief is right about the thing that matters and wrong about what to do first. Lead with the conclusion, as it says. Then change the order.</p>
+        </div>
+
+        <div class="callout">
+          <p><b>Holds.</b> The next 90 days will not produce meaningful revenue, and saying so first is the right play. Affiliate cash lags the sale &mdash; worse than the brief claims. Paid tiers, display ads and selling data are all unsellable at this traffic. A single direct-sale pilot beats six. Caddy AI should stay free and sell.</p>
+        </div>
+
+        <div class="flag">
+          <div><b>Breaks.</b> Checkout is <em>not</em> affiliate-only &mdash; a Stripe direct-sale rail is already built. The named pilot partner is wrong: the code has <b>Garb Golf</b>, not Pines and Aces. Apple and Google charge <b>nothing</b> on physical goods. And every page that could earn a dollar &mdash; shop, product, guides, brands &mdash; is <b>hardcoded noindex</b>, which outranks instrumentation as the first fix.</div>
+        </div>
+
+        <div class="flag" style="background:var(--overlay-soft);border-left-color:var(--overlay)">
+          <div><b>Missing entirely.</b> The 90-day window is 1 Nov &rarr; 30 Jan: Black Friday, all of gift season, then the deadest month in Midwest golf retail. The brief's sequence puts the revenue work <em>after</em> the only peak it will see. That single omission changes the plan more than any other finding here.</div>
+        </div>
+      </section>
+
+      <!-- ============ PART 1 ============ -->
+      <section class="part" id="premises">
+        <div class="part-head">
+          <span class="eyebrow">Part 1</span>
+          <h2>The premises, checked</h2>
+          <p>Each claim in the brief against the evidence. Code references are to the local <code>chgolfco-platform</code> checkout; the local repo is known to lag production, so the three marked &ldquo;confirm live&rdquo; should be re-checked against www.chgolfco.com before the meeting.</p>
+        </div>
+
+        <div class="tablewrap">
+          <table class="verdict">
+            <caption>Nine claims, checked 1 Nov 2026.</caption>
+            <thead>
+              <tr><th style="width:1%">#</th><th>Claim in the brief</th><th style="width:1%">Verdict</th><th>Evidence</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <th>&ldquo;Affiliate-only checkout&rdquo;</th>
+                <td><span class="pill no">False</span></td>
+                <td>Stripe-hosted Checkout, Apple&nbsp;Pay / Google&nbsp;Pay and admin-page refunds are in the integration checklist; <code class="path">sales/direct-sales.ts</code> totals orders on <code>payment_provider === "stripe"</code>; Razorpay is listed as the current path. The rail is built and gated on <code>STRIPE_SECRET_KEY</code> &mdash; without it checkout stays in demo mode. <b>Confirm live.</b></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <th>&ldquo;No traction&rdquo;</th>
+                <td><span class="pill ok">Fair</span></td>
+                <td><code>LAUNCH_AT</code> is 15 Oct 2026 &mdash; the site is 17 days old. No analytics provider is connected (PostHog still sits under &ldquo;recommended&rdquo;), so there is no traffic number to argue with either way.</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <th>6&ndash;10% commission</th>
+                <td><span class="pill mixed">Optimistic</span></td>
+                <td>Published golf rates cluster lower: Golf&nbsp;Galaxy 5%, PGA&nbsp;Tour&nbsp;Superstore ~5&ndash;6%, Callaway 8% (6&ndash;9% depending on network). PlayBetter, already wired through GrowthHero, is documented in our own integration notes at <b>5%</b>. Realistic blended band: <b>5&ndash;7%</b>.</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <th>~$150 order value</th>
+                <td><span class="pill mixed">Depends</span></td>
+                <td>Golf retailer AOVs run higher &mdash; PGA&nbsp;Tour&nbsp;Superstore $175&ndash;225, TaylorMade $250&ndash;275, Fairway Golf $400&ndash;425. But a new publisher's click-outs skew to balls, gloves and apparel, not drivers, so our realised AOV will sit <em>below</em> each site's. $150 is a defensible mid-point; the honest range is $90&ndash;$200.</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <th>&ldquo;Commissions pay weeks to months after the sale&rdquo;</th>
+                <td><span class="pill ok">Understated</span></td>
+                <td>CJ pays monthly on <b>NET&nbsp;60</b> with a <b>$50 minimum payout</b>. Awin pays on the 1st and 15th, covering commissions approved to the end of the prior month, after a 30-day auto-validation period &mdash; and for amber-status advertisers only once Awin itself has been paid. See Part&nbsp;2: the first dollar earned in November realistically lands late January.</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <th>No per-click attribution exists</th>
+                <td><span class="pill ok">True</span></td>
+                <td>Zero occurrences of <code>subid</code>, <code>clickref</code>, <code>sid=</code> or <code>utm_</code> anywhere in the web app. GrowthHero links carry only the account-level <code>?ghref=</code> code, identical on every product.</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <th>&ldquo;You can't make any revenue decision at day 60&rdquo;</th>
+                <td><span class="pill mixed">Overstated</span></td>
+                <td><code class="path">sales/</code> already holds <code>cj-report.ts</code>, <code>awin-report.ts</code>, <code>partnerize-report.ts</code>, <code>affiliate-reports.ts</code> and <code>sync-sales.ts</code>. At day 60 you <em>will</em> know how much and from which advertiser. What you won't know is which page, product or Caddy answer caused it. Ask for the missing half, not the whole thing.</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <th>&ldquo;In-app sales cost 15&ndash;30% to Apple and Google&rdquo;</th>
+                <td><span class="pill no">False</span></td>
+                <td>Both stores take commission only on digital goods and subscriptions. <b>Physical goods are exempt</b> &mdash; a gear order placed in our app costs Apple and Google nothing. The 15/30% applies to the subscription idea alone (30% year one, 15% after 12 months, or 15% under the Small Business Program, which must be applied for).</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <th>&ldquo;About 5 joined merchants is too thin&rdquo;</th>
+                <td><span class="pill mixed">Wrong metric</span></td>
+                <td>Five <em>suppliers</em> are wired in code &mdash; CJ, Partnerize, Awin, GrowthHero, Shopify &mdash; with AvantLink pending ownership verification and Impact relationships in flight (GlobalGolf, ShipSticks). Sunday&nbsp;Golf has moved to a sixth platform, Superfiliate. Network breadth is not the constraint. Live, approved advertisers with a working feed and a tracked link is.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ PART 2 ============ -->
+      <section class="part" id="math">
+        <div class="part-head">
+          <span class="eyebrow">Part 2</span>
+          <h2>The math, rebuilt</h2>
+          <p>Same method as the brief, with the verified inputs. Every line is an assumption and labelled as one &mdash; the point is the order of magnitude, and the number nobody has yet said out loud.</p>
+        </div>
+
+        <h3 class="ui" style="font-size:16px;margin:0 0 6px">Per-sale earnings</h3>
+        <div class="math">
+          Commission (verified band) &nbsp;&nbsp; 5% &ndash; 7%<br>
+          Realised AOV (assumed) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $90 &ndash; $200<br>
+          <b>Per sale &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $4.50 &ndash; $14.00</b> &nbsp; (mid-point ~$9)
+        </div>
+        <p>The brief's $10&ndash;15 is the top of that range, not the middle. At the mid-point, <b>$1,000/month needs ~110 sales</b>, not 70&ndash;100 &mdash; and the honest spread is 70&ndash;220.</p>
+
+        <h3 class="ui" style="font-size:16px;margin:28px 0 6px">The traffic that implies &mdash; the number to put on the screen</h3>
+        <div class="math">
+          Target &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $1,000 / month<br>
+          &divide; per sale (mid) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~110 sales<br>
+          &divide; click-out &rarr; sale, 1&ndash;3% (assumed) &nbsp; 3,700 &ndash; 11,000 click-outs<br>
+          &divide; session &rarr; click-out, 10&ndash;20% (assumed) &nbsp; <b>18,000 &ndash; 110,000 sessions / month</b>
+        </div>
+        <div class="flag">
+          <div><b>This is the slide that ends the debate.</b> Both conversion rates are assumptions &mdash; nobody can supply the real ones, because no analytics are connected. But every plausible value lands the answer in the tens of thousands of sessions a month. A 17-day-old noindexed site does not have that, cannot have it by January, and no amount of merchant-joining changes it. Put the range up, say both rates are guesses, and ask the founders which number they would rather fund: traffic, or margin per order.</div>
+        </div>
+
+        <h3 class="ui" style="font-size:16px;margin:28px 0 6px">When the cash actually arrives</h3>
+        <div class="tablewrap">
+          <table>
+            <caption>A sale made 20 November, by network, on each network's published terms.</caption>
+            <thead><tr><th>Network</th><th>Approval</th><th>Payout</th><th>Cash in hand</th></tr></thead>
+            <tbody>
+              <tr><th>CJ</th><td>Monthly close</td><td>NET 60, $50 minimum</td><td><b>Late Jan 2027</b> &mdash; and only if $50+ has accrued</td></tr>
+              <tr><th>Awin</th><td>30-day auto-validation</td><td>1st / 15th, prior month approved</td><td><b>Mid Jan 2027</b>; later still if the advertiser is amber-status</td></tr>
+              <tr><th>Stripe (direct)</th><td>Immediate</td><td>Rolling payout</td><td><b>Late Nov 2026</b> &mdash; the only rail that pays inside the window</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout">
+          <p><b>Conclusion, stated plainly:</b> on the affiliate rails, the 90-day window ends with roughly <b>one payout, possibly zero</b> &mdash; the $50 minimums are a real gate at $9 a sale. The only channel that converts a November sale into November cash is the direct-sale rail that is already half-built. That is the argument for finishing Garb, and it is stronger than the margin argument the brief makes.</p>
+        </div>
+      </section>
+
+      <!-- ============ PART 3 ============ -->
+      <section class="part" id="redteam">
+        <div class="part-head">
+          <span class="eyebrow">Part 3</span>
+          <h2>Where the plan breaks</h2>
+          <p>Five findings that change what to do, ordered by how much they change it.</p>
+        </div>
+
+        <ol class="uses">
+          <li id="calendar">
+            <h4>The window is a holiday window, and the plan ignores it</h4>
+            <p>90 days from 1 November is 30 January. The brief schedules buying guides for weeks 2&ndash;6 and the direct-sale pilot for weeks 4&ndash;12 &mdash; which puts both after the only peak they will see, and new pages cannot rank inside 90 days regardless of when they ship. Golf Galaxy already sent a 2026 holiday gift guide (27 Sep notes). That asset should be pointed at this peak, this month.</p>
+            <div class="cal">
+              <div class="peak"><span>Weeks 1&ndash;4 &middot; Nov</span><p>Black Friday / Cyber Monday. The highest-converting fortnight in golf retail. <b>Everything that can earn must be live by 20 Nov.</b></p></div>
+              <div class="peak"><span>Weeks 5&ndash;8 &middot; Dec</span><p>Gift season to ~20 Dec. Second and last window. Gifters buy accessories &mdash; low AOV, low commission, high volume.</p></div>
+              <div class="trough"><span>Weeks 9&ndash;13 &middot; Jan</span><p>Deadest month in Midwest golf. Use it to measure, reconcile the first payouts and sell sponsorships on peak numbers &mdash; not to launch.</p></div>
+            </div>
+          </li>
+
+          <li>
+            <h4>Every page that could earn is hardcoded noindex &mdash; this outranks instrumentation</h4>
+            <p><code>NOINDEX_ROBOTS</code> is applied to <code class="path">/shop</code>, <code class="path">/product/[id]</code>, <code class="path">/guides</code>, <code class="path">/guides/[slug]</code>, <code class="path">/brands</code>, <code class="path">/brands/[slug]</code> and <code class="path">/compare</code>. It is a literal <code>{index:false, follow:false}</code> &mdash; <em>not</em> gated on the <code>SITE_INDEXABLE</code> switch, and <code class="path">lib/site.ts</code> documents the behaviour as deliberate. So the brief's &ldquo;build buying-guide pages&rdquo; is not the blocker: <code class="path">/guides</code> and <code class="path">/guides/[slug]</code> already exist, with a published-guides loader behind them. The blocker is that nothing there is crawlable. <b>Confirm live</b> before the meeting &mdash; the local repo lags production and this may already be fixed.</p>
+          </li>
+
+          <li>
+            <h4>The direct-sale pilot is already chosen, and it is not Pines and Aces</h4>
+            <p><code class="path">suppliers/shopify-stores.ts</code> contains exactly one store: <b>Garb Golf</b> (<code>garb.myshopify.com</code>), with collegiate-range exclusions confirmed by Tyler Silva on 13 Oct 2026. Pines and Aces was a reseller / Shopify-API conversation from 24 September and is not in the code. Recommending &ldquo;one pilot &mdash; Pines and Aces&rdquo; would open a <em>second</em> pilot, contradicting the brief's own &ldquo;prove one flow before onboarding others.&rdquo; The ask is to <b>finish Garb</b>: one real paid order, one real refund, one reconciled payout.</p>
+          </li>
+
+          <li>
+            <h4>The direct-sale risks are mis-weighted &mdash; tax is small, returns are not</h4>
+            <p>Missouri economic nexus is <b>$100,000</b> of gross receipts over the preceding 12 months with no transaction-count trigger &mdash; unreachable in this window. Home-state Missouri collection applies from the first Missouri sale, and Stripe Tax makes that a configuration task, not a project. The costs that will actually bite a Garb pilot are returns and return shipping, chargebacks, and a support SLA: <b>who eats a returned $220 pullover.</b> Put it in the partner agreement, not on the engineering backlog.</p>
+          </li>
+
+          <li>
+            <h4>Caddy AI already recommends products, and the disclosure is not where the law wants it</h4>
+            <p><code class="path">caddie/shop-search.ts</code> has Caddy picking up to four products per search today. The only affiliate disclosure in the codebase is one sentence on <code class="path">/product/[id]</code>. The FTC Endorsement Guides &mdash; extended to AI-generated endorsers in the 2023 revision and reiterated in 2026 &mdash; require the material connection to be disclosed <b>at the point of recommendation</b>, before the click. So the disclosure line ships <em>with</em> the tracked links, in the Caddy answer surface, not after. This is the one item in the brief that is a compliance gate rather than a growth idea.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ============ PART 4 ============ -->
+      <section class="part" id="revised">
+        <div class="part-head">
+          <span class="eyebrow">Part 4</span>
+          <h2>The revised 90 days</h2>
+          <p>Same five levers as the brief. Re-sequenced so the work lands before the peak instead of after it, and with the two one-line changes first.</p>
+        </div>
+
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th style="width:1%">When</th><th>Do</th><th>Why now</th></tr></thead>
+            <tbody>
+              <tr><th>Days 0&ndash;7</th><td>Remove <code>NOINDEX_ROBOTS</code> from shop, product, guides, brands and compare (confirm production state first). Set <code>STRIPE_SECRET_KEY</code> so checkout leaves demo mode. Connect PostHog.</td><td>Two config changes and one import gate the entire plan. Nothing below matters until they are done.</td></tr>
+              <tr><th>Days 0&ndash;14</th><td>Tracked IDs on every outbound link &mdash; page + surface + product, on every network that supports a sub-ID. Ship the Caddy disclosure line in the same release.</td><td>The brief's first recommendation, and it is right. Links placed during the peak are worthless as evidence if they are untagged.</td></tr>
+              <tr><th>Days 0&ndash;21</th><td>Peak push into the audience that already exists: holiday gift guide, the daily reels, email to the Founding Member list. Paid and owned, not organic.</td><td><b>The only lever that can produce a sale before 25 December.</b> New SEO pages cannot rank in time, at any effort level.</td></tr>
+              <tr><th>Days 14&ndash;45</th><td>Finish <b>Garb Golf</b> end to end: one real paid order, one real refund, one reconciled Stripe payout. Returns and chargeback liability written into the agreement.</td><td>The only rail that turns a November sale into November cash. Pines and Aces waits until this clears.</td></tr>
+              <tr><th>Days 14&ndash;60</th><td>Consolidate affiliate rather than expand it: finish the Awin live test, get the already-approved advertisers to a working feed and a tagged link. Publish guides as indexable pages for the <em>next</em> season.</td><td>More networks means more integration surface and more $50 minimum-payout buckets to fill. Depth beats breadth at this volume.</td></tr>
+              <tr><th>Days 60&ndash;90</th><td>Local sponsorships &mdash; St. Louis courses, simulators, coaches, bundled with the reels &mdash; priced off real peak-season numbers.</td><td>January is the trough. It is the right month to sell on last month's numbers and the wrong month to launch anything.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ PART 5 ============ -->
+      <section class="part" id="room">
+        <div class="part-head">
+          <span class="eyebrow">Part 5</span>
+          <h2>In the room</h2>
+        </div>
+
+        <h3 class="ui" style="font-size:16px;margin:0 0 10px">Push back on &mdash; all three, agreed</h3>
+        <div class="model"><h4>Paid tiers</h4><p>Nothing to convert. And correct the store-fee claim while doing it: Apple and Google take nothing on gear, so &ldquo;app commerce is expensive&rdquo; is not the reason to say no. &ldquo;No users yet&rdquo; is.</p></div>
+        <div class="model"><h4>Display ads</h4><p>At the session volumes in Part 2, display revenue rounds to zero and costs the page speed that affiliate conversion depends on.</p></div>
+        <div class="model"><h4>Selling data</h4><p>No volume, and it contradicts the privacy posture the Caddy memory work was built around. Not a 90-day topic; arguably not a topic.</p></div>
+        <div class="model"><h4>&mdash; and one to add: buying more affiliate networks</h4><p>Six platforms are already in play. Each adds integration surface and its own minimum-payout gate. Depth on the approved advertisers beats a seventh logo.</p></div>
+
+        <h3 class="ui" style="font-size:16px;margin:28px 0 10px">Decisions to ask the founders for</h3>
+        <div class="ask"><h4>1 &middot; Monthly burn and the cash-runway date</h4><p>As the brief says &mdash; without it nobody can judge whether any of this is enough. Ask for the date the account hits zero, not just the monthly figure.</p></div>
+        <div class="ask"><h4>2 &middot; A 90-day target expressed in orders, not dollars</h4><p>Dollars hide the payout lag. &ldquo;50 tracked orders by 30 January&rdquo; is a target the team can steer; &ldquo;$1,000 of revenue&rdquo; is a number the networks' payment calendars decide.</p></div>
+        <div class="ask"><h4>3 &middot; Go / no-go on opening the shop to search engines</h4><p>A product decision, not an engineering one &mdash; it exposes catalogue and pricing to crawlers and competitors. It is also the gate on every organic plan in the brief. Needs a named owner and a date.</p></div>
+        <div class="ask"><h4>4 &middot; Who owns returns, chargebacks and the disclosure wording</h4><p>Direct sales and an AI recommender both create liabilities nobody has been assigned. Name a person before the pilot takes a real card.</p></div>
+
+        <div class="callout">
+          <p><b>One-page version for the meeting:</b> Part 0 plus the two tables in Part 2. That is the whole argument &mdash; the conclusion, the traffic number, and the payout calendar. Everything else is backup for the questions it will provoke.</p>
+        </div>
+      </section>
+
+      <section class="sources" id="sources">
+        <h2>Sources &amp; notes</h2>
+        <ul>
+          <li><b>Codebase</b> (local <code>chgolfco-platform</code> checkout, read 1 Nov 2026) &mdash; <code class="path">INTEGRATIONS.md</code> (Stripe, CJ, GrowthHero/PlayBetter 5%, Shopify partner stores, AvantLink, PostHog status); <code class="path">lib/seo.ts</code> + <code class="path">lib/site.ts</code> + <code class="path">app/robots.ts</code> (indexing gates); <code class="path">lib/suppliers/shopify-stores.ts</code> (Garb Golf, Tyler Silva 13 Oct 2026); <code class="path">lib/suppliers/index.ts</code> (five wired suppliers); <code class="path">lib/sales/*</code> (network reporting); <code class="path">lib/caddie/shop-search.ts</code> (Caddy product picks); <code class="path">packages/app-links</code> (<code>LAUNCH_AT</code> 15 Oct 2026).</li>
+          <li><b>Affiliate terms</b> &mdash; Awin, <em>Understanding the payment process</em> and <em>When will I receive payment</em> (1st/15th, auto-validation, amber status); CJ publisher payment terms (monthly NET 60, $50 minimum).</li>
+          <li><b>Commission rates</b> &mdash; Golf Galaxy 5% (FlexOffers); PGA Tour Superstore ~5&ndash;6%; Callaway 8% (6&ndash;9% by network); PlayBetter 5% per our own integration notes.</li>
+          <li><b>Order values</b> &mdash; Grips Intelligence retailer pages: pgatoursuperstore.com $175&ndash;225 (Apr 2026), taylormadegolf.com $250&ndash;275, fairwaygolfusa.com $400&ndash;425.</li>
+          <li><b>Store commissions</b> &mdash; Apple App Store Small Business Program (15% under $1M, application required; 30% year one on subscriptions, 15% thereafter); physical goods excluded from commission on both stores.</li>
+          <li><b>Sales tax</b> &mdash; Missouri economic nexus $100,000 gross receipts over the preceding 12 months, no transaction trigger; marketplace facilitator collection since 1 Jan 2023.</li>
+          <li><b>FTC</b> &mdash; Endorsement Guides, 16 CFR Part 255; 2023 revision extending disclosure to AI-generated endorsers; 2026 guidance on AI recommendations and disclosure at the point of recommendation.</li>
+          <li><b>Internal</b> &mdash; Meeting notes 27 Sep 2026 (Golf Galaxy holiday gift guide, GlobalGolf via Impact, ShipSticks, Foray via Awin, Sunday Golf &rarr; Superfiliate); CH-Development chat 24 Sep 2026 (Pines and Aces reseller / Shopify API).</li>
+        </ul>
+        <p style="margin-top:12px;color:var(--ink-3);font-size:13px;">Draft v1 &middot; repo-sourced. Three findings are marked <b>confirm live</b> &mdash; the indexing state, the Stripe key, and the Shopify partner list &mdash; because the local checkout is known to lag www.chgolfco.com. Both conversion rates in Part 2 are assumptions, not measurements; they exist to size the problem, and they are the first thing instrumentation should replace. Commission and order-value figures are third-party published ranges, not our own data.</p>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>
