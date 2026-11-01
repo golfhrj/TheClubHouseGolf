@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   // reaching the section and report pages below.
   title: { default: "Reports", template: "%s | Clubhouse Golf" },
   description: "Clubhouse Golf reports.",
+  // Internal working documents - partner terms, contact names, competitor
+  // analysis. Shareable by link, not for the index. Set here so every
+  // section and report page below inherits it.
+  robots: { index: false, follow: false },
 };
 
 export default function ReportsLayout({ children }: LayoutProps<"/reports">) {

@@ -2,6 +2,7 @@ import { execSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { beforeAll, describe, expect, it } from "vitest";
+import { REPORT_SECTIONS } from "../../src/lib/reports";
 
 /**
  * Builds the real static export exactly as the GitHub Pages workflow does,
@@ -101,19 +102,27 @@ describe("static export", () => {
 });
 
 describe("reports", () => {
+  // Derived from the registry so adding a report can't leave this list stale.
   const PAGES = [
     "reports/index.html",
-    "reports/marketing/index.html",
-    "reports/marketing/strategy/index.html",
-    "reports/marketing/demographics-device-mix/index.html",
-    "reports/marketing/membership/index.html",
-    "reports/marketing/website-feedback/index.html",
-    "reports/marketing/rebrand-ideas/index.html",
+    ...REPORT_SECTIONS.flatMap((s) => [
+      `reports/${s.slug}/index.html`,
+      ...s.reports.map((r) => `reports/${s.slug}/${r.slug}/index.html`),
+    ]),
   ];
 
-  it("exports a page for Reports, Marketing and each report", () => {
+  it("exports a page for Reports, each section and each report", () => {
     for (const page of PAGES)
       expect(existsSync(path.join(OUT, page))).toBe(true);
+  });
+
+  it("keeps every report page out of the search index", () => {
+    for (const page of PAGES) {
+      const pageHtml = readFileSync(path.join(OUT, page), "utf8");
+      expect(pageHtml, page).toContain(
+        '<meta name="robots" content="noindex, nofollow"/>',
+      );
+    }
   });
 
   it("points every local link on the report pages at a real file", () => {
