@@ -122,6 +122,21 @@ export const REPORT_SECTIONS: ReportSection[] = [
         ],
         file: "/reports/marketing/revenue-conversation-2026-11-01.html",
       },
+      {
+        slug: "live-site-audit",
+        label: "Live Site Audit",
+        title: "Live Site Audit - chgolfco.com",
+        summary:
+          "A live walk-through of the launched site, then every finding re-tested before publication. Five P0 issues - no server-rendered content, one title tag on every page, a sitemap of eight legal URLs, uncrawlable product cards, and a strikethrough price above Callaway's own MSRP - plus the seven v1 findings that did not survive verification, retracted in full.",
+        date: "2026-11-07",
+        details: [
+          { label: "Source", value: "www.chgolfco.com (live)" },
+          { label: "Findings", value: "14 held - 7 retracted" },
+          { label: "Worst metric", value: "LCP 24.1s mobile / 7.6s desktop" },
+          { label: "Status", value: "Draft v2 - red-teamed" },
+        ],
+        file: "/reports/marketing/live-site-audit-2026-11-07.html",
+      },
     ],
   },
 ];

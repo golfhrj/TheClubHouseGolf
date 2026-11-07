@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Live Site Audit &mdash; chgolfco.com &mdash; Red-Teamed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#F6F8F5; --surface:#FFFFFF; --surface-2:#F0F3EE;
+  --ink:#15201A; --ink-2:#5B675E; --ink-3:#8A958C;
+  --line:#DDE3DB; --line-2:#C9D2C6;
+  --accent:#1F6F4A; --accent-ink:#14563A; --accent-soft:#E6F0EA;
+  --new:#1F6F4A; --new-soft:#E6F0EA;
+  --core:#2E5A8A; --core-soft:#E3ECF5;
+  --overlay:#96702A; --overlay-soft:#F6EDDC;
+  --flag:#A83A24; --flag-soft:#F7E6E1;
+  --shadow:0 1px 2px rgba(21,32,26,.05),0 8px 24px -16px rgba(21,32,26,.22);
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --body:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+    --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#778377;
+    --line:#2A312A; --line-2:#3A433A;
+    --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+    --new:#5CB98A; --new-soft:#17261D;
+    --core:#79A6D8; --core-soft:#172333;
+    --overlay:#D6AB5E; --overlay-soft:#2B2417;
+    --flag:#E08063; --flag-soft:#2E1E18;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#101410; --surface:#181D18; --surface-2:#1F251F;
+  --ink:#E7EDE6; --ink-2:#9FAB9F; --ink-3:#778377;
+  --line:#2A312A; --line-2:#3A433A;
+  --accent:#5CB98A; --accent-ink:#8ED3AE; --accent-soft:#1A2A21;
+  --new:#5CB98A; --new-soft:#17261D;
+  --core:#79A6D8; --core-soft:#172333;
+  --overlay:#D6AB5E; --overlay-soft:#2B2417;
+  --flag:#E08063; --flag-soft:#2E1E18;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+img,svg{max-width:100%}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;margin:0}
+.shell{padding-inline:clamp(16px,3vw,32px);padding-block:0 64px;max-width:1320px;margin:0 auto}
+h1,h2,h3,h4,.ui{font-family:var(--display)}
+h2,h3,h4{text-wrap:balance;line-height:1.24;margin:0}
+a{color:var(--accent-ink);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink-2)}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3)}
+
+/* ---- masthead ---- */
+.masthead{padding-block:40px 28px;border-bottom:2px solid var(--ink)}
+.masthead h1{font-size:clamp(30px,5.2vw,50px);font-weight:700;letter-spacing:-.02em;
+  line-height:1.05;margin:10px 0 14px;max-width:20ch}
+.standfirst{font-size:clamp(16px,2.2vw,19px);color:var(--ink-2);max-width:66ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.03em}
+.meta b{color:var(--ink-2);font-weight:500}
+
+/* ---- layout ---- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.rail{display:none}
+@media(min-width:960px){
+  .layout{grid-template-columns:240px minmax(0,1fr);gap:48px;align-items:start}
+  .rail{display:block;grid-column:1;position:sticky;
+    top:calc(env(safe-area-inset-top,0px) + 16px);
+    max-height:calc(100vh - 48px);overflow-y:auto;padding-block:32px 20px}
+  .doc{grid-column:2}
+}
+.rail .eyebrow{display:block;margin:0 0 10px}
+.rail a{display:block;font-family:var(--display);font-size:13.5px;font-weight:500;
+  color:var(--ink-2);text-decoration:none;padding:5px 0 5px 11px;
+  border-left:2px solid var(--line);line-height:1.35}
+.rail a:hover,.rail a:focus-visible{color:var(--accent-ink);border-left-color:var(--accent)}
+.rail .sub{font-size:12.5px;color:var(--ink-3);padding-left:22px}
+.rail hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+.doc{padding-block:32px 0;min-width:0}
+
+/* ---- parts ---- */
+.part{margin:0 0 56px;scroll-margin-top:24px}
+.part-head{border-top:1px solid var(--line-2);padding-top:14px;margin-bottom:22px}
+.part-head .eyebrow{display:block}
+.part-head h2{font-size:clamp(21px,3vw,28px);font-weight:700;letter-spacing:-.015em;margin-top:6px}
+.part-head p{color:var(--ink-2);font-size:15.5px;max-width:68ch;margin:8px 0 0}
+.doc p{max-width:72ch}
+
+/* ---- persona cards ---- */
+.grid{display:grid;gap:14px}
+.grid.core{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:18px 20px;box-shadow:var(--shadow)}
+.card.full{border-left:4px solid var(--new)}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:4px}
+.card-head h3{font-size:18px;font-weight:700;letter-spacing:-.01em}
+.card.full .card-head h3{font-size:20px}
+.pill{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.pill.core{background:var(--core-soft);color:var(--core)}
+.pill.new{background:var(--new-soft);color:var(--new)}
+.pill.overlay{background:var(--overlay-soft);color:var(--overlay)}
+.pill.conf{background:var(--surface-2);color:var(--ink-3)}
+.tagline{color:var(--ink-2);font-size:14.5px;margin:0 0 10px}
+.card.core-card .tagline{margin-bottom:0}
+dl.rows{display:grid;grid-template-columns:132px minmax(0,1fr);gap:7px 16px;margin:12px 0 0;
+  font-size:14.5px}
+dl.rows dt{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+dl.rows dd{margin:0;color:var(--ink)}
+@media(max-width:560px){dl.rows{grid-template-columns:1fr;gap:1px}dl.rows dd{margin:0 0 7px}}
+.flag{display:flex;gap:10px;margin:14px 0 0;padding:11px 14px;border-radius:0 8px 8px 0;
+  background:var(--flag-soft);border-left:3px solid var(--flag);font-size:14px}
+.flag b{font-family:var(--display)}
+.vocab{color:var(--ink-2);font-style:italic}
+
+/* ---- table ---- */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin-top:6px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14px;background:var(--surface)}
+caption{text-align:left;font-size:13px;color:var(--ink-3);padding:12px 16px 0;font-family:var(--mono)}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);position:sticky;top:0}
+tbody th{font-family:var(--display);font-weight:600;color:var(--ink);font-size:14px;white-space:nowrap}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+td .no{color:var(--flag);font-weight:600}
+
+/* ---- psychology / uses lists ---- */
+.lede{font-size:16px;color:var(--ink);max-width:70ch}
+.model{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:14px 18px;margin-bottom:10px}
+.model h4{font-size:15.5px;font-weight:600;margin:0 0 4px}
+.model p{font-size:14.5px;color:var(--ink-2);margin:0;max-width:72ch}
+.model .mods{font-family:var(--mono);font-size:11px;color:var(--accent-ink);
+  letter-spacing:.04em;margin-top:6px}
+ol.uses{counter-reset:u;list-style:none;margin:0;padding:0}
+ol.uses>li{position:relative;padding:0 0 0 42px;margin:0 0 18px;max-width:74ch}
+ol.uses>li::before{counter-increment:u;content:counter(u);position:absolute;left:0;top:0;
+  width:28px;height:28px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);
+  font-family:var(--display);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+ol.uses h4{font-size:16px;font-weight:600;margin:3px 0 4px}
+ol.uses p{font-size:15px;color:var(--ink-2);margin:0}
+.callout{background:var(--accent-soft);border-radius:10px;padding:16px 20px;margin:18px 0;
+  border:1px solid var(--line)}
+.callout p{margin:0;font-size:15px;max-width:74ch}
+
+/* ---- sources ---- */
+.sources{border-top:1px solid var(--line-2);padding-top:18px;font-size:13.5px;color:var(--ink-2)}
+.sources h2{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin:0 0 10px}
+.sources li{margin-bottom:5px}
+</style>
+<style>
+.pill.ok{background:var(--new-soft);color:var(--new)}
+.pill.no{background:var(--flag-soft);color:var(--flag)}
+.pill.mixed{background:var(--overlay-soft);color:var(--overlay)}
+.verdict td:first-child{font-family:var(--mono);font-size:11px}
+.math{font-family:var(--mono);font-size:13.5px;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto;line-height:1.9}
+.math b{color:var(--accent-ink);font-weight:600}
+.ask{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);
+  border-radius:0 10px 10px 0;padding:14px 18px;margin:12px 0}
+.ask h4{font-size:15px;font-weight:600;margin:0 0 4px}
+.ask p{font-size:14.5px;color:var(--ink-2);margin:0;max-width:72ch}
+.cal{display:grid;gap:8px;margin:14px 0}
+@media(min-width:720px){.cal{grid-template-columns:repeat(3,1fr)}}
+.cal div{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--surface)}
+.cal .peak{border-left:4px solid var(--new)}
+.cal .trough{border-left:4px solid var(--flag)}
+.cal span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+.cal p{margin:0;font-size:14px}
+code.path{font-size:.84em}
+</style><body>
+<div class="shell">
+  <header class="masthead">
+    <span class="eyebrow">Clubhouse Golf &middot; Live site audit</span>
+    <h1>Live Site Audit &mdash; Red-Teamed</h1>
+    <p class="standfirst">A live walk-through of www.chgolfco.com three weeks after launch, then every
+      finding re-tested before publication. The first pass produced sixteen findings; seven did not
+      survive verification and are retracted in full at the end. What remains is five P0 issues,
+      four P1 and five P2 &mdash; and the cheapest of them to fix is a title tag.</p>
+    <div class="meta">
+      <span><b>Source</b> www.chgolfco.com (live)</span>
+      <span><b>Audited</b> 7 November 2026</span>
+      <span><b>Findings</b> 14 held &middot; 7 retracted</span>
+      <span><b>Method</b> Browser + Lighthouse + curl</span>
+      <span><b>Status</b> Draft v2 &mdash; red-teamed</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="rail" aria-label="Contents">
+      <span class="eyebrow">Contents</span>
+      <a href="#verdict">Verdict</a>
+      <a href="#p0">P0 &mdash; Fix first</a>
+      <a href="#p1">P1 &mdash; Performance</a>
+      <a href="#p2">P2 &mdash; Worth doing</a>
+      <hr>
+      <a href="#redteam">Red team &mdash; retractions</a>
+      <a class="sub" href="#pattern">Pattern in the errors</a>
+      <hr>
+      <a href="#method">Method &amp; coverage</a>
+      <a href="#sources">Sources &amp; notes</a>
+    </nav>
+
+    <div class="doc">
+
+      <section class="part" id="verdict">
+        <div class="part-head">
+          <span class="eyebrow">Part 1</span>
+          <h2>The verdict</h2>
+          <p>The platform works. Discovery, faceting and the community all function when you use
+            them. What does not work is everything a machine sees &mdash; and most of that is
+            fixable without touching the architecture.</p>
+        </div>
+
+        <div class="callout">
+          <p><b>One sentence:</b> the site renders nothing on the server, serves the same
+            <code>&lt;title&gt;</code> on every page, and lists only eight legal URLs in its
+            sitemap &mdash; so a catalogue of 3,390 club models and ~350 brands is effectively
+            invisible to search. Separately, one struck-through price sits above the
+            manufacturer&rsquo;s own MSRP, which is a legal exposure rather than a UX one.</p>
+        </div>
+
+        <div class="flag" style="background:var(--overlay-soft);border-left-color:var(--overlay)">
+          <div><b>Cheapest fix, largest upside.</b> <em>Unique per-page titles, and a sitemap that
+            lists the category pages. Neither requires the re-platform that the performance findings
+            imply. Both could ship this week.</em></div>
+        </div>
+
+        <div class="math">
+          Catalogue: <b>3,390</b> club models &middot; <b>~350</b> brands &middot;
+          URLs in sitemap: <b>8</b> &middot; crawlable product links: <b>0</b>
+        </div>
+      </section>
+
+      <section class="part" id="p0">
+        <div class="part-head">
+          <span class="eyebrow">Part 2</span>
+          <h2>P0 &mdash; fix before spending on traffic</h2>
+          <p>Every row was directly observed. The check is named so each one can be re-run.</p>
+        </div>
+
+        <div class="tablewrap">
+          <table class="verdict">
+            <caption>P0 findings, with the check that produced them</caption>
+            <thead>
+              <tr><th style="width:1%">#</th><th>Finding</th><th style="width:1%">Status</th><th>How it was verified</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <th>No server-rendered content on any route</th>
+                <td><span class="pill no">Confirmed</span></td>
+                <td><code class="path">curl /shop/clubs</code> returns HTML with no product name, no
+                  price, and not the string <code>3,390</code> &mdash; only
+                  <code>&lt;title&gt;Clubhouse Golf&lt;/title&gt;</code>. This is the root cause of
+                  findings 2&ndash;4.</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <th>Identical <code>&lt;title&gt;</code> on every page</th>
+                <td><span class="pill no">Confirmed</span></td>
+                <td>Seven routes checked at raw-HTML level (<code class="path">/</code>,
+                  <code class="path">/shop</code>, <code class="path">/shop/clubs</code>,
+                  <code class="path">/shop/balls</code>, <code class="path">/feed</code>,
+                  <code class="path">/course</code>, <code class="path">/brands</code>) &mdash; all
+                  serve <code>Clubhouse Golf</code> as both <code>&lt;title&gt;</code> and
+                  <code>og:title</code>. Canonicals, by contrast, are correct and per-page.</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <th>Sitemap contains 8 URLs, all legal boilerplate</th>
+                <td><span class="pill no">Confirmed</span></td>
+                <td><code>&lt;loc&gt;</code> count is exactly 8: home, privacy, terms, shipping,
+                  returns, warranty, accessibility, delete-account. Absent:
+                  <code class="path">/shop</code>, every category,
+                  <code class="path">/brands</code>, <code class="path">/feed</code>,
+                  <code class="path">/course</code>, every product.
+                  <code class="path">/sitemap-products.xml</code> and
+                  <code class="path">/sitemap_index.xml</code> return the SPA shell, not XML, so
+                  this is the only sitemap.</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <th>Product cards are not links</th>
+                <td><span class="pill no">Confirmed</span></td>
+                <td>39 elements on <code class="path">/shop/clubs</code> carry
+                  <code>role="link"</code> with no <code>href</code>. Enumerated, they are the
+                  primary nav, the breadcrumb and ~24 product cards. Only 12 real
+                  <code>href</code> anchors exist, all category and brand pills. No product is
+                  reachable by a crawlable link, and a shopper cannot open a club in a new tab.</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <th>Reference price above manufacturer MSRP</th>
+                <td><span class="pill no">Confirmed</span></td>
+                <td>Site shows <em>Callaway Elyte Driver $299.98, was $699.99</em>.
+                  Callaway&rsquo;s own launch pricing is <b>$599.99</b> (Standard / X / Max Fast)
+                  and $649.99 for Triple Diamond. The &ldquo;was&rdquo; price is ~$100 above MSRP.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="flag">
+          <div><b>Finding 5 needs legal review, not design review.</b> <em>A struck-through
+            reference price that was never a bona fide selling price is a recognised FTC
+            deceptive-pricing pattern. The fix is to audit every strikethrough in the feed, not just
+            this one. For contrast, the Titleist GT3 at $449.99 from $649.99 is consistent with that
+            model&rsquo;s MSRP &mdash; so this is a data problem in parts of the feed, not
+            everywhere.</em></div>
+        </div>
+      </section>
+
+      <section class="part" id="p1">
+        <div class="part-head">
+          <span class="eyebrow">Part 3</span>
+          <h2>P1 &mdash; performance and credibility</h2>
+        </div>
+
+        <div class="model">
+          <h4>6. Performance is poor on both form factors</h4>
+          <p>Measured twice, because the first pass mislabelled a throttled mobile run as desktop
+            (see retraction R2). Both columns below are real; the mobile column is the one Google
+            uses for Core Web Vitals.</p>
+        </div>
+
+        <div class="tablewrap">
+          <table class="verdict">
+            <caption>Lighthouse, 7 Nov 2026 &mdash; homepage</caption>
+            <thead>
+              <tr><th>Metric</th><th>Mobile &mdash; 4&times; CPU, ~1.6 Mbps</th><th>Desktop &mdash; no throttle, 10 Mbps</th><th>&ldquo;Good&rdquo;</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>Performance</th><td class="no">38</td><td class="no">45</td><td>90+</td></tr>
+              <tr><th>FCP</th><td>0.8s</td><td>0.3s</td><td>&lt;1.8s</td></tr>
+              <tr><th>LCP</th><td class="no">24.1s</td><td class="no">7.6s</td><td>&lt;2.5s</td></tr>
+              <tr><th>Time to interactive</th><td class="no">28.3s</td><td class="no">7.6s</td><td>&mdash;</td></tr>
+              <tr><th>CLS</th><td class="no">0.348</td><td class="no">0.242</td><td>&lt;0.1</td></tr>
+              <tr><th>Total blocking time</th><td class="no">420ms</td><td>230ms</td><td>&lt;200ms</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <p><b>Read the shape, not just the scores.</b> FCP is excellent on both &mdash; the shell
+            paints almost immediately, then the page stalls for seconds before anything useful
+            appears. That is the signature of a client-rendered app, and it is the same root cause
+            as finding 1. Desktop LCP at 7.6s is still three times the &ldquo;good&rdquo;
+            threshold, and CLS exceeds 0.1 on both.</p>
+        </div>
+
+        <div class="ask">
+          <h4>7. Product images are hotlinked from third parties</h4>
+          <p>Of 26 images on <code class="path">/shop/clubs</code>: 12 from Callaway&rsquo;s
+            Salesforce CDN, 6 from <code>fairwaygolfusa.com</code>, 4 from
+            <code>dks.scene7.com</code> (DICK&rsquo;S), 2 from <code>performancegolf.com</code>, and
+            only 2 self-hosted. You cannot resize, convert or cache-control these, and the grid
+            breaks if any supplier changes a path. Whether this also breaches those
+            retailers&rsquo; terms was not checked.</p>
+        </div>
+
+        <div class="ask">
+          <h4>8. Cards omit the retailer, so identical names show unexplained price gaps</h4>
+          <p>Two cards both read &ldquo;CALLAWAY GOLF Elyte Driver&rdquo;, at $299.98 and $399.99.
+            A RETAILER facet does exist, so multiple listings per model is deliberate marketplace
+            behaviour &mdash; but the card never names the seller, leaving the shopper no reason for
+            the difference. Fix the card, not the data.</p>
+        </div>
+
+        <div class="ask">
+          <h4>9. Cart shows &ldquo;1&rdquo; on an anonymous load</h4>
+          <p>Observed on <code class="path">/</code>, <code class="path">/shop</code> and
+            <code class="path">/shop/clubs</code>, persisting across routes with no item ever added.
+            Either seeded data or a state bug &mdash; either way it will distort every funnel metric
+            and every checkout test until it is cleared.</p>
+        </div>
+      </section>
+
+      <section class="part" id="p2">
+        <div class="part-head">
+          <span class="eyebrow">Part 4</span>
+          <h2>P2 &mdash; worth doing</h2>
+        </div>
+
+        <div class="cal">
+          <div class="trough">
+            <span>10 &middot; Dead alias</span>
+            <p><code class="path">/talk</code> is not a route. The community lives at
+              <code class="path">/feed</code> and loads correctly on direct navigation &mdash; but
+              the nav label says TALK, so <code>chgolfco.com/talk</code>, the URL a person would
+              guess, type or print on a flyer, renders &ldquo;Unmatched Route &mdash; Page could not
+              be found.&rdquo; Add a redirect. <code class="path">/feed</code> is also missing from
+              the sitemap.</p>
+          </div>
+          <div class="trough">
+            <span>11 &middot; Document outline</span>
+            <p><code class="path">/shop/clubs</code> has exactly one heading on the entire page, and
+              it reads <b>&ldquo;Filter by&rdquo;</b>. No other <code>h1</code>, <code>h2</code>,
+              <code>h3</code> or <code>role="heading"</code> exists anywhere. The category name is
+              not a heading.</p>
+          </div>
+          <div class="trough">
+            <span>12 &middot; Accessibility &mdash; 91/100</span>
+            <p>Lighthouse flags insufficient colour contrast and missing <code>alt</code>
+              attributes. Separately confirmed on <code class="path">/shop/clubs</code>: 2 of 26
+              images lack <code>alt</code>.</p>
+          </div>
+          <div class="trough">
+            <span>13 &middot; Back/forward cache blocked</span>
+            <p>Returning to a product grid re-pays the full load cost, which on mobile is the 24s
+              measured above.</p>
+          </div>
+          <div class="peak">
+            <span>14 &middot; Lessons are buried &mdash; opportunity, not defect</span>
+            <p><code class="path">/course</code> contains <b>Play / Lessons / Bookings</b> with
+              mobile-first GPS and live scoring. It works. But nobody searching for golf lessons
+              will guess that &ldquo;COURSE&rdquo; is where lessons live. Surface it in the primary
+              nav, or cross-link from the community.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="part" id="redteam">
+        <div class="part-head">
+          <span class="eyebrow">Part 5</span>
+          <h2>Red team &mdash; what the first pass got wrong</h2>
+          <p>Seven of the sixteen findings in v1 did not survive re-testing. They are listed in full
+            rather than quietly deleted, because the pattern matters more than the individual
+            errors.</p>
+        </div>
+
+        <div class="tablewrap">
+          <table class="verdict">
+            <caption>Retractions from v1</caption>
+            <thead>
+              <tr><th style="width:1%">#</th><th>v1 claim</th><th style="width:1%">Verdict</th><th>What is actually true</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>R1</td>
+                <th>&ldquo;<code class="path">/talk</code> is a soft 404, so the community is unindexable and unshareable&rdquo;</th>
+                <td><span class="pill conf">Wrong</span></td>
+                <td>The community is at <code class="path">/feed</code> and loads fine on direct
+                  navigation. v1 asserted &ldquo;TALK only works via in-app clicks&rdquo; without
+                  ever clicking TALK. Downgraded from P0 to P2 finding 10.</td>
+              </tr>
+              <tr>
+                <td>R2</td>
+                <th>&ldquo;LCP 24.1s on cold desktop, good connection&rdquo;</th>
+                <td><span class="pill conf">Mislabelled</span></td>
+                <td>That run was throttled mobile emulation &mdash; Lighthouse CLI&rsquo;s default,
+                  and <code>--preset=desktop</code> was never passed. Desktop LCP is 7.6s. Both
+                  numbers are bad, so the conclusion stood; the label did not.</td>
+              </tr>
+              <tr>
+                <td>R3</td>
+                <th>&ldquo;No shaft flex or loft facet&rdquo;</th>
+                <td><span class="pill conf">Wrong</span></td>
+                <td>LOFT (5.5&deg;&ndash;9.5&deg;, &ldquo;show 41 more&rdquo;), SHAFT
+                  (Graphite / Steel), FLEX (Lite &rarr; Extra Stiff) and CONDITION all exist. v1
+                  read a facet list truncated at PRICE and assumed it ended there.</td>
+              </tr>
+              <tr>
+                <td>R4</td>
+                <th>&ldquo;Brand filter polluted with merchant names&rdquo;</th>
+                <td><span class="pill conf">Wrong</span></td>
+                <td>A dedicated <b>RETAILER</b> facet exists, and Golf Galaxy, Fairway Golf Inc and
+                  Callaway Pre Owned sit there correctly. The BRAND facet is clean. Residual nit
+                  only: &ldquo;Puma Golf And Cobra Golf&rdquo; reads as a feed name rather than a
+                  retailer, and the <code class="path">/shop</code> &ldquo;350 brands&rdquo; list
+                  does mix in retailers.</td>
+              </tr>
+              <tr>
+                <td>R5</td>
+                <th>&ldquo;Merchant feeds are not deduped by SKU&rdquo;</th>
+                <td><span class="pill conf">Overstated</span></td>
+                <td>Multi-retailer listings per model are deliberate, with a Compare affordance.
+                  Replaced by the narrower and accurate finding 8.</td>
+              </tr>
+              <tr>
+                <td>R6</td>
+                <th>&ldquo;<code class="path">/partner</code> and <code class="path">/become-a-partner</code> both return 200; one is a soft 404&rdquo;</th>
+                <td><span class="pill conf">Meaningless</span></td>
+                <td><code class="path">/zzz-does-not-exist-9f3</code> also returns 200. Every path
+                  does &mdash; normal SPA behaviour. v1 had no control test, so status codes carried
+                  no information at all.</td>
+              </tr>
+              <tr>
+                <td>R7</td>
+                <th>&ldquo;The header notification bell likely does nothing&rdquo;</th>
+                <td><span class="pill conf">Overstated</span></td>
+                <td>The console warning concerns push-token change listeners on web only, not the
+                  notification UI. Untested either way.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="flag" id="pattern">
+          <div><b>The pattern.</b> <em>Every error came from inferring a cause from partial output
+            instead of checking it: a truncated facet list, an unverified tool configuration, a
+            route never clicked, a status code with no control. One false positive was caught during
+            the original pass only because a network log contradicted it; six more needed a second
+            pass. Any automated or agent-driven version of this audit will produce the same class of
+            error with nobody auditing its reasoning &mdash; which is the argument for keeping a
+            verification step rather than scaling the first pass.</em></div>
+        </div>
+      </section>
+
+      <section class="part" id="method">
+        <div class="part-head">
+          <span class="eyebrow">Part 6</span>
+          <h2>Method &amp; coverage</h2>
+        </div>
+
+        <div class="model">
+          <h4>What was done</h4>
+          <p>Live browser walk-through of the production site with DOM and network inspection;
+            Lighthouse on mobile and desktop presets; <code>curl</code> against raw server HTML to
+            separate server-rendered from client-rendered content; a control request to a
+            deliberately invalid path; and one external price check against the
+            manufacturer&rsquo;s published MSRP.</p>
+        </div>
+
+        <div class="model">
+          <h4>What was not covered</h4>
+          <p>Caddy AI answer quality; signup and onboarding completion (no mailbox was available to
+            confirm email verification); checkout beyond add-to-cart; a full mobile-viewport
+            walk-through; the Buying Guides &rarr; purchase path; and the BECOME A PARTNER funnel.
+            None of these were assessed, and no conclusion about them should be drawn from this
+            report.</p>
+        </div>
+
+        <div class="flag">
+          <div><b>Analytics note.</b> <em>These sessions were tracked by the live GA4 property
+            (<code>G-X9SXYER9WP</code>) &mdash; page_view and scroll events fired against
+            <code class="path">/shop/clubs</code>. Filter 7 November 2026 before reading November
+            funnel data.</em></div>
+        </div>
+      </section>
+
+      <section class="sources" id="sources">
+        <h2>Sources &amp; notes</h2>
+        <ul>
+          <li><b>Live site</b> (www.chgolfco.com, 7 Nov 2026) &mdash; DOM inspection of
+            <code class="path">/</code>, <code class="path">/shop</code>,
+            <code class="path">/shop/clubs</code>, <code class="path">/feed</code> and
+            <code class="path">/course</code>; console and network logs; facet enumeration;
+            <code>role="link"</code> and <code>href</code> counts; heading audit; image-host
+            tally.</li>
+          <li><b>Raw HTML</b> &mdash; <code>curl</code> against seven routes for
+            <code>&lt;title&gt;</code>, <code>og:title</code> and <code>rel=canonical</code>;
+            server-render check for product content; <code class="path">robots.txt</code> and
+            <code class="path">sitemap.xml</code>; control request to an invalid path.</li>
+          <li><b>Lighthouse</b> &mdash; two runs, mobile (default preset: 4&times; CPU slowdown,
+            ~1.6 Mbps simulated) and <code>--preset=desktop</code> (no throttle, 10 Mbps), homepage
+            only.</li>
+          <li><b>Callaway Elyte pricing</b> &mdash; Callaway Golf press release,
+            <em>Callaway Golf Announces New Elyte Family of Woods and Irons</em> (2 Jan 2025), and
+            AmateurGolf.com, <em>Callaway launches the Elyte driver lineup for 2025</em>: $599.99
+            Standard / X / Max Fast, $649.99 Triple Diamond.</li>
+          <li><b>Stack</b> &mdash; Expo / React Native Web SPA on Vercel, identified from
+            <code class="path">_expo/static/js/web/entry-*.js</code> and
+            <code class="path">_vercel/insights</code> in the network log.</li>
+        </ul>
+        <p style="margin-top:12px;color:var(--ink-3);font-size:13px;">Draft v2 &middot; red-teamed.
+          v1 contained sixteen findings; seven are retracted in Part 5 and are not counted in the
+          totals on this page. Catalogue figures (3,390 models, ~350 brands) are the site&rsquo;s own
+          displayed counts, not independently audited. Finding 7&rsquo;s terms-of-service
+          implication and finding 5&rsquo;s legal characterisation are flagged for review by someone
+          qualified &mdash; they are not conclusions. Performance figures are single runs on one
+          connection and will vary.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
