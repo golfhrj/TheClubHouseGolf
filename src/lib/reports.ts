@@ -137,6 +137,21 @@ export const REPORT_SECTIONS: ReportSection[] = [
         ],
         file: "/reports/marketing/live-site-audit-2026-11-07.html",
       },
+      {
+        slug: "strategy-vs-shipped",
+        label: "Strategy vs Shipped",
+        title: "Strategy vs. Shipped",
+        summary:
+          "Strategy V3 named owned checkout as a Phase 1 requirement and warned that without it every item is a referral and the checkout promise is empty. Three weeks after launch that warning is the shipped product. Combines the gap analysis, a psychology layer for all nine golfer personas, and the instrumentation tickets that would let any of it be measured - each part red-teamed.",
+        date: "2026-11-07",
+        details: [
+          { label: "Sources", value: "Live site + Strategy V3 + Personas + Site Audit" },
+          { label: "Biggest gap", value: "Owned checkout never shipped" },
+          { label: "Start with", value: "Equipment Enthusiast" },
+          { label: "Status", value: "Draft v1 - red-teamed" },
+        ],
+        file: "/reports/marketing/strategy-vs-shipped-2026-11-07.html",
+      },
     ],
   },
 ];

@@ -29,12 +29,11 @@ test("Reports › Marketing › Strategy tabs lead to the report", async ({
   ).toHaveAttribute("aria-current", "page");
 
   const reports = page.getByRole("navigation", { name: "Marketing reports" });
-  await reports.getByRole("link", { name: "Strategy" }).click();
+  await reports.getByRole("link", { name: "Strategy", exact: true }).click();
   await expect(page).toHaveURL(STRATEGY);
-  await expect(reports.getByRole("link", { name: "Strategy" })).toHaveAttribute(
-    "aria-current",
-    "page",
-  );
+  await expect(
+    reports.getByRole("link", { name: "Strategy", exact: true }),
+  ).toHaveAttribute("aria-current", "page");
   await expect(page).toHaveTitle(
     `${STRATEGY_TITLE} - Marketing | Clubhouse Golf`,
   );
